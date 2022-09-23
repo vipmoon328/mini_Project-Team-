@@ -21,7 +21,8 @@
 			$('#user_email2').attr("disabled", true);
 		}
 	}
-
+	
+	function chk
 </script>
 
 <link href="css/signUpForm.css" type="text/css" rel="stylesheet"> 

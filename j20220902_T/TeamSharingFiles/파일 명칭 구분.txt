@@ -1,0 +1,5 @@
+로그인 여부 확인 : memberCheck.jsp
+로그인 : loginForm.jsp
+회원가입 : signUpForm.jsp
+회원가입 결과 처리를 보여주는 페이지 : signUpPro.jsp
+에러 처리를 위한 페이지: Error.jsp
