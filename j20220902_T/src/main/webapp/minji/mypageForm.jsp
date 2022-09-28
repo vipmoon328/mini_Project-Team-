@@ -1,8 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+ㅣ<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" errorPage="error.jsp"%>
+<%-- <%@ include file="../memberCheck.jsp" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	String name = (String)session.getAttribute("name");
+%>
 <meta charset="UTF-8">
 <title>중앙 볼링장 마이페이지</title>
 <link href="../css/mypage.css?ver0.1" rel="stylesheet" type="text/css">
@@ -21,15 +25,50 @@
 			$('#user_email2').attr("readonly", true);
 		}
 	}
+	function modifyCheck()
+	{	
+		var check = true;
+		
+		$('#passError').text('');
+		$('#passLengthError').text('');
+		$('#emailError').text('');
+		
+		
+		if($('#user_password').val() != $('#user_password_chk').val())
+		{
+			$('#passError').text('패스워드가 일치하지 않습니다. 다시 입력해주세요.');
+			check = false;
+		}
+		
+		if($('#user_password').val().length < 8)
+		{
+			$('#passLengthError').text('패스워드는 보안상의 이유로 8글자 이상 입력해주세요');
+			check = false;
+		}
+		
+		if($('#user_email2').val().indexOf('.') == -1)
+		{
+			$('#emailError').text('이메일 형식이 일치 하지 않습니다. 다시 입력해주세요');
+			check = false;
+		}
+
+		console.log(check);
+		
+		if(check == false)
+		{
+			return check;
+		}
+		
+	}
 </script>
 </head>
 <body>
 <div id="wrapper">
-	<form action="Pro.do" method="post">
+	<form action="" method="post">
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><a href="">user님</a></li>
+					<li><a><%=name %>님</a></li>
 					<li><a href="">로그아웃</a></li>
 				</ul>
 			</div> 
@@ -39,12 +78,12 @@
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="">홈</a></li>
-					<li><a href="">볼링장정보</a></li>
-					<li><a href="">예약</a></li>
-					<li><a href="">오시는길</a></li>
-					<li><a href="">게시판</a></li>
-					<li><a href="">마이페이지</a></li>
+					<li><a href="loginHomeView.jsp">홈</a></li>
+					<li><a href="informationForm.jsp">볼링장정보</a></li>
+					<li><a href="resAllView.jsp">예약</a></li>
+					<li><a href="mapForm.jsp">오시는길</a></li>
+					<li><a href="boardList.jsp">게시판</a></li>
+					<li><a href="mypageForm.jsp">마이페이지</a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,8 +95,8 @@
 		<div class="flex-container center">
 			<div class="item_fourth">
 				<ul>
-					<li><a href="">정보수정</a></li>
-					<li><a href="">예약내역</a></li>		
+					<li><a href="mypageForm.jsp">정보수정</a></li>
+					<li><a href="resMyView.jsp">예약내역</a></li>		
 				</ul>
 			</div>
 		</div>
@@ -75,10 +114,13 @@
 					<tr>
 						<td><figure style="margin: 0;">비밀번호확인<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
 						<td><input type="password" size="30px" id="user_password_chk" required="required" value="${users.pw}"></td>
+						<div id="passError" class="error"></div>
+						<div id="passLengthError" class="error"></div>
 					</tr>
 					<tr>
 						<td><figure style="margin: 0;">이름<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
 						<td><input type="text" size="15px" id="user_name" required="required" value="${users.name}"></td>
+						<div id="nameError" class="error"></div>
 					</tr>
 					<tr>
 						<td><figure style="margin: 0;">전화번호<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
@@ -115,13 +157,14 @@
 								</select>
 							</label>
 						</td>
+						<div id="emailError" class="error"></div>
 					</tr>
 				</table>
 			</div> 
 		</div>
 		<div class="flex-container center">
 			<div class="item_sixth">
-				<button type="submit" id="submitChk" onclick="">수정하기</button><button type="submit" class="" onclick="">탈퇴하기</button>
+				<button type="submit" id="submitChk" onclick="return modifyCheck()">수정하기</button><button type="submit" class="" onclick="">탈퇴하기</button>
 			</div>
 		</div>
 		<div class="flex-container center">
