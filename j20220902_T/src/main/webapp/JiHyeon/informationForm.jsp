@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>볼링장정보</title>
 <link href="../css/informationForm.css?ver0.1" rel="stylesheet" type="text/css">
+<%
+	String context = request.getContextPath();
+%>
 </head>
 <body>
 	<div id="wrapper">
