@@ -126,10 +126,13 @@ public class Controller extends HttpServlet {
 			throw new ServletException(e); 
 		}
 		
-		System.out.println("앞으로 이동할 페이지 명: " + view);
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-        dispatcher.forward(request, response);
-	    
+        if(view.contains(".jsp")||view.contains(".html")) {
+        	System.out.println("앞으로 이동할 페이지 명: " + view);
+    		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+            dispatcher.forward(request, response);
+		}else {
+			response.getWriter().write(view);	
+		}
 	    
 	    
 		
