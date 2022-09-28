@@ -13,7 +13,7 @@
           left: 50%;
           bottom: 0;
           width: 0;
-          height: 4px;
+          height: 2px;
           background-color: #5A8DF3;
           transition: all .5s;
    }
@@ -23,7 +23,7 @@
           right: 50%;
           bottom: 0;
           width: 0;
-          height: 4px;
+          height: 2px;
           background-color: #5A8DF3;
           transition: all .5s;
    }
@@ -33,7 +33,9 @@
    ul > li > a:hover:before {
           width: 50%
    }      /* 밑줄효과 */
-	 
+	 body {
+ 	 		margin: 0;
+ 	} 
 	 .flex-container {
             display: flex;  /* 컨테이너들 수직정렬 */
     }  
