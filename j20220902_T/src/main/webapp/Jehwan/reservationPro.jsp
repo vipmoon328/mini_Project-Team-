@@ -7,7 +7,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../css/reservationStyle.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+	#calendar{
+		float : left;
+	}
+	#calendar tbody{
+		background-color : pink;
+		border: 1px solid black;
+	}
+	#test_table{
+		clear:both;
+		margin-top: 100px;
+		margin-left: 15%;
+		margin-right: 15%;
+	}
+	#test td{
+		width: 80px;
+		height: 40px;
+	}
+	#frm{
+		float: right;
+		margin-right:100px; 
+	}
+	h2{
+		color : navy;
+	}
+	#msg{
+		width: 200px;
+		height: 200px;
+	}
+	
+	/* 테두리 생성(모든 div)*/      
+	div {                      
+		border: 1px solid gray;
+	} 
+	#content_container {
+				margin: 20px;
+				padding: 20px;
+	}
+</style>
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -293,8 +331,8 @@
 	
 	<div id="content_container">
 	<select id="jijum">
-			<option value="1">이대</option>
-			<option value="2">강남</option>
+			<option value="0">이대</option>
+			<option value="1">강남</option>
 	</select><p>
 		<table id="calendar">
 	        <thead>

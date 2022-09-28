@@ -37,12 +37,12 @@ public class AjaxResCheckPro implements CommandProcess {
 					 System.out.println(inputYear);
 					 System.out.println(inputMon);
 					 System.out.println(inputDate);
-					 if (inputYear==null || inputYear.equals("")) {	
+					 /*if (inputYear==null || inputYear.equals("")) {	
 						 cal.setTime(new Date());
 						 branch = "1";
-					 }else {
-						 cal.set(Integer.parseInt(inputYear), Integer.parseInt(inputMon),Integer.parseInt(inputDate));
-					 }
+					 }else {*/
+					 cal.set(Integer.parseInt(inputYear), Integer.parseInt(inputMon),Integer.parseInt(inputDate));
+							/* } */
 					 
 					 String res_date = df.format(cal.getTime());
 					 //res_date = res_date.replaceAll("-", "");

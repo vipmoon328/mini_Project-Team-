@@ -51,7 +51,8 @@ public class ReservationDao {
 		PreparedStatement pstmt= null; 
 		ResultSet rs = null;    
 		int tot = 0;
-		String sql = "select count(*) from reserve where \"userNum\" = ?";
+		System.out.println(usrNum);
+		String sql = "select count(*) from reserve where \"USERNUM\" = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -73,12 +74,13 @@ public class ReservationDao {
 		Connection conn = null;	
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
-		 String sql = "select * from reserve where TO_DATE(?,'YY/MM/DD') = \"res_date\" and \"res_brnNum\" = " + branch;
+		 String sql = "select * from reserve where \"RES_CANCEL\"=0 and  TO_DATE(?,'YY/MM/DD') = \"RES_DATE\" and \"RES_BRNNUM\" = ?";
 		 System.out.println(sql);
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, res_date);
+			pstmt.setString(2, branch);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Reservation reservation = new Reservation();
@@ -102,7 +104,7 @@ public class ReservationDao {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		int result = 0;
-		String sql1="select nvl(max(\"res_rid\"),0) from reserve";
+		String sql1="select nvl(max(\"RES_RID\"),0) from reserve";
 		String sql = "insert into reserve values (?,TO_DATE(?,'YY/MM/DD'),?,?,?,?,?,?,?,sysdate,?,?)";
 		try {
 			conn = getConnection();
@@ -144,7 +146,7 @@ public class ReservationDao {
 		Connection conn = null;	
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
-		 String sql = "SELECT *  FROM (Select a.*, rownum rn   From (select * from reserve where \"userNum\"=? ORDER BY \"res_date\" DESC) a ) WHERE rn BETWEEN ? AND ? ";
+		 String sql = "SELECT *  FROM (Select a.*, rownum rn   From (select * from reserve where \"USERNUM\"=? ORDER BY \"RES_DATE\" DESC) a ) WHERE rn BETWEEN ? AND ? ";
 		 System.out.println(sql);
 		try {
 			conn = getConnection();
@@ -184,7 +186,7 @@ public class ReservationDao {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		int result = 0;
-		String sql = "update reserve set \"res_date\" =?, \"res_lane\"=?, \"res_startTime\"=?, \"res_endTime\"=?, \"res_customer\"=?, \"res_sal\"=?,\"pay_date\"=sysdate,\"res_brnNum\"=? where \"res_rid\"= ?";
+		String sql = "update reserve set \"RES_DATE\" =?, \"RES_LANE\"=?, \"RES_STARTTIME\"=?, \"RES_ENDTIME\"=?, \"RES_CUSTOMER\"=?, \"RES_SAL\"=?,\"PAY_DATE\"=sysdate,\"RES_BRNNUM\"=? where \"RES_RID\"= ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -215,7 +217,7 @@ public class ReservationDao {
 		Connection conn = null;	
 		PreparedStatement pstmt= null;
 		int result = 0;
-		String sql = "delete reserve where \"res_rid\" IN (";
+		String sql = "delete reserve where \"RES_RID\" IN (";
 		for(int i = 0 ; i < cancel_rid.length-1 ; i++) {
 			sql += "?,";
 		}

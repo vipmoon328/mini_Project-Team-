@@ -31,9 +31,9 @@ public class ReservationForm implements CommandProcess {
 		}
 		System.out.println("res_rid=" + request.getParameter("res_rid"));
 		if(brnNum_text == "이대점") {
-			brnNum=1;
+			brnNum=0;
 		}else {
-			brnNum=2;
+			brnNum=1;
 		}
 		System.out.println(res_date);
 		request.setAttribute("res_rid", request.getParameter("res_rid"));

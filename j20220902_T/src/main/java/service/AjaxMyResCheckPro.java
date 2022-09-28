@@ -31,7 +31,7 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					String userNum = request.getParameter("userNum");
 					ReservationDao rd = ReservationDao.getInstance();
 					
-					int totCnt = rd.getTotalCnt("1");   // 37
+					int totCnt = rd.getTotalCnt("2");   // 37
 					System.out.println(totCnt);
 					String pageNum = request.getParameter("pageNum");	
 					if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
@@ -40,7 +40,7 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					int startRow = (currentPage - 1) * pageSize + 1;  // 1     10   
 					int endRow   = startRow + pageSize - 1;           // 11    20 
 
-					List<Reservation> list = rd.myResInfo("1",startRow,endRow);
+					List<Reservation> list = rd.myResInfo("2",startRow,endRow);
 					
 					int pageCnt = (int)Math.ceil((double)totCnt/pageSize);  // 4
 					//                       1
@@ -61,9 +61,9 @@ public class AjaxMyResCheckPro implements CommandProcess {
 						JSONObject obj = new JSONObject();
 						obj.put("res_rid", reservation.getRes_rid());
 						obj.put("res_date", reservation.getRes_date());
-						if(reservation.getRes_brnNum() == 1) {
+						if(reservation.getRes_brnNum() == 0) {
 							branch = "이대점";
-						}else if(reservation.getRes_brnNum() == 2) {
+						}else if(reservation.getRes_brnNum() == 1) {
 							branch = "강남점";
 						}
 						obj.put("brnNum", branch);

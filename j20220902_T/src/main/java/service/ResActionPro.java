@@ -36,7 +36,7 @@ public class ResActionPro implements CommandProcess {
 		reservation.setRes_endTime(Integer.parseInt(request.getParameter("end")));
 		reservation.setRes_customer(Integer.parseInt(request.getParameter("many")));
 		reservation.setRes_sal(Integer.parseInt(request.getParameter("cost")));
-		reservation.setRes_userNum(1);
+		reservation.setRes_userNum(2);
 		reservation.setRes_brnNum(Integer.parseInt(request.getParameter("jijum")));
 		System.out.println("res_rid=" + res_rid);
 		ReservationDao rd = ReservationDao.getInstance();
