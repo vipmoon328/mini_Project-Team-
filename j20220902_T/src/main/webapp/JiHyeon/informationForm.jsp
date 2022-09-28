@@ -27,11 +27,11 @@
 				<ul>
 					<li>중앙볼링장</li>
 					<li><a href="#">홈</a></li>
-					<li><a href="#">볼링장정보</a></li>
+					<li><a href="informationForm.jsp">볼링장정보</a></li>
 					<li><a href="#">예약</a></li>
-					<li><a href="#">오시는길</a></li>
+					<li><a href="mapForm.jsp">오시는길</a></li>
 					<li><a href="#">게시판</a></li>
-					<li><a href="#">마이페이지</a></li>
+					<li><a href="../minji/mypageForm.jsp">마이페이지</a></li>
 				</ul>
 			</div>
 		</div>		
