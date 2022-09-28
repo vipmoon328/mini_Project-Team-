@@ -4,10 +4,6 @@
 		padding: 7px;
 	}
 	
-	.error {
-		padding: 0px;
-	}
-	
 	label {
 		padding: 10px;
 	}
@@ -76,8 +72,8 @@
 	}
 	
     img { 
-    	display : block;
-    	margin : auto;
+    	width: 500px;
+    	height: 400px;
     }
     
     .input {
@@ -96,12 +92,5 @@
       	outline: none;
       	padding-left: 10px;
       	background-color: rgb(233, 233, 233);
-	}
-	
-	.error{
-	    font-size: 14px;
-	    height: 20px;
-	    color:red;
-	    font-weight: 700;
 	}
 	

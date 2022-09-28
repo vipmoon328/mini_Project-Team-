@@ -4,28 +4,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>중앙 볼링장 로그인</title>
-<link href="css/loginForm.css" type="text/css" rel="stylesheet"> 
+<title>Insert title here</title>
+<link href="css/loginForm.css" type="text/css" rel="stylesheet">
+ 
+<style type="text/css">
+	
+
+	
+</style>
+
 </head>
 <body>
-	<div class="Login">
+	<div class="findId">
 	
-		<form action="login.do" class="LoginForm" method="post">
+		<form action="login.do" class="findIdForm" method="post">
 		
 			<div class="image">
 				<img alt="" src="images/icon.png">
 			</div>
 		
 			<div>
-				<input type="text" class="input" placeholder="  아이디" name="user_id" id="user_id" size="50" required="required">
+				<input type="text" class="input" placeholder=" 이름" name="user_id" id="user_id" size="50" required="required">
 			</div>
 			
 			<div>
-				<input type="password" class="input" placeholder="  비밀번호" name="user_password" id="user_password" required="required">
+				
 			</div>
 			
 			<div>
-				<input type="submit" value=" 로그인" id="sendData" class="button">
+				<input type="submit" value=" 아이디 찾기" id="sendData" class="button">
 			</div>
 			
 			<div class="optionBox">
@@ -35,7 +42,5 @@
 			</div>
 		</form>
 	</div>
-	
-
 </body>
 </html>
