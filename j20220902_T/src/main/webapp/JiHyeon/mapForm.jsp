@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>오시는길</title>
-<link href="map.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="../css/mapForm.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="wrapper">
@@ -115,13 +115,13 @@
     			<tr>
     				<th>이용안내</th>
     				<td><figure>
-						<div style=" float: left; text-align:center; width: 50px; padding: 5px 20px 2px 20px;"><img src="images/예약.png" width="50" height="50">
+						<div style=" float: left; text-align:center; width: 50px; padding: 5px 20px 2px 20px;"><img src="../images/예약.png" width="50" height="50">
 						<figcaption style="text-align: center;">예약</figcaption></div>
-						<div style=" float: left; text-align:center; width: 50px; padding: 5px 20px 2px 20px;"><img src="images/단체석.png" width="50" height="50">
+						<div style=" float: left; text-align:center; width: 50px; padding: 5px 20px 2px 20px;"><img src="../images/단체석.png" width="50" height="50">
 						<figcaption style="text-align: center;">단체석</figcaption></div>
-						<div style=" float: left; text-align:center; width: 50px; padding: 5px 10px 2px 20px;"><img src="images/주차.png" width="50" height="50">
+						<div style=" float: left; text-align:center; width: 50px; padding: 5px 10px 2px 20px;"><img src="../images/주차.png" width="50" height="50">
 						<figcaption style="text-align: center;">주차</figcaption>	</div>		
-						<div style=" float: left; text-align:center; width: 150px; padding: 5px 50px 2px 10px;"><img src="images/화장실.png" width="50" height="50">	
+						<div style=" float: left; text-align:center; width: 150px; padding: 5px 50px 2px 10px;"><img src="../images/화장실.png" width="50" height="50">	
 						<figcaption style="text-align: center;">남/여 화장실 구분</figcaption></div>
 					</figure></td>
     			</tr>				
@@ -189,13 +189,13 @@
     			<tr>
     				<th>이용안내</th>
 					<td><figure>
-						<div style=" float: left; text-align:center; width: 50px; padding: 5px 20px 2px 20px;"><img src="images/예약.png" width="50" height="50">
+						<div style=" float: left; text-align:center; width: 50px; padding: 5px 20px 2px 20px;"><img src="../images/예약.png" width="50" height="50">
 						<figcaption style="text-align: center;">예약</figcaption></div>
-						<div style=" float: left; text-align:center; width: 50px; padding: 5px 20px 2px 20px;"><img src="images/단체석.png" width="50" height="50">
+						<div style=" float: left; text-align:center; width: 50px; padding: 5px 20px 2px 20px;"><img src="../images/단체석.png" width="50" height="50">
 						<figcaption style="text-align: center;">단체석</figcaption></div>
-						<div style=" float: left; text-align:center; width: 50px; padding: 5px 10px 2px 20px;"><img src="images/주차.png" width="50" height="50">
+						<div style=" float: left; text-align:center; width: 50px; padding: 5px 10px 2px 20px;"><img src="../images/주차.png" width="50" height="50">
 						<figcaption style="text-align: center;">주차</figcaption>	</div>		
-						<div style=" float: left; text-align:center; width: 150px; padding: 5px 50px 2px 10px;"><img src="images/화장실.png" width="50" height="50">	
+						<div style=" float: left; text-align:center; width: 150px; padding: 5px 50px 2px 10px;"><img src="../images/화장실.png" width="50" height="50">	
 						<figcaption style="text-align: center;">남/여 화장실 구분</figcaption></div>
 					</figure></td>
 				</tr>

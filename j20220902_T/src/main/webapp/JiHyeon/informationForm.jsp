@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>볼링장정보</title>
-<link href="informationForm.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="../css/informationForm.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="wrapper">
@@ -55,15 +55,15 @@
 			</div>
 				<ul>		
 					<li><figure>
-						<img alt="락볼링장" 	src="images/3.jpg" width="800">				
+						<img alt="락볼링장" 	src="../images/3.jpg" width="800">				
 						<div id=text><figcaption>저녁에는 락볼링장 이용가능합니다.</figcaption></div>
 					</figure></li>
 					<li><figure>
-						<img alt="레인" 		src="images/4.jpg" width="800">
+						<img alt="레인" 		src="../images/4.jpg" width="800">
 						<div id=text><figcaption><span class="lain">레인</span><br>총 8개 레인으로 넓은 규모를 자랑합니다</figcaption></div>
 					</figure></li>
 					<li><figure>
-					<img alt="볼링공" 	src="images/5.jpg" width="800">
+					<img alt="볼링공" 	src="../images/5.jpg" width="800">
 					<div id=text><figcaption><span class="ball">볼링공</span><br>본인사이즈에 맞는 공을 선택해주세요.</figcaption></div>
 					</figure></li>
 				</ul>
@@ -75,14 +75,14 @@
 			</div>
 				<ul>
 					<li><figure>
-						<img alt="액션캠" 	src="images/1.png" width="800">
+						<img alt="액션캠" 	src="../images/1.png" width="800">
 						<br>
 						<div id=text><span style="font-weight: bolder;">전 레인 액션캠 설치</span><br>
 						투구 직후 자신의 투구폼, 볼 궤도, 핀액션까지 슬로우모션으로 볼 수 있는 신개념 액션캠
 						</div>
 					</figure></li>					
 					<li><figure>	
-						<img alt="정비기" 	src="images/2.png" width="800">				
+						<img alt="정비기" 	src="../images/2.png" width="800">				
 						<div id=text><figcaption><span style="font-weight: bolder;">Kegel Flex Walker 정비기</span><br>
 						자동으로 이동과 정비를 진행하며, 듀오 컨디셔닝 시스템으로 동시에 두 가지의 컨디셔너를 사용이 가능합니다.<br>
 						또한 옵션인 클리너 믹싱 시스템을 탑재하여 물과 클리너의 비율을 설정하면<br> 기계가 자동으로 혼합하므로 365일 항상 일정한 클리너 비율을 유지합니다</figcaption> 
