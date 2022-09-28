@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 마이페이지</title>
-<link href="css/mypage.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="../css/mypage.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrapper">
