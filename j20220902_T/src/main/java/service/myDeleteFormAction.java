@@ -20,17 +20,20 @@ public class myDeleteFormAction implements CommandProcess {
 		System.out.println("myDeleteFormAction start...");		
 				
 				String id = request.getParameter("user_id");
-				String passwd = request.getParameter("user_password");				
-			try {				
-				UserDao ud = UserDao.getInstance();				
-				
-				Users users = ud.select(num);
-				
-				// 4. request 객체에 num , pageNum , board
-			
-			} catch (Exception e) {
-					System.out.println(e.getMessage());
-				}
-				
+				try {				
+					UserDao ud = UserDao.getInstance();	 			
+					
+					Users users = ud.select(id); 
+					
+					// 4. request 객체에 num , pageNum , board
+					request.setAttribute("user_id", id);				
+					request.setAttribute("users", users);
+					
+				} catch (Exception e) {
+						System.out.println(e.getMessage());
+			}
+					
 				return "myDeleteForm.jsp";
 			}
+		
+	}
