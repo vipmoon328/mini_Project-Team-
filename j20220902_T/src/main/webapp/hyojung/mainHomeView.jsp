@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙볼링장</title>
-<link rel="stylesheet" href="css/mainHomepage.css?ver0.1" type="">
+<link rel="stylesheet" href="../css/mainHomepage.css?ver0.1" type="">
 
 </head>
 <body>
