@@ -1,5 +1,5 @@
-insert into Branch(brn_uid, brn_name, brn_addr,brn_lane,brn_time,brn_phone) values(1,'이대점', '서울특별시 마포구 신촌로 176', 20,TO_DATE('22/09/01', 'YY/MM/DD'), '02-313-1711');
-insert into Branch(brn_uid, brn_name, brn_addr,brn_lane,brn_time,brn_phone) values(2,'강남점', '서울특별시 강남구 테헤란로 7길 7', 20,TO_DATE('22/09/10', 'YY/MM/DD'), '02-561-1911');
+insert into Branch(brn_uid, brn_name, brn_addr,brn_lane,brn_time,brn_phone) values(0,'이대점', '서울특별시 마포구 신촌로 176', 20,TO_DATE('22/09/01', 'YY/MM/DD'), '02-313-1711');
+insert into Branch(brn_uid, brn_name, brn_addr,brn_lane,brn_time,brn_phone) values(1,'강남점', '서울특별시 강남구 테헤란로 7길 7', 20,TO_DATE('22/09/10', 'YY/MM/DD'), '02-561-1911');
 
 
 Insert into USERS (USERNUM,ID,PW,NAME,GENDER,PHONE,EMAIL,AUTH,DELETED,BRN_UID) values (1,'woosuck1214','121412141214','김우석','M','010-5555-1111','woosuck1214@naver.com',0,1,0);
