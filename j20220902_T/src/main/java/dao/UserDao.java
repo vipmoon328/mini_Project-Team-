@@ -177,18 +177,60 @@ public class UserDao
 		return result;
 	}
 	
-	public int delete(String id, String pw) throws SQLException {
-		int result = 0;
+	public Users select(String id) throws SQLException {
+		Users users = new Users();
 		Connection conn = null;
-		result = check(id, pw);
-		if (result != 1) return result;
-		String sql = "delete from scott2 where id=?";
+		String sql = "select * from users where id="+id;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
-			result = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				users.setId(rs.getString(1));
+				users.setPw(rs.getString(2));
+				users.setName(rs.getString(3));
+				users.setGender(rs.getString(4));
+				users.setPhone(rs.getString(5));
+				users.setEmail(rs.getString(6));
+				users.setBrn_uid(rs.getInt(7));
+				
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}		
+		return users;		
+	}
+	
+	public int delete(String id, String pw) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rs = null;
+		String sql1 = "select passwd from users where id=?";
+		String sql = "delete from users where id=?";			
+		try {
+			String dbPasswd = "";
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dbPasswd = rs.getString(1);
+				if (dbPasswd.equals(pw)) {
+					rs.close();
+					pstmt.close();
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, id);
+					result = pstmt.executeUpdate();
+				} else result = 0;
+			} else result = -1;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -196,7 +238,7 @@ public class UserDao
 			if (conn != null) conn.close();
 		}		
 		return result;		
-	}
+	}	
 	
 	public int getTotalCnt() throws SQLException{
 		Connection conn = null;
