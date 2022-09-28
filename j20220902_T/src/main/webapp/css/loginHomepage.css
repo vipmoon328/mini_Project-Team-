@@ -1,0 +1,292 @@
+	/* 모든 폰트 스타일 */
+	body {
+		font-size: 16px;
+		font-family: "맑은 고딕";
+	}
+	/* 모든 div 테두리 생성 */
+	/* div {border: 1px solid black;} */
+	/* 모든 a태그 없애기 */
+	a{
+		text-decoration: none;
+        color: inherit;
+        display: inline-block;
+        position: relative;
+        padding-bottom: 5px;
+	}
+	/* login/menu 영역 */
+/*================================================================================*/
+	.top_container{
+				   width: 1000px;
+				   height: 90px;
+				   padding: 1px;
+				   margin: 0 auto;
+				   padding-bottom: 0px;
+	}
+	/* login영역 */
+	#login_box{
+				width: 350px;
+				margin: 0 auto;
+				height: 60px;
+				float: right;
+				margin-top: 20px;
+				margin-bottom: 20px;
+				padding-right: 25px;		
+	}
+	.login_list {
+				margin-right: -20px;
+	}
+	#login_list1{
+				width: 170px;
+				height: 50px;
+				float: left;
+				margin-top: 10px;
+				margin-left: 90px;
+	}
+	#login_list1 li{
+					float: right;
+
+	}
+	#login_list2{
+				width: 80px;
+				height: 50px;
+				float: right;
+				margin-bottom: 10px;	
+				padding-top: 7px;			
+	}
+	.logout {
+			padding-left: 5px;
+			padding-bottom: 2px;
+			padding-right: 20px;
+	}
+	#login_box li{
+				list-style: none;
+				padding-right: 30px;    /* 글자 사이사이 여백 */
+		    	font-size:15px;			/* 글자크기 */
+		    	font-weight:bold;
+		    	color: black;			/* 글자색상 */
+		    	padding-top: 5px;
+	}
+	#login_box button {
+			position: relative;
+			border: 0;
+			margin-right: 30px;
+			height: 25px;
+			width: 75px;
+			background-color: #90C3FF;
+			text-align: center;
+			font-weight: bold; 
+			color: white; 
+			border-radius: 9px;
+			box-shadow: 0px 3px 0px #5A8DF3;						
+	}
+	#login_box button:active { 
+			box-shadow: 0 0 #90C3FF; 
+			background-color: #90C3FF;
+			top: 3px;
+	}
+	/* menu 영역 */
+	#menu_box{
+				width: 550px;
+				height: 40px;
+				float: left;
+				margin-top: 20px;
+				margin-bottom: 10px;
+				padding: 10px;
+				padding-left: 0px;
+				margin-left: 0px;
+	}
+ 	#menu_box li{
+				list-style: none;
+				float: left;
+				padding-right: 30px;    /* 글자 사이사이 여백 */
+		    	font-size:15px;			/* 글자크기 */
+		    	font-weight:bold;
+		    	/*color: black;			 글자색상 */
+		    	padding-top: 5px;		    	
+	} 
+	#menu_box li a:after {
+                          content:"";
+                          position: absolute;
+                          left: 50%;
+                          bottom: 0;
+         				  width: 0;
+          				  height: 1px;
+          				  background-color: #90C3FF;
+          				  transition: all .5s;
+    }
+    #menu_box li a:before {
+         				  content:"";
+          				  position: absolute;
+          				  right: 50%;
+        				  bottom: 0;
+                          width: 0;
+                          height: 1px;
+                          background-color: #5A8DF3;
+                          transition: all .5s;
+    }
+    #menu_box li a:hover:after {
+          						width: 50%
+    }
+    #menu_box li a:hover:before {
+         						 width: 50%
+    }
+	.menu_list{
+				margin-right: 0px;
+	}
+/*================================================================================*/
+	/* 메인사진 영역 */
+	.body1_container {
+					height : 500px; 			/* 높이 */
+					margin-bottom: 10px;       /* 아래 요소들과의 간격 */
+					background-color: black;   /* 사진삽입 여백 */
+					background: url("../images/main_img.jpg") ;
+					background-position: center;
+	}
+	/* 메인사진 밑 문장 */
+	.body2_container{
+					text-align: center;
+					background-color: white;
+					width: 960px;  
+					margin: 0 auto;          /* 창 센터 배치 */
+					height: 150px;
+					padding-top: 60px;	
+	}
+/*================================================================================*/
+	/* 매장소개 영역 */
+	.body3_container{
+					width: 960px;
+					margin: 0 auto;          /* 창 센터 배치 */
+					padding-top: 30px;
+					padding-bottom: 50px;
+	}
+	.img_container {
+					width: 930px;
+					margin: 0 auto;
+					float: center;
+					padding-top: 50px;
+					padding-bottom: 50px;
+	}			
+	.img1 {
+			width: 230px;
+			height: 200px;
+			margin: 10px;
+			background-image: url("../images/m1.JPG");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;		
+	}
+	.img2 {
+			width: 230px;
+			height: 200px;
+			margin: 10px;
+			background-image: url("../images/m2.JPG");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;		
+	}
+	.img3 {
+			width: 230px;
+			height: 200px;
+			margin: 10px;
+			background-image: url("../images/m3.JPG");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;		
+	}
+	.img4 {
+			width: 230px;
+			height: 200px;
+			margin: 10px;
+			background-image: url("../images/m4.JPG");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;		
+	}
+/*================================================================================*/
+	/* 이용안내 영역 */
+	.body4_container{
+					width: 960px;
+					margin: 0 auto;          /* 창 센터 배치 */
+					height: 300px;
+					padding-top: 30px;
+					padding-bottom: 30px;
+	}
+	.body4_container table td{
+							width: 280px;
+							text-align: center;
+	}
+	thead {
+			background: #90C3FF;
+	}
+	tfoot{
+			background: #def8fe;
+	}
+	#time_table{
+				width: 450px;
+				height: 200px;
+				float: left;
+				padding: 10px;
+				padding-top: 70px;
+				
+	}
+	#money_table{
+				width: 450px;
+				height: 200px;
+				float: right;
+				padding: 10px;
+				padding-top: 70px;			
+	}	
+/*================================================================================*/
+	/* 오시는길 영역 */
+	.body5_container{
+					width: 960px;
+					margin: 0 auto;          /* 창 센터 배치 */
+					padding-top: 30px;
+					padding-bottom: 30px;
+	}
+	.body6_container {
+					width: 960px;
+					margin: 0 auto;          /* 창 센터 배치 */
+					padding-top: 30px;
+					padding-bottom: 100px;
+					text-align: center;
+	}
+/*================================================================================*/
+	/* 발 영역 */
+	.footer{
+			height: 110px;
+			background-color: black;
+			color: white;
+			text-align: center;
+			padding-top: 50px;
+	}
+	#footer_list{
+				width: 960px;
+				height: 100px;
+				margin: 0 auto;		
+				padding: 10px;	
+	}
+	.list_text1{
+				width: 960px;
+				height: 25px;
+	}
+	.list_text2{
+				width: 960px;
+				height: 25px;
+	}
+	.list_text1 p{
+				  float: left;
+				  padding: 0px;
+				  padding-left: 10px;
+				  margin: 0px;
+				  font-weight: lighter;
+				  font-size: 13px;
+	}
+	.list_text2 p{
+				  float: left;
+				  padding: 0px;
+				  padding-left: 10px;
+				  margin: 0px;
+				  font-weight: lighter;
+				  font-size: 13px;
+	}
