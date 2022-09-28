@@ -142,4 +142,25 @@ public class UserDao
 		
 		return result;
 	}
+	
+	public int delete(String id, String pw) throws SQLException {
+		int result = 0;
+		Connection conn = null;
+		result = check(id, pw);
+		if (result != 1) return result;
+		String sql = "delete from scott2 where id=?";
+		PreparedStatement pstmt = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}		
+		return result;		
+	}
 }
