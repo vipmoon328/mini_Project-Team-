@@ -184,27 +184,50 @@ public class ReservationDao {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		int result = 0;
-		String sql = "update reserve set values (?,TO_DATE(?,'YY/MM/DD'),?,?,?,?,?,?,?,sysdate,?,?)";
+		String sql = "update reserve set \"res_date\" =?, \"res_lane\"=?, \"res_startTime\"=?, \"res_endTime\"=?, \"res_customer\"=?, \"res_sal\"=?,\"pay_date\"=sysdate,\"res_brnNum\"=? where \"res_rid\"= ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reservation.getRes_rid());
-			pstmt.setString(2, res_date);
-			pstmt.setInt(3, reservation.getRes_lane());
-			pstmt.setInt(4, reservation.getRes_startTime());
-			pstmt.setInt(5, reservation.getRes_endTime());
-			pstmt.setInt(6, reservation.getRes_customer());
-			pstmt.setInt(7, reservation.getRes_sal());
-			pstmt.setInt(8, 0);
-			pstmt.setInt(9, reservation.getRes_userNum());
-			pstmt.setInt(10, 0);
-			pstmt.setInt(11, reservation.getRes_brnNum());
+			pstmt.setString(1, res_date);
+			pstmt.setInt(2, reservation.getRes_lane());
+			pstmt.setInt(3, reservation.getRes_startTime());
+			pstmt.setInt(4, reservation.getRes_endTime());
+			pstmt.setInt(5, reservation.getRes_customer());
+			pstmt.setInt(6, reservation.getRes_sal());
+			pstmt.setInt(7, reservation.getRes_brnNum());
+			pstmt.setInt(8, reservation.getRes_rid());
 			result = pstmt.executeUpdate();
 			if(result >0 ) {
 				System.out.println("성공");
 			}else {
 				System.out.println("실패");
 			}
+		} catch(Exception e) {	
+			System.out.println(e.getMessage()); 
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn !=null) conn.close();
+		}
+		return result;
+	}
+	
+	public int cancelRes(String[] cancel_rid) throws SQLException {
+		Connection conn = null;	
+		PreparedStatement pstmt= null;
+		int result = 0;
+		String sql = "delete reserve where \"res_rid\" IN (";
+		for(int i = 0 ; i < cancel_rid.length-1 ; i++) {
+			sql += "?,";
+		}
+		sql +="?)";
+		System.out.println(sql);
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			for(int i = 0 ; i < cancel_rid.length ; i ++) {
+				pstmt.setString(i+1, cancel_rid[i]);
+			}
+			result = pstmt.executeUpdate();
 		} catch(Exception e) {	
 			System.out.println(e.getMessage()); 
 		} finally {

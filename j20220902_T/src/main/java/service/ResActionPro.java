@@ -15,12 +15,11 @@ import org.json.JSONException;
 import dao.Reservation;
 import dao.ReservationDao;
 
-public class ResAction implements CommandProcess {
+public class ResActionPro implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
-		
 		System.out.println("resAction Service start");
 		DateFormat df = new SimpleDateFormat("yyMMdd");
 		Calendar cal = Calendar.getInstance();
@@ -39,13 +38,15 @@ public class ResAction implements CommandProcess {
 		reservation.setRes_sal(Integer.parseInt(request.getParameter("cost")));
 		reservation.setRes_userNum(1);
 		reservation.setRes_brnNum(Integer.parseInt(request.getParameter("jijum")));
-		
+		System.out.println("res_rid=" + res_rid);
 		ReservationDao rd = ReservationDao.getInstance();
 		int result = 0;
 		try {
 			if (res_rid==null || res_rid.equals("")) {
+				System.out.println("입력실행");
 				result = rd.makeRes(res_date, reservation);
 			}else {
+				System.out.println("수정실행");
 				reservation.setRes_rid(Integer.parseInt(res_rid));
 				result = rd.changeRes(res_date, reservation);
 			}
@@ -54,7 +55,7 @@ public class ResAction implements CommandProcess {
 			e.printStackTrace();
 		}
 		request.setAttribute("result", result);
-		return "resMyView.jsp";
+		return "/Jehwan/myReservationPro.jsp";
 	}
 
 }

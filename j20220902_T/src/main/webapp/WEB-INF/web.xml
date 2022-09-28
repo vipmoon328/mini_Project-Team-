@@ -12,7 +12,7 @@
   
   <servlet>
      <servlet-name>Controller</servlet-name>
-     <servlet-class>control.Controller</servlet-class>
+     <servlet-class>controll.Controller</servlet-class>
      <init-param>
         <param-name>config</param-name>
         <param-value>/WEB-INF/command.properties</param-value>
