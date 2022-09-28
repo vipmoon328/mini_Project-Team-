@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-		<link href="css/loginForm.css" type="text/css" rel="stylesheet">
+		<link href="../css/loginForm.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
 	<div class="findId">
@@ -17,7 +17,7 @@
 		<form action="login.do" class="findIdForm" method="post">
 		
 			<div class="image">
-				<img alt="" src="images/icon.png">
+				<img alt="" src="../images/icon.png">
 			</div>
 			
 			<div>
