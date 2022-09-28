@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 로그인</title>
-<link href="css/loginForm.css" type="text/css" rel="stylesheet"> 
+<link href="../css/loginForm.css" type="text/css" rel="stylesheet"> 
 </head>
 <body>
 	<div class="Login">
@@ -13,7 +13,7 @@
 		<form action="login.do" class="LoginForm" method="post">
 		
 			<div class="image">
-				<img alt="" src="images/icon.png">
+				<img alt="" src="../images/icon.png">
 			</div>
 		
 			<div>

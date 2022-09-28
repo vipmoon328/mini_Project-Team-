@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙볼링장 회원가입</title>
-<link href="css/signUpForm.css" type="text/css" rel="stylesheet"> 
+<link href="../css/signUpForm.css" type="text/css" rel="stylesheet"> 
 <style type="text/css">
 	.error {
 		color: red;
@@ -33,7 +33,7 @@
 		$('#user_id_chk').click(function(){
 			var id = $('#user_id').val();
 			$.ajax({
-				url			: 'IdCheckServlet',
+				url			: '../IdCheckServlet',
 				type 		: 'get',
 				data		: "id="+id,
 				success		: function(data){
@@ -137,7 +137,7 @@
 <div class="frame" >
 	<form action="signUp.do" method="post">
 		<div class="image">
-			<img alt="" src="images/icon.png">
+			<img alt="" src="../images/icon.png">
 		</div>
 
 		<div>

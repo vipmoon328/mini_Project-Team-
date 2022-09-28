@@ -11,14 +11,7 @@ public class Users {
 	private int auth;
 	private int deleted;
 	private int brn_uid;
-	private int loc;
 
-	public int getLoc() {
-		return loc;
-	}
-	public void setLoc(int loc) {
-		this.loc = loc;
-	}
 	public int getUsernum() {
 		return usernum;
 	}

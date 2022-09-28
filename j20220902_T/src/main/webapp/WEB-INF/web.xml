@@ -18,6 +18,7 @@
         <param-value>/WEB-INF/command.properties</param-value>
      </init-param>
   </servlet>
+  
   <servlet-mapping>
      <servlet-name>Controller</servlet-name> 
      <url-pattern>*.do</url-pattern>

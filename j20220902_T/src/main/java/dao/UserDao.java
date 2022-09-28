@@ -94,7 +94,7 @@ public class UserDao
 			pstmt.setString(6,user.getEmail());
 			pstmt.setInt(7,1);
 			pstmt.setInt(8,1);
-			pstmt.setInt(9, user.getLoc());
+			pstmt.setInt(9, user.getBrn_uid());
 			result = pstmt.executeUpdate();
 			System.out.println(result);
 			System.out.println("입력 성공!");
@@ -104,6 +104,40 @@ public class UserDao
 		} finally {
 			if (pstmt != null) pstmt.close();
 			if (conn !=null) conn.close();
+		}
+		
+		return result;
+	}
+	
+	public String findId(String name, String phone) throws SQLException
+	{
+		String result ="";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT id FROM users WHERE name = ? AND phone = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				result = rs.getString(1);
+				System.out.println("아이디 조회 성공");	
+			}
+			else
+			{
+				System.out.println("아이디 조회 실패 \n 해당되는 아이디가 없습니다");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (conn != null) conn.close();
+			if (pstmt != null) pstmt.close();
 		}
 		
 		return result;

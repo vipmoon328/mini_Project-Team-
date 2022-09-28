@@ -26,7 +26,7 @@ public class signUpAction implements CommandProcess {
 		String email = request.getParameter("user_email1");
 		email +="@";
 		email += request.getParameter("user_email2");
-		int loc = Integer.parseInt(request.getParameter("loc"));
+		int brn_uid = Integer.parseInt(request.getParameter("loc"));
 		
 		int result = 0;
 		Users user = new Users();
@@ -36,7 +36,7 @@ public class signUpAction implements CommandProcess {
 		user.setPhone(phone);
 		user.setGender(gender);
 		user.setEmail(email);
-		user.setLoc(loc);
+		user.setBrn_uid(brn_uid);
 		
 		try {
 			UserDao userDao = UserDao.getInstance();

@@ -3,22 +3,33 @@
 <!DOCTYPE html>
 <html>
 	<style type="text/css">
-		
+		.button {
+			width: 400px;
+			position: relative;
+			right: 40px;
+		}
+		h3 {
+			position: relative;
+			right: 33px;
+		}
 	</style>
 	
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>아이디 찾기</title>
 		<link href="../css/loginForm.css" type="text/css" rel="stylesheet">
 	</head>
-	<body>
-	<div class="findId">
 	
-		<form action="login.do" class="findIdForm" method="post">
+	<body>
+	
+	<div class="findId">
+		<form action="" class="findIdForm" method="post">
 		
 			<div class="image">
 				<img alt="" src="../images/icon.png">
 			</div>
+			
+			<h3 style="text-align: center">아이디 찾기</h3>
 			
 			<div>
 				<table>
@@ -40,9 +51,9 @@
 			</div>
 			
 			<div style=" text-align: center;">
-				<input type="submit" id="submitChk" class="button" onclick="return signUpCheck()" value="가입하기">
+				<input type="submit" class="button" value="아이디 찾기">
 			</div>
-			
+
 		</form>
 	</div>
 		
