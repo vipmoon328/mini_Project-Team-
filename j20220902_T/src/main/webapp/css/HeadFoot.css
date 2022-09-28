@@ -1,46 +1,11 @@
-	body {
- 	 		margin: 0;
- 	} 
+@charset "UTF-8";
+
  	.flex-container {
             display: flex;  /* 컨테이너들 수직정렬 */
     }  
  	 .flex-container.flex-end {			/* user님 로그아웃 오른쪽 정렬 */
     		justify-content: flex-end;  /* 컨테이너의 아이템 오른쪽정렬 */
     } 
-    a {          
-          	padding-bottom: 10px; 
-          	color: inherit;          
-   	}
-   	ul > li > a {
-          	display: inline-block;
-          	position: relative;
-    }
-    ul > li > a:after {
-	        content:"";
-	        position: absolute;
-	        left: 50%;
-	        bottom: 0;
-	        width: 0;
-	        height: 2px;
-	        background-color: #5A8DF3;
-	        transition: all .5s;
-	}
-    ul > li > a:before {
-          	content:"";
-         	position: absolute;
-          	right: 50%;
-          	bottom: 0;
-          	width: 0;
-          	height: 2px;
-          	background-color: #5A8DF3;
-          	transition: all .5s;
-    }
-    ul > li > a:hover:after {
-          	width: 50%
-    }
-    ul > li > a:hover:before {
-          width: 50%
-    }
     .item_first {
     		margin-right: 10%; /* user님 로그아웃 오른쪽마진 10% */
     }
@@ -95,15 +60,12 @@
 			font-weight: bolder; 
 			text-decoration: none;  /* 글자 밑줄 제거 */
 	}
-	td {
-			padding: 10px;  
-	}
-	input {
-			height:30px;  /* 입력창 높이 */
-			border-radius: 12px;  /* 테두리 모서리 둥굴게 */
-			border: 1;  /* 테두리 두께 */
-			border-color: #EAEAEA; /* 테두리 색상 */
-	}
+	.item_fifth {
+			list-style: none;
+			float: left;
+			color: black;
+	} 
+
 	label {
 			font-size: 15px;
 			line-height: 2rem;
@@ -112,29 +74,9 @@
 	span {
   			vertical-align: middle;
 	}
-	[type="radio"] {
+/* 	[type="radio"] {
   			vertical-align: middle;
-  			appearance: none;
-  			border: max(2px, 0.1em) solid gray;
-  			border-radius: 50%;
-  			width: 1.25em;
-  			height: 1.25em;
-  			transition: border 0.5s ease-in-out;
-	}
-	[type="radio"]:checked {
-			border: 0.4em solid #90C3FF;
-	}
-	.select {
-			-o-appearance: none;
-			width: 100px;
-  			height: 35px;
-  			border: 1;
-  			border-color: #EAEAEA;
-  			border-radius: 12px;
-  			outline: 0 none;
-  			font-size: 15px; 
-			
-	}
+	} */
 	.item_sixth {
  			margin-top: 50px;   /* 버튼 마진 */
  			margin-bottom: 100px;   /* 버튼 마진 */
