@@ -70,7 +70,7 @@
     
     <table border="1"  width="100%">
 		<tr>
-		<th >회원번호</th><th >이름</th><th >ID</th><th >전화번호</th><th >성별</th><th >email</th><th >가입일자</th> <th >회원관리</th>		
+		<th >회원번호</th><th >이름</th><th >ID</th><th >비밀번호</th><th >phone</th><th >성별</th><th >email</th> <th >회원관리</th>		
 		</tr>			
 			
 	<!-- sql 데이터 가져오는 jstl 코드 영역	 --> 	

@@ -197,4 +197,70 @@ public class UserDao
 		}		
 		return result;		
 	}
+	
+	public int getTotalCnt() throws SQLException{
+		Connection conn = null;
+		Statement  stmt = null;
+		ResultSet  rs   = null;
+		int tot =0;
+		String sql = "select count(*) from users";   // users table  총 데이터 갯수 가져오기
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs   = stmt.executeQuery(sql);
+			if(rs.next()) tot = rs.getInt(1);   // 결과값이 있으면 tot에 int형으로 값을 저장한다.
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if(rs  != null) rs.close();
+			if(stmt != null) stmt.close();
+			
+		}
+		return tot;
+	}
+	
+	public List <Users> usersList(int startRow, int endRow) throws SQLException{
+		List<Users> list = new ArrayList<Users>();
+		Connection conn =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		String sql = "select *"
+					+"FROM (select rownum rn,a.*"
+					+"from(select * from users order by usernum) a)"
+					+"where rn BETWEEN ? and  ?";
+		
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Users users = new Users();
+				users.setUsernum(rs.getInt("userNum"));
+				users.setId(rs.getString("id"));
+				users.setPw(rs.getString("pw"));
+				users.setName(rs.getString("name"));
+				users.setGender(rs.getString("gender"));
+				users.setPhone(rs.getString("phone"));
+				users.setEmail(rs.getString("email"));
+				users.setAuth(rs.getInt("auth"));
+				users.setDeleted(rs.getInt("deleted"));
+				users.setBrn_uid(rs.getInt("brn_uid"));
+				list.add(users);
+			}
+		} catch (Exception e) {
+				System.out.println(e.getMessage());
+		} finally {
+			if (rs !=null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn !=null) conn.close();
+		}
+		return list;
+	
+	
+	}
+	
+	
+	
 }
