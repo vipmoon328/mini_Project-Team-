@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>볼링장정보</title>
-<link href="information.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="informationForm.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="wrapper">
