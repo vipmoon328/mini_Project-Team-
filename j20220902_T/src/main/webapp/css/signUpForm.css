@@ -98,3 +98,10 @@
       	background-color: rgb(233, 233, 233);
 	}
 	
+	.error{
+	    font-size: 14px;
+	    height: 20px;
+	    color:red;
+	    font-weight: 700;
+	}
+	
