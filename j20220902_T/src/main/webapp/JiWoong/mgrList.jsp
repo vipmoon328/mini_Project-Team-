@@ -7,12 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 회원목록</title>
-<link rel="stylesheet" type="text/css" href="css/mgrStyle.css">
+<link rel="stylesheet" type="text/css" href="../css/mgrStyle.css">
 <style type="text/css">
 	table {
 		width: 70%;
 		}
-</style></head>
+</style>
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript"></script>
+
+
+
+
+</head>
 <body> 
 <div style="width: 1600px;" align="center"> 
 		<div id="wrapper">
