@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%   String context = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="<%=context%>/css/myResStyle.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet" type="text/css">
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$.ajaxSetup({
 			type 	 : 	'POST',
-			url		 :	'myCheck.do',
+			url		 :	'<%=context%>/myCheck.do',
 			//dataType :	'json',
 			success	 :	function(data){
 				var data1 = JSON.parse(data);
@@ -46,6 +48,7 @@
 			});
 		});
 		
+		
 	});
 	
 
@@ -60,7 +63,7 @@
 			}else{
 				tag += "<td></td>";  
 			}
-			tag += "<form action='reschange.do' id='frm"+ i +"'><td><input form='frm" + i + "' type='hidden' name='res_date' value='" + data[i]["res_date"] + "'>" + data[i]["res_date"] + "</td>";
+			tag += "<form action='<%=context%>/reschange.do' id='frm"+ i +"'><td><input form='frm" + i + "' type='hidden' name='res_date' value='" + data[i]["res_date"] + "'>" + data[i]["res_date"] + "</td>";
 			tag += "<td><input form='frm" + i + "' type='hidden' name='brnNum' value='" + data[i]["brnNum"] + "'>" + data[i]["brnNum"] + "</td>";
 			tag += "<td><input form='frm" + i + "' type='hidden' name='lane' value='" + data[i]["lane"] + "'>" + data[i]["lane"] + "</td>";
 			tag += "<td><input form='frm" + i + "' type='hidden' name='start' value='" + data[i]["start"] + "'><input form='frm" + i + "' type='hidden' name='end' value='" + data[i]["end"] + "'>" + data[i]["start"] + ":00 ~ " + data[i]["end"] + ":00</td>";
@@ -68,11 +71,11 @@
 			tag += "<td><input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>" + data[i]["cost"] + "</td>";
 			tag += "<td>" + data[i]["state"] + "</td>";
 			if(data[i]["state"] == "방문전"){
-				tag += "<td><input form='frm" + i + "' type='submit' value='예약변경'></td>";
+				tag += "<td><input form='frm" + i + "' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: skyblue;color: white;width: 70px;height: 40px;'></td>";
 			}else{
 				tag += "<td></td>";
 			}
-			tag += "<input form='frm" + i + "' type='hidden' name='res_rid' value='" + data[i]["res_rid"] + "'></tr></form>";
+			tag += "<input form='frm" + i + "' type='hidden' name='res_rid' value='" + data[i]["res_rid"] +"'></tr></form>";
 			$("#list").append(tag);
 			
 		}
@@ -95,9 +98,14 @@
 	}
 </script>
 <body>
+	<jsp:include page="header.html"></jsp:include>
+	<div class="flex-container">
+			<div class="item_third"><h2>나의 예약 정보</h2></div>
+		</div>		
+	<hr color="#90C3FF" width="70%" size="1">
 	<div id="content_container">
-	<form action="resCancel.do" id="cancel_form"><input type="reset" value="전체 선택"><input type="submit" value="예약 취소"></form>
-		<table border="1px" id="test_table" style="margin : auto">
+	<form action="<%=context%>/resCancel.do" id="cancel_form"><input type="reset" value="선택 취소" id="cancel_select"><input type="submit" value="예약 취소" id="cancel_btn"></form>
+		<table id="test_table">
 			<thead>
 				<tr><th>예약취소</th><th>예약일자</th><th>지점</th><th>레인</th><th>시간</th><th>인원</th><th>금액</th><th>방문/취소</th><th>예약변경</th></tr>
 			</thead>
@@ -109,5 +117,6 @@
 			
 		</div>
 	</div>
+	<jsp:include page="footer.html"></jsp:include>
 </body>
 </html>

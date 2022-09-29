@@ -1,51 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%   String context = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	#calendar{
-		float : left;
-	}
-	#calendar tbody{
-		background-color : pink;
-		border: 1px solid black;
-	}
-	#test_table{
-		clear:both;
-		margin-top: 100px;
-		margin-left: 15%;
-		margin-right: 15%;
-	}
-	#test td{
-		width: 80px;
-		height: 40px;
-	}
-	#frm{
-		float: right;
-		margin-right:100px; 
-	}
-	h2{
-		color : navy;
-	}
-	#msg{
-		width: 200px;
-		height: 200px;
-	}
-	
-	/* 테두리 생성(모든 div)*/      
-	div {                      
-		border: 1px solid gray;
-	} 
-	#content_container {
-				margin: 20px;
-				padding: 20px;
-	}
-</style>
+<link href="<%=context%>/css/ResStyle.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet" type="text/css">
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -53,7 +15,7 @@
 	$(function(){
 		$.ajaxSetup({
 			type 	 : 	'POST',
-			url		 :	'allCheck.do',
+			url		 :	'<%=context%>/allCheck.do',
 			processData : false,
 			success	 :	function(data){
 				console.log("123");
@@ -63,12 +25,16 @@
 				buildTimeTable(data1);
 			}
 		});
-		
+		realDay = new Date();
 		inputDay = new Date('${ res_date }');
 		today = new Date('${ res_date }'); 
 		if(!('${ brnNum }' ==null || '${ brnNum }' == '')){
 			$('#jijum').val('${brnNum}').prop("selected",true);
 		}
+		if(today.getMonth()<=realDay.getMonth()){
+		 	$("#prev").hide();
+         }
+		
 		make_sendData();
 		buildCalendar(today);
 		
@@ -145,6 +111,9 @@
 		$(document).on("click","#prev", function(){
 			 $("#calander_test").empty();
              today = new Date ( today.getFullYear(), today.getMonth()-1, today.getDate());
+             if((today.getFullYear()==realDay.getFullYear())&&(today.getMonth()==realDay.getMonth())){
+			 	$("#prev").hide();
+             }
              buildCalendar(today);
 	         make_sendData()
 		});
@@ -181,6 +150,9 @@
 		$(document).on("click","#next", function(){
 			$("#calander_test").empty();
             today = new Date ( today.getFullYear(), today.getMonth()+1, today.getDate());
+            if(today.getMonth()>realDay.getMonth()){
+			 	$("#prev").show();
+             }
             buildCalendar(today);
             make_sendData();
 		});
@@ -212,17 +184,21 @@
 		
         var tag = "<tr>"
         for (i=0; i<firstDay; i++) {
-        	tag += "<td></td>";
+        	tag += "<td class='cantDate'></td>";
         }
         for (i=1; i <=lastDate; i++){
             var plusDate = new Date(nowYear,nowMonth,i).getDay();
             if (plusDate==0) {
             	tag += "</tr><tr>";
             }
-            tag += "<td class='date' id='" + i +"'>"+ i +"</td>";
+            if((nowYear<=realDay.getFullYear())&&(nowMonth<=realDay.getMonth())&&(i<realDay.getDate())){
+            	tag += "<td class='cantDate'>" + i +"</td>";
+            }else{
+            	tag += "<td class='date' id='" + i +"'>"+ i +"</td>";
+            }
         }
         while(lastDay!=6){
-        	tag += "<td></td>";
+        	tag += "<td class='cantDate'></td>";
         	lastDay++;
         }
         tag += "</tr>";
@@ -267,8 +243,8 @@
 		var tag;
 		for(var i = 10 ; i < maxtime ; i ++){
 			tag = "<tr><th>" + (i%24) + ":00 ~ "+ ((i+1)%24) +":00</th>";
-			for(var j = 1 ; j < 9 ; j ++){
-				tag +=  "<td bgcolor='skyblue' class = 'possible'</td>";
+			for(var j = 0 ; j < '${possibleLane}' ; j ++){
+				tag +=  "<td bgcolor='skyblue' class = 'possible'></td>";
 			}
 			tag += "</tr>";
 			$("#test").append(tag);
@@ -287,8 +263,14 @@
 				$("#test tr:nth-child(" + j + ") td:nth-child(" + lane + ")").addClass('impossible').removeClass('possible').css('background-color', 'red');
 			}
 		}
-		
-		if(!('${ brnNum }' ==null || '${ brnNum }' == '')){
+		if((today.getFullYear() == realDay.getFullYear())&&(today.getMonth() == realDay.getMonth())&&(today.getDate() == realDay.getDate())){
+			console.log(realDay.getHours());
+			for(var i = 0 ; i < realDay.getHours()-8 ; i++){
+				$("#test tr:nth-child(" + i + ") td").addClass('impossible').removeClass('possible').css('background-color', 'red');
+			}
+		}
+
+		if(!('${ res_rid }' ==null || '${ res_rid }' == '')){
 			if((today.getFullYear() == inputDay.getFullYear())&&(today.getMonth() == inputDay.getMonth())&&(today.getDate() == inputDay.getDate())&&($("#jijum option:selected").val() == '${ brnNum }')){
 				$("#test td").not('.impossible').removeClass('possible').css('background-color', 'lightgray');
 				console.log(parseInt('${ start }') -9);
@@ -328,7 +310,11 @@
 
 </script>
 <body>
-	
+	<jsp:include page="header.html"></jsp:include>
+	<div class="flex-container">
+			<div class="item_third"><h2>나의 예약 정보</h2></div>
+		</div>		
+	<hr color="#90C3FF" width="70%" size="1">
 	<div id="content_container">
 	<select id="jijum">
 			<option value="0">이대</option>
@@ -355,12 +341,16 @@
 	        </tbody>
 	    </table>
 		
-		<form action="insertResult.do" id="frm"><h2>예약 현황</h2><span id="msg"></span><input type="button" id="insert" value="결제"></form>
+		<form action="<%=context%>/insertResult.do" id="frm"><h2>예약 현황</h2><span id="msg"></span><input type="button" id="insert" value="결제"></form>
 		
 		<table border="1px" id="test_table">
 		<caption><span id="today"></span><input type="button" id="reset" value="초기화" onclick="reset_table()"></caption>
 			<thead>
-				<tr><th></th><th>1레인</th><th>2레인</th><th>3레인</th><th>4레인</th><th>5레인</th><th>6레인</th><th>7레인</th><th>8레인</th></tr>
+				<tr><th></th>
+				<c:forEach var="laneCnt" begin="1"  end="${possibleLane }">
+					<th>${laneCnt }레인</th>
+				</c:forEach>
+				</tr>
 			</thead>
 			<tbody id="test">
 			</tbody>
@@ -368,6 +358,6 @@
 		
 		
 	</div>
-	
+	<jsp:include page="footer.html"></jsp:include>
 </body>
 </html>

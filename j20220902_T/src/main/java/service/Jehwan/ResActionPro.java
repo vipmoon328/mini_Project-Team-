@@ -1,4 +1,4 @@
-package service;
+package service.Jehwan;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,6 +14,7 @@ import org.json.JSONException;
 
 import dao.Reservation;
 import dao.ReservationDao;
+import service.CommandProcess;
 
 public class ResActionPro implements CommandProcess {
 

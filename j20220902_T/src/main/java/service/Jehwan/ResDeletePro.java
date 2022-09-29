@@ -1,4 +1,4 @@
-package service;
+package service.Jehwan;
 
 import java.io.IOException;
 
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 
 import dao.ReservationDao;
+import service.CommandProcess;
 
 public class ResDeletePro implements CommandProcess {
 

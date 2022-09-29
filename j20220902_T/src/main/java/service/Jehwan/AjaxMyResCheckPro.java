@@ -1,4 +1,4 @@
-package service;
+package service.Jehwan;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import dao.Reservation;
 import dao.ReservationDao;
+import service.CommandProcess;
 
 public class AjaxMyResCheckPro implements CommandProcess {
 
@@ -59,6 +60,7 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					result.put(pageInfo);
 					for(Reservation reservation : list) {
 						JSONObject obj = new JSONObject();
+						System.out.println(reservation.getRes_rid());
 						obj.put("res_rid", reservation.getRes_rid());
 						obj.put("res_date", reservation.getRes_date());
 						if(reservation.getRes_brnNum() == 0) {

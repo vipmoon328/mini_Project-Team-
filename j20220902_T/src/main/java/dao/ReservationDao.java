@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ReservationDao {
+	
 	private static ReservationDao instance;
 	
 	private ReservationDao() {
@@ -57,6 +58,28 @@ public class ReservationDao {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, usrNum);
+			rs = pstmt.executeQuery();
+			if (rs.next()) tot = rs.getInt(1);
+		} catch(Exception e) {	
+			System.out.println(e.getMessage()); 
+		} finally {
+			if (rs !=null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn !=null) conn.close();
+		}
+		return tot;
+	}
+	
+	public int getPossibleLane(int BRN_UID) throws SQLException {
+		Connection conn = null;	
+		PreparedStatement pstmt= null; 
+		ResultSet rs = null;    
+		int tot = 0;
+		String sql = "select \"BRN_LANE\" from branch where \"BRN_UID\" = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, BRN_UID);
 			rs = pstmt.executeQuery();
 			if (rs.next()) tot = rs.getInt(1);
 		} catch(Exception e) {	
@@ -217,7 +240,7 @@ public class ReservationDao {
 		Connection conn = null;	
 		PreparedStatement pstmt= null;
 		int result = 0;
-		String sql = "delete reserve where \"RES_RID\" IN (";
+		String sql = "update reserve set \"RES_CANCEL\"=1 where \"RES_RID\" IN (";
 		for(int i = 0 ; i < cancel_rid.length-1 ; i++) {
 			sql += "?,";
 		}
