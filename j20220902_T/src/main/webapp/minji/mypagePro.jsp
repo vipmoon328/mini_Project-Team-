@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>중앙 볼링장 마이페이지</title>
 </head>
 <body>
 	
-	<c:if test="$modify_result eq 1}">
+	<c:if test="${modify_result eq 1}">
 		<script type="text/javascript">
 			alert("회원 정보수정이 완료되었습니다.");
 		</script>

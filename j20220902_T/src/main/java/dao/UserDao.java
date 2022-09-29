@@ -208,6 +208,35 @@ public class UserDao
 		return users;		
 	}
 	
+	// 마이페이지 정보수정 09/29
+	public int update(Users users) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "Update users set pw=?, name=?, phone=?, gender=?, brn_uid=?, email=? where id=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, users.getPw());
+			pstmt.setString(2, users.getName());
+			pstmt.setString(3, users.getPhone());
+			pstmt.setString(4, users.getGender());
+			pstmt.setInt(5, users.getBrn_uid());
+			pstmt.setString(6, users.getEmail());
+			pstmt.setString(7, users.getId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result;
+	}
+		
+	
 	public int delete(String id, String pw) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

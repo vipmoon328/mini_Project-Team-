@@ -11,13 +11,13 @@ import org.json.JSONException;
 import dao.UserDao;
 import dao.Users;
 
-public class myDeleteFormAction implements CommandProcess {
+public class MyDeleteFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
 		
-		System.out.println("myDeleteFormAction start...");		
+		System.out.println("MyDeleteFormAction start...");		
 				
 				String id = request.getParameter("user_id");
 				try {				

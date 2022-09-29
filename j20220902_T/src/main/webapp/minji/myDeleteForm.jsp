@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="wrapper">
-	<form action="" method="post">
+	<form action="myDeletePro.do" method="post">
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
@@ -50,7 +50,7 @@
 							<input type="hidden" name="pw" 	value="${pw}"></td>
 						</tr>
 						<tr>			
-							<td><span>암호 재확인  </span><input type="text" name="pw"></td>
+							<td><span>암호 재확인  </span><input type="password" name="pw"></td>
 							<td><button type="submit" value="탈퇴하기">탈퇴하기</button></td>
 						</tr>
 					</table>
