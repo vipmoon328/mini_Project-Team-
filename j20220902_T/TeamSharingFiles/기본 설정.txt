@@ -1,0 +1,7 @@
+DROP SEQUENCE usernum_count;
+
+CREATE SEQUENCE usernum_count
+MINVALUE 10;
+
+사용할 시퀸스
+usernum_count : 가입시 유저 번호를 생성하는 
