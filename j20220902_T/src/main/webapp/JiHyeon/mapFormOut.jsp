@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	String name = (String)session.getAttribute("name");
+%>
 <meta charset="UTF-8">
 <title>오시는길</title>
 <link href="../css/mapForm.css?ver0.1" rel="stylesheet" type="text/css">
@@ -12,24 +15,23 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><a href="#">user님</a></li>
-					<li><a href="#">로그아웃</a></li>
+					<li><a href="loginForm.jsp">로그인</a></li>
+					<li><a href="signUpForm.jsp">회원가입</a></li>
 				</ul>
 			</div> 
 		</div>
 		
-	<hr color="#D5D5D5" width="100%" size="1">
-	
-	<div class="flex-container">
-		<div class="item_second">
-			<ul>
-				<li>중앙볼링장</li>
-				<li><a href="#">홈</a></li>
-				<li><a href="informationForm.jsp">볼링장정보</a></li>
-				<li><a href="#">예약</a></li>
-				<li><a href="#">오시는길</a></li>
-				<li><a href="#">게시판</a></li>
-				<li><a href="#">마이페이지</a></li>
+	<hr color="#D5D5D5" width="100%" size="1">	
+		<div class="flex-container">
+			<div class="item_second">
+				<ul>
+					<li>중앙볼링장</li>
+					<li><a href="loginHomeView.jsp">홈</a></li>
+					<li><a href="informationForm.jsp">볼링장정보</a></li>
+					<li><a href="resAllView.jsp">예약</a></li>
+					<li><a href="mapForm.jsp">오시는길</a></li>
+					<li><a href="boardList.jsp">게시판</a></li>
+					<li><a href="mypageForm.jsp">마이페이지</a></li>
 			</ul>
 		</div>
 	</div>
