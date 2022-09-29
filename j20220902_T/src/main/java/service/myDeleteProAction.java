@@ -32,7 +32,7 @@ public class myDeleteProAction implements CommandProcess {
 			request.setAttribute("result", result); 
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 		return "myDeletePro.jsp";
 	}
