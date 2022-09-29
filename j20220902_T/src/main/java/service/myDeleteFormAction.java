@@ -24,8 +24,7 @@ public class myDeleteFormAction implements CommandProcess {
 					UserDao ud = UserDao.getInstance();	 			
 					
 					Users users = ud.select(id); 
-					
-					// 4. request 객체에 num , pageNum , board
+										
 					request.setAttribute("user_id", id);				
 					request.setAttribute("users", users);
 					

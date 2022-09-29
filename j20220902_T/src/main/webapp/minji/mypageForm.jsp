@@ -164,7 +164,7 @@
 		</div>
 		<div class="flex-container center">
 			<div class="item_sixth">
-				<button type="submit" id="submitChk" onclick="return modifyCheck()">수정하기</button><button type="submit" class="" onclick="">탈퇴하기</button>
+				<button type="submit" id="submitChk" onclick="location.href='mypageForm.do'">수정하기</button><button type="submit" onclick="location.href='myDeleteForm.do'">탈퇴하기</button>
 			</div>
 		</div>
 		<div class="flex-container center">
