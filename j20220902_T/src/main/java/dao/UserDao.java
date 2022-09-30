@@ -348,7 +348,7 @@ public class UserDao
 		}		
 		return result;		
 	}	
-	
+	// users table  총 데이터 갯수 가져오는 method 09/30  [최지웅]
 	public int getTotalCnt() throws SQLException{
 		Connection conn = null;
 		Statement  stmt = null;
@@ -369,7 +369,8 @@ public class UserDao
 		}
 		return tot;
 	}
-	
+
+	//  user 테이블 데이터 list로 받아오는 method 09/30  [최지웅]
 	public List <Users> usersList(int startRow, int endRow) throws SQLException{
 		List<Users> list = new ArrayList<Users>();
 		Connection conn =null;
