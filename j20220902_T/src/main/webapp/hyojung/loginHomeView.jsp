@@ -17,8 +17,9 @@
 				</ul>
 			</div>
 			<div id="login_list2">
+			<!-- 22.09.30 로그아웃 구현 [김건희]	 -->
 				<ul class="logout">
-					<li><a href="joinUser.do"><button type="button" class="" onclick="">로그아웃</button></a></li>
+					<li><a href="<%=context%>/logout.do"><button type="button" class="" onclick="">로그아웃</button></a></li>
 				</ul>	
 			</div>			
 		</div>
