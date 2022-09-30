@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -19,6 +20,11 @@ public class MyDeleteProAction implements CommandProcess {
 		
 		System.out.println("MyDeleteProAction Start...");	
 		
+		
+		request.setCharacterEncoding("utf-8");  
+		
+		HttpSession session = request.getSession();
+		
 		try {				
 			String id = request.getParameter("user_id");
 			String passwd = request.getParameter("user_password");
@@ -27,9 +33,9 @@ public class MyDeleteProAction implements CommandProcess {
 			
 			int result = ud.delete(id, passwd);			
 					
-	        request.setAttribute("user_id", id);
-			request.setAttribute("user_password", passwd);
-			request.setAttribute("result", result); 
+	        session.setAttribute("user_id", id);
+			session.setAttribute("user_password", passwd);
+			session.setAttribute("result", result); 
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

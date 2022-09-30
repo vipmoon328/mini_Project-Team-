@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -24,8 +25,7 @@ public class MyPageProAction implements CommandProcess {
 				email += request.getParameter("user_email2");
 				System.out.println(email);
 				
-				request.setCharacterEncoding("utf-8");  // post방식은 엔코딩 처리를 해주어야함
-				String pageNum = request.getParameter("pageNum");
+				request.setCharacterEncoding("utf-8");  
 				
 				try {
 					UserDao ud = UserDao.getInstance();
