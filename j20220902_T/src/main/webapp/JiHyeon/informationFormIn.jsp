@@ -3,9 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-	String name = (String)session.getAttribute("name");
-%>
+
 <meta charset="UTF-8">
 <title>볼링장정보</title>
 <link href="../css/informationForm.css?ver0.1" rel="stylesheet" type="text/css">
@@ -15,7 +13,7 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><a><%=name %>님</a></li>
+					<li>${users.name}님</li>
 					<li><a href="mainHome.do">로그아웃</a></li>
 				</ul>
 			</div> 
@@ -127,5 +125,6 @@
 			<p>이메일 : choongang@naver.com </p>
 			</nav>
 		</div>
+		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 </body>
 </html>
