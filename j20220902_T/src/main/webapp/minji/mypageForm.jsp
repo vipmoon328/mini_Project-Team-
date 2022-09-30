@@ -11,6 +11,11 @@
 <link href="css/mypage.css?ver0.1" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+	function init()
+	{
+		$('#user_email2').val("${email_domain}");
+	}
+	
 	function changeDomain(){
 		if($('#domain_list').val() == 'type')
 		{
@@ -56,7 +61,7 @@
 
 </script>
 </head>
-<body>
+<body onload="init()">
 <div id="wrapper">
 	<form action="mypagePro.do" method="post">
 		<div class="flex-container flex-end">
@@ -159,7 +164,7 @@
 						<td>
 							<label>
 								<input type="text" class="email" name="user_email1" id="user_email1" required="required" value="${email_id}"> @ <input type="text" class="email" name="user_email2" id="user_email2" required="required" value="${email.domain}">
-								<select name="email" class="select" id="domain_list" onclick="changeDomain()">
+								<select name="email" class="select" id="domain_list" onclick="changeDomain()">test
 									<option value="naver.com">naver.com</option>
 									<option value="daum.net">daum.net</option>
 									<option value="google.com">gmail.com</option>

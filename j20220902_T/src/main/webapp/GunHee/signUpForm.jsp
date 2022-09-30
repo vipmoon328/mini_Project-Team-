@@ -213,7 +213,7 @@
 					<select name="email" class="email" id="domain_list" onclick="changeDomain()">
 					<option value="naver.com">naver.com</option>
 					<option value="daum.net">daum.net</option>
-					<option value="google.com">google.com</option>
+					<option value="gmail.com">gmail.com</option>
 					<option value="type" selected="selected">직접 입력</option>
 					</select>
 				</td>

@@ -260,11 +260,7 @@ public class UserDao
 	public Users select(String id) throws SQLException {
 		Users users = new Users();
 		Connection conn = null;
-<<<<<<< HEAD
 		String sql = "select id,pw,name,gender,phone,email,brn_uid from users where id = ?";
-=======
-		String sql = "select * from users where id = ?" + id;
->>>>>>> branch 'master' of https://github.com/vipmoon328/mini_Project-Team-.git
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
