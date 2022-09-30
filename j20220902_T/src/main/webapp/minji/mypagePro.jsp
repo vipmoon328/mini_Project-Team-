@@ -9,13 +9,13 @@
 </head>
 <body>
 	
-	<c:if test="${modify_result eq 1}">
+	<c:if test="${result eq 1}">
 		<script type="text/javascript">
 			alert("회원 정보수정이 완료되었습니다.");
 		</script>
 	</c:if>
 	
-	<c:if test="${modify_result eq 0}">
+	<c:if test="${result eq 0}">
 		<script type="text/javascript">
 			alert("회원 정보수정이 실패되었습니다.");
 		</script>

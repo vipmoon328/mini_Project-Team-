@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%-- <%@ include file="../memberCheck.jsp" %> --%>
+<%  String context = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>탈퇴하기</title>
-<link href="../css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context %>/css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrapper">
