@@ -44,7 +44,7 @@ public class loginAction implements CommandProcess {
 			System.out.println("로그인에 실패하셨습니다.");
 		}
 		
-		return "loginPro.jsp";
+		return "/GunHee/loginPro.jsp";
 	}
 
 }
