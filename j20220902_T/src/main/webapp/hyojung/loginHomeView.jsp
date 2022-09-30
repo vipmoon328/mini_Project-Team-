@@ -25,12 +25,12 @@
 		</div>
 		<div id="menu_box">
 			<ul class="menu_list">
-				<li><a href="home.do">홈</a></li>
-				<li><a href="information.do">볼링장정보</a></li>
+				<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li> <!-- 22.09.30[김건희] 수정 -->
+				<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li> <!-- 22.09.30[김건희] 수정 -->
 				<li><a href="Reservation.do">예약</a></li>
-				<li><a href="map.do">오시는길</a></li>
+				<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
 				<li><a href="board.do">게시판</a></li>
-				<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
+				<li><a href="<%=context%>/mypage.do">마이페이지</a></li> <!-- 22.09.30[김건희] 수정 -->
 			</ul>
 		</div>
 	</div>

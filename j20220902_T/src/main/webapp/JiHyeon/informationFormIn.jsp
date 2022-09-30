@@ -13,8 +13,8 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>${users.name}님</li>
-					<li><a href="mainHome.do">로그아웃</a></li>
+					<li>${id}님</li> <!-- 22.09.30[김건희] 수정 -->
+					<li><a href="<%=context%>/logout.do">로그아웃</a></li> <!-- 22.09.30[김건희] 수정 -->
 				</ul>
 			</div> 
 		</div>
@@ -24,12 +24,12 @@
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="loginHomeView.jsp">홈</a></li>
-					<li><a href="informationForm.jsp">볼링장정보</a></li>
+					<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li> <!-- 22.09.30[김건희] 수정 -->
+					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li> <!-- 22.09.30[김건희] 수정 -->
 					<li><a href="resAllView.jsp">예약</a></li>
-					<li><a href="mapForm.jsp">오시는길</a></li>
+					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
 					<li><a href="boardList.jsp">게시판</a></li>
-					<li><a href="mypageForm.jsp">마이페이지</a></li>
+					<li><a href="<%=context%>/mypage.do">마이페이지</a></li> <!-- 22.09.30[김건희] 수정 -->
 				</ul>
 			</div>
 		</div>		
