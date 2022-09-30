@@ -58,7 +58,7 @@
 		<form method="post" name="search_form" action="<%=context%>/mgrList.do">
 					<tr>
 						<td><select class="form_control" name="searchField">
-								<!-- <option value="choice">--선택--</option> -->
+								<option value="choice">--선택--</option>
 								<option value="name">이름</option>
 								<option value="id">ID</option>
 						</select></td>

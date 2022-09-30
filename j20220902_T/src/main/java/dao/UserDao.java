@@ -371,16 +371,31 @@ public class UserDao
 	}
 
 	//  user 테이블 데이터 list로 받아오는 method 09/30  [최지웅]
-	public List <Users> usersList(int startRow, int endRow) throws SQLException{
+	public List <Users> getUsersList(int startRow, int endRow,String searchField, String query) throws SQLException{
 		List<Users> list = new ArrayList<Users>();
 		Connection conn =null;
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
-		String sql = "select *"
-					+"FROM (select rownum rn,a.*"
-					+"from(select * from users order by usernum) a)"
-					+"where rn BETWEEN ? and  ?";
+		String sql =null;
 		
+		if(searchField.equals("0")|| equals("choice")) {  // 조건에 따른 실행 sql 선택
+			    sql ="select * FROM (select rownum rn,a.*"
+				 	+"from(select * from users order by usernum) a)"
+				 	+"where rn BETWEEN ? and  ?";
+			}else if(searchField.equals("name")) {
+			    sql = "select * FROM (select rownum rn,a.*"	
+					+"from(select * from users order by usernum) a)"   				
+					+"where name LIKE '%"+query+"%' and rn BETWEEN ? and  ?";			  			
+			}else if(searchField.equals("id")) {				 			
+				sql =  "select * FROM (select rownum rn,a.*"
+					    +"from(select * from users order by usernum) a)"
+					    +"where id LIKE '%"+query+"%' and rn BETWEEN ? and  ?";				
+			}else {
+				sql ="select * FROM (select rownum rn,a.*"
+						 	+"from(select * from users order by usernum) a)"
+						 	+"where rn BETWEEN ? and  ?";	
+			}	
+				
 		try {
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
@@ -415,4 +430,20 @@ public class UserDao
 	
 	
 	
-}
+}	
+			
+				
+			
+				
+			
+			
+		
+		
+		 
+		
+		
+		 
+		
+		
+		
+		

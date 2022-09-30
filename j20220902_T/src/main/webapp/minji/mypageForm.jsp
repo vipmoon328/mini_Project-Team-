@@ -8,13 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 마이페이지</title>
-<link href="css/mypage.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context %>/css/mypage.css?ver0.1" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	function init()
 	{
 		$('#user_email2').val("${email_domain}");
-	}
+	};
 	
 	function changeDomain(){
 		if($('#domain_list').val() == 'type')
@@ -57,8 +57,7 @@
 		{
 			return check;
 		}
-	}
-
+	};
 </script>
 </head>
 <body onload="init()">
@@ -68,7 +67,7 @@
 			<div class="item_first">
 				<ul>
 					<li>${users.name}님</li>
-					<li><a href="mainHome.do">로그아웃</a></li>
+					<li><a href="../hyojung/mainHomeView.jsp">로그아웃</a></li>
 				</ul>
 			</div> 
 		</div>
@@ -77,12 +76,12 @@
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="">홈</a></li>
-					<li><a href="">볼링장정보</a></li>
+					<li><a href="../hyojung/loginHomeView.jsp">홈</a></li>
+					<li><a href="../JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
 					<li><a href="">예약</a></li>
-					<li><a href="">오시는길</a></li>
+					<li><a href="../JiHyeon/mapFormIn.jsp">오시는길</a></li>
 					<li><a href="">게시판</a></li>
-					<li><a href="">마이페이지</a></li>
+					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 				</ul>
 			</div>
 		</div>

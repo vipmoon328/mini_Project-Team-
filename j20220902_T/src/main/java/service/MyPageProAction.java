@@ -44,7 +44,7 @@ public class MyPageProAction implements CommandProcess {
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
-				return "mypagePro.jsp";
+				return "/minji/mypagePro.jsp";
 			}
 
 		}
