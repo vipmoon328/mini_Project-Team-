@@ -67,7 +67,7 @@
 			<div class="item_first">
 				<ul>
 					<li>${users.name}님</li>
-					<li><a href="mainHome.do">로그아웃</a></li>
+					<li><a href="../hyojung/mainHomeView.jsp">로그아웃</a></li>
 				</ul>
 			</div> 
 		</div>

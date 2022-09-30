@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>탈퇴하기</title>
-<link href="css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="../css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrapper">
