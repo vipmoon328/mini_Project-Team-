@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 로그인</title>
-<link href="../css/loginForm.css" type="text/css" rel="stylesheet"> 
+<link href="<%=context%>/css/loginForm.css" type="text/css" rel="stylesheet"> 
 </head>
 <body>
 	<div class="Login">
-	
+		
 		<form action="<%=context%>/login.do" class="LoginForm" method="post">
 		
 			<div class="image">
@@ -31,9 +31,9 @@
 			</div>
 			
 			<div class="optionBox">
-				<span id="findId" class="option"><a href="findIdForm.jsp">아이디 찾기</a></span>
-				<span id="findPw" class="option"><a href="findPwForm.jsp">비밀번호 찾기</a></span>
-				<span id="signUp" class="option"><a href="signUpForm.jsp">회원 가입</a></span>
+				<span id="findId" class="option"><a href="<%=context%>/GunHee/findIdForm.jsp">아이디 찾기</a></span>
+				<span id="findPw" class="option"><a href="<%=context%>/GunHee/findPwForm.jsp">비밀번호 찾기</a></span>
+				<span id="signUp" class="option"><a href="<%=context%>/GunHee/signUpForm.jsp">회원 가입</a></span>
 			</div>
 		</form>
 	</div>

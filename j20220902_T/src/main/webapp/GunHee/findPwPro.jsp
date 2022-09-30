@@ -33,20 +33,20 @@
 		}
 	}	
 </script>
-	<link href="../css/findPwPro.css" type="text/css" rel="stylesheet"> 
+	<link href="<%=context%>/css/findPwPro.css" type="text/css" rel="stylesheet"> 
 </head>
 <body>
 	<c:if test="${usernum eq 0}">
 		<script type="text/javascript">
 			alert('해당되는 정보가 존재하지 않습니다.');
-			location.href = "findPwForm.jsp";
+			location.href = "<%=context%>/GunHee/findPwForm.jsp";
 		</script>
 	</c:if>
 	
 	<div class="frame">
 	<form action="<%=context%>/changePw.do" method="post"  class="LoginForm">
 		<div class="image" style="text-align: center">
-				<img alt="" src="../images/icon.png" >
+				<img alt="" src="<%=context%>/images/icon.png" >
 		</div>	
 		
 		<div><h3 style=" text-align: center;">${id}님의 변경하실 비밀 번호를 입력해주세요</h3></div>
@@ -74,7 +74,7 @@
 						
 		<div style=" text-align: center;">
 			<input type="submit" class="button" value="확인" onclick="return chkPw()"> 
-			<input type="button" class="button" value="취소" onclick="location.href='loginForm.jsp'">
+			<input type="button" class="button" value="취소" onclick="location.href='<%=context%>/GunHee/loginForm.jsp'">
 		</div>
 	</form>
 	</div>

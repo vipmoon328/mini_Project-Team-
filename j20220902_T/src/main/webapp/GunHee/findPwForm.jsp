@@ -21,7 +21,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>비밀번호 찾기</title>
-		<link href="../css/loginForm.css" type="text/css" rel="stylesheet"> 
+		<link href="<%=context%>/css/loginForm.css" type="text/css" rel="stylesheet"> 
 	</head>
 	
 <body>

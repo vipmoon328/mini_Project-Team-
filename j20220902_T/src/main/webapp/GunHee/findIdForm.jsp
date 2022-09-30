@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
 <%  String context = request.getContextPath(); %>
-
 <!DOCTYPE html>
 <html>
 	<style type="text/css">
@@ -24,7 +23,6 @@
 	</head>
 	
 	<body>
-	
 	<div class="findId">
 		<form action="<%=context%>/findId.do" class="findIdForm" method="post">
 		

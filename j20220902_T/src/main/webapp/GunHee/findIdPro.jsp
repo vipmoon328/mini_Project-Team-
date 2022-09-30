@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%   String context = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>아이디 찾기 결과</title>
-	<link href="../css/loginForm.css" type="text/css" rel="stylesheet">
+	<link href="<%=context%>/css/loginForm.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-
-	<c:if test="${id eq ''}">
+	<c:if test="${id eq null}">
 		<script type="text/javascript">
 			alert('해당되는 정보가 존재하지 않습니다.');
-			location.href = "findIdForm.jsp";
+			location.href = "<%=context%>/GunHee/findIdForm.jsp";
 		</script>
 	</c:if>
 	
 	<div class="resultFindId">
 			<div class="image" style="text-align: center">
-				<img alt="" src="../images/icon.png" >
+				<img alt="" src="<%=context%>/images/icon.png" >
 			</div>
 			
 			<div>
@@ -29,8 +29,8 @@
 			</div>
 			
 			<div style=" text-align: center;">
-				<input type="button" class="button" value="확인" onclick="location.href='loginForm.jsp'">
-				<input type="button" class="button" value="비밀번호 찾기" onclick="location.href='findPwPro.jsp'">
+				<input type="button" class="button" value="확인" onclick="location.href='<%=context%>/GunHee/loginForm.jsp'">
+				<input type="button" class="button" value="비밀번호 찾기" onclick="location.href='<%=context%>/GunHee/findPwPro.jsp'">
 			</div>
 	</div>
 </body>
