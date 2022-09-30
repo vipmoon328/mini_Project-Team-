@@ -66,6 +66,7 @@ public class ReservationForm implements CommandProcess {
 		}
 		
 		System.out.println(res_date);
+		request.setAttribute("USERNUM", request.getParameter("USERNUM"));
 		request.setAttribute("res_rid", request.getParameter("res_rid"));
 		request.setAttribute("res_date", res_date);
 		request.setAttribute("brnNum", brnNum);

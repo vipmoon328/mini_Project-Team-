@@ -28,6 +28,7 @@ public class ResActionPro implements CommandProcess {
 		String inputMon = request.getParameter("inputMonth"); 
 		String inputDate = request.getParameter("inputDate"); 
 		String res_rid = request.getParameter("res_rid");
+		int USERNUM = Integer.parseInt(request.getParameter("USERNUM"));
 		cal.set(Integer.parseInt(inputYear), Integer.parseInt(inputMon),Integer.parseInt(inputDate));
 		String res_date = df.format(cal.getTime());
 		// TODO Auto-generated method stub
@@ -37,7 +38,7 @@ public class ResActionPro implements CommandProcess {
 		reservation.setRes_endTime(Integer.parseInt(request.getParameter("end")));
 		reservation.setRes_customer(Integer.parseInt(request.getParameter("many")));
 		reservation.setRes_sal(Integer.parseInt(request.getParameter("cost")));
-		reservation.setRes_userNum(2);
+		reservation.setRes_userNum(USERNUM);
 		reservation.setRes_brnNum(Integer.parseInt(request.getParameter("jijum")));
 		System.out.println("res_rid=" + res_rid);
 		ReservationDao rd = ReservationDao.getInstance();
@@ -55,6 +56,7 @@ public class ResActionPro implements CommandProcess {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.setAttribute("USERNUM", USERNUM);
 		request.setAttribute("result", result);
 		return "/Jehwan/myReservationPro.jsp";
 	}
