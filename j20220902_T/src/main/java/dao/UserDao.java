@@ -14,12 +14,15 @@ import javax.sql.DataSource;
 //싱글톤 구현
 public class UserDao 
 {
+	//싱글톤 구현 1 [김건희]
 	private static UserDao instance;
 	
+	//싱글톤 구현 2 [김건희]
 	private UserDao() {
 		
 	}
 	
+	//싱글톤 구현 3 [김건희]
 	public static UserDao getInstance() 
 	{
 		if (instance == null) {	
@@ -28,6 +31,7 @@ public class UserDao
 		return instance;
 	}
 	
+	//데이터 베이스 연결을 위한 셋팅 [김건희]
 	private Connection getConnection() 
 	{
 		Connection conn = null;
@@ -42,18 +46,22 @@ public class UserDao
 		return conn;
 	}
 	
+	//아이디 중복을 확인하기 위한 메소드 [김건희]
 	public int checkId (String id) throws SQLException
 	{
 		int result = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT id FROM users WHERE id = ?";
+		
+		//아이디 중복을 확인하지만 삭제된 아이디일 경우에는 아이디 중복이 가능하기 위한 쿼리문
+		String sql = "SELECT id FROM users WHERE id = ? and deleted = ?";
 		try 
 		{
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setInt(2, 1);
 			
 			rs = pstmt.executeQuery();
 			
@@ -73,7 +81,74 @@ public class UserDao
 		System.out.println(result);
 		return result;
 	}
+
+	// 로그인 페이지의 아이디 찾기 기능을 위한 메소드 (입력값 : 이름, 휴대폰 번호) [김건희]
+		public Users findId(String name, String phone) throws SQLException
+		{
+			String result ="";
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			//아이디 찾기 시에 기존에 가졌던 데이터를 이용해서 바로 비밀번호 찾기를 원할 경우에 바로 넘어가기 위해서 id랑 usernum 을 조회한다 [김건희]
+			String sql = "SELECT id, usernum FROM users WHERE name = ? AND phone = ?";
+			Users users = new Users();
+			
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, name);
+				pstmt.setString(2, phone);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next())
+				{
+					users.setId(rs.getString(1));
+					users.setUsernum(rs.getInt(2));
+					System.out.println("아이디 조회 성공");	
+				}
+				
+				else
+				{
+					System.out.println("아이디 조회 실패 \n 해당되는 아이디가 없습니다");
+				}
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			} finally {
+				if (rs != null) rs.close();
+				if (conn != null) conn.close();
+				if (pstmt != null) pstmt.close();
+			}
+			
+			return users;
+		}
+		
+		//비밀번호 찾기시에 정보 일치시에 비밀번호를 변경하는 메소드 [김건희]
+		public int updatePw(String pw, String usernum)
+		{
+			int result = 0;
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			String sql = "UPDATE users SET pw = ? WHERE usernum = ?";
+			
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, pw);
+				pstmt.setString(2, usernum);
+				result  = pstmt.executeUpdate();
+				System.out.println("수정 성공");
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
+			return result;
+		}
 	
+	//유저를 생성하는 메소드 시퀸스를 사용, 미리 정의해 둬야함, 자세한 내용은 공유 파일 참조바람 [김건희]
 	public int insert (Users user) throws SQLException
 	{
 		int result = 0;
@@ -109,29 +184,33 @@ public class UserDao
 		return result;
 	}
 	
-	public String findId(String name, String phone) throws SQLException
+	// 로그인 페이지의 비밀번호 찾기 위한 데이터를 추출하는 위한 메소드 (입력값 : 아이디, 이름, 휴대폰 번호) [김건희]
+	public int findPw(String id, String name, String phone) throws SQLException
 	{
-		String result ="";
+		int result = 0;
+		ResultSet rs = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT id FROM users WHERE name = ? AND phone = ?";
+		String sql = "SELECT usernum FROM users WHERE id = ? AND name = ? AND phone = ?";
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			pstmt.setString(2, phone);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, phone);
 			rs = pstmt.executeQuery();
+			
 			if(rs.next())
 			{
-				result = rs.getString(1);
-				System.out.println("아이디 조회 성공");	
+				System.out.println("유저 번호 조회 성공");
+				result = rs.getInt(1);
 			}
 			else
 			{
-				System.out.println("아이디 조회 실패 \n 해당되는 아이디가 없습니다");
+				System.out.println("유저 번호 조회 실패");
 			}
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -139,10 +218,10 @@ public class UserDao
 			if (conn != null) conn.close();
 			if (pstmt != null) pstmt.close();
 		}
-		
 		return result;
 	}
 	
+	// 로그인 페이지에서 로그인을 할때 사용하는 메소드
 	public int login(String id, String passwd) throws SQLException
 	{
 		int result = 0;

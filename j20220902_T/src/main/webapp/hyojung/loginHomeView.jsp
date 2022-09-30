@@ -12,7 +12,7 @@
 		<div id="login_box">
 			<div id="login_list1">
 				<ul class="login_list">
-					<li><a href="login.do">님</a></li>				
+					<li> ${id} 님</li>	<!-- 22.09.29 효정씨가 한 부분 수정 [김건희]	 -->					
 				</ul>
 			</div>
 			<div id="login_list2">

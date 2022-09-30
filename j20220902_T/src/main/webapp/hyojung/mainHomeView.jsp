@@ -12,8 +12,8 @@
 	<div class="top_container">
 		<div id="login_box">
 			<ul class="login_list">
-				<li><a href="login.do">로그인 </a></li>
-				<li><a href="joinUser.do">회원가입</a></li>
+				<li><a href="../GunHee/loginForm.jsp">로그인 </a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 1 [김건희] -->
+				<li><a href="../GunHee/signUpForm.jsp">회원가입</a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 2 [김건희] -->
 			</ul>	
 		</div>
 		<div id="menu_box">
