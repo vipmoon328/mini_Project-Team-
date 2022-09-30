@@ -259,7 +259,7 @@ public class UserDao
 	public Users select(String id) throws SQLException {
 		Users users = new Users();
 		Connection conn = null;
-		String sql = "select * from users where id=?"+id;
+		String sql = "select id,pw,name,gender,phone,email,brn_uid from users where id = ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -267,7 +267,8 @@ public class UserDao
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			if (rs.next()) 
+			{
 				users.setId(rs.getString(1));
 				users.setPw(rs.getString(2));
 				users.setName(rs.getString(3));
@@ -275,7 +276,6 @@ public class UserDao
 				users.setPhone(rs.getString(5));
 				users.setEmail(rs.getString(6));
 				users.setBrn_uid(rs.getInt(7));
-				
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

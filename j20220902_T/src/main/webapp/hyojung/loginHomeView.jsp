@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%  String context = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 				<li><a href="Reservation.do">예약</a></li>
 				<li><a href="map.do">오시는길</a></li>
 				<li><a href="board.do">게시판</a></li>
-				<li><a href="mypage.do">마이페이지</a></li>
+				<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 			</ul>
 		</div>
 	</div>
