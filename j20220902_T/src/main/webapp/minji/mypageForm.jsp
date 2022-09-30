@@ -35,13 +35,13 @@
 		
 		if($('#user_password').val().length < 8)
 		{
-			$('#passLengthError').text('패스워드는 보안상의 이유로 8글자 이상 입력해주세요');
+			$('#passLengthError').text('패스워드는 8글자 이상 입력해주세요.');
 			check = false;
 		}
 		
 		if($('#user_email2').val().indexOf('.') == -1)
 		{
-			$('#emailError').text('이메일 형식이 일치 하지 않습니다. 다시 입력해주세요');
+			$('#emailError').text('이메일 형식이 일치하지 않습니다. 다시 입력해주세요.');
 			check = false;
 		}
 
@@ -51,7 +51,6 @@
 		{
 			return check;
 		}
-		
 	}
 
 </script>
@@ -62,7 +61,7 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><a>${users.name}님</a></li>
+					<li>${users.name}님</li>
 					<li><a href="mainHome.do">로그아웃</a></li>
 				</ul>
 			</div> 
@@ -177,6 +176,7 @@
 				<button type="submit" id="submitChk" onclick="updateCheck()">수정하기</button><button type="submit" onclick="location.href='myDeleteForm.do'">탈퇴하기</button>
 			</div>
 		</div>
+		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">
 			<div class="item_end">
 				<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>

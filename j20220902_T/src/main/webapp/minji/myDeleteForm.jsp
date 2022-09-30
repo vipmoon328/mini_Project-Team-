@@ -4,12 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-	String name = (String)session.getAttribute("name");
-%>
 <meta charset="UTF-8">
 <title>탈퇴하기</title>
-<link href="../css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrapper">
@@ -17,7 +14,7 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><a><%=name %>님</a></li>
+					<li>${users.name}님</li>
 					<li><a href="">로그아웃</a></li>
 				</ul>
 			</div> 
@@ -56,7 +53,8 @@
 					</table>
 				</form>
 			</div> 
-		</div>
+		</div> 
+		<a href="#" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">
 			<div class="item_end">
 				<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>

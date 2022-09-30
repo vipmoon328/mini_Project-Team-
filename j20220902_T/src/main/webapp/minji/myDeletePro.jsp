@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>탈퇴하기</title>
 <%
 	String context = request.getContextPath();
 %>
@@ -21,7 +21,7 @@
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("헐 ~ ㅠㅠ 암호 틀려");
+			alert("패스워드가 일치하지 않습니다.");
 			location.href="myDeleteForm.do?id=${id}&pw=${pw}";
 		</script>
 	</c:if>
