@@ -1,4 +1,4 @@
-package service;
+package service.Jiwoong;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,15 +11,19 @@ import org.json.JSONException;
 
 import dao.UserDao;
 import dao.Users;
+import service.CommandProcess;
 
-public class mgrListAction implements CommandProcess {
+public class MgrListAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
 		// TODO Auto-generated method stub
-		System.out.println("mgrListAction Service start...");
+		System.out.println("MgrListAction Service start...");
 		
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 		UserDao ud =UserDao.getInstance();
 		
 		try {
@@ -28,10 +32,22 @@ public class mgrListAction implements CommandProcess {
 			String pageNum = request.getParameter("pageNum");
 			if(pageNum==null || pageNum.equals("")) {pageNum ="1" ; }  // 기본 페이지 1 Setting
 			int currentPage = Integer.parseInt(pageNum);   			  // 현재 페이지
-			int pageSize = 10, blockSize =10;  						 // 한 페이지의 게시글 개수  페이지바 크기..? 
+			int pageSize = 4, blockSize =10;  						 // 한 페이지의 게시글 개수  페이지바 크기..? 
 			int startRow = (currentPage-1) * pageSize +1;			//  한 페이지의 시작글 번호
 			int endRow   = startRow+ pageSize-1;                   //   한 페이지의 마지막글 번호
-			int startNum = totCnt - startRow+1;
+			int startNum = startRow;
+			
+			
+			
+			String selectOption = request.getParameter("searchField");  // 
+			String inputValue   = request.getParameter("query");        //
+			
+			
+			System.out.println(selectOption);
+			System.out.println(inputValue);
+			
+			
+			
 			
 			//Users 조회
 			List<Users> list = ud.usersList(startRow, endRow);
@@ -55,9 +71,13 @@ public class mgrListAction implements CommandProcess {
 			System.out.println("mgrListAction e.getMessage()->"+e.getMessage());
 		}
 		
-		return "mgrList.jsp";   // view
+		return "/Jiwoong/mgrList.jsp";   // view
 	
 	}
+
+		
+		 
+	
 
 }
 		
