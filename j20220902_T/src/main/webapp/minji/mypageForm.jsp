@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 마이페이지</title>
-<link href="..css/mypage.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="../css/mypage.css?ver0.1" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	function init()
@@ -76,10 +76,10 @@
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="">홈</a></li>
-					<li><a href="">볼링장정보</a></li>
+					<li><a href="../hyojung/loginHomeView.jsp">홈</a></li>
+					<li><a href="../JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
 					<li><a href="">예약</a></li>
-					<li><a href="">오시는길</a></li>
+					<li><a href="../JiHyeon/mapFormIn.jsp">오시는길</a></li>
 					<li><a href="">게시판</a></li>
 					<li><a href="mypageForm.jsp">마이페이지</a></li>
 				</ul>
@@ -129,7 +129,7 @@
 						<td>
 							<label>
 								<c:choose>
-									<c:when test="${gender == M}">
+									<c:when test="${users.gender eq 'M'}">
 										<input type="radio" name="gender" value="M" checked="checked"><span>남성</span>
 										<input type="radio" name="gender" value="F"><span>여성</span>
 									</c:when>
@@ -146,7 +146,7 @@
 						<td>
 							<label>
 								<c:choose>
-									 <c:when test="${brn_uid == 0}">
+									 <c:when test="${users.brn_uid eq 0}">
 										<input type="radio" name="brn_uid" value="0" checked="checked"><span>이대</span>
 										<input type="radio" name="brn_uid" value="1"><span>강남</span>
 									</c:when>

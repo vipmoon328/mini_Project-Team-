@@ -24,11 +24,11 @@
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="loginHomeView.jsp">홈</a></li>
-					<li><a href="informationForm.jsp">볼링장정보</a></li>
-					<li><a href="resAllView.jsp">예약</a></li>
-					<li><a href="mapForm.jsp">오시는길</a></li>
-					<li><a href="boardList.jsp">게시판</a></li>
+					<li><a href="../hyojung/loginHomeView.jsp">홈</a></li>
+					<li><a href="../JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
+					<li><a href="">예약</a></li>
+					<li><a href="../JiHyeon/mapFormIn.jsp">오시는길</a></li>
+					<li><a href="">게시판</a></li>
 					<li><a href="mypageForm.jsp">마이페이지</a></li>
 				</ul>
 			</div>
@@ -43,8 +43,8 @@
 				<form action="myDeletePro.do">
 					<table width="500px" height="350px">
 						<tr>
-							<td><input type="hidden" name="id" value="${id}">
-							<input type="hidden" name="pw" 	value="${pw}"></td>
+							<td><input type="hidden" name="id" value="${users.id}">
+							<input type="hidden" name="pw" 	value="${users.pw}"></td>
 						</tr>
 						<tr>			
 							<td><span>암호 재확인  </span><input type="password" name="pw"></td>
