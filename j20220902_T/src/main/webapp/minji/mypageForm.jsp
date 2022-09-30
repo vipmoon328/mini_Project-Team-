@@ -178,8 +178,14 @@
 		</div>
 		<div class="flex-container center">
 			<div class="item_sixth">
-				<button type="submit" id="submitChk" onclick="updateCheck()">수정하기</button><button type="submit" onclick="location.href='myDeleteForm.do'">탈퇴하기</button>
+				<button type="submit" id="submitChk" onclick="updateCheck()">수정하기</button>
 			</div>
+		</div>
+	</form>
+		<div class="flex-container center">
+				<div class="item_sixth">
+					<button type="submit" onclick="location.href='myDeleteForm.do?user_id=${users.id}'">탈퇴하기</button>
+				</div>
 		</div>
 		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">
@@ -188,7 +194,6 @@
 				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
-	</form>
 </div>
 </body>
 </html>

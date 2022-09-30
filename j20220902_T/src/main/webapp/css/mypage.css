@@ -143,8 +143,8 @@
   			font-size: 15px; 
 	}
 	.item_sixth {
- 			margin-top: 50px;   /* 버튼 마진 */
- 			margin-bottom: 100px;   /* 버튼 마진 */
+ 			margin-top: 10px;   /* 버튼 마진 */
+ 			margin-bottom: 10px;   /* 버튼 마진 */
  	}
  	button {
 			position: relative;

@@ -19,20 +19,24 @@ public class MyDeleteFormAction implements CommandProcess {
 		
 		System.out.println("MyDeleteFormAction start...");		
 				
-				String id = request.getParameter("user_id");
-				try {				
-					UserDao ud = UserDao.getInstance();	 			
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		
+		String id = request.getParameter("user_id");
+		
+		try {				
+				UserDao ud = UserDao.getInstance();	 			
 					
-					Users users = ud.select(id); 
+				Users users = ud.select(id); 
 										
-					request.setAttribute("user_id", id);				
-					request.setAttribute("users", users);
+				request.setAttribute("user_id", id);				
+				request.setAttribute("users", users);
 					
-				} catch (Exception e) {
+			} catch (Exception e) {
 						System.out.println(e.getMessage());
 			}
 					
-				return "myDeleteForm.jsp";
-			}
-		
+			return "/minji/myDeleteForm.jsp";
 	}
+		
+}

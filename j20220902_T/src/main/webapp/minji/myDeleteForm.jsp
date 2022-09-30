@@ -44,11 +44,11 @@
 				<form action="myDeletePro.do">
 					<table width="500px" height="350px">
 						<tr>
-							<td><input type="hidden" name="id" value="${users.id}">
-							<input type="hidden" name="pw" 	value="${users.pw}"></td>
+							<td><input type="hidden" name="user_id" value="${users.id}">
+							<input type="hidden" name="user_password" value="${users.pw}"></td>
 						</tr>
 						<tr>			
-							<td><span>암호 재확인  </span><input type="password" name="pw"></td>
+							<td><span>암호 재확인  </span><input type="password" name="user_password"></td>
 							<td><button type="submit" value="탈퇴하기">탈퇴하기</button></td>
 						</tr>
 					</table>

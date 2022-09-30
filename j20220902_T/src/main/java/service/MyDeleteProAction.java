@@ -34,7 +34,7 @@ public class MyDeleteProAction implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return "myDeletePro.jsp";
+		return "/minji/myDeletePro.jsp";
 	}
 
 }

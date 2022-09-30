@@ -17,6 +17,10 @@ public class MyPageFormAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
 		System.out.println("MyPageFormAction start...");
+		
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		
 		HttpSession session = request.getSession();
 		
 		String id = (String) session.getAttribute("id");
