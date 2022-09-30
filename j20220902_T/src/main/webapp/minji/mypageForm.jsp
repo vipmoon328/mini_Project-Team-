@@ -130,7 +130,7 @@
 						<td>
 							<label>
 								<c:choose>
-									<c:when test="${gender == M}">
+									<c:when test="${users.gender eq 'M'}">
 										<input type="radio" name="gender" value="M" checked="checked"><span>남성</span>
 										<input type="radio" name="gender" value="F"><span>여성</span>
 									</c:when>
@@ -147,7 +147,7 @@
 						<td>
 							<label>
 								<c:choose>
-									 <c:when test="${brn_uid == 0}">
+									 <c:when test="${users.brn_uid eq 0}">
 										<input type="radio" name="brn_uid" value="0" checked="checked"><span>이대</span>
 										<input type="radio" name="brn_uid" value="1"><span>강남</span>
 									</c:when>

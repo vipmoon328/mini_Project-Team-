@@ -30,9 +30,12 @@ public class MyPageFormAction implements CommandProcess {
 			String email_id = test[0];
 			String email_domain = test[1];
 			
-			//test 
+			System.out.println("파리미터 값 테스트");
 			System.out.println(users.getId());
 			System.out.println(users.getName());
+			System.out.println(users.getGender());
+			System.out.println(users.getBrn_uid());
+			
 			
 			request.setAttribute("users", users);
 			request.setAttribute("email_id", email_id);
