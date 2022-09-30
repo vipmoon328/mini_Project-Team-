@@ -21,6 +21,9 @@ public class loginAction implements CommandProcess {
 		String id = request.getParameter("user_id");
 		String passwd = request.getParameter("user_password");
 		
+		System.out.println(id);
+		System.out.println(passwd);
+		
 		HttpSession session = request.getSession();
 		
 		UserDao userdao = UserDao.getInstance();

@@ -304,7 +304,6 @@ public class UserDao
 			pstmt.setInt(5, users.getBrn_uid());
 			pstmt.setString(6, users.getEmail());
 			pstmt.setString(7, users.getId());
-			
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {

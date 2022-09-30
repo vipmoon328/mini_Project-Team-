@@ -19,25 +19,32 @@ public class MyPageProAction implements CommandProcess {
 			throws ServletException, IOException, JSONException {
 				
 				System.out.println("MyPageActionPro Start...");	
-		
-		
+				String email = request.getParameter("user_email1");
+				email += "@";
+				email += request.getParameter("user_email2");
+				System.out.println(email);
+				
 				request.setCharacterEncoding("utf-8");  // post방식은 엔코딩 처리를 해주어야함
 				String pageNum = request.getParameter("pageNum");
 				
 				try {
-					
-					Users users = new Users();
-					users.setId(request.getParameter("id"));
-					users.setPw(request.getParameter("pw"));
-					users.setName(request.getParameter("name"));
-					users.setGender(request.getParameter("gender"));
-					users.setPhone(request.getParameter("phone"));
-					users.setEmail(request.getParameter("email"));
-					users.setBrn_uid(Integer.parseInt(request.getParameter("brn_uid")));
-			
 					UserDao ud = UserDao.getInstance();
+					Users users = new Users();
+					users.setId(request.getParameter("user_id"));
+					users.setPw(request.getParameter("user_password"));
+					users.setName(request.getParameter("user_name"));
+					users.setGender(request.getParameter("gender"));
+					users.setPhone(request.getParameter("user_phone_number"));
+					users.setEmail(email);
+					users.setBrn_uid(Integer.parseInt(request.getParameter("brn_uid")));
 					int result = ud.update(users);
-					
+					if(result == 0)
+					{
+						System.out.println("수정 실패");
+					}
+					else {
+						System.out.println("수정 성공");
+					}
 					request.setAttribute("result", result);
 					request.setAttribute("users", users);
 					

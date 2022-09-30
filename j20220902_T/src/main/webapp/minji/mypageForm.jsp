@@ -103,11 +103,11 @@
 				<table width="700px">
 					<tr> 
 						<td><figure style="margin: 0;">아이디<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
-						<td><input type="text" size="20px" id="user_id" value="${users.id}"><span style="font-size: 12px; color: gray;"> * 아이디 변경 불가능</span></td>
+						<td><input type="text" size="20px" name="user_id" id="user_id" value="${users.id}"><span style="font-size: 12px; color: gray;"> * 아이디 변경 불가능</span></td>
 					</tr> 
 					<tr>
 						<td><figure style="margin: 0;">비밀번호<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
-						<td><input type="password" size="30px" id="user_password" required="required" value="${users.pw}"></td> 
+						<td><input type="password" size="30px" name="user_password" id="user_password" required="required" value="${users.pw}"></td> 
 					</tr>
 					<tr>
 						<td><figure style="margin: 0;">비밀번호확인<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
@@ -117,12 +117,12 @@
 					</tr>
 					<tr>
 						<td><figure style="margin: 0;">이름<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
-						<td><input type="text" size="15px" id="user_name" required="required" value="${users.name}"></td>
+						<td><input type="text" size="15px" name="user_name" id="user_name" required="required" value="${users.name}"></td>
 						<div id="nameError" class="error"></div>
 					</tr>
 					<tr>
 						<td><figure style="margin: 0;">전화번호<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
-						<td><input type="tel" size="25px" id="user_phone_number" pattern="\d{2,3}-\d{3,4}-\d{4}" placeholder="010-XXXX-XXXX" required="required" value="${users.phone}"></td>
+						<td><input type="tel" size="25px" name="user_phone_number" id="user_phone_number" pattern="\d{2,3}-\d{3,4}-\d{4}" placeholder="010-XXXX-XXXX" required="required" value="${users.phone}"></td>
 					</tr>
 					<tr>
 						<td>성별</td>
