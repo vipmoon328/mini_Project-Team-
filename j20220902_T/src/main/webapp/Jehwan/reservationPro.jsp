@@ -113,12 +113,20 @@
              today = new Date ( today.getFullYear(), today.getMonth()-1, today.getDate());
              if((today.getFullYear()==realDay.getFullYear())&&(today.getMonth()==realDay.getMonth())){
 			 	$("#prev").hide();
+			 	if(today.getDate()<realDay.getDate()){
+			 		today = realDay;
+			 	}
              }
              buildCalendar(today);
 	         make_sendData()
 		});
 		
 		$(document).on("click","#insert", function(){
+			if($(".checked").length == 0){
+				alert("시간을 선택해 주세요");
+				return;
+			}
+			
 			var IMP = window.IMP; // 생략가능
 	        IMP.init('imp06482341'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	        var msg;
@@ -179,7 +187,6 @@
         lastDay = new Date(nowYear,nowMonth+1,0).getDay();
         
         
-        $("#today").html(nowYear+"년 "+(nowMonth+1)+"월 " + nowDate +"일(" + nowDay + ")");
         $(".year_mon").text(nowYear+"년 "+(nowMonth+1)+"월");
 		
         var tag = "<tr>"
@@ -235,6 +242,17 @@
 	}
 	
 	function buildTimeTable(data) {
+		var dayInfo = "월";
+		switch(today.getDay()){
+	 	case 0 : dayInfo="일"; break;
+	    case 1 : dayInfo="월"; break;
+	    case 2 : dayInfo="화"; break;
+	    case 3 : dayInfo="수"; break;  
+	    case 4 : dayInfo="목"; break;
+	    case 5 : dayInfo="금"; break;  
+	    case 6 : dayInfo="토"; break;   
+	}
+		$("#today").html(today.getFullYear()+"년 "+(today.getMonth()+1)+"월 " + today.getDate() +"일(" + dayInfo + ")");
 		$('#msg').html("");
 		var maxtime = 24;
 		if(today.getDay() == 5 || today.getDay() == 6){

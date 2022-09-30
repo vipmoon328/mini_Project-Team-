@@ -28,23 +28,25 @@
 		});
 		
 		$(document).on("click","#prev", function(){
-			var sendData = "pageNum=" + $(this).val() + "USERNUM=" + '${ USERNUM }';
+			var prevNum = parseInt($(".numSelect:first").val())-1;
+			var sendData = "pageNum=" + prevNum + "&USERNUM=" + '${ USERNUM }';
 			$.ajax({
 				data	: sendData
 			});
 		});
 		
 		$(document).on("click","#next", function(){
-			var sendData = "pageNum=" + $(this).val() + "USERNUM=" + '${ USERNUM }';
+			var nextNum = parseInt($(".numSelect:last").val())+1;
+			var sendData = "pageNum=" + nextNum + "&USERNUM=" + '${ USERNUM }';
 			$.ajax({
 				data	: sendData
 			});
 		});
 		
 		$(document).on("click",".numSelect", function(){
-			var sendData = "pageNum=" + $(this).val() + "USERNUM=" + '${ USERNUM }';
+			var sendData = "pageNum=" + $(this).val() + "&USERNUM=" + '${ USERNUM }';
 			$.ajax({
-				data	: {pageNum : $(this).val()}
+				data	: sendData
 			});
 		});
 		
