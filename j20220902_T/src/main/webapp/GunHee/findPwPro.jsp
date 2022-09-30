@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 찾기 -비밀번호 변경-</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	console.log(${usernum});

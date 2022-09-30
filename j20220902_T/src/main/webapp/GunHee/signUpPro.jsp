@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 결과창</title>
+<title>회원가입 결과창</title>
 </head>
 <body>	
 	<c:if test="${result eq 1}">

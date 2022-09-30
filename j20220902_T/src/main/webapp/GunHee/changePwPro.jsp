@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 찾기 -비밀번호 변경 결과-</title>
 </head>
 <body>
 	<c:if test="${result eq 1}">
