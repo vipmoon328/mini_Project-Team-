@@ -256,10 +256,11 @@ public class UserDao
 		return result;
 	}
 	
+	// 마이페이지에서 회원정보를 불러오는 메소드
 	public Users select(String id) throws SQLException {
 		Users users = new Users();
 		Connection conn = null;
-		String sql = "select * from users where id=?"+id;
+		String sql = "select * from users where id = ?" + id;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -287,7 +288,7 @@ public class UserDao
 		return users;		
 	}
 	
-	// 마이페이지 정보수정 09/29
+	// 마이페이지에서 회원정보를 수정하는 메소드
 	public int update(Users users) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -315,14 +316,14 @@ public class UserDao
 		return result;
 	}
 		
-	
+	// 마이페이지에서 회원탈퇴를 실행하는 메소드 , 데이터는 남기고 deleted를 1에서 0으로 바꿔줌 
 	public int delete(String id, String pw) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
 		ResultSet rs = null;
-		String sql1 = "select passwd from users where id=?";
-		String sql = "delete from users where id=?";			
+		String sql1 = "select passwd from users where id = ?";
+		String sql = "update users set deleted = 0 where id = ?";			
 		try {
 			String dbPasswd = "";
 			conn = getConnection();
