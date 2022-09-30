@@ -39,18 +39,19 @@ public class MgrListAction implements CommandProcess {
 			
 			
 			
-			String selectOption = request.getParameter("searchField");  // 
-			String inputValue   = request.getParameter("query");        //
+			String searchField = request.getParameter("searchField");  //  검색 항목
+			if(searchField==null){searchField ="0";}
+			String query   = request.getParameter("query");            //  검색어
+			if(query==null){query ="0";}
 			
-			
-			System.out.println(selectOption);
-			System.out.println(inputValue);
+			System.out.println("searchField: "+searchField);
+			System.out.println("query: "+ query);
 			
 			
 			
 			
 			//Users 조회
-			List<Users> list = ud.usersList(startRow, endRow);
+			List<Users> list = ud.getUsersList(startRow, endRow, searchField, query);
 			
 			int pageCnt = (int)Math.ceil((double)totCnt/pageSize); 
 			                     
