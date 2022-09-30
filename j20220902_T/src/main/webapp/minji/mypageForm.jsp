@@ -81,7 +81,7 @@
 					<li><a href="">예약</a></li>
 					<li><a href="../JiHyeon/mapFormIn.jsp">오시는길</a></li>
 					<li><a href="">게시판</a></li>
-					<li><a href="mypageForm.jsp">마이페이지</a></li>
+					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 				</ul>
 			</div>
 		</div>
