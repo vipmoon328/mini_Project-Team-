@@ -164,7 +164,7 @@
 						<td>
 							<label>
 								<input type="text" class="email" name="user_email1" id="user_email1" required="required" value="${email_id}"> @ <input type="text" class="email" name="user_email2" id="user_email2" required="required" value="${email.domain}">
-								<select name="email" class="select" id="domain_list" onclick="changeDomain()">test
+								<select name="email" class="select" id="domain_list" onclick="changeDomain()">
 									<option value="naver.com">naver.com</option>
 									<option value="daum.net">daum.net</option>
 									<option value="google.com">gmail.com</option>
