@@ -222,6 +222,7 @@
 		text += "레인 : " +lane +"<p>";
 		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
 		text += "인원수 : <input type='text' name='many' value='1' required='required'><p>";
+		text += "<input type='hidden' name='USERNUM' value='" + '${ USERNUM }' + "'>";
 		if(end < 12){
 			cost= (end - start + 1) * 20000; 
 		}else if(start < 12 && end >= 12){

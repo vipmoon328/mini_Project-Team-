@@ -8,24 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 
-import dao.ReservationDao;
 import service.CommandProcess;
 
-public class ResDeletePro implements CommandProcess {
+public class MyReservationForm implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
-		String[] cancel_rid= request.getParameterValues("cancel");
-		ReservationDao rd = ReservationDao.getInstance();
-		int result=0;
-		try {
-			result = rd.cancelRes(cancel_rid);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		// TODO Auto-generated method stub
 		request.setAttribute("USERNUM", request.getParameter("USERNUM"));
-		System.out.println(result);
+		
+		
 		return "/Jehwan/myReservationPro.jsp";
 	}
 

@@ -3,9 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-	String name = (String)session.getAttribute("name");
-%>
 <meta charset="UTF-8">
 <title>볼링장정보</title>
 <link href="../css/informationForm.css?ver0.1" rel="stylesheet" type="text/css">
@@ -26,12 +23,11 @@
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="loginHomeView.jsp">홈</a></li>
-					<li><a href="informationForm.jsp">볼링장정보</a></li>
+					<li><a href="mainHomeView.jsp">홈</a></li>
+					<li><a href="informationFormOut.jsp">볼링장정보</a></li>
 					<li><a href="resAllView.jsp">예약</a></li>
-					<li><a href="mapForm.jsp">오시는길</a></li>
-					<li><a href="boardList.jsp">게시판</a></li>
-					<li><a href="mypageForm.jsp">마이페이지</a></li>
+					<li><a href="mapFormOut.jsp">오시는길</a></li>
+					<li><a href="boardList.jsp">게시판</a></li>				
 				</ul>
 			</div>
 		</div>		

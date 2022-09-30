@@ -259,7 +259,7 @@ public class UserDao
 	public Users select(String id) throws SQLException {
 		Users users = new Users();
 		Connection conn = null;
-		String sql = "select * from users where id="+id;
+		String sql = "select * from users where id=?"+id;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {

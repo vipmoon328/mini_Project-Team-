@@ -22,33 +22,40 @@
 				reserve_list(data1);
 			}
 		});
-
+		var testStart = "USERNUM=" + '${ USERNUM }';
 		$.ajax({
-			
+			data	: testStart
 		});
 		
 		$(document).on("click","#prev", function(){
-			var sendData = "pageNum=" + $(this).val();
+			var sendData = "pageNum=" + $(this).val() + "USERNUM=" + '${ USERNUM }';
 			$.ajax({
 				data	: sendData
 			});
 		});
 		
 		$(document).on("click","#next", function(){
-			var sendData = "pageNum=" + $(this).val();
+			var sendData = "pageNum=" + $(this).val() + "USERNUM=" + '${ USERNUM }';
 			$.ajax({
 				data	: sendData
 			});
 		});
 		
 		$(document).on("click",".numSelect", function(){
-			var sendData = "pageNum=" + $(this).val();
+			var sendData = "pageNum=" + $(this).val() + "USERNUM=" + '${ USERNUM }';
 			$.ajax({
 				data	: {pageNum : $(this).val()}
 			});
 		});
 		
-		
+		$(document).on({
+		    mouseenter: function () {
+		        $(this).css('color','white').css('background','skyblue');
+		    },
+		    mouseleave: function () {
+		    	$(this).css('color','skyblue').css('background','white');
+		    }
+		}, ".change_btn");
 	});
 	
 
@@ -60,6 +67,7 @@
 			tag = "<tr>";
 			if(data[i]["state"] == "방문전"){
 				tag += "<td><input form='cancel_form' type='checkbox' name='cancel' value="+ data[i]["res_rid"] +"></td>";
+				tag += "<input form='cancel_form' type='hidden' name='USERNUM' value='" + '${ USERNUM }' +"'>";
 			}else{
 				tag += "<td></td>";  
 			}
@@ -71,7 +79,7 @@
 			tag += "<td><input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>" + data[i]["cost"] + "</td>";
 			tag += "<td>" + data[i]["state"] + "</td>";
 			if(data[i]["state"] == "방문전"){
-				tag += "<td><input form='frm" + i + "' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: skyblue;color: white;width: 70px;height: 40px;'></td>";
+				tag += "<td><input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: skyblue;width: 70px;height: 40px;'></td>";
 			}else{
 				tag += "<td></td>";
 			}
