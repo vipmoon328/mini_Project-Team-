@@ -117,6 +117,11 @@ div {
 	#test_table {
 		margin : auto;
 		border-collapse: collapse;
+		margin-top: 150px;
+	}
+	
+	#test_table caption {
+		text-align: left;
 	}
 	
 	#test_table td {
@@ -140,16 +145,13 @@ div {
             border-bottom-right-radius: 5px;    
             margin-left: -1px;
         }
-         #cancel_btn{
-            border-radius: 5px;   
-        }
-    #cancel_select, #cancel_btn,  #cancel_btn{
+    #cancel_select, #cancel_btn{
             border: 2px solid skyblue;
             background-color: rgba(0,0,0,0);
             color: skyblue;
             padding: 5px;
-            width: 120px;
-            height: 45px;
+            width: 100px;
+            height: 40px;
             border-collapse: collapse;
         }
     #cancel_select:hover, #cancel_btn:hover{

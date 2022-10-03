@@ -114,8 +114,9 @@
 		</div>		
 	<hr color="#90C3FF" width="70%" size="1">
 	<div id="content_container">
-	<form action="<%=context%>/resCancel.do" id="cancel_form"><input type="reset" value="선택 취소" id="cancel_select"><input type="submit" value="예약 취소" id="cancel_btn"></form>
+	<form action="<%=context%>/resCancel.do" id="cancel_form"></form>
 		<table id="test_table">
+		<caption><input form="cancel_form" type="reset" value="선택 취소" id="cancel_select"><input form="cancel_form" type="submit" value="예약 취소" id="cancel_btn"></caption>
 			<thead>
 				<tr><th>예약취소</th><th>예약일자</th><th>지점</th><th>레인</th><th>시간</th><th>인원</th><th>금액</th><th>방문/취소</th><th>예약변경</th></tr>
 			</thead>

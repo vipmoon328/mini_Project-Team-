@@ -261,7 +261,7 @@
 		$("#test").empty();
 		var tag;
 		for(var i = 10 ; i < maxtime ; i ++){
-			tag = "<tr><th>" + (i%24) + ":00 ~ "+ ((i+1)%24) +":00</th>";
+			tag = "<tr><th>" + (i%24) + ":00~"+ ((i+1)%24) +":00</th>";
 			for(var j = 0 ; j < '${possibleLane}' ; j ++){
 				tag +=  "<td bgcolor='skyblue' class = 'possible'></td>";
 			}
@@ -285,7 +285,7 @@
 		if((today.getFullYear() == realDay.getFullYear())&&(today.getMonth() == realDay.getMonth())&&(today.getDate() == realDay.getDate())){
 			console.log(realDay.getHours());
 			for(var i = 0 ; i < realDay.getHours()-8 ; i++){
-				$("#test tr:nth-child(" + i + ") td").addClass('impossible').removeClass('possible').css('background-color', 'red');
+				$("#test tr:nth-child(" + i + ") td").addClass('impossible').removeClass('possible').css('background-color', 'lightgray');
 			}
 		}
 
@@ -335,30 +335,32 @@
 		</div>		
 	<hr color="#90C3FF" width="70%" size="1">
 	<div id="content_container">
-	<select id="jijum">
-			<option value="0">이대</option>
-			<option value="1">강남</option>
-	</select><p>
-		<table id="calendar">
-	        <thead>
-	            <tr>
-	                <th><input id="prev" type="button" value="<"></th>
-	                <th colspan="5" class="year_mon"></th>
-	                <th><input id="next" type="button" value=">"></th>
-	            </tr>
-	            <tr>
-	                <th>일</th>
-	                <th>월</th>
-	                <th>화</th>
-	                <th>수</th>
-	                <th>목</th>
-	                <th>금</th>
-	                <th>토</th>
-	            </tr>
-	        </thead>
-	        <tbody id="calander_test">
-	        </tbody>
-	    </table>
+		<div id="DateSelectForm">
+			<select id="jijum">
+				<option value="0">이대</option>
+				<option value="1">강남</option>
+			</select><p>
+			<table id="calendar">
+		        <thead>
+		            <tr>
+		                <th><input id="prev" type="button" value="<"></th>
+		                <th colspan="5" class="year_mon"></th>
+		                <th><input id="next" type="button" value=">"></th>
+		            </tr>
+		            <tr>
+		                <th>일</th>
+		                <th>월</th>
+		                <th>화</th>
+		                <th>수</th>
+		                <th>목</th>
+		                <th>금</th>
+		                <th>토</th>
+		            </tr>
+		        </thead>
+		        <tbody id="calander_test">
+		        </tbody>
+	    	</table>
+		</div>
 		
 		<form action="<%=context%>/insertResult.do" id="frm"><h2>예약 현황</h2><span id="msg"></span><input type="button" id="insert" value="결제"></form>
 		

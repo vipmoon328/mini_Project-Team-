@@ -114,9 +114,20 @@
 		text-align: center;
 	}
 	
-	#calendar{
+	#DateSelectForm{
 		float : left;
 	}
+	#jijum {width: 200px; 
+			padding: .8em .5em; 
+			border: 1px solid skyblue;
+			font-family: inherit;  
+			background: url('arrow.jpg') no-repeat 95% 50%; 
+			border-radius: 0px; 
+			-webkit-appearance: none; 
+			-moz-appearance: 
+			none;appearance: none;
+			}
+	
 	#calendar tbody{
 		border: 1px solid black;
 	}
@@ -143,6 +154,13 @@
 	#test td{
 		width: 80px;
 		height: 40px;
+	}
+	
+	#test th{
+		width: 100px;
+		height: 40px;
+		font-size : 0.9em;
+	
 	}
 	
 	#frm{
