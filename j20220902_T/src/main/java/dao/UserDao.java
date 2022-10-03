@@ -347,90 +347,107 @@ public class UserDao
 		}		
 		return result;		
 	}	
-	// users table  총 데이터 갯수 가져오는 method 09/30  [최지웅]
-	public int getTotalCnt() throws SQLException{
-		Connection conn = null;
-		Statement  stmt = null;
-		ResultSet  rs   = null;
-		int tot =0;
-		String sql = "select count(*) from users";   // users table  총 데이터 갯수 가져오기
-		try {
-			conn = getConnection();
-			stmt = conn.createStatement();
-			rs   = stmt.executeQuery(sql);
-			if(rs.next()) tot = rs.getInt(1);   // 결과값이 있으면 tot에 int형으로 값을 저장한다.
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}finally {
-			if(rs  != null) rs.close();
-			if(stmt != null) stmt.close();
+	// 전체 또는 조건에 따른 users table 총 데이터 갯수 가져오는 method 10/1  [최지웅]
+	public int getTotalCnt(String searchField, String query) throws SQLException{
+			Connection conn = null;
+			Statement  stmt = null;
+			ResultSet  rs   = null;
+			int tot =0;
+			String sql=null;
 			
-		}
-		return tot;
-	}
-
-	//  user 테이블 데이터 list로 받아오는 method 09/30  [최지웅]
-	public List <Users> getUsersList(int startRow, int endRow,String searchField, String query) throws SQLException{
-		List<Users> list = new ArrayList<Users>();
-		Connection conn =null;
-		PreparedStatement pstmt = null;
-		ResultSet rs =null;
-		String sql =null;
-		
-		if(searchField.equals("0")|| equals("choice")) {  // 조건에 따른 실행 sql 선택
-			    sql ="select * FROM (select rownum rn,a.*"
-				 	+"from(select * from users order by usernum) a)"
-				 	+"where rn BETWEEN ? and  ?";
-			}else if(searchField.equals("name")) {
-			    sql = "select * FROM (select rownum rn,a.*"	
-					+"from(select * from users order by usernum) a)"   				
-					+"where name LIKE '%"+query+"%' and rn BETWEEN ? and  ?";			  			
-			}else if(searchField.equals("id")) {				 			
-				sql =  "select * FROM (select rownum rn,a.*"
-					    +"from(select * from users order by usernum) a)"
-					    +"where id LIKE '%"+query+"%' and rn BETWEEN ? and  ?";				
-			}else {
-				sql ="select * FROM (select rownum rn,a.*"
-						 	+"from(select * from users order by usernum) a)"
-						 	+"where rn BETWEEN ? and  ?";	
-			}	
-				
-		try {
-			conn=getConnection();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				Users users = new Users();
-				users.setUsernum(rs.getInt("userNum"));
-				users.setId(rs.getString("id"));
-				users.setPw(rs.getString("pw"));
-				users.setName(rs.getString("name"));
-				users.setGender(rs.getString("gender"));
-				users.setPhone(rs.getString("phone"));
-				users.setEmail(rs.getString("email"));
-				users.setAuth(rs.getInt("auth"));
-				users.setDeleted(rs.getInt("deleted"));
-				users.setBrn_uid(rs.getInt("brn_uid"));
-				list.add(users);
+			// 조건에 따른 실행할 sql 문 선택 로직
+			if (searchField.equals("")) { 
+				sql = "select count(*) from users";}
+			 else  {
+				sql = "select count(*) FROM (select rownum rn,a.*" + "from(select * from users order by usernum) a)"
+						+ "where "+searchField+ " LIKE '%" + query + "%'";
 			}
-		} catch (Exception e) {
-				System.out.println(e.getMessage());
-		} finally {
-			if (rs !=null) rs.close();
-			if (pstmt != null) pstmt.close();
-			if (conn !=null) conn.close();
-		}
-		return list;
-	
-	
-	}
-	
-	
-	
-}	
 			
+			
+			
+			System.out.println("DAO  getTotalCnt sql->"+sql);
+
+
+			try {
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs   = stmt.executeQuery(sql);
+				if(rs.next()) tot = rs.getInt(1);   // 결과값이 있으면 tot에 int형으로 값을 저장한다.
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}finally {
+				if(rs  != null) rs.close();
+				if(stmt != null) stmt.close();
+				
+			}
+			return tot;
+		}
+
+		//  관리자 회원 조회 및 조건 검색 조회 method 09/30  [최지웅]
+	public List <Users> getUsersList(int startRow, int endRow,String searchField, String query) throws SQLException{	
+			List<Users> list = new ArrayList<Users>();
+			Connection conn =null;
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			String sql =null;
+			// 조건에 따른 실행할 sql 문 선택 로직
+			if (searchField.equals("")){ 
+				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users order by usernum) a)"
+						+ "where rn BETWEEN ? and  ?";
+			} else{
+				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users order by usernum) a)"
+						+ "where "+searchField+" LIKE '%" + query + "%' and rn BETWEEN ? and  ?";
+			}
+			
+			
+			System.out.println("DAO  getUsersList sql->"+sql);
+
+			
+			try {
+				conn=getConnection();
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					Users users = new Users();
+					users.setUsernum(rs.getInt("userNum"));
+					users.setId(rs.getString("id"));
+					users.setPw(rs.getString("pw"));
+					users.setName(rs.getString("name"));
+					users.setGender(rs.getString("gender"));
+					users.setPhone(rs.getString("phone"));
+					users.setEmail(rs.getString("email"));
+					users.setAuth(rs.getInt("auth"));
+					users.setDeleted(rs.getInt("deleted"));
+					users.setBrn_uid(rs.getInt("brn_uid"));
+					
+					System.out.println("DAO  getUsersList name->"+rs.getString("name"));
+				 	list.add(users);
+				}
+			} catch (Exception e) {
+							System.out.println(e.getMessage());
+			} finally {
+						if (rs !=null) rs.close();
+						if (pstmt != null) pstmt.close();
+						if (conn !=null) conn.close();
+			}
+		 	 return list;
+				
+				
+			}	
+		}				
+			
+			
+			
+			
+			
+			
+	
+		  
+	   
+
+				
 				
 			
 				

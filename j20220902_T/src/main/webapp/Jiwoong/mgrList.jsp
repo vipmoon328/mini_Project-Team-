@@ -12,11 +12,16 @@
 	<style type="text/css">
 		table {
 			width: 70%;
-			}
+						}
+		select option[value=""][disabled] {
+		display: none;
+					}
 	</style>
 <link rel="stylesheet" type="text/css" href="<%=context%>/css/mgrList.css">
 <script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+	
+</script>
 
 
 
@@ -50,56 +55,67 @@
 				<div class="item_third">회원관리</div>
 			</div>  
 		<hr color="#5A8DF3" width="70%" size="1">
-<!-- ------------------------------------header---------------------------------------------------------- -->	          
+<!-- ------------------------------------header------------------------------------------------------------->	          
    
 	
-	<!-- 조건 검색 박스  -->  	
+	
+	<!-- 조건 검색 form  -->  	
    <div id="search_box">
-		<form method="post" name="search_form" action="<%=context%>/mgrList.do">
-					<tr>
-						<td><select class="form_control" name="searchField">
-								<option value="choice">--선택--</option>
-								<option value="name">이름</option>
-								<option value="id">ID</option>
-						</select></td>
-						<td><input type="text" 	  class="form_control"	placeholder="검색어 입력" name="query" maxlength="100"></td>
-						<td><button type="submit" class="btn_success">검색</button></td>
-					</tr>
-			</form>
-	</div>
-	
-	
-	
+		<form method="post" name="search_form" action="<%=context%>/mgrList.do" >
+			<select class="form_control" name="searchField">
+				<option value="" disabled selected>--선택--</option>
+				<option value="name">이름</option>
+				<option value="id">ID</option>
+			</select>	
+				<input type= "text" placeholder="검색어 입력" name="query" maxlength="50" >
+				<button type="submit" class="btn_success">검색</button>	
+		</form>					
+  </div>							
+			
+  			
+			
 	<!-- 회원 목록 조회 -->
 	
 	 <center><h3><strong>회원목록</strong></h3></center>	
     
     <table border="1"  width="100%">
 		<tr>
-		<th >회원번호</th><th >이름</th><th >ID</th><th >비밀번호</th><th >phone</th><th >성별</th><th >email</th> <th >회원관리</th>		
+		<th >회원번호</th><th >아이디</th><th >비밀번호</th><th >이름</th><th >성별</th><th >연락처</th><th >이메일</th><th >회원여부</th><th >회원관리</th>		
 		</tr>			
 			
 	<c:if test="${totCnt > 0 }">
 			<c:forEach var="users" items="${list }">
 				<tr align="center">
-					<td>${startNum }</td>
-					<td>${users.name } </td>
-					<td>${users.id}</td>
-					<td>${users.pw}</td>
-					<td>${users.phone}</td>
+				    <td>${users.usernum }</td> 
+					<td>${users.id }</td>
+					<td>${users.pw } </td>
+					<td>${users.name}</td>
 					<td>${users.gender}</td>
+					<td>${users.phone}</td>
 					<td>${users.email}</td>
-					<td>수정,관리 버튼 로직 구현</td>
-				</tr>  	
-				<c:set var="startNum" value="${startNum+1}"/> 
+					<td>
+						<c:choose>
+							<c:when test="${users.deleted==1}">
+								<span style="color: blue;"><c:out value="회원"></c:out></span>
+							</c:when>
+							<c:otherwise>
+								<span style="color: red;"><c:out value="탈퇴"></c:out></span>
+							</c:otherwise>
+						</c:choose></td>
+					<td><button type="button" onclick="location.href='<%=context%>/mgrUpdateForm.do?id=${users.id}&pageNum=${pageNum}'">수정</button> <button type="button" onclick="location.href=">삭제</button></td>
+
+
+					
+				</tr>  
 				</c:forEach>	
 			</c:if>
 		<c:if test="${totCnt == 0 }">
 			<tr>
-				<td colspan=7>데이터가 없네</td>
+				<td colspan=7>해당 데이터가 없습니다.</td>
 			</tr>
 		</c:if>		
-					
+		</table>		
+		
 		<div style="text-align: center;">
 			<c:if test="${startPage > blockSize }">
 			<a href='mgrList.do?pageNum=${startPage-blockSize}'>[이전]</a>
@@ -110,10 +126,15 @@
 			<c:if test="${endPage < pageCnt }">
 			<a href='mgrList.do?pageNum=${startPage+blockSize}'>[다음]</a>
 			</c:if>
-		</div>			
+		</div>		
 					
-		</table>		
 					
+					
+	
+	
+	
+	
+				
     		
 		 	
 
