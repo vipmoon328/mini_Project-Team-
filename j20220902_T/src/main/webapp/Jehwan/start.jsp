@@ -9,11 +9,11 @@
 </head>
 <script type="text/javascript">
 		function res() {
-			location.href="<%=context%>/reschange.do?USERNUM=2";
+			location.href="<%=context%>/reschange.do";
 		}
 		
 		function myres() {
-			location.href="<%=context%>/myRes.do?USERNUM=2";
+			location.href="<%=context%>/myRes.do";
 		}
 	</script>
 <body>

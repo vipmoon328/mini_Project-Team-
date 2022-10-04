@@ -53,7 +53,7 @@
 	});
 	
 	function show_reserve(pageNum) {
-		var sendData = "pageNum=" + pageNum + "&USERNUM=" + '${ USERNUM }' + "&pageAmount=" + $("#page_amount").val();
+		var sendData = "pageNum=" + pageNum + "&pageAmount=" + $("#page_amount").val();
 		$.ajax({
 			data	: sendData
 		});
@@ -66,7 +66,6 @@
 			tag = "<tr>";
 			if(data[i]["state"] == "방문전"){
 				tag += "<td><input form='cancel_form' type='checkbox' name='cancel' value="+ data[i]["res_rid"] +"></td>";
-				tag += "<input form='cancel_form' type='hidden' name='USERNUM' value='" + '${ USERNUM }' +"'>";
 			}else{
 				tag += "<td></td>";  
 			}

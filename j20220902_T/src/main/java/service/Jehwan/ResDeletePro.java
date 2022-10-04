@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -24,7 +25,6 @@ public class ResDeletePro implements CommandProcess {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		request.setAttribute("USERNUM", request.getParameter("USERNUM"));
 		System.out.println(result);
 		return "/Jehwan/myReservationPro.jsp";
 	}

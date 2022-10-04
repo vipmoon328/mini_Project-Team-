@@ -16,7 +16,7 @@ public class MyReservationForm implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
 		// TODO Auto-generated method stub
-		request.setAttribute("USERNUM", request.getParameter("USERNUM"));
+		//request.setAttribute("USERNUM", request.getParameter("USERNUM"));
 		
 		
 		return "/Jehwan/myReservationPro.jsp";

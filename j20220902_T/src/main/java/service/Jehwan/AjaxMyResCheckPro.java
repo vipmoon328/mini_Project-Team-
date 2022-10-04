@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,14 +25,14 @@ public class AjaxMyResCheckPro implements CommandProcess {
 		
 				request.setCharacterEncoding("utf-8");
 				response.setContentType("text/html;charset=utf-8");
-				
+				HttpSession session = request.getSession();
 				
 				System.out.println("ResMyCheck service start");
 				JSONArray result = new JSONArray();
 				try {
-					String USERNUM = request.getParameter("USERNUM");
+					String USERNUM = String.valueOf(session.getAttribute("usernum"));
 					ReservationDao rd = ReservationDao.getInstance();
-					
+					System.out.println(USERNUM);
 					int totCnt = rd.getTotalCnt(USERNUM);   // 37
 					System.out.println(totCnt);
 					String pageNum = request.getParameter("pageNum");	

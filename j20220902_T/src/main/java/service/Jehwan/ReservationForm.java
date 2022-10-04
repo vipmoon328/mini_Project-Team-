@@ -9,6 +9,7 @@ import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -22,6 +23,7 @@ public class ReservationForm implements CommandProcess {
 			throws ServletException, IOException, JSONException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		HttpSession session = request.getSession();
 		System.out.println("ResSelect start");
 		String res_date = request.getParameter("res_date");
 		String brnNum_text = request.getParameter("brnNum");
@@ -66,7 +68,7 @@ public class ReservationForm implements CommandProcess {
 		}
 		
 		System.out.println(res_date);
-		request.setAttribute("USERNUM", request.getParameter("USERNUM"));
+		//request.setAttribute("USERNUM", request.getParameter("USERNUM"));
 		request.setAttribute("res_rid", request.getParameter("res_rid"));
 		request.setAttribute("res_date", res_date);
 		request.setAttribute("brnNum", brnNum);

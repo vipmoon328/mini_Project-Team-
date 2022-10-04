@@ -9,6 +9,7 @@ import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -22,13 +23,14 @@ public class ResActionPro implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
 		System.out.println("resAction Service start");
+		HttpSession session = request.getSession();
 		DateFormat df = new SimpleDateFormat("yyMMdd");
 		Calendar cal = Calendar.getInstance();
 		String inputYear = request.getParameter("inputYear"); 
 		String inputMon = request.getParameter("inputMonth"); 
 		String inputDate = request.getParameter("inputDate"); 
 		String res_rid = request.getParameter("res_rid");
-		int USERNUM = Integer.parseInt(request.getParameter("USERNUM"));
+		int USERNUM = Integer.parseInt(String.valueOf(session.getAttribute("usernum")));
 		cal.set(Integer.parseInt(inputYear), Integer.parseInt(inputMon),Integer.parseInt(inputDate));
 		String res_date = df.format(cal.getTime());
 		// TODO Auto-generated method stub
@@ -56,7 +58,7 @@ public class ResActionPro implements CommandProcess {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("USERNUM", USERNUM);
+		//request.setAttribute("USERNUM", USERNUM);
 		request.setAttribute("result", result);
 		return "/Jehwan/myReservationPro.jsp";
 	}
