@@ -7,52 +7,48 @@
 <head>
 <meta charset="UTF-8">
 <title>탈퇴하기</title>
-<link href="<%=context %>/css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context %>/css/mgrDeleteForm.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrapper">
-	<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
-	<form action="myDeletePro.do" method="post">
+	
+	<form action="<%=context%>/mgrDeletePro.do" method="post">
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>${id}님</li>
+					<li>00관리자님</li>
 					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div> 
 		</div>
 		
-	<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
+
 	<hr color="#D5D5D5" width="100%" size="1">
 		<div class="flex-container">
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
-					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
-					<li><a href="<%=context%>/reschange.do">예약</a></li>
-					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
-					<li><a href="">게시판</a></li>
-					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
+					<li><a href="<%=context%>/mgrList.do" >회원관리</a></li>
+					<li><a href="">매장관리</a></li>
+					<li><a href="">게시판관리</a></li>
 				</ul>
 			</div>
 		</div>
 	<hr color="#D5D5D5" width="100%" size="1">
 		<div class="flex-container">
-			<div class="item_third">마이페이지</div>
+			<div class="item_third">회원정보 삭제</div>
 		</div>
 	<hr color="#90C3FF" width="70%" size="1">
 		<div class="flex-container center">
 			<div class="item_fifth"> 
-				<form action="myDeletePro.do">
-					<table width="500px" height="350px">
+				<table width="500px" height="350px">
 						<tr>
 							<td><input type="hidden" name="user_id" value="${users.id}">
 							<input type="hidden" name="user_password" value="${users.pw}"></td>
 						</tr>
 						<tr>			
-							<td><span>암호 재확인  </span><input type="password" name="user_password"></td>
-							<td><button type="submit" value="탈퇴하기">탈퇴하기</button></td>
+							<td><span>회원 암호 재확인  </span><input type="password" name="user_password"></td>
+							<td><button type="submit" value="탈퇴하기">삭제하기</button></td>
 						</tr>
 					</table>
 				</form>
@@ -68,3 +64,4 @@
 </div>
 </body>
 </html>
+					

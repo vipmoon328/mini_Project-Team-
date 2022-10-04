@@ -26,6 +26,8 @@ public class MgrUpdateFormAction implements CommandProcess {
 		
 		String id = request.getParameter("id");
 		String pageNum= request.getParameter("pageNum");
+		System.out.println("id=>"+ id);
+		System.out.println("pageNum=>" + pageNum);
 		try {
 			
 			UserDao ud = UserDao.getInstance();
