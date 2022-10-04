@@ -19,12 +19,12 @@
 				<li><a href="<%=context%>/GunHee/signUpForm.jsp">회원가입</a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 2 [김건희] -->
 			</ul>	
 		</div>
-		<!-- 22.10.04 링크 연결 및 수정 [김건희] 비회원은 예약이 불가하므로 삭제-->
+		<!-- 22.10.04 링크 연결 및 수정 [김건희] 비회원은 예약이 하므로 불가표시-->
 		<div id="menu_box">
 			<ul class="menu_list">
 				<li><a href="<%=context%>/hyojung/mainHomeView.jsp">홈</a></li>
 				<li><a href="<%=context%>/JiHyeon/informationFormOut.jsp">볼링장정보</a></li>
-				<li><a href="Reservation.do">예약</a></li>
+				<li><a href="<%=context%>/GunHee/res_check.jsp">예약</a></li>
 				<li><a href="<%=context%>/JiHyeon/mapFormOut.jsp">오시는길</a></li>
 				<li><a href="board.do">게시판</a></li>
 			</ul>

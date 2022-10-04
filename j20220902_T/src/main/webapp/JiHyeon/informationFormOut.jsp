@@ -24,10 +24,11 @@
 		<div class="flex-container">
 			<div class="item_second">
 				<ul>
+					<!-- 22.10.04 링크 연결 및 수정 [김건희] 비회원은 예약이 하므로 불가표시-->
 					<li>중앙볼링장</li>
 					<li><a href="<%=context%>/hyojung/mainHomeView.jsp">홈</a></li>
 					<li><a href="<%=context%>/JiHyeon/informationFormOut.jsp">볼링장정보</a></li>
-					<li><a href="resAllView.jsp">예약</a></li>
+					<li><a href="<%=context%>/GunHee/res_check.jsp">예약</a></li>
 					<li><a href="<%=context%>/JiHyeon/mapFormOut.jsp">오시는길</a></li>
 					<li><a href="boardList.jsp">게시판</a></li>				
 				</ul>
