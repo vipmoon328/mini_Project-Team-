@@ -120,9 +120,23 @@ div {
 		margin-top: 150px;
 	}
 	
-	#test_table caption {
-		text-align: left;
+	.cancel_btn, .cancel_select{
+		float: left;
 	}
+	
+	#page_amount{
+		float: right;
+		width: 150px; 
+		height : 40px;
+		padding: .8em .5em; 
+		border: 2px solid skyblue; 
+		background: url('arrow.jpg') no-repeat 95% 50%; 
+		border-radius: 5px; 
+		-webkit-appearance: none; 
+		-moz-appearance: none;
+		appearance: none;
+	}
+
 	
 	#test_table td {
 		border-bottom: 1px solid black;
