@@ -20,13 +20,14 @@ public class MyPageProAction implements CommandProcess {
 			throws ServletException, IOException, JSONException {
 				
 				System.out.println("MyPageActionPro Start...");	
+				
+				response.setContentType("text/html;charset=utf-8");
+				request.setCharacterEncoding("utf-8");  
+				
 				String email = request.getParameter("user_email1");
 				email += "@";
 				email += request.getParameter("user_email2");
 				System.out.println(email);
-				
-				response.setContentType("text/html;charset=utf-8");
-				request.setCharacterEncoding("utf-8");  
 				
 				try {
 					UserDao ud = UserDao.getInstance();
