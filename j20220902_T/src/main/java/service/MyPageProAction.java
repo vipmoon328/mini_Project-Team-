@@ -25,6 +25,7 @@ public class MyPageProAction implements CommandProcess {
 				email += request.getParameter("user_email2");
 				System.out.println(email);
 				
+				response.setContentType("text/html;charset=utf-8");
 				request.setCharacterEncoding("utf-8");  
 				
 				try {
