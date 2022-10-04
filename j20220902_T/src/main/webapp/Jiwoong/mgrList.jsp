@@ -53,7 +53,7 @@
 				<div class="item_second">
 					<ul>
 						<li>중앙볼링장</li>
-						<li><a href="#" style="text-decoration: underline; color:#5A8DF3 "><strong>회원관리</strong></a></li>
+						<li><a href="<%=context%>/mgrList.do" style="text-decoration: underline; color:#5A8DF3 "><strong>회원관리</strong></a></li>
 						<li><a href="#">매장관리</a></li>
 						<li><a href="#">게시판관리</a></li>
 				   </ul>
@@ -95,7 +95,7 @@
 	<c:if test="${totCnt > 0 }">
 			<c:forEach var="users" items="${list }">
 				<tr align="center">
-				    <td>${users.usernum }</td> 
+				    <td>${startNum }</td> 
 					<td>${users.id }</td>
 					<td>${users.pw } </td>
 					<td>${users.name}</td>
@@ -113,12 +113,13 @@
 						</c:choose></td>
 					<td><button type="button" onclick="location.href='<%=context%>/mgrUpdateForm.do?id=${users.id}&pageNum=${pageNum}'">수정</button> <button type="button" onclick="location.href='<%=context%>/mgrDeleteForm.do?id=${users.id}&pageNum=${pageNum}'">삭제</button></td>
 		
-				</tr>  
+				</tr>
+				<c:set var="startNum" value="${startNum + 1 }" />  
 				</c:forEach>	
 			</c:if>
 		<c:if test="${totCnt == 0 }">
 			<tr>
-				<td colspan=7>해당 데이터가 없습니다.</td>
+				<td colspan=9 align="center">해당 데이터가 없습니다.</td>
 			</tr>
 		</c:if>		
 		</table>		

@@ -50,7 +50,7 @@ public class MgrListAction implements CommandProcess {
 			System.out.println("MgrListAction Service currentPage: "+currentPage); 						 
 			int startRow = (currentPage - 1) * pageSize + 1;         //   페이지의 시작글 번호  -->  delete,insert 등을 대비한 늘 일정한 단위로 구분되는 가상 번호
 			int endRow   = startRow + pageSize - 1;                 //    페이지의 마지막글 번호 --> delete,insert 등을 대비한 늘 일정한 단위로 구분되는 가상 번호
-			int startNum = totCnt - startRow + 1; 
+			int startNum = startRow; 
 			
 			
 			// Users 전체 조회 및 검색 조회

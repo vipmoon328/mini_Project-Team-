@@ -378,9 +378,9 @@ public class UserDao
 			
 			// 조건에 따른 실행할 sql 문 선택 로직
 			if (searchField.equals("")) { 
-				sql = "select count(*) from users";}
+				sql = "select count(*) from users where auth=1";}
 			 else  {
-				sql = "select count(*) FROM (select rownum rn,a.*" + "from(select * from users order by usernum) a)"
+				sql = "select count(*) FROM (select rownum rn,a.*" + "from(select * from users where auth=1 order by usernum) a)"
 						+ "where "+searchField+ " LIKE '%" + query + "%'";
 			}
 			
@@ -414,10 +414,10 @@ public class UserDao
 			String sql =null;
 			// 조건에 따른 실행할 sql 문 선택 로직
 			if (searchField.equals("")){ 
-				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users order by usernum) a)"
+				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users where auth=1 order by usernum) a)"
 						+ "where rn BETWEEN ? and  ?";
 			} else{
-				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users order by usernum) a)"
+				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users where auth=1 order by usernum) a)"
 						+ "where "+searchField+" LIKE '%" + query + "%' and rn BETWEEN ? and  ?";
 			}
 			

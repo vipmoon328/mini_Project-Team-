@@ -1,4 +1,4 @@
-ㅣ<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%-- <%@ include file="../memberCheck.jsp" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,18 +16,23 @@
 		$('#user_email2').val("${email_domain}");
 	};
 	
-	function changeDomain(){
-		if($('#domain_list').val() == 'type')
-		{
-			$('#user_email2').val("");
-			$('#user_email2').attr("readonly", false);
-		}
-		else
-		{
-			$('#user_email2').val($('#domain_list').val());
-			$('#user_email2').attr("readonly", true);
-		}
-	};
+	$('#domain_list').change(function() {
+		$("#domain_list option:selected").each(function() {
+			
+			if($(this).val()=='type'){
+				$("#user_email2").val('');
+				$("#user_email2").attr("disabled",false);
+			}else{
+				$("#user_email2").val($(this).text());
+				$("#user_email2").attr("disabled",true);
+				
+			}
+			
+			
+		})
+		
+	})
+	
 	
 	function updateCheck()
 		{	
@@ -160,12 +165,14 @@
 						<td><figure style="margin: 0;">이메일<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
 						<td>
 							<label>
+								<%-- <input type="text" class="email" name="user_email1" id="user_email1" required="required" value="${email_id}"> @ <input type="text" class="email" name="user_email2" id="user_email2" required="required" value="${email.domain}">
+								<select name="email" class="select" id="domain_list" onclick="changeDomain()"> --%>
 								<input type="text" class="email" name="user_email1" id="user_email1" required="required" value="${email_id}"> @ <input type="text" class="email" name="user_email2" id="user_email2" required="required" value="${email.domain}">
-								<select name="email" class="select" id="domain_list" onclick="changeDomain()">
-									<option value="naver.com">naver.com</option>
+								<select name="email" class="select" id="domain_list">
+									<option value="naver.com" selected>naver.com</option>
 									<option value="daum.net">daum.net</option>
 									<option value="google.com">gmail.com</option>
-									<option value="type" selected="selected">직접 입력</option>
+									<option value="type">직접 입력</option>
 								</select>
 							</label> 
 						</td>
