@@ -104,7 +104,32 @@
 	}
 </script>
 <body>
-	<jsp:include page="header.html"></jsp:include>
+	<!-- 헤드 부분을 제거하고 수정 -->
+	<div class="flex-container flex-end">
+			<div class="item_first">
+				<ul>
+					<li>${id}</li>
+					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
+				</ul>
+			</div> 
+	</div>
+		
+	<hr color="#D5D5D5" width="100%" size="1">	
+		<div class="flex-container">
+			<div class="item_second">
+				<ul>
+					<li>중앙볼링장</li>
+					<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
+					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
+					<li><a href="<%=context%>/reschange.do">예약</a></li>
+					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
+					<li><a href="#">게시판</a></li>
+					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
+				</ul>
+			</div>
+	</div>		
+	
+	<hr color="#D5D5D5" width="100%" size="1">
 	<div class="flex-container">
 			<div class="item_third"><h2>나의 예약 정보</h2></div>
 		</div>		
