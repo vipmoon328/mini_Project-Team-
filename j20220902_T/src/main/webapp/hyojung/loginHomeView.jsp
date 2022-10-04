@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙볼링장</title>
-<link rel="stylesheet" href="../css/loginHomepage.css?ver0.1" type="">
+<!-- 22.10.04 링크 수정 [김건희] -->
+<link rel="stylesheet" href="<%=context%>/css/loginHomepage.css?ver0.1" type="">
 </head>
 <body>
 	<div class="top_container">
@@ -28,7 +29,7 @@
 			<ul class="menu_list">
 				<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li> <!-- 22.09.30[김건희] 수정 -->
 				<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li> <!-- 22.09.30[김건희] 수정 -->
-				<li><a href="Reservation.do">예약</a></li>
+				<li><a href="<%=context%>/reschange.do">예약</a></li>
 				<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
 				<li><a href="board.do">게시판</a></li>
 				<li><a href="<%=context%>/mypage.do">마이페이지</a></li> <!-- 22.09.30[김건희] 수정 -->

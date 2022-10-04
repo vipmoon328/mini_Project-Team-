@@ -96,7 +96,7 @@
 			<div class="item_fourth">
 				<ul>
 					<li><a href="mypageForm.jsp">정보수정</a></li>
-					<li><a href="">예약내역</a></li>		
+					<li><a href="<%=context%>/myRes.do">예약내역</a></li>		
 				</ul>
 			</div>
 		</div>
