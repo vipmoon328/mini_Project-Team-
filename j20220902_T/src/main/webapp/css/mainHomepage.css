@@ -97,8 +97,8 @@
                           left: 50%;
                           bottom: 0;
          				  width: 0;
-          				  height: 1px;
-          				  background-color: #90C3FF;
+          				  height: 2px;
+          				  background-color: #5A8DF3;
           				  transition: all .5s;
     }
     #menu_box li a:before {
@@ -107,8 +107,8 @@
           				  right: 50%;
         				  bottom: 0;
                           width: 0;
-                          height: 1px;
-                          background-color: #90C3FF;
+                          height: 2px;
+                          background-color: #5A8DF3;
                           transition: all .5s;
     }
     #menu_box li a:hover:after {
