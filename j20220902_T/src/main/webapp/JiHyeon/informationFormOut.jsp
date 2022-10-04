@@ -62,7 +62,7 @@
 					</figure></li>
 					<li><figure>
 						<img alt="레인" 		src="../images/4.jpg" width="800">
-						<div id=text><figcaption><span class="lain">레인</span><br>총 8개 레인으로 넓은 규모를 자랑합니다</figcaption></div>
+						<div id=text><figcaption><span class="lain">레인</span><br>총 20개 레인으로 넓은 규모를 자랑합니다</figcaption></div>
 					</figure></li>
 					<li><figure>
 					<img alt="볼링공" 	src="../images/5.jpg" width="800">
