@@ -14,7 +14,7 @@ public class MainHomeFomeAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
 		System.out.println("MainHomeFomeAction Start...");
-		return "mainHomeView.jsp";
+		return "/hyojung/mainHomeView.jsp";
 	}
 
 }

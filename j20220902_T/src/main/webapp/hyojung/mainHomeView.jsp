@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙볼링장</title>
-<link rel="stylesheet" href="../css/mainHomepage.css?ver0.1" type="">
+<!-- 22.10.04 링크 수정 [김건희] -->
+<link rel="stylesheet" href="<%=context%>/css/mainHomepage.css?ver0.1" type="">
 
 </head>
 <body>
