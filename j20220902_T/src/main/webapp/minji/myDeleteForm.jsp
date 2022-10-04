@@ -28,9 +28,9 @@
 					<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
 					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
 					<li><a href="">예약</a></li>
-					<li><a href="../JiHyeon/mapFormIn.jsp">오시는길</a></li>
+					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
 					<li><a href="">게시판</a></li>
-					<li><a href="mypageForm.jsp">마이페이지</a></li>
+					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 				</ul>
 			</div>
 		</div>
@@ -43,10 +43,11 @@
 			<div class="item_fifth"> 
 				<form action="myDeletePro.do">
 					<table width="500px" height="350px">
-						<tr>
+						<!-- 수정 세션 값으로 대체되었습니다 [김건희] -->
+<%-- 					<tr>
 							<td><input type="hidden" name="user_id" value="${users.id}">
 							<input type="hidden" name="user_password" value="${users.pw}"></td>
-						</tr>
+						</tr> --%>
 						<tr>			
 							<td><span>암호 재확인  </span><input type="password" name="user_password"></td>
 							<td><button type="submit" value="탈퇴하기">탈퇴하기</button></td>

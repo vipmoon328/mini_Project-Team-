@@ -11,18 +11,21 @@
 <%
 	String context = request.getContextPath();
 %>
+<script type="text/javascript">
+	console.log(${result});
+</script>
 </head>
 <body>
-	<c:if test="${result > 0 }">
+	<c:if test="${result eq 1 }">
 		<script type="text/javascript">
 			alert("탈퇴가 완료되었습니다.");
-			location.href="main.do";
+			location.href="<%=context%>/hyojung/mainHomeView.jsp";
 		</script>
 	</c:if>
-	<c:if test="${result == 0 }">
+	<c:if test="${result eq 0 }">
 		<script type="text/javascript">
 			alert("패스워드가 일치하지 않습니다.");
-			location.href="myDeleteForm.do?id=${id}&pw=${pw}";
+			location.href="<%=context%>/minji/myDeleteForm.jsp";
 		</script>
 	</c:if>
 </body>

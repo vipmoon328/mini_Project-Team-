@@ -228,7 +228,7 @@ public class UserDao
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		Users users = new Users();
-		String sql = "SELECT usernum,name,auth,brn_uid FROM users WHERE id = ? AND pw = ?";
+		String sql = "SELECT usernum,name,auth,brn_uid FROM users WHERE id = ? AND pw = ? AND deleted = 1";
 		
 		try {
 			conn = getConnection();
@@ -326,27 +326,38 @@ public class UserDao
 		PreparedStatement pstmt = null;
 		int result = 0;
 		ResultSet rs = null;
-		String sql1 = "select pw from users where id = ?";
-		String sql = "update users set deleted = 0 where id = ?";			
-		try {
+		String sql1 = "select pw, usernum from users where id = ? and deleted = 1";
+		String sql = "update users set deleted = 0 where id = ? and pw = ?";			
+		
+		
+		try 
+		{
+			//비밀번호 일치 여부 확인 
 			String dbPasswd = "";
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			
+			if (rs.next()) 
+			{
 				dbPasswd = rs.getString(1);
 				System.out.println("dbPasswd=>" + rs.getString(1));
-				if (dbPasswd.equals(pw)) {
+			
+				//비밀번호가 재확인 비밀번호와 같은 경우
+				if (dbPasswd.equals(pw)) 
+				{
 					rs.close();
 					pstmt.close();
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, id);
+					pstmt.setString(2, pw);
 					result = pstmt.executeUpdate();
-				} 
-				else result = 0;
+					System.out.println(result);
+				}
+				/* else result = 0; */
 			} 
-			else result = -1;
+			/* else result = -1; */
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -363,6 +374,7 @@ public class UserDao
 			ResultSet  rs   = null;
 			int tot =0;
 			String sql=null;
+			
 			
 			// 조건에 따른 실행할 sql 문 선택 로직
 			if (searchField.equals("")) { 

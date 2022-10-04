@@ -20,15 +20,18 @@ public class MyDeleteProAction implements CommandProcess {
 		
 		System.out.println("MyDeleteProAction Start...");	
 		
-		
 		request.setCharacterEncoding("utf-8");  
 		
 		HttpSession session = request.getSession();
 		
 		try {				
-			String id = request.getParameter("user_id");
+			String id = (String) session.getAttribute("id");
 			String passwd = request.getParameter("user_password");
-					
+			
+			/*
+			 * String id = request.getParameter("user_id");
+			 */
+			
 			UserDao ud = UserDao.getInstance();			
 			
 			int result = ud.delete(id, passwd);			
@@ -36,6 +39,8 @@ public class MyDeleteProAction implements CommandProcess {
 	        session.setAttribute("user_id", id);
 			session.setAttribute("user_password", passwd);
 			session.setAttribute("result", result); 
+			
+			System.out.println(result);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
