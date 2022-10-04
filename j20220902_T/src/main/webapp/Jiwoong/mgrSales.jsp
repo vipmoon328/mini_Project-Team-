@@ -13,16 +13,15 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="..css/mgrStyle.css">
-</head>
 
-<!-- 관리자 로그인 창, 점포 별 표시 구현 -->
+</head>
 <body>
 	<div style="width: 1550px;" align="center">
 
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><strong>${locName}점 관리자 ${id}님</strong></li>
+					<li><strong>00점관리자님</strong></li>
 					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div>

@@ -18,9 +18,10 @@
 					}
 	</style>
 <link rel="stylesheet" type="text/css" href="<%=context%>/css/mgrList.css">
-<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	
+
 </script>
 
 
@@ -28,6 +29,13 @@
 
 </head>
 <body> 
+<c:if test="${loc eq 0}">
+	<c:set var="locName" value="이대"></c:set>
+</c:if>
+		
+<c:if test="${loc eq 1}">
+	<c:set var="locName" value="강남"></c:set>
+</c:if>
 
 <div style="width: 1600px;" align="center"> 
 		<div id="wrapper">
@@ -35,7 +43,7 @@
 				<div class="item_first">
 					<ul>
 						<li><strong>${locName}점 관리자 ${id}님</strong></li>
-						<li><a href="<%=context%>/logout.do">로그아웃</a></li>
+						<li>로그아웃</li>
 					</ul>
 				</div> 
 			</div>
@@ -68,7 +76,7 @@
 				<option value="name">이름</option>
 				<option value="id">ID</option>
 			</select>	
-				<input type= "text" placeholder="검색어 입력" name="query" maxlength="50" >
+				<input type= "text" placeholder="검색어 입력" id="query" name="query" value="${query }" maxlength="50" >
 				<button type="submit" class="btn_success">검색</button>	
 		</form>					
   </div>							
@@ -103,10 +111,8 @@
 								<span style="color: red;"><c:out value="탈퇴"></c:out></span>
 							</c:otherwise>
 						</c:choose></td>
-					<td><button type="button" onclick="location.href='<%=context%>/mgrUpdateForm.do?id=${users.id}&pageNum=${pageNum}'">수정</button> <button type="button" onclick="location.href=">삭제</button></td>
-
-
-					
+					<td><button type="button" onclick="location.href='<%=context%>/mgrUpdateForm.do?id=${users.id}&pageNum=${pageNum}'">수정</button> <button type="button" onclick="location.href='<%=context%>/mgrDeleteForm.do?id=${users.id}&pageNum=${pageNum}'">삭제</button></td>
+		
 				</tr>  
 				</c:forEach>	
 			</c:if>
@@ -127,7 +133,9 @@
 			<c:if test="${endPage < pageCnt }">
 			<a href='mgrList.do?pageNum=${startPage+blockSize}'>[다음]</a>
 			</c:if>
-		</div>		
+		</div>
+
+					
 					
 					
 					
