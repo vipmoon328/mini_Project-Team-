@@ -328,7 +328,6 @@
 
 </script>
 <body>
-	<!-- 헤드 부분을 제거하고 수정 -->
 	<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
@@ -355,8 +354,8 @@
 	
 	<hr color="#D5D5D5" width="100%" size="1">
 	<div class="flex-container">
-			<div class="item_third"><h2>나의 예약 정보</h2></div>
-	</div>		
+			<div class="item_third"><h2>예약하기</h2></div>
+		</div>		
 	<hr color="#90C3FF" width="70%" size="1">
 	<div id="dateSelectCon">
 			<table id="calendar">
@@ -385,7 +384,7 @@
 		        <tbody id="calander_test">
 		        </tbody>
 	    	</table>
-	    	<form action="<%=context%>/insertResult.do" id="frm"><h2>예약 현황</h2><span id="msg"></span><input type="button" id="insert" value="결제"></form>
+	    	<div id="form_container"><form action="<%=context%>/insertResult.do" id="frm"><h2>예약 현황</h2><span id="msg"></span><input type="button" id="insert" value="결제"></form></div>
 	</div>
 
 	<div id="timeTableCon">

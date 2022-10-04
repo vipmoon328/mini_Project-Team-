@@ -18,7 +18,6 @@ public class MyReservationForm implements CommandProcess {
 		// TODO Auto-generated method stub
 		//request.setAttribute("USERNUM", request.getParameter("USERNUM"));
 		
-		
 		return "/Jehwan/myReservationPro.jsp";
 	}
 

@@ -26,6 +26,7 @@ public class ResDeletePro implements CommandProcess {
 			// TODO: handle exception
 		}
 		System.out.println(result);
+		request.setAttribute("currentPage", request.getParameter("currentPage"));
 		return "/Jehwan/myReservationPro.jsp";
 	}
 

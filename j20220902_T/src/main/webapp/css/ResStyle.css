@@ -196,7 +196,18 @@
             height: 40px;
             border-collapse: collapse;
             border-radius: 5px; 
-        }
+    }
+    
+    #next, #prev{
+            border: 1px solid skyblue;
+            background-color: rgba(0,0,0,0);
+            color: black;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+            border-collapse: collapse;
+            border-radius: 5px; 
+    }
     
     #reset:hover, #insert:hover{
             color:white;

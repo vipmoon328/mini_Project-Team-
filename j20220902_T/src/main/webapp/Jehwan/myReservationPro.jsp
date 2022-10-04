@@ -22,7 +22,7 @@
 				reserve_list(data1);
 			}
 		});
-		show_reserve(1);
+		show_reserve('${ currentPage }');
 		
 		$(document).on("click","#prev", function(){
 			var prevNum = parseInt($(".numSelect:first").val())-1;
@@ -47,7 +47,7 @@
 		        $(this).css('color','white').css('background','skyblue');
 		    },
 		    mouseleave: function () {
-		    	$(this).css('color','skyblue').css('background','white');
+		    	$(this).css('color','black').css('background','white');
 		    }
 		}, ".change_btn");
 	});
@@ -57,8 +57,8 @@
 		$.ajax({
 			data	: sendData
 		});
-	}
-	
+	} 
+	 
 	function reserve_list(data) {
 		$("#list").empty();
 		var tag;
@@ -69,6 +69,7 @@
 			}else{
 				tag += "<td></td>";  
 			}
+			tag += "<input form='cancel_form' type='hidden' name='currentPage' value="+ data[0]["currentPage"] +">";
 			tag += "<form action='<%=context%>/reschange.do' id='frm"+ i +"'><td><input form='frm" + i + "' type='hidden' name='res_date' value='" + data[i]["res_date"] + "'>" + data[i]["res_date"] + "</td>";
 			tag += "<td><input form='frm" + i + "' type='hidden' name='brnNum' value='" + data[i]["brnNum"] + "'>" + data[i]["brnNum"] + "</td>";
 			tag += "<td><input form='frm" + i + "' type='hidden' name='lane' value='" + data[i]["lane"] + "'>" + data[i]["lane"] + "</td>";
@@ -77,7 +78,7 @@
 			tag += "<td><input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>" + data[i]["cost"] + "</td>";
 			tag += "<td>" + data[i]["state"] + "</td>";
 			if(data[i]["state"] == "방문전"){
-				tag += "<td><input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: skyblue;width: 70px;height: 40px;'></td>";
+				tag += "<td><input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 70px;height: 40px;'></td>";
 			}else{
 				tag += "<td></td>";
 			}
@@ -91,16 +92,16 @@
 		var blockSize = parseInt(data[0]["blockSize"]);
 		var pageCnt = parseInt(data[0]["pageCnt"]);
 		if(startPage > blockSize){
-			pageInfo+="<input id='prev' type='button' value='<'>";
+			pageInfo+="<input id='prev' type='button' value='<' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;'>";
 		}
 		for(startPage ; startPage<=endPage ; startPage++){
-			pageInfo+="<input class='numSelect' type='button' value='" + startPage +"'>";
+			pageInfo+="<input class='numSelect' type='button' id='" + startPage + "' value='" + startPage +"' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;'>";
 		}
 		if(endPage < pageCnt){
-			pageInfo+="<input id='next' type='button' value='>'>";
+			pageInfo+="<input id='next' type='button' value='>' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;'>";
 		}
 		$('#pagenum').html(pageInfo);
-		
+		$("#" +  data[0]["currentPage"]).css('color','white').css('background','skyblue');
 	}
 </script>
 <body>
@@ -152,7 +153,7 @@
 			</tbody>
 		</table>
 		
-		<div style="text-align: center" id="pagenum">
+		<div id="pagenum">
 			
 		</div>
 	</div>

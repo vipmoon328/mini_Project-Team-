@@ -35,7 +35,8 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					System.out.println(USERNUM);
 					int totCnt = rd.getTotalCnt(USERNUM);   // 37
 					System.out.println(totCnt);
-					String pageNum = request.getParameter("pageNum");	
+					String pageNum = request.getParameter("pageNum");
+					if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
 					int currentPage = Integer.parseInt(pageNum);	//   1        
 					int pageSize  = Integer.parseInt(request.getParameter("pageAmount"));
 					int blockSize = 2;
@@ -58,6 +59,7 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					pageInfo.put("endPage", endPage);
 					pageInfo.put("blockSize", blockSize);
 					pageInfo.put("pageCnt", pageCnt);
+					pageInfo.put("currentPage", currentPage);
 					result.put(pageInfo);
 					for(Reservation reservation : list) {
 						JSONObject obj = new JSONObject();
