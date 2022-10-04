@@ -11,61 +11,62 @@
 <link href="<%=context %>/css/mgrUpdateForm.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-function init()
-{
-	$('#user_email2').val("${email_domain}");
-};
-
-function changeDomain(){
-	if($('#domain_list').val() == 'type')
+	function init()
 	{
-		$('#user_email2').val("");
-		$('#user_email2').attr("readonly", false);
-	}
-	else
-	{
-		$('#user_email2').val($('#domain_list').val());
-		$('#user_email2').attr("readonly", true);
-	}
-};
-
-function updateCheck()
-{	
-	var check = true;
+		$('#user_email2').val("${email_domain}");
+	};
 	
-	if($('#user_password').val() != $('#user_password_chk').val())
-	{
-		$('#passError').text('패스워드가 일치하지 않습니다. 다시 입력해주세요.');
-		check = false;
-	}
+	function changeDomain(){
+		if($('#domain_list').val() == 'type')
+		{
+			$('#user_email2').val("");
+			$('#user_email2').attr("readonly", false);
+		}
+		else
+		{
+			$('#user_email2').val($('#domain_list').val());
+			$('#user_email2').attr("readonly", true);
+		}
+	};
 	
-	if($('#user_password').val().length < 8)
-	{
-		$('#passLengthError').text('패스워드는 8글자 이상 입력해주세요.');
-		check = false;
-	}
-	
-	if($('#user_email2').val().indexOf('.') == -1)
-	{
-		$('#emailError').text('이메일 형식이 일치하지 않습니다. 다시 입력해주세요.');
-		check = false;
-	}
-
-	console.log(check);
-	
-	if(check == false)
-	{
-		return check;
-	}
-};
-</script>
+	function updateCheck()
+		{	
+			var check = true;
+			
+			if($('#user_password').val() != $('#user_password_chk').val())
+			{
+				$('#passError').text('패스워드가 일치하지 않습니다. 다시 입력해주세요.');
+				check = false;
+			}
+			
+			if($('#user_password').val().length < 8)
+			{
+				$('#passLengthError').text('패스워드는 8글자 이상 입력해주세요.');
+				check = false;
+			}
+			
+			if($('#user_email2').val().indexOf('.') == -1)
+			{
+				$('#emailError').text('이메일 형식이 일치하지 않습니다. 다시 입력해주세요.');
+				check = false;
+			}
+		
+			console.log(check);
+			
+			if(check == false)
+			{
+				return check;
+			};
+		
+	</script>
 </head>
-<body>
+<body onload="init()">
 <div id="wrapper">
+	<form action="<%=context%>/mgrUpdatePro.do"  method="post">
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>${users.name}님</li>
+					<li><00관리자님></li>
 					<li><a href="../hyojung/mainHomeView.jsp">로그아웃</a></li>
 				</ul>
 			</div> 
@@ -93,11 +94,10 @@ function updateCheck()
 		</div>
 		<div class="flex-container center">
 			<div class="item_fifth">
-				<!--  수정 정보 입력폼 -->
-				<form action="<%=context%>/mgrUpdatePro.do"  method="post">
-				<input type="hidden" name="id" value="${users.id }">
-				<input type="hidden" name="pageNum" value="${pageNum }">
-				<table width="700px">
+				
+					
+					<input type="hidden" name="pageNum" value="${pageNum }">
+					<table width="700px">
 					<tr> 
 						<td><figure style="margin: 0;">아이디<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
 						<td><input type="text" size="20px" name="user_id" id="user_id" value="${users.id}"><span style="font-size: 12px; color: gray;"> * 아이디 변경 불가능</span></td>
@@ -172,16 +172,16 @@ function updateCheck()
 						<div id="emailError" class="error"></div>
 					</tr>
 				</table>
-				</form>
-		
-			</div> 
+				</div> 
 		</div>
 		<div class="flex-container center">
 			<div class="item_sixth">
 				<button type="submit" id="submitChk" onclick="updateCheck()">수정하기</button>
 			</div>
 		</div>
-	</form>
+	    </form>
+		
+		
 		<div class="flex-container center">
 				<div class="item_sixth">
 				</div>
@@ -196,3 +196,4 @@ function updateCheck()
 </div>
 </body>
 </html>
+				
