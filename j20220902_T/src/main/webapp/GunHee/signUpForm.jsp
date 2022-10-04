@@ -35,12 +35,12 @@
 		$('#user_id_chk').click(function(){
 			var id = $('#user_id').val();
 			$.ajax({
-				url			: '<%=context%>/IdCheckServlet',
+				url			: '<%=context%>/chkId.do',
 				type 		: 'get',
 				data		: "id="+id,
 				success		: function(data){
-					console.log("1 = 중복 O / 0 = 중복 X : "+ data);
-					if (data == 1) {
+					console.log("결과 : "+ data);
+					if (data == 'Exist') {
 						$("#idCheck").text("사용중인 아이디입니다");
 						$("#idCheck").css("color","red");
 						id_check = false;
@@ -71,7 +71,7 @@
 	function changeId()
 	{
 		id_check = false;
-		$("#idCheck").text("변동이 감지되었습니다. 아이디 체크를 부탁드립니다.");
+		$("#idCheck").text("아이디 체크를 부탁드립니다.");
 		$("#idCheck").css("color","red");
 	}
 	
