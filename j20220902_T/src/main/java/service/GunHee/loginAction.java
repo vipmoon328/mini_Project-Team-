@@ -39,10 +39,22 @@ public class loginAction implements CommandProcess {
 			session.setAttribute("login_result", 0);
 			System.out.println("로그인에 실패하셨습니다.");
 		} else {
+			String locName = "";
+			
+			if(users.getBrn_uid() == 0)
+			{
+				locName = "이대";
+			}
+			else
+			{
+				locName = "강남";
+			}
+			
 			session.setAttribute("id",id);
 			session.setAttribute("auth", users.getAuth());
 			session.setAttribute("usernum", users.getUsernum());
 			session.setAttribute("loc", users.getBrn_uid());
+			session.setAttribute("locName",locName);
 			session.setAttribute("login_result", 1);
 			System.out.println("로그인이 완료되었습니다.");
 		}
