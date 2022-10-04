@@ -114,19 +114,21 @@
 		text-align: center;
 	}
 	
-	#DateSelectForm{
-		float : left;
-	}
-	#jijum {width: 200px; 
+	#jijum {
+			width: 150px; 
 			padding: .8em .5em; 
 			border: 1px solid skyblue;
 			font-family: inherit;  
 			background: url('arrow.jpg') no-repeat 95% 50%; 
-			border-radius: 0px; 
+			border-radius: 5px; 
 			-webkit-appearance: none; 
 			-moz-appearance: 
 			none;appearance: none;
 			}
+	
+	caption, #frm {
+		text-align: left;
+	}
 	
 	#calendar tbody{
 		border: 1px solid black;
@@ -148,7 +150,7 @@
 	}
 	#test_table{
 		clear:both;
-		margin-top: 100px;
+		margin-top: 300px;
 		border-collapse: collapse;
 	}
 	#test td{
@@ -163,10 +165,19 @@
 	
 	}
 	
+	#dateSelectCon{
+		width: 70%;
+		margin: 0 auto;
+	}
+	
 	#frm{
 		float: right;
-		margin-right:100px; 
 	}
+	
+	#calendar{
+		float: left;
+	}
+	
 	h2{
 		color : navy;
 	}
@@ -175,11 +186,10 @@
 		height: 200px;
 		margin: left;
 	}
-	#content_container {
-				margin: 20px;
-				padding: 20px;
+	#timeTableCon {
+		margin: 20px;
+		padding: 20px;
 	}
-	
 	/* -------------------------------------------------------------------- */
 	/* 하단내용 영역 */							   
 	#footer {

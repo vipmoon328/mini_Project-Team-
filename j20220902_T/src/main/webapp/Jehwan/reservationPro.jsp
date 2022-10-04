@@ -225,7 +225,7 @@
 		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'><input type='hidden' name='inputMonth' value='" + today.getMonth() +"'><input type='hidden' name='inputDate' value='" + today.getDate() +"'>";
 		text += "<input type='hidden' name='start' value='"+ start +"'><input type='hidden' name='end' value='"+ (end+1) +"'>";
 		text += "<input type='hidden' name='lane' value='" + lane +"'><input type='hidden' name='jijum' value='" + jijum +"'>";
-		text += "지점 : " +jijum_name +"<p>";
+		text += "지점 : " + jijum_name +"<p>";
 		text += "레인 : " +lane +"<p>";
 		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
 		text += "인원수 : <input type='text' name='many' value='1' required='required'><p>";
@@ -332,15 +332,16 @@
 	<jsp:include page="header.html"></jsp:include>
 	<div class="flex-container">
 			<div class="item_third"><h2>나의 예약 정보</h2></div>
-		</div>		
+	</div>		
 	<hr color="#90C3FF" width="70%" size="1">
-	<div id="content_container">
-		<div id="DateSelectForm">
-			<select id="jijum">
-				<option value="0">이대</option>
-				<option value="1">강남</option>
-			</select><p>
+	<div id="dateSelectCon">
 			<table id="calendar">
+			<caption>
+				<select id="jijum">
+					<option value="0">이대</option>
+					<option value="1">강남</option>
+				</select>
+			</caption>
 		        <thead>
 		            <tr>
 		                <th><input id="prev" type="button" value="<"></th>
@@ -360,10 +361,10 @@
 		        <tbody id="calander_test">
 		        </tbody>
 	    	</table>
-		</div>
-		
-		<form action="<%=context%>/insertResult.do" id="frm"><h2>예약 현황</h2><span id="msg"></span><input type="button" id="insert" value="결제"></form>
-		
+	    	<form action="<%=context%>/insertResult.do" id="frm"><h2>예약 현황</h2><span id="msg"></span><input type="button" id="insert" value="결제"></form>
+	</div>
+
+	<div id="timeTableCon">
 		<table border="1px" id="test_table">
 		<caption><span id="today"></span><input type="button" id="reset" value="초기화" onclick="reset_table()"></caption>
 			<thead>

@@ -326,7 +326,7 @@ public class UserDao
 		PreparedStatement pstmt = null;
 		int result = 0;
 		ResultSet rs = null;
-		String sql1 = "select passwd from users where id = ?";
+		String sql1 = "select pw from users where id = ?";
 		String sql = "update users set deleted = 0 where id = ?";			
 		try {
 			String dbPasswd = "";
@@ -336,14 +336,17 @@ public class UserDao
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				dbPasswd = rs.getString(1);
+				System.out.println("dbPasswd=>" + rs.getString(1));
 				if (dbPasswd.equals(pw)) {
 					rs.close();
 					pstmt.close();
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, id);
 					result = pstmt.executeUpdate();
-				} else result = 0;
-			} else result = -1;
+				} 
+				else result = 0;
+			} 
+			else result = -1;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -352,6 +355,7 @@ public class UserDao
 		}		
 		return result;		
 	}	
+	
 	// 전체 또는 조건에 따른 users table 총 데이터 갯수 가져오는 method 10/1  [최지웅]
 	public int getTotalCnt(String searchField, String query) throws SQLException{
 			Connection conn = null;

@@ -35,12 +35,12 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					int totCnt = rd.getTotalCnt(USERNUM);   // 37
 					System.out.println(totCnt);
 					String pageNum = request.getParameter("pageNum");	
-					if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
 					int currentPage = Integer.parseInt(pageNum);	//   1        
-					int pageSize  = 3, blockSize = 2;
+					int pageSize  = Integer.parseInt(request.getParameter("pageAmount"));
+					int blockSize = 2;
 					int startRow = (currentPage - 1) * pageSize + 1;  // 1     10   
 					int endRow   = startRow + pageSize - 1;           // 11    20 
-
+					
 					List<Reservation> list = rd.myResInfo(USERNUM,startRow,endRow);
 					
 					int pageCnt = (int)Math.ceil((double)totCnt/pageSize);  // 4

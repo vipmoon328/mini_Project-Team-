@@ -22,32 +22,24 @@
 				reserve_list(data1);
 			}
 		});
-		var testStart = "USERNUM=" + '${ USERNUM }';
-		$.ajax({
-			data	: testStart
-		});
+		show_reserve(1);
 		
 		$(document).on("click","#prev", function(){
 			var prevNum = parseInt($(".numSelect:first").val())-1;
-			var sendData = "pageNum=" + prevNum + "&USERNUM=" + '${ USERNUM }';
-			$.ajax({
-				data	: sendData
-			});
+			show_reserve(prevNum);
 		});
 		
 		$(document).on("click","#next", function(){
 			var nextNum = parseInt($(".numSelect:last").val())+1;
-			var sendData = "pageNum=" + nextNum + "&USERNUM=" + '${ USERNUM }';
-			$.ajax({
-				data	: sendData
-			});
+			show_reserve(nextNum);
 		});
 		
 		$(document).on("click",".numSelect", function(){
-			var sendData = "pageNum=" + $(this).val() + "&USERNUM=" + '${ USERNUM }';
-			$.ajax({
-				data	: sendData
-			});
+			show_reserve($(this).val());
+		});
+		
+		$(document).on("change","#page_amount", function(){
+			show_reserve(1);
 		});
 		
 		$(document).on({
@@ -60,7 +52,12 @@
 		}, ".change_btn");
 	});
 	
-
+	function show_reserve(pageNum) {
+		var sendData = "pageNum=" + pageNum + "&USERNUM=" + '${ USERNUM }' + "&pageAmount=" + $("#page_amount").val();
+		$.ajax({
+			data	: sendData
+		});
+	}
 	
 	function reserve_list(data) {
 		$("#list").empty();
@@ -116,7 +113,14 @@
 	<div id="content_container">
 	<form action="<%=context%>/resCancel.do" id="cancel_form"></form>
 		<table id="test_table">
-		<caption><input form="cancel_form" type="reset" value="선택 취소" id="cancel_select"><input form="cancel_form" type="submit" value="예약 취소" id="cancel_btn"></caption>
+			<caption>
+				<input form="cancel_form" type="reset" value="선택 취소" class="cancel_btn"  id="cancel_select"><input form="cancel_form" type="submit" value="예약 취소" class="cancel_btn" id="cancel_btn">
+				<select id="page_amount">
+					<option value="3">3개씩 보기</option>
+					<option value="5">5개씩 보기</option>
+					<option value="10">10개씩 보기</option>
+				</select>
+			</caption>
 			<thead>
 				<tr><th>예약취소</th><th>예약일자</th><th>지점</th><th>레인</th><th>시간</th><th>인원</th><th>금액</th><th>방문/취소</th><th>예약변경</th></tr>
 			</thead>
