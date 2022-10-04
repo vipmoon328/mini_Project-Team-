@@ -36,7 +36,7 @@
          }
 		
 		make_sendData();
-		buildCalendar(today);
+		buildCalendar();
 		
 		
 		
@@ -117,7 +117,7 @@
 			 		today = realDay;
 			 	}
              }
-             buildCalendar(today);
+             buildCalendar();
 	         make_sendData()
 		});
 		
@@ -161,7 +161,7 @@
             if(today.getMonth()>realDay.getMonth()){
 			 	$("#prev").show();
              }
-            buildCalendar(today);
+            buildCalendar();
             make_sendData();
 		});
 	});
@@ -173,7 +173,7 @@
 		});
 	}
 	
-	function buildCalendar(today) {
+	function buildCalendar() {
         
 		$("#calander_test").empty();
 		
