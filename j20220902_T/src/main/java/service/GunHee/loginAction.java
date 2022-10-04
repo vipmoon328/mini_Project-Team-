@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONException;
 
 import dao.UserDao;
+import dao.Users;
 
 public class loginAction implements CommandProcess {
 
@@ -25,26 +26,25 @@ public class loginAction implements CommandProcess {
 		System.out.println(passwd);
 		
 		HttpSession session = request.getSession();
-		
+		Users users = new Users();
 		UserDao userdao = UserDao.getInstance();
-		int result = 0;
 		try {
-			result = userdao.login(id,passwd);
+			users = userdao.login(id,passwd);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		
-		if(result == 1)
-		{
-			session.setAttribute("id",id);
-			session.setAttribute("login_result", 1);
-			System.out.println("로그인이 완료되었습니다.");
-		}
-		
-		if(result == 0)
+		if(users.getName().equals("Not Exist"))
 		{
 			session.setAttribute("login_result", 0);
 			System.out.println("로그인에 실패하셨습니다.");
+		} else {
+			session.setAttribute("id",id);
+			session.setAttribute("auth", users.getAuth());
+			session.setAttribute("usernum", users.getUsernum());
+			session.setAttribute("loc", users.getBrn_uid());
+			session.setAttribute("login_result", 1);
+			System.out.println("로그인이 완료되었습니다.");
 		}
 		
 		return "/GunHee/loginPro.jsp";

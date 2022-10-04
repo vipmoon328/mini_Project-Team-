@@ -222,13 +222,13 @@ public class UserDao
 	}
 	
 	// 로그인 페이지에서 로그인을 할때 사용하는 메소드
-	public int login(String id, String passwd) throws SQLException
+	public Users login(String id, String passwd) throws SQLException
 	{
-		int result = 0;
 		ResultSet rs = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "SELECT pw FROM users WHERE id = ? AND pw = ?";
+		Users users = new Users();
+		String sql = "SELECT usernum,name,auth,brn_uid FROM users WHERE id = ? AND pw = ?";
 		
 		try {
 			conn = getConnection();
@@ -236,13 +236,18 @@ public class UserDao
 			pstmt.setString(1, id);
 			pstmt.setString(2, passwd);
 			rs = pstmt.executeQuery();
+			
 			if(rs.next())
 			{
 				System.out.println("조회 성공");
-				result++;
+				users.setUsernum(rs.getInt(1));
+				users.setName(rs.getString(2));
+				users.setAuth(rs.getInt(3));
+				users.setBrn_uid(rs.getInt(4));
 			}
 			else
 			{
+				users.setName("Not Exist");
 				System.out.println("조회 실패");
 			}
 		} catch (Exception e) {
@@ -253,7 +258,7 @@ public class UserDao
 			if (pstmt != null) pstmt.close();
 		}
 		
-		return result;
+		return users;
 	}
 	
 	// 마이페이지에서 회원정보를 불러오는 메소드

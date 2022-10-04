@@ -28,12 +28,20 @@
 
 </head>
 <body> 
+<c:if test="${loc eq 0}">
+	<c:set var="locName" value="이대"></c:set>
+</c:if>
+		
+<c:if test="${loc eq 1}">
+	<c:set var="locName" value="강남"></c:set>
+</c:if>
+
 <div style="width: 1600px;" align="center"> 
 		<div id="wrapper">
 			<div class="flex-container flex-end">
 				<div class="item_first">
 					<ul>
-						<li><strong>00점관리자님</strong></li>
+						<li><strong>${locName}점 관리자 ${id}님</strong></li>
 						<li>로그아웃</li>
 					</ul>
 				</div> 
