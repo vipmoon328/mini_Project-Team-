@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판리스트</title>
 <link rel="stylesheet" href="HeadFoot.css" type="text/css">
 <style type="text/css">
 	table {
@@ -34,28 +34,29 @@
 	  	padding: 8px 10px;
 	  	font-size: 14px;
   	}
-  	input :active{
-  	
-  	}
+
 	#hrline {
 	width: 84%;
 	margin: auto;
 	color : #99ccff; 
 } 
 	#wr_btn{
-	margin-right: 100px;
-	margin-top : 20px;
-	float: right;
-	background-color:#99ccff;
-	color:#fff;
+	position: relative;
+	border: 0;
+	height: 30px;
+	width: 60px;
+	background-color: #90C3FF;
+	text-align: center;
+	font-weight: bold; 
+	color: white; 
+	border-radius: 12px;
+	box-shadow: 0px 3px 0px #5A8DF3; 
 	}
 	
 	#wr_btn :active{
-	margin-right: 100px;
-	margin-top : 20px;
-	float: right;
-	background-color:#1E90FF;
-	color:#fff;
+	box-shadow: 0 0 #90C3FF; 
+	background-color: #90C3FF;
+	top: 3px;
 	}
  
 	#search{
@@ -95,7 +96,7 @@
 	text-align:center;
 	font-size:0;
 	margin-top: 30px;
-	margin-left: 110px;
+	margin: auto;
 	 }
 	.page_nation {
 		display:inline-block;
@@ -170,7 +171,7 @@
 			<hr color="#D5D5D5" width="100%" size="1">
 	</div>
 	
-	
+	<!--헤더                                        -->
 	
 </head>
 <body>
@@ -184,6 +185,7 @@
 				<table>
 					<colgroup>
 						<col width="100">
+						<col width="200">
 						<col width="1000">
 						<col width="300">
 						<col width="200">
@@ -192,6 +194,7 @@
 					
 					<tr bgcolor="#e9ecef">
 						<th>번호</th>
+						<th>게시명</th>
 				        <th>제목</th>
 				        <th>작성자</th>
 				        <th>작성일자</th>
@@ -203,9 +206,12 @@
 			<c:forEach var="board" items="${list }">
 				<tr>
 					<td>${startNum }</td>  
-					<td class="left" width=200>
-						 <a href='content.do?num=${board.brd_bid}&pageNum=${currentPage}'>
-							${board.brd_title}</a>
+					<td>${board.brd_name }</td>
+					<td class="left" width=200 height="20">
+					 		<c:if test="${board.brd_secret > 0}">
+							    <img src='images/Lock_icon.png' ">
+						   </c:if>
+						 <a href='boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
 					</td>
 					<td>${board.brd_writer}</td>
 					<td>${board.brd_date}</td>
@@ -230,9 +236,24 @@
 					
 				</table>
 			</div>
-			<input id="wr_btn" type="button" value="글작성" class="active" href="writeForm.do">
+			<!-- <input id="wr_btn" type="button" value="글작성" class="active" href="writeForm.do"> -->
+			<p><input id="wr_btn" style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='writeForm.do'">
 			
-			<div class="page_wrap">
+			
+
+			<div style="text-align: center;">
+				<c:if test="${startPage > blockSize }">
+					<a href='list.do?pageNum=${startPage-blockSize}'>[이전]</a>
+				</c:if>
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<a href='list.do?pageNum=${i}'>[${i}]</a>
+				</c:forEach>
+				<c:if test="${endPage < pageCnt }">
+					<a href='list.do?pageNum=${startPage+blockSize}'>[다음]</a>
+				</c:if>
+			</div> 
+			
+		<!-- 	 <div class="page_wrap">
 			   <div class="page_nation">
 			      <a class="arrow pprev" href="#"></a>
 			      <a class="arrow prev" href="#"></a>
@@ -249,7 +270,7 @@
 			      <a class="arrow next" href="#"></a>
 			      <a class="arrow nnext" href="#"></a>
 			   </div>
-			</div>
+			</div> -->
 
 			<div id="search">
 				<select id="srh_select">
@@ -260,7 +281,7 @@
 				<input id="srh_btn" type="button" value="검색">
 			</div>
 		</form>
-		
+		<!--풋터                       -->
 		<div class="flex-container center">
 			<div class="item_end">
 				<div><pre>쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
