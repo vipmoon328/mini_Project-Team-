@@ -23,7 +23,7 @@
 	<c:if test="${login_result eq 1 && auth eq 0}">
 		<script type="text/javascript">
 			alert("관리자님 환영합니다.");
-			location.href='<%=context%>/Jiwoong/mgrList.jsp';
+			location.href='<%=context%>/mgrList.do';
 		</script>
 	</c:if>
 	
