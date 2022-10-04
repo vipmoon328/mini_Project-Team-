@@ -24,6 +24,7 @@
 			<ul class="menu_list">
 				<li><a href="<%=context%>/hyojung/mainHomeView.jsp">홈</a></li>
 				<li><a href="<%=context%>/JiHyeon/informationFormOut.jsp">볼링장정보</a></li>
+				<li><a href="Reservation.do">예약</a></li>
 				<li><a href="<%=context%>/JiHyeon/mapFormOut.jsp">오시는길</a></li>
 				<li><a href="board.do">게시판</a></li>
 			</ul>
