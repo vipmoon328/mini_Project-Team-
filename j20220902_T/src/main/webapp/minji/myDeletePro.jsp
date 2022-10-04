@@ -25,7 +25,7 @@
 	<c:if test="${result eq 0 }">
 		<script type="text/javascript">
 			alert("패스워드가 일치하지 않습니다.");
-			location.href="<%=context%>/minji/myDeleteForm.jsp";
+			history.back();
 		</script>
 	</c:if>
 </body>
