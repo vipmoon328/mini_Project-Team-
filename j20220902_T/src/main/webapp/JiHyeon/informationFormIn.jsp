@@ -19,6 +19,7 @@
 			</div> 
 		</div>
 		
+	<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
 	<hr color="#D5D5D5" width="100%" size="1">	
 		<div class="flex-container">
 			<div class="item_second">

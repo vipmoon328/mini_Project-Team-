@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%  String context = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +12,19 @@
 <body>
 	<div class="top_container">
 		<div id="login_box">
+		<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
 			<ul class="login_list">
-				<li><a href="../GunHee/loginForm.jsp">로그인 </a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 1 [김건희] -->
-				<li><a href="../GunHee/signUpForm.jsp">회원가입</a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 2 [김건희] -->
+				<li><a href="<%=context%>/GunHee/loginForm.jsp">로그인 </a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 1 [김건희] -->
+				<li><a href="<%=context%>/GunHee/signUpForm.jsp">회원가입</a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 2 [김건희] -->
 			</ul>	
 		</div>
+		<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
 		<div id="menu_box">
 			<ul class="menu_list">
-				<li><a href="home.do">홈</a></li>
-				<li><a href="information.do">볼링장정보</a></li>
+				<li><a href="<%=context%>/hyojung/mainHomeView.jsp">홈</a></li>
+				<li><a href="<%=context%>/JiHyeon/informationFormOut.jsp">볼링장정보</a></li>
 				<li><a href="Reservation.do">예약</a></li>
-				<li><a href="map.do">오시는길</a></li>
+				<li><a href="<%=context%>/JiHyeon/mapFormOut.jsp">오시는길</a></li>
 				<li><a href="board.do">게시판</a></li>
 			</ul>
 		</div>

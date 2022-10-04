@@ -23,6 +23,7 @@
 				</ul>	
 			</div>			
 		</div>
+		<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
 		<div id="menu_box">
 			<ul class="menu_list">
 				<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li> <!-- 22.09.30[김건희] 수정 -->

@@ -1,4 +1,4 @@
-ㅣ<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%-- <%@ include file="../memberCheck.jsp" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -62,24 +62,26 @@
 </head>
 <body onload="init()">
 <div id="wrapper">
+	<!-- 22.10.04 로그인 창 이름 수정 [김건희] -->
 	<form action="mypagePro.do" method="post">
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>${users.name}님</li>
-					<li><a href="../hyojung/mainHomeView.jsp">로그아웃</a></li>
+					<li>${id}님</li>
+					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div> 
 		</div>
+	<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
 	<hr color="#D5D5D5" width="100%" size="1">
 		<div class="flex-container">
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="../hyojung/loginHomeView.jsp">홈</a></li>
-					<li><a href="../JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
+					<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
+					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
 					<li><a href="">예약</a></li>
-					<li><a href="../JiHyeon/mapFormIn.jsp">오시는길</a></li>
+					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
 					<li><a href="">게시판</a></li>
 					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 				</ul>

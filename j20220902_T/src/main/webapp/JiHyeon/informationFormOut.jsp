@@ -13,21 +13,22 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><a href="loginForm.jsp">로그인</a></li>
-					<li><a href="signUpForm.jsp">회원가입</a></li>
+					<li><a href="<%=context%>/GunHee/loginForm.jsp">로그인</a></li>
+					<li><a href="<%=context%>/GunHee/signUpForm.jsp">회원가입</a></li>
 				</ul>
 			</div> 
 		</div>
-		
+	
+	<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
 	<hr color="#D5D5D5" width="100%" size="1">	
 		<div class="flex-container">
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="mainHomeView.jsp">홈</a></li>
-					<li><a href="informationFormOut.jsp">볼링장정보</a></li>
+					<li><a href="<%=context%>/hyojung/mainHomeView.jsp">홈</a></li>
+					<li><a href="<%=context%>/JiHyeon/informationFormOut.jsp">볼링장정보</a></li>
 					<li><a href="resAllView.jsp">예약</a></li>
-					<li><a href="mapFormOut.jsp">오시는길</a></li>
+					<li><a href="<%=context%>/JiHyeon/mapFormOut.jsp">오시는길</a></li>
 					<li><a href="boardList.jsp">게시판</a></li>				
 				</ul>
 			</div>

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%  String context = request.getContextPath(); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +22,7 @@
 			<div class="item_first">
 				<ul>
 					<li><strong>00점관리자님</strong></li>
-					<li>로그아웃</li>
+					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>
