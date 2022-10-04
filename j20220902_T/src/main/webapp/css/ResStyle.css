@@ -119,11 +119,11 @@
 			padding: .8em .5em; 
 			border: 1px solid skyblue;
 			font-family: inherit;  
-			background: url('arrow.jpg') no-repeat 95% 50%; 
+			background: url('../images/arrow.png') no-repeat 95% 40%/20px auto; 
 			border-radius: 5px; 
 			-webkit-appearance: none; 
-			-moz-appearance: 
-			none;appearance: none;
+			-moz-appearance: none;
+			appearance: none;
 			}
 	
 	caption, #frm {
@@ -150,7 +150,6 @@
 	}
 	#test_table{
 		clear:both;
-		margin-top: 300px;
 		border-collapse: collapse;
 	}
 	#test td{
@@ -170,9 +169,6 @@
 		margin: 0 auto;
 	}
 	
-	#frm{
-		float: right;
-	}
 	
 	#calendar{
 		float: left;
@@ -189,6 +185,27 @@
 	#timeTableCon {
 		margin: 20px;
 		padding: 20px;
+	}
+	
+	#reset, #insert{
+            border: 2px solid skyblue;
+            background-color: rgba(0,0,0,0);
+            color: black;
+            padding: 5px;
+            width: 100px;
+            height: 40px;
+            border-collapse: collapse;
+            border-radius: 5px; 
+        }
+    
+    #reset:hover, #insert:hover{
+            color:white;
+            background-color: skyblue;
+    }
+	#form_container{
+			width: 250px;
+			height:300px;
+			float: right;
 	}
 	/* -------------------------------------------------------------------- */
 	/* 하단내용 영역 */							   
