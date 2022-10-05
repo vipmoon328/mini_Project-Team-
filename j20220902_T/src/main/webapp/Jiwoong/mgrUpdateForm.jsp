@@ -16,8 +16,8 @@
 		$('#user_email2').val("${email_domain}");
 	}
 	
-/* 지웅씨 원래 코드 */ 	
-/* 	$('#domain_list').change(function() {
+	/* 지웅씨 원래 코드 */ 	
+	/* 	$('#domain_list').change(function() {
 		$("#domain_list option:selected").each(function() {
 			
 			if($(this).val()=='type'){
@@ -45,7 +45,8 @@
 		}
 	}
 	
-	function updateCheck(){	
+	function updateCheck()
+	{	
 			var check = true;
 			
 			if($('#user_password').val() != $('#user_password_chk').val())
@@ -65,13 +66,13 @@
 				$('#emailError').text('이메일 형식이 일치하지 않습니다. 다시 입력해주세요.');
 				check = false;
 			}
-		
+			
 			console.log(check);
 			
 			if(check == false)
 			{
-				return check;
-			};
+				return false;
+			}
 	}
 		
 	</script>
@@ -136,8 +137,9 @@
 					<tr>
 						<td><figure style="margin: 0;">전화번호<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
 						<td><input type="tel" size="25px" name="user_phone_number" id="user_phone_number" pattern="\d{2,3}-\d{3,4}-\d{4}" placeholder="010-XXXX-XXXX" required="required" value="${users.phone}"></td>
-					</tr			
-	>
+					</tr>
+					
+					<!-- 22.10.05 [김건희] 성별 고정  -->
 					<tr>
 						<td>성별</td>
 						<td>
@@ -145,10 +147,10 @@
 								<c:choose>
 									<c:when test="${users.gender eq 'M'}">
 										<input type="radio" name="gender" value="M" checked="checked"><span>남성</span>
-										<input type="radio" name="gender" value="F"><span>여성</span>
+										<input type="radio" name="gender" value="F" onclick="return false"><span>여성</span>
 									</c:when>
 									<c:otherwise>
-										<input type="radio" name="gender" value="M"><span>남성</span>
+										<input type="radio" name="gender" value="M" onclick="return false"><span>남성</span>
 										<input type="radio" name="gender" value="F" checked="checked"><span>여성</span>
 									</c:otherwise>
 								</c:choose>
@@ -193,9 +195,10 @@
 				</table>
 				</div> 
 		</div>
+		<!-- 22.10.05 체크 함수 관련 수정 -->
 		<div class="flex-container center">
 			<div class="item_sixth">
-				<button type="submit" id="submitChk" onclick="updateCheck()">수정하기</button>
+				<button type="submit" id="submitChk" onclick="return updateCheck()">수정하기</button>
 			</div>
 		</div>
 	    </form>
