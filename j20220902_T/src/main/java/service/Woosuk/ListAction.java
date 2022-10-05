@@ -72,7 +72,7 @@ public class ListAction implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println("ListAction e.getMessage()->"+e.getMessage());
 		}
-		return "boardList.jsp";
+		return "Woosuk/boardList.jsp";
 	}
 
 }
