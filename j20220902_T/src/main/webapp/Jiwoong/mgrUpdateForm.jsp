@@ -14,9 +14,10 @@
 	function init()
 	{
 		$('#user_email2').val("${email_domain}");
-	};
+	}
 	
-	$('#domain_list').change(function() {
+/* 지웅씨 원래 코드 */ 	
+/* 	$('#domain_list').change(function() {
 		$("#domain_list option:selected").each(function() {
 			
 			if($(this).val()=='type'){
@@ -24,18 +25,27 @@
 				$("#user_email2").attr("disabled",false);
 			}else{
 				$("#user_email2").val($(this).text());
-				$("#user_email2").attr("disabled",true);
-				
+				$("#user_email2").attr("disabled",true);	
 			}
-			
-			
-		})
-		
-	})
+		});
+	}); */
 	
+	/* 22.10.05 [김건희] 선택시 도메인 창 변화 함수 수정  */
+	function changeDomain()
+	{
+		if($('#domain_list').val() == 'type')
+		{
+			$('#user_email2').val("");
+			$('#user_email2').attr("readonly", false);
+		}
+		else
+		{
+			$('#user_email2').val($('#domain_list').val());
+			$('#user_email2').attr("readonly", true);
+		}
+	}
 	
-	function updateCheck()
-		{	
+	function updateCheck(){	
 			var check = true;
 			
 			if($('#user_password').val() != $('#user_password_chk').val())
@@ -62,6 +72,7 @@
 			{
 				return check;
 			};
+	}
 		
 	</script>
 </head>
@@ -71,8 +82,8 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><00관리자님></li>
-					<li><a href="../hyojung/mainHomeView.jsp">로그아웃</a></li>
+					<li><strong>${locName}점 관리자 ${id}님</strong></li> <!-- 22.10.05 링크 및 관리자 표시 수정 [김건희] -->
+					<li><a href="<%=context%>/logout.do">로그아웃</a></li> <!-- 22.10.05 링크 및 관리자 표시 수정 [김건희] -->
 				</ul>
 			</div> 
 		</div>
@@ -167,12 +178,13 @@
 							<label>
 								<%-- <input type="text" class="email" name="user_email1" id="user_email1" required="required" value="${email_id}"> @ <input type="text" class="email" name="user_email2" id="user_email2" required="required" value="${email.domain}">
 								<select name="email" class="select" id="domain_list" onclick="changeDomain()"> --%>
-								<input type="text" class="email" name="user_email1" id="user_email1" required="required" value="${email_id}"> @ <input type="text" class="email" name="user_email2" id="user_email2" required="required" value="${email.domain}">
-								<select name="email" class="select" id="domain_list">
-									<option value="naver.com" selected>naver.com</option>
+								<!-- 22.10.05 [김건희] 이메일 도메인을 받아오지 못하는 것을 수정 -->
+								<input type="text" class="email" name="user_email1" id="user_email1" required="required" value="${email_id}"> @ <input type="text" class="email" name="user_email2" id="user_email2" required="required" value="${email_domain}">
+								<select name="email" class="select" id="domain_list" onclick="changeDomain()">
+									<option value="naver.com">naver.com</option>
 									<option value="daum.net">daum.net</option>
-									<option value="google.com">gmail.com</option>
-									<option value="type">직접 입력</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="type" selected="selected">직접 입력</option>
 								</select>
 							</label> 
 						</td>
