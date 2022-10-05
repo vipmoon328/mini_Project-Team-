@@ -165,7 +165,7 @@
 		<table id="test_table">
 			<caption>
 				<input form="cancel_form" type="reset" value="선택 취소" class="cancel_btn"  id="cancel_select"><input form="cancel_form" type="submit" value="예약 취소" class="cancel_btn" id="cancel_btn">
-				<select id="page_amount">
+				<select id="page_amount" onclick="">
 					<option value="3">3개씩 보기</option>
 					<option value="5">5개씩 보기</option>
 					<option value="10" selected="selected">10개씩 보기</option>
