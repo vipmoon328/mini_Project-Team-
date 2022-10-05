@@ -105,7 +105,7 @@
 				<table width="700px">
 					<tr> 
 						<td><figure style="margin: 0;">아이디<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
-						<td><input type="text" size="20px" name="user_id" id="user_id" value="${users.id}"><span style="font-size: 12px; color: gray;"> * 아이디 변경 불가능</span></td>
+						<td><input type="text" size="20px" name="user_id" id="user_id" value="${users.id}" readonly="readonly"><span style="font-size: 12px; color: gray;"> * 아이디 변경 불가능</span></td>
 					</tr> 
 					<tr>
 						<td><figure style="margin: 0;">비밀번호<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
