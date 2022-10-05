@@ -24,9 +24,6 @@
 
 </script>
 
-
-
-
 </head>
 <body> 
 <c:if test="${loc eq 0}">
@@ -91,7 +88,8 @@
 		<tr>
 		<th >회원번호</th><th >아이디</th><th >비밀번호</th><th >이름</th><th >성별</th><th >연락처</th><th >이메일</th><th >회원여부</th><th >회원관리</th>		
 		</tr>			
-			
+	
+	<!-- 22.10.05 탈퇴 회원일시 복구 기능 추가 [김건희] -->
 	<c:if test="${totCnt > 0 }">
 			<c:forEach var="users" items="${list }">
 				<tr align="center">
@@ -106,13 +104,19 @@
 						<c:choose>
 							<c:when test="${users.deleted==1}">
 								<span style="color: blue;"><c:out value="회원"></c:out></span>
+								</td>
+								<td>
+								<button type="button" onclick="location.href='<%=context%>/mgrUpdateForm.do?id=${users.id}&pageNum=${pageNum}'">수정</button> <button type="button" onclick="location.href='<%=context%>/mgrDeleteForm.do?id=${users.id}&pageNum=${pageNum}'">삭제</button>
 							</c:when>
 							<c:otherwise>
 								<span style="color: red;"><c:out value="탈퇴"></c:out></span>
+								</td>
+								<td>
+								<button type="button" onclick="location.href='<%=context%>/mgrUpdateForm.do?id=${users.id}&pageNum=${pageNum}'">수정</button> <button type="button" onclick="location.href='<%=context%>/recoverUser.do?userNum=${users.usernum}&pageNum=${pageNum}'">복구</button>
 							</c:otherwise>
-						</c:choose></td>
-					<td><button type="button" onclick="location.href='<%=context%>/mgrUpdateForm.do?id=${users.id}&pageNum=${pageNum}'">수정</button> <button type="button" onclick="location.href='<%=context%>/mgrDeleteForm.do?id=${users.id}&pageNum=${pageNum}'">삭제</button></td>
-		
+						</c:choose>
+					</td>
+						
 				</tr>
 				<c:set var="startNum" value="${startNum + 1 }" />  
 				</c:forEach>	

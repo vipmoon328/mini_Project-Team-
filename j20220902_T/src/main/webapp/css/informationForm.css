@@ -130,9 +130,6 @@
 	#main_textbox ul li		{
 				list-style: none;       /* 점표시 없애기 */
 				}
-	img 		{
-				border-radius: 20px; 
-				}	
 	/* 이미지 밑 문장 */
 	p			{
 				text-align: center;

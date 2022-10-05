@@ -199,9 +199,9 @@
             	tag += "</tr><tr>";
             }
             if((nowYear<=realDay.getFullYear())&&(nowMonth<=realDay.getMonth())&&(i<realDay.getDate())){
-            	tag += "<td class='cantDate'>" + i +"</td>";
+            	tag += "<td class='cantDate' style='text-align: center;'>" + i +"</td>";
             }else{
-            	tag += "<td class='date' id='" + i +"'>"+ i +"</td>";
+            	tag += "<td class='date' id='" + i +"' style='cursor:pointer;text-align: center;'>"+ i +"</td>";
             }
         }
         while(lastDay!=6){
@@ -328,6 +328,7 @@
 
 </script>
 <body>
+<div id="wrapper">
 	<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
@@ -404,5 +405,6 @@
 		
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
+</div>
 </body>
 </html>

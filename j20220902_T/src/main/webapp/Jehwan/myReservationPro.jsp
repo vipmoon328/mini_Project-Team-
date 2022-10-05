@@ -76,10 +76,14 @@
 			tag += "<td><input form='frm" + i + "' type='hidden' name='start' value='" + data[i]["start"] + "'><input form='frm" + i + "' type='hidden' name='end' value='" + data[i]["end"] + "'>" + data[i]["start"] + ":00 ~ " + data[i]["end"] + ":00</td>";
 			tag += "<td><input form='frm" + i + "' type='hidden' name='customer' value='" + data[i]["customer"] + "'>" + data[i]["customer"] + "</td>";
 			tag += "<td><input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>" + data[i]["cost"] + "</td>";
-			tag += "<td>" + data[i]["state"] + "</td>";
-			if(data[i]["state"] == "방문전"){
-				tag += "<td><input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 70px;height: 40px;'></td>";
+			if(data[i]["cancel"] == "1"){
+				tag += "<td style='color:red;'>예약취소</td>";
+				tag += "<td></td>";
+			}else if(data[i]["visit"] == "0"){
+				tag += "<td style='color:blue;'>방문전</td>";
+				tag += "<td><input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 70px;height: 40px;cursor: pointer;'></td>";
 			}else{
+				tag += "<td style='color:green;'>방문완료</td>";
 				tag += "<td></td>";
 			}
 			tag += "<input form='frm" + i + "' type='hidden' name='res_rid' value='" + data[i]["res_rid"] +"'></tr></form>";
@@ -92,19 +96,20 @@
 		var blockSize = parseInt(data[0]["blockSize"]);
 		var pageCnt = parseInt(data[0]["pageCnt"]);
 		if(startPage > blockSize){
-			pageInfo+="<input id='prev' type='button' value='<' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;'>";
+			pageInfo+="<input id='prev' type='button' value='<' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
 		}
 		for(startPage ; startPage<=endPage ; startPage++){
-			pageInfo+="<input class='numSelect' type='button' id='" + startPage + "' value='" + startPage +"' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;'>";
+			pageInfo+="<input class='numSelect' type='button' id='" + startPage + "' value='" + startPage +"' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
 		}
 		if(endPage < pageCnt){
-			pageInfo+="<input id='next' type='button' value='>' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;'>";
+			pageInfo+="<input id='next' type='button' value='>' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
 		}
 		$('#pagenum').html(pageInfo);
 		$("#" +  data[0]["currentPage"]).css('color','white').css('background','skyblue');
 	}
 </script>
 <body>
+<div id="wrapper">
 	<!-- 헤드 부분을 제거하고 수정 -->
 	<div class="flex-container flex-end">
 			<div class="item_first">
@@ -143,7 +148,7 @@
 				<select id="page_amount">
 					<option value="3">3개씩 보기</option>
 					<option value="5">5개씩 보기</option>
-					<option value="10">10개씩 보기</option>
+					<option value="10" selected="selected">10개씩 보기</option>
 				</select>
 			</caption>
 			<thead>
@@ -158,5 +163,6 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
+</div>
 </body>
 </html>
