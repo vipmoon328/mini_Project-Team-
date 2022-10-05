@@ -455,14 +455,37 @@ public class UserDao
 						if (conn !=null) conn.close();
 			}
 		 	 return list;
-				
-				
 			}	
+	
+			//22.10.05 탈퇴한 계정 복구 기능 [김건희]
+			public int recoveryUser (int usernum) throws SQLException
+			{
+				int result = 0;
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				String sql = "update users set deleted = 1 where usernum = ?";
+				
+				try {
+					conn = getConnection();
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, usernum);
+					result = pstmt.executeUpdate();
+				} catch (Exception e) {
+					System.out.println("검색에 실패하였습니다.");
+					System.out.println(e.getMessage());
+				} finally {
+					if (pstmt != null) pstmt.close();
+					if (conn !=null) conn.close();
+				}
+				
+				return result;
+			}
+	
 		}				
 			
 			
 			
-			
+
 			
 			
 	
