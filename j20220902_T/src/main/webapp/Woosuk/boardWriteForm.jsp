@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%  String context = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시글</title>
-<link rel="stylesheet" href="HeadFoot.css" type="text/css">
+<link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
 
 	#hrline {
@@ -115,7 +116,7 @@ sub {
 	
 </head>
 <body>
-	<form action="writePro.do?pageNum=${pageNum }"method="post">
+	<form action="<%=context%>/writePro.do?pageNum=${pageNum }"method="post">
 	<input type="hidden" name="brd_bid" value="${num }">
 	<input type="hidden" name="brd_ref" value="${brd_ref }">
 	<input type="hidden" name="brd_re_level" value="${brd_re_level }">

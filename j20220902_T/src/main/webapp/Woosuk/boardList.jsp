@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%  String context = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시판리스트</title>
-<link rel="stylesheet" href="HeadFoot.css" type="text/css">
+<link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
 	table {
     width: 80%;
@@ -212,7 +213,7 @@
 							    <img src='images/Lock_icon.png' ">
 						   </c:if>
 							<!-- 지정한 게시글을 불러오기 위한 ContentAction.service 진행 -->
-						 <a href='boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
+						 <a href='<%=context%>/boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
 					</td>
 					<td>${board.brd_writer}</td>
 					<td>${board.brd_date}</td>
@@ -238,19 +239,19 @@
 				</table>
 			</div>
 			<!-- <input id="wr_btn" type="button" value="글작성" class="active" href="writeForm.do"> -->
-			<p><input id="wr_btn" style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='writeForm.do'">
+			<p><input id="wr_btn" style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='<%=context%>/writeForm.do'">
 			
 			
 			<!-- 페이징 -->
 			<div style="text-align: center;">
 				<c:if test="${startPage > blockSize }">
-					<a href='list.do?pageNum=${startPage-blockSize}'>[이전]</a>
+					<a href='<%=context%>/list.do?pageNum=${startPage-blockSize}'>[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href='list.do?pageNum=${i}'>[${i}]</a>
+					<a href='<%=context%>/list.do?pageNum=${i}'>[${i}]</a>
 				</c:forEach>
 				<c:if test="${endPage < pageCnt }">
-					<a href='list.do?pageNum=${startPage+blockSize}'>[다음]</a>
+					<a href='<%=context%>/list.do?pageNum=${startPage+blockSize}'>[다음]</a>
 				</c:if>
 			</div> 
 			
@@ -273,7 +274,7 @@
 			   </div>
 			</div> -->
 		</form><!-- 검색기능  -->
-		<form action="searchList.do?pageNum=${pageNum }" method="post">
+		<form action="<%=context%>/searchList.do?pageNum=${pageNum }" method="post">
 			<div id="search">
 				<select id="srh_select" name="srh_select">
 					<option value="brd_title">제목</option>

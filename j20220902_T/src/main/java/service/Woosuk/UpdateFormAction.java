@@ -7,14 +7,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+
 import dao.Board;
 import dao.BoardDao;
+import service.CommandProcess;
 
 public class UpdateFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, JSONException {
 				// 1. num, pageNum GET
 				// 형식 자체는 ContentAction과 같다 
 				System.out.println("service UpdateFormAction start...");
@@ -45,7 +48,7 @@ public class UpdateFormAction implements CommandProcess {
 					System.out.println("updateFormAction error->"+e.getMessage());
 				}
 
-				return "boardUpdateForm.jsp";
+				return "Woosuk/boardUpdateForm.jsp";
 	}
 
 }

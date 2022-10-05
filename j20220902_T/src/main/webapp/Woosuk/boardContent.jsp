@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%  String context = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시글</title>
-<link rel="stylesheet" href="HeadFoot.css" type="text/css">
+<link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
 
 	#hrline {
@@ -132,11 +133,11 @@ input {
 		</table>
 	</div> 
 	<!-- 수정 updateFormAction 서비스 실행 -->
-	<input style="margin-left:66%"  type="button" value="수정" onclick="location.href='updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+	<input style="margin-left:66%"  type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
 	<!-- 삭제 deleteFormAction 서비스 실행 -->
-	<input type="button" value="삭제" onclick="location.href='deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+	<input type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
 	<!-- 게시판 리스트로 복귀 -->
-	<input type="button" value="목록" onclick="location.href='list.do?pageNum=${pageNum }'">
+	<input type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum }'">
 
 	
 	</form>		

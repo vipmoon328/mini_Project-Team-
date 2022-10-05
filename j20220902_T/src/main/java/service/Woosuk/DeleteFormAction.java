@@ -7,14 +7,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+
 import dao.Board;
 import dao.BoardDao;
+import service.CommandProcess;
 
 public class DeleteFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, JSONException {
 		System.out.println("DeleteFormAction start...");
 		
 		try {
@@ -36,7 +39,7 @@ public class DeleteFormAction implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return "deletePro.do";
+		return "Woosuk/boardDeleteForm.jsp";
 	}
 
 }

@@ -7,13 +7,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+
 import dao.BoardDao;
+import service.CommandProcess;
 
 public class DeleteProAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, JSONException {
 		
 		
 		
@@ -37,7 +40,7 @@ public class DeleteProAction implements CommandProcess {
 			e.printStackTrace();
 		}
 
-		return "boardDeletePro.jsp";
+		return "Woosuk/boardDeletePro.jsp";
 	}
 
 }

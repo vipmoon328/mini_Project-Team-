@@ -6,14 +6,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+
 import dao.Board;
 import dao.BoardDao;
+import service.CommandProcess;
 
 public class WriteFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException , JSONException{
 		System.out.println("WriteFormAction Start....");
 		try 
 		{
@@ -42,7 +45,7 @@ public class WriteFormAction implements CommandProcess {
 			System.out.println(e.getMessage());
 		}
 			
-		return "boardWriteForm.jsp";
+		return "Woosuk/boardWriteForm.jsp";
 	}
 
 }

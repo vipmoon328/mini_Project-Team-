@@ -6,14 +6,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+
 import dao.Board;
 import dao.BoardDao;
+import service.CommandProcess;
 
 public class UpdateProAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, JSONException {
 			request.setCharacterEncoding("utf-8");
 		
 			String pageNum = request.getParameter("pageNum");
@@ -73,7 +76,7 @@ public class UpdateProAction implements CommandProcess {
 			System.out.println("pageNum->" +pageNum);
 		
 			// 5. updatePro.jsp Return
-			return "boardUpdatePro.jsp";
+			return "Woosuk/boardUpdatePro.jsp";
 	}
 
 }
