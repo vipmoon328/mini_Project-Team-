@@ -111,6 +111,62 @@ public class BoardDao {
 		} 
 		return list;
 	}
+	
+	public List<Board> boardListSearch(int startRow, int endRow,String srh_select, String srh_input) throws SQLException {
+		List<Board> list = new ArrayList<Board>(); //리스트 생성
+		Connection conn = null;	
+		PreparedStatement pstmt= null;
+		ResultSet rs = null;
+		// 삭제 값이 0이며, 공지 사항 상단 sql문
+		 String sql =    " SELECT *  "
+		 	    	+ " FROM (Select rownum rn ,a.*  "
+		 		    + "       From ( select * from board   "
+		 		    + "              where brd_deleted = 0 "
+		 		    + "              and "   + srh_select +  " Like ?   " 
+		 		    + "              order by brd_name desc, brd_ref desc "
+		 		    + "             ) "
+		 		    + "       a )  "
+		 		    + " WHERE rn BETWEEN ? AND ?";
+			/* + "order by (case when brd_name = '공지사항' then 1  end ),brd_ref"; */
+		 System.out.println("DAO boardListSearch sql->"+sql);
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+		//	pstmt.setString(1, srh_select); // 게시판 리스트를 생성 시키기 위한 시작점
+			pstmt.setString(1, srh_input); // 게시판 리스트를 생성 시키기 위한 종점
+			System.out.println("DAO boardListSearch srh_select->"+srh_select);
+			pstmt.setInt(2, startRow); // 게시판 리스트를 생성 시키기 위한 시작점
+			System.out.println("DAO boardListSearch srh_input->"+srh_input);
+			pstmt.setInt(3, endRow); // 게시판 리스트를 생성 시키기 위한 종점
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Board board = new Board();//db 값들 전부 불러 와서 리스트에 지정
+				board.setBrd_bid(rs.getInt("brd_bid"));
+				board.setBrd_name(rs.getString("brd_name"));
+				board.setBrd_title(rs.getString("brd_title"));
+				board.setBrd_writer(rs.getString("brd_writer"));
+				board.setBrd_date(rs.getDate("brd_date"));
+				board.setBrd_view(rs.getInt("brd_view"));
+				board.setBrd_content(rs.getString("brd_content"));
+				board.setBrd_secret(rs.getInt("brd_secret"));
+				board.setBrd_deleted(rs.getInt("brd_deleted"));
+				board.setBrd_ref(rs.getInt("brd_ref"));
+				board.setBrd_re_step(rs.getInt("brd_re_step"));
+				board.setBrd_re_level(rs.getInt("brd_re_level"));
+				list.add(board);
+			}
+		} catch(Exception e) {	
+			System.out.println("dao boardListSearch e.getMessage->"+e.getMessage()); 
+		} finally {
+			if (rs !=null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn !=null) conn.close();
+		} 
+		return list;
+	}
+	
+	
+	
 	public void readCount(int num) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null;  // 조회수 지정, 게시글 볼떄 마다 조회수가 올라간다.
@@ -317,53 +373,5 @@ public class BoardDao {
 		
 	}
 	
-	
-	
-	public List<Board> boardSearchList(int startRow, int endRow) throws SQLException {
-		List<Board> list = new ArrayList<Board>();
-		Connection conn = null;	
-		PreparedStatement pstmt= null;
-		ResultSet rs = null;
-		Board board = new Board();
-		System.out.println("DAO boardSearchList start... ");
 
-		 String sql =    "SELECT *  "
-		 	    	+ "FROM (Select rownum rn ,a.*  "
-		 		    + "From (select * from board where brd_deleted = 0 and ? like ? order by brd_name desc, brd_ref desc ) a )  "
-		 		    + "WHERE rn BETWEEN ? AND ? ";
-		try {
-			System.out.println("DAO boardSearchList try start... ");
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,  );
-			pstmt.setString(2,  );
-			pstmt.setInt(3, startRow);
-			pstmt.setInt(4, endRow);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				
-				board.setBrd_bid(rs.getInt("brd_bid"));
-				board.setBrd_name(rs.getString("brd_name"));
-				board.setBrd_title(rs.getString("brd_title"));
-				board.setBrd_writer(rs.getString("brd_writer"));
-				board.setBrd_date(rs.getDate("brd_date"));
-				board.setBrd_view(rs.getInt("brd_view"));
-				board.setBrd_content(rs.getString("brd_content"));
-				board.setBrd_secret(rs.getInt("brd_secret"));
-				board.setBrd_deleted(rs.getInt("brd_deleted"));
-				board.setBrd_ref(rs.getInt("brd_ref"));
-				board.setBrd_re_step(rs.getInt("brd_re_step"));
-				board.setBrd_re_level(rs.getInt("brd_re_level"));
-				list.add(board);
-				System.out.println("DAO boardSearchList finish... ");
-			}
-		} catch(Exception e) {	
-			System.out.println("dao list error ->"+e.getMessage()); 
-		} finally {
-			if (rs !=null) rs.close();
-			if (pstmt != null) pstmt.close();
-			if (conn !=null) conn.close();
-		} 
-		return list;
-	}
 }
