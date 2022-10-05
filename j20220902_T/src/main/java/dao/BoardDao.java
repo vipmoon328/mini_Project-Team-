@@ -40,6 +40,7 @@ public class BoardDao {
 		ResultSet rs = null;
 		int tot = 0;
 		String sql = "select count(*) from board where brd_deleted = 0";
+		//sql문을 통해 보드에 지워진글 값이 0 만 전부 카운트
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
@@ -47,7 +48,7 @@ public class BoardDao {
 			
 			if(rs.next())
 			{
-				tot = rs.getInt(1);
+				tot = rs.getInt(1); //sql문 전체 값을 tot에 삽입
 			}
 			System.out.println("rsnext->"+ rs.getInt(1));
 		} catch (Exception e) {
@@ -69,12 +70,11 @@ public class BoardDao {
 	}
 	
 	public List<Board> boardList(int startRow, int endRow) throws SQLException {
-		List<Board> list = new ArrayList<Board>();
+		List<Board> list = new ArrayList<Board>(); //리스트 생성
 		Connection conn = null;	
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
-		// String sql = "select * from board order by num desc";
-		// mysql select * from board order by num desc limit startPage-1,10;
+		// 삭제 값이 0이며, 공지 사항 상단 sql문
 		 String sql =    "SELECT *  "
 		 	    	+ "FROM (Select rownum rn ,a.*  "
 		 		    + "From (select * from board where brd_deleted = 0 order by brd_name desc, brd_ref desc ) a )  "
@@ -83,11 +83,11 @@ public class BoardDao {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, startRow); // 게시판 리스트를 생성 시키기 위한 시작점
+			pstmt.setInt(2, endRow); // 게시판 리스트를 생성 시키기 위한 종점
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Board board = new Board();
+				Board board = new Board();//db 값들 전부 불러 와서 리스트에 지정
 				board.setBrd_bid(rs.getInt("brd_bid"));
 				board.setBrd_name(rs.getString("brd_name"));
 				board.setBrd_title(rs.getString("brd_title"));
@@ -113,12 +113,12 @@ public class BoardDao {
 	}
 	public void readCount(int num) throws SQLException {
 		Connection conn = null;	
-		PreparedStatement pstmt= null; 
+		PreparedStatement pstmt= null;  // 조회수 지정, 게시글 볼떄 마다 조회수가 올라간다.
 		String sql="update board set brd_view=brd_view+1 where brd_bid=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, num); // 게시글 고유 번호
 			pstmt.executeUpdate();
 		} 
 		catch (Exception e) 
@@ -134,7 +134,7 @@ public class BoardDao {
 		Connection conn = null;	
 		Statement stmt= null; 
 		ResultSet rs = null;
-		
+								// 지정한 게시글 고유 번호 불러 오기
 		String sql = "select * from board where brd_bid="+num;
 		Board board = new Board();
 		try {
@@ -142,6 +142,7 @@ public class BoardDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {				
+				//db 값을 전부 불러온다
 				board.setBrd_bid(rs.getInt("brd_bid"));
 				board.setBrd_name(rs.getString("brd_name"));
 				board.setBrd_title(rs.getString("brd_title"));
@@ -166,15 +167,19 @@ public class BoardDao {
 		}
 		return board;
 	}
+	
+	
 	public int insert(Board board) throws SQLException {
 		int result =0;
 		System.out.println("dao insert start...");
 		System.out.println("dao board.getBrd_bid ->"+board.getBrd_bid());
-		int num = board.getBrd_bid();
+		int num = board.getBrd_bid(); //게시글 고유 번호 지정
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		//게시글의 가장 마지막 고유 번호를 찾는다
 		String sql1 = "select nvl(max(brd_bid),0) from board";
+		//게시글 값 insert
 		String sql2 =  "insert into board(BRD_BID, BRD_NAME,BRD_TITLE ,BRD_WRITER ,BRD_DATE ,BRD_VIEW ,BRD_CONTENT ,BRD_SECRET ,BRD_DELETED ,USERNUM ,BRD_REF ,BRD_RE_STEP ,BRD_RE_LEVEL)VALUES(?, '게시글', ?, '회원', TO_DATE(sysdate), ?, ?, ?, 0, 1, ?, ?, ?)";
 		System.out.println("BoardDao insert start...");
 		try {
@@ -182,15 +187,17 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql1);
 			rs = pstmt.executeQuery();
 			rs.next();
+			// 가장 마지막 게시글 고유 번호에 +1 을 하여 새로 만들 게시글의 새 고유번호 지정
 			int number = rs.getInt(1)+1;
-			/* System.out.println("dao insert pstmt"+pstmt); */
 			System.out.println("dao insert number"+number);
 			System.out.println("dao insert num"+num);
 			rs.close();
 			pstmt.close();
 			if (num==0) {
+				//num==0 첫 게시글 일때 조건
 				board.setBrd_ref(number);
 				pstmt = conn.prepareStatement(sql2);
+				//sql2 에 들어갈 값을 지정
 				
 				pstmt.setInt(1, number);
 				pstmt.setString(2, board.getBrd_title());
@@ -228,17 +235,21 @@ public class BoardDao {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
 		int result = 0;			
-		String sql="update board set brd_title = ?, brd_content = ? where brd_bid =?";
+		// update할 값들 넣는다.
+		String sql="update board set brd_title = ?, brd_content = ?, brd_secret=? where brd_bid =?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, board.getBrd_title());
-			pstmt.setString(2, board.getBrd_content());
-			pstmt.setInt(3, board.getBrd_bid());
 			
+			 pstmt.setString(1,board.getBrd_title()); 
+			 pstmt.setString(2,board.getBrd_content()); 
+			 pstmt.setInt(3, board.getBrd_secret());
+			 pstmt.setInt(4, board.getBrd_bid());
+			 
+			 
 			result = pstmt.executeUpdate();
 		} catch(Exception e) {	
-			System.out.println(e.getMessage()); 
+			System.out.println("dao update"+e.getMessage()); 
 		} finally {
 			if (pstmt != null) pstmt.close();
 			if (conn !=null)   conn.close();
@@ -246,29 +257,17 @@ public class BoardDao {
 		return result;
 	}
 	
-	public int delete(int num, String passwd) throws SQLException {
+	public int delete(int num) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
 		int result = 0;		    
-		ResultSet rs = null;
-		String sql1 = "select passwd from board where brd_bid=?";
+		//게시글을 삭제 하는것이 아닌 삭제여부 값을 1넣는 것으로 게시글 리스트에서 보이지 않게 하고 db에는 값을 남긴다.
 		String sql="update board set brd_deleted = '1' where brd_bid = ? ";
 		try {
-			String dbPasswd = "";
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql1);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				dbPasswd = rs.getString(1); 
-				if (dbPasswd.equals(passwd)) {
-					rs.close();  
-					pstmt.close();
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, num);
-					result = pstmt.executeUpdate();
-				} else result = 0;
-			} else result = -1;
+			result = pstmt.executeUpdate();
 		} catch(Exception e) {	
 			System.out.println(e.getMessage()); 
 		} finally {
@@ -278,34 +277,37 @@ public class BoardDao {
 		return result;
 	}
 	
-	public int getSearchCnt() throws SQLException
+	
+	//검색기능 건드리지 마시오
+	public int getSearchCnt(String srh_select, String srh_input) throws SQLException
 	{
 		Connection conn = null;
 		Statement stmt = null;
-		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		int tot = 0;
-		Board board = new Board();
-		String sql = "select count(*) from board where brd_deleted = 0 and where brd_title = '%?%'";
+		System.out.println("srh_select dao->"+srh_select);
+		System.out.println("srh_input dao->"+srh_input);
+		String sql = "select count(*) from board where brd_deleted = 0 and " + srh_select + " like '%" + srh_input + "%'";			
 		try {
+			
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			pstmt.setString(1, board.getBrd_title());
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			System.out.println("sql dao->>>"+sql);
 			if(rs.next())
 			{
 				tot = rs.getInt(1);
 			}
-			System.out.println("rsnext->"+ rs.getInt(1));
+			System.out.println("rsnext dao->"+ rs.getInt(1));
 		} catch (Exception e) {
-			System.out.println("dao totcnt error ->"+e.getMessage());
+			System.out.println("dao searchcnt error ->"+e.getMessage());
 		}
 		finally {
 			if(rs != null) {
 				rs.close();
 			}
-			if(pstmt != null) {
-				pstmt.close();
+			if(stmt != null) {
+				stmt.close();
 			}
 			if(conn != null) {
 				conn.close();
@@ -323,19 +325,20 @@ public class BoardDao {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		Board board = new Board();
-		// String sql = "select * from board order by num desc";
-		// mysql select * from board order by num desc limit startPage-1,10;
+		System.out.println("DAO boardSearchList start... ");
+
 		 String sql =    "SELECT *  "
 		 	    	+ "FROM (Select rownum rn ,a.*  "
-		 		    + "From (select * from board where brd_deleted = 0 order by brd_name desc, brd_ref desc ) a )  "
-		 		    + "WHERE rn BETWEEN ? AND ? and brd_title = '%?%'";
-			/* + "order by (case when brd_name = '공지사항' then 1  end ),brd_ref"; */
+		 		    + "From (select * from board where brd_deleted = 0 and ? like ? order by brd_name desc, brd_ref desc ) a )  "
+		 		    + "WHERE rn BETWEEN ? AND ? ";
 		try {
+			System.out.println("DAO boardSearchList try start... ");
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			pstmt.setString(3, board.getBrd_title());
+			pstmt.setString(1,  );
+			pstmt.setString(2,  );
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				
@@ -352,6 +355,7 @@ public class BoardDao {
 				board.setBrd_re_step(rs.getInt("brd_re_step"));
 				board.setBrd_re_level(rs.getInt("brd_re_level"));
 				list.add(board);
+				System.out.println("DAO boardSearchList finish... ");
 			}
 		} catch(Exception e) {	
 			System.out.println("dao list error ->"+e.getMessage()); 

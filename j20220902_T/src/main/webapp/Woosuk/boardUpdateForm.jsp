@@ -58,9 +58,9 @@ sub {
 		$('#brd_secret').click(function(){
 		
 	        if ($('#brd_secret').prop("checked")) {
-	        	$('#brd_secret').val(1);
+	        	$('#brd_secret').val('Y');
 	        } else {
-	        	 $('#brd_secret').val(0);
+	        	 $('#brd_secret').val('N');
 	        }
 			
 	         
@@ -111,14 +111,13 @@ sub {
 			<h2>게시판</h2>
 			<hr>
 		</div>
+		<!-- 비밀글 값 여부에 따라 체크박스에 체크가 유뮤 조건 -->
 	<div id="scr_box">
-		<c:if test="${board.brd_secret == '1' }">
-			<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  value="1" 
-			               required="required"  checked="checked">비밀글 작성</label>
+		<c:if test="${board.brd_secret == 0  }">
+			<label><input  type="checkbox" name="brd_secret"  id="brd_secret"   value="N">비밀글 작성</label>
 		</c:if>
-		<c:if test="${board.brd_secret == '0' }">
-			<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  value="0" 
-			               required="required" >비밀글 작성</label>
+		<c:if test="${board.brd_secret != 0  }">
+			<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  checked="checked" value="Y">비밀글 작성</label>
 		</c:if>
 		
 	</div>
@@ -143,12 +142,14 @@ sub {
 			</colgroup>
 			<tr height="300"><td style="text-align: center;">내용<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;	 text-align:center;">
 			<input style="width:300px; height:300px;" type="text" name="brd_content" required="required" value="${board.brd_content }" ></td></tr>
+			<!-- 사진 내용 추가 예정 -->
 			<tr height="100"><td style="text-align: center;">사진</td><td style="border: 1.5px solid #DCDCDC; vertical-align : top;">1</td></tr>
 		</table>
 	</div> 
-	
-		<table><tr><td><input type="submit" value="수정"></td></tr>
-			   <tr><td><input type="button" onclick="history.back" value="취소"></td></tr></table>
+				<!-- 수정submit form통해 updateProAction 서비스 실행 -->
+		<table><tr><td><input type="submit" value="수정"></td>
+				<!-- 뒤로가기 -->
+			   <td><input type="button" onclick="history.back()" value="취소"></td></tr></table>
 		
 	
 

@@ -6,28 +6,26 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-
 import dao.Board;
 import dao.BoardDao;
-import service.CommandProcess;
 
 public class WriteFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, JSONException {
+			throws ServletException, IOException {
 		System.out.println("WriteFormAction Start....");
 		try 
 		{
-			//신규 글일때
+			//신규 글일때 값들 0으로 지정
 			int num = 0, brd_ref = 0, brd_re_level = 0, brd_re_step = 0;
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null) 
 			{
 				pageNum = "1";
 			}
-
+			
+			//지정된 값을 전부 세팅
 			request.setAttribute("num", num);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("brd_ref", brd_ref);

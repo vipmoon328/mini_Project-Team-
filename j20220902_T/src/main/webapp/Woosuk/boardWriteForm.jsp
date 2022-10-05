@@ -67,6 +67,20 @@ sub {
 
 		})  
 	});
+	
+	function chk() {
+		if (frm.brd_title.value == "" ) {
+			alert("제목을 입력해 주십시오");
+			frm.brd_title.focus();
+			return false;
+		}
+		if (frm.brd_content.value == "" ) {
+			alert("내용을 입력해 주십시오");
+			frm.brd_content.focus();
+			return false;
+		}
+		return true;
+	}
 
 </script>
 
@@ -101,7 +115,7 @@ sub {
 	
 </head>
 <body>
-	<form action="writePro.do?pageNum=${pageNum }" method="post">
+	<form action="writePro.do?pageNum=${pageNum }"method="post">
 	<input type="hidden" name="brd_bid" value="${num }">
 	<input type="hidden" name="brd_ref" value="${brd_ref }">
 	<input type="hidden" name="brd_re_level" value="${brd_re_level }">
@@ -112,9 +126,9 @@ sub {
 			<h2>게시판</h2>
 			<hr>
 		</div>
+		<!-- 비밀값 여부를 ajax를 통해 넘어가게 했다. 체크시 비밀글 값을 1 안했을 시 0으로 넘어간다. -->
 	<div id="scr_box">
-		<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  value="0" 
-		               required="required" >비밀글 작성</label>
+		<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  value="0" >비밀글 작성</label>
 	</div>
 	
 	<div id="title"><!--제목  -->
@@ -123,11 +137,9 @@ sub {
 			<col width="100">
 			<col width="900">
 		</colgroup>
-		<c:if test="${num==0 }">
 			<tr><td style="	text-align: center;">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
-			<input type="text" name="brd_title" required="required" ></td></tr>
+			<input type="text" name="brd_title" id="brd_title" required="required" ></td></tr>
 			</table>
-		</c:if>
 		<p>
 	</div>
 	
@@ -138,11 +150,11 @@ sub {
 				<col width="900">
 			</colgroup>
 			<tr height="300"><td style="text-align: center;">내용<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;	 text-align:center;">
-			<input style="width:300px; height:300px;" type="text" name="brd_content" required="required" ></td></tr>
+			<input style="width:300px; height:300px;" type="text" name="brd_content" id="brd_content" required="required" ></td></tr>
 			<tr height="100"><td style="text-align: center;">사진</td><td style="border: 1.5px solid #DCDCDC; vertical-align : top;">1</td></tr>
 		</table>
 	</div> 
-	
+		<!-- submit 실행시 writeProAction 서비스 실행 -->
 		<table><tr><td><input type="submit" value="확인"></td></table>
 	
 

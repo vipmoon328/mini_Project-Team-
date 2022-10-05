@@ -203,14 +203,15 @@
 			        
 			        
 			        <c:if test="${totCnt > 0 }">
-			<c:forEach var="board" items="${list }">
+			<c:forEach var="board" items="${list }"><!--반복문을 통해 리스트 출력  -->
 				<tr>
 					<td>${startNum }</td>  
 					<td>${board.brd_name }</td>
 					<td class="left" width=200 height="20">
-					 		<c:if test="${board.brd_secret > 0}">
+					 		<c:if test="${board.brd_secret > 0}"><!--비밀글 값이 1 인 게시물은 잠금 이미지가 나타난다  -->
 							    <img src='images/Lock_icon.png' ">
 						   </c:if>
+							<!-- 지정한 게시글을 불러오기 위한 ContentAction.service 진행 -->
 						 <a href='boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
 					</td>
 					<td>${board.brd_writer}</td>
@@ -240,7 +241,7 @@
 			<p><input id="wr_btn" style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='writeForm.do'">
 			
 			
-
+			<!-- 페이징 -->
 			<div style="text-align: center;">
 				<c:if test="${startPage > blockSize }">
 					<a href='list.do?pageNum=${startPage-blockSize}'>[이전]</a>
@@ -271,14 +272,16 @@
 			      <a class="arrow nnext" href="#"></a>
 			   </div>
 			</div> -->
-
+		</form><!-- 검색기능  -->
+		<form action="searchList.do?pageNum=${pageNum }" method="post">
 			<div id="search">
-				<select id="srh_select">
-					<option value="작성자">작성자</option>
-					<option value="제목">제목</option>
+				<select id="srh_select" name="srh_select">
+					<option value="brd_title">제목</option>
+					<option value="brd_writer">작성자</option>
 				</select>
-				<input id="srh_input" type="text" placeholder="검색어 입력">
-				<input id="srh_btn" type="button" value="검색">
+				<input id="srh_input" name="srh_input" type="text" placeholder="검색어 입력">
+				<input id="srh_btn" type="submit" value="검색">
+				
 			</div>
 		</form>
 		<!--풋터                       -->
