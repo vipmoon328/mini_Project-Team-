@@ -24,8 +24,15 @@ public class ResActionPro implements CommandProcess {
 			throws ServletException, IOException, JSONException {
 		System.out.println("resAction Service start");
 		HttpSession session = request.getSession();
+		System.out.println(request.getParameter("lane"));
+		System.out.println(request.getParameter("start"));
+		System.out.println(request.getParameter("end"));
+		System.out.println(request.getParameter("many"));
+		System.out.println(request.getParameter("cost"));
+		System.out.println(request.getParameter("jijum"));
 		DateFormat df = new SimpleDateFormat("yyMMdd");
 		Calendar cal = Calendar.getInstance();
+		String action_result = "";
 		String inputYear = request.getParameter("inputYear"); 
 		String inputMon = request.getParameter("inputMonth"); 
 		String inputDate = request.getParameter("inputDate"); 
@@ -42,24 +49,35 @@ public class ResActionPro implements CommandProcess {
 		reservation.setRes_sal(Integer.parseInt(request.getParameter("cost")));
 		reservation.setRes_userNum(USERNUM);
 		reservation.setRes_brnNum(Integer.parseInt(request.getParameter("jijum")));
-		System.out.println("res_rid=" + res_rid);
 		ReservationDao rd = ReservationDao.getInstance();
 		int result = 0;
 		try {
 			if (res_rid==null || res_rid.equals("")) {
 				System.out.println("입력실행");
 				result = rd.makeRes(res_date, reservation);
+				if(result>0) {
+					action_result = "예약 완료";
+				}else {
+					action_result = "예약 실패";
+				}
 			}else {
 				System.out.println("수정실행");
 				reservation.setRes_rid(Integer.parseInt(res_rid));
 				result = rd.changeRes(res_date, reservation);
+				if(result>0) {
+					action_result = "예약 변경 완료";
+				}else {
+					action_result = "예약 변경 실패";
+				}
+				request.setAttribute("select_option", request.getParameter("select_option"));
+				request.setAttribute("currentPage", request.getParameter("currentPage"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//request.setAttribute("USERNUM", USERNUM);
-		request.setAttribute("result", result);
+		request.setAttribute("result", action_result);
 		return "/Jehwan/myReservationPro.jsp";
 	}
 

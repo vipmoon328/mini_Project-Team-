@@ -22,7 +22,10 @@
 				reserve_list(data1);
 			}
 		});
-		
+		if(!('${ select_option }' ==null || '${ select_option }' == '')){
+			$('#page_amount').val('${select_option}').prop("selected",true);
+			alert('${result}');
+		}
 		show_reserve('${ currentPage }');
 
 		$(document).on("click","#prev", function(){
@@ -69,24 +72,33 @@
 		}else{
 			for(var i=1 ; i < data.length ; i++){
 				tag = "<tr>";
-				if(data[i]["state"] == "방문전"){
+				if((data[i]["visit"] == "0") &&(data[i]["cancel"] == "0")){
 					tag += "<td><input form='cancel_form' type='checkbox' name='cancel' value="+ data[i]["res_rid"] +"></td>";
 				}else{
 					tag += "<td></td>";  
 				}
-				tag += "<input form='cancel_form' type='hidden' name='currentPage' value="+ data[0]["currentPage"] +">";
-				tag += "<form action='<%=context%>/reschange.do' id='frm"+ i +"'><td><input form='frm" + i + "' type='hidden' name='res_date' value='" + data[i]["res_date"] + "'>" + data[i]["res_date"] + "</td>";
-				tag += "<td><input form='frm" + i + "' type='hidden' name='brnNum' value='" + data[i]["brnNum"] + "'>" + data[i]["brnNum"] + "</td>";
-				tag += "<td><input form='frm" + i + "' type='hidden' name='lane' value='" + data[i]["lane"] + "'>" + data[i]["lane"] + "</td>";
-				tag += "<td><input form='frm" + i + "' type='hidden' name='start' value='" + data[i]["start"] + "'><input form='frm" + i + "' type='hidden' name='end' value='" + data[i]["end"] + "'>" + data[i]["start"] + ":00 ~ " + data[i]["end"] + ":00</td>";
-				tag += "<td><input form='frm" + i + "' type='hidden' name='customer' value='" + data[i]["customer"] + "'>" + data[i]["customer"] + "</td>";
-				tag += "<td><input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>" + data[i]["cost"] + "</td>";
+				tag += "<td>" + data[i]["res_date"] + "</td>";
+				tag += "<td>" + data[i]["brnNum"] + "</td>";
+				tag += "<td>" + data[i]["lane"] + "</td>";
+				tag += "<td>" + data[i]["start"] + ":00 ~ " + data[i]["end"] + ":00</td>";
+				tag += "<td>" + data[i]["customer"] + "</td>";
+				tag += "<td>" + data[i]["cost"] + "</td>";
 				if(data[i]["cancel"] == "1"){
 					tag += "<td style='color:red;'>예약취소</td>";
 					tag += "<td></td>";
 				}else if(data[i]["visit"] == "0"){
 					tag += "<td style='color:blue;'>방문전</td>";
-					tag += "<td><input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 70px;height: 40px;cursor: pointer;'></td>";
+					tag += "<td><form action='<%=context%>/reschange.do' id='frm"+ i +"'>";
+					tag += "<input form='frm" + i + "' type='hidden' name='res_date' value='" + data[i]["res_date"] + "'>";
+					tag += "<input form='frm" + i + "' type='hidden' name='brnNum' value='" + data[i]["brnNum"] + "'>";
+					tag += "<input form='frm" + i + "' type='hidden' name='lane' value='" + data[i]["lane"] + "'>";
+					tag += "<input form='frm" + i + "' type='hidden' name='start' value='" + data[i]["start"] + "'>";
+					tag += "<input form='frm" + i + "' type='hidden' name='end' value='" + data[i]["end"] + "'>";
+					tag += "<input form='frm" + i + "' type='hidden' name='customer' value='" + data[i]["customer"] + "'>";
+					tag += "<input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>";
+					tag += "<input form='frm" + i + "' type='hidden' name='select_option' value="+ $("#page_amount").val() +">";
+					tag += "<input form='frm" + i + "' type='hidden' name='currentPage' value="+ data[0]["currentPage"] +">";
+					tag += "<input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 70px;height: 40px;cursor: pointer;'></td>";
 				}else{
 					tag += "<td style='color:green;'>방문완료</td>";
 					tag += "<td></td>";
@@ -109,6 +121,8 @@
 			if(endPage < pageCnt){
 				pageInfo+="<input id='next' type='button' value='>' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
 			}
+			pageInfo += "<input form='cancel_form' type='hidden' name='currentPage' value="+ data[0]["currentPage"] +">";
+			pageInfo += "<input form='cancel_form' type='hidden' name='select_option' value="+ $("#page_amount").val() +">";
 			$('#pagenum').html(pageInfo);
 			$("#" +  data[0]["currentPage"]).css('color','white').css('background','skyblue');
 		}
