@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" errorPage="error.jsp"%>
-<%-- <%@ include file="../memberCheck.jsp" %> --%>
-<%  String context = request.getContextPath(); %>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  String context = request.getContextPath(); %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>탈퇴하기</title>
-<link href="<%=context%>/css/mgrDeleteForm.css" rel="stylesheet" type="text/css">
+<title>관리자 게시판 게시글 관리</title>
+<link href="<%=context %>/css/mgrBrdMgt.css" rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 <div id="wrapper">
@@ -30,7 +34,7 @@
 					<li>중앙볼링장</li>
 					<li><a href="<%=context%>/mgrList.do" >회원관리</a></li>
 					<li><a href="">매장관리</a></li>
-					<li><a href="">게시판관리</a></li>
+					<li><a href="<%=context%>/mgrBrdMgt.do">게시판관리</a></li>
 				</ul>
 			</div>
 		</div>
@@ -62,6 +66,9 @@
 			</div>
 		</div>
 </div>
+
+
+
+
 </body>
 </html>
-					

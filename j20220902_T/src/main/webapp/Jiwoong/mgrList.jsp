@@ -20,8 +20,15 @@
 <link rel="stylesheet" type="text/css" href="<%=context%>/css/mgrList.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	
-
+	 function searchOption()
+	{
+		if($('#searchField').val()=='name' ||'id')
+		{
+			$(this).attr("readonly",true);
+		}
+			
+	}
+ 
 </script>
 
 </head>
@@ -68,7 +75,7 @@
 	<!-- 조건 검색 form  -->  	
    <div id="search_box">
 		<form method="post" name="search_form" action="<%=context%>/mgrList.do" >
-			<select class="form_control" name="searchField">
+			<select class="form_control" id="searchField" name="searchField" onclick="searchOption()">
 				<option value="" disabled selected>--선택--</option>
 				<option value="name">이름</option>
 				<option value="id">ID</option>
