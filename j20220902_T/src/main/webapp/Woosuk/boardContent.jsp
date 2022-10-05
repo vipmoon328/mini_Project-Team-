@@ -95,6 +95,8 @@ input {
 	<!--헤더                                        -->
 	
 </head>
+<body>
+	<!-- 게시판 출력 -->
 	<form action="">
 		<div id="hrline">
 			<h2>게시판</h2>
@@ -104,7 +106,7 @@ input {
 		<label><input  type="checkbox" name="secret" value="1" >비밀글 작성</label>
 	</div> -->
 	
-	<div id="title"><!--제목  -->
+	<div id="title"><!-- 게시글 제목  -->
 		<table>
 		<colgroup>
 			<col width="800">
@@ -112,9 +114,8 @@ input {
 			<col width="100">
 		</colgroup>
 		<tr><td style="vertical-align : bottom;">${board.brd_title }</td><td style="font-size:4px; vertical-align : bottom;" >${board.brd_writer }</td><td style="font-size:4px; vertical-align : bottom;" >${board.brd_date }</td></tr>
-		
-
 		</table>
+		<!-- Content action으로 통해 db 값을 적용 -->
 		<p>
 	</div>
 	<hr style="width: 50%;">
@@ -124,19 +125,23 @@ input {
 			<colgroup>
 				<col width="800">
 			</colgroup>
+			<!-- 게시글 내용 출력 -->
 			<tr height="300"><td style="vertical-align : top;">${board.brd_content }</td></tr>
 			<tr height="100"><td style="vertical-align : top;">파일</td></tr>
 			
 		</table>
 	</div> 
+	<!-- 수정 updateFormAction 서비스 실행 -->
 	<input style="margin-left:66%"  type="button" value="수정" onclick="location.href='updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+	<!-- 삭제 deleteFormAction 서비스 실행 -->
 	<input type="button" value="삭제" onclick="location.href='deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+	<!-- 게시판 리스트로 복귀 -->
 	<input type="button" value="목록" onclick="location.href='list.do?pageNum=${pageNum }'">
 
 	
 	</form>		
 
-<body>
+
 		<!--풋터                       -->
 		<div class="flex-container center">
 			<div class="item_end">

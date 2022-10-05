@@ -7,30 +7,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-
 import dao.BoardDao;
-import service.CommandProcess;
 
 public class DeleteProAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, JSONException {
+			throws ServletException, IOException {
 		
 		
 		
 		try {
 			// 1. num , passwd , pageNum Get
 			int num = Integer.parseInt(request.getParameter("num"));
-			String passwd = request.getParameter("passwd");
 			String pageNum = request.getParameter("pageNum");
 			
 			// 2. BoardDao bd Instance
 			BoardDao bd = BoardDao.getInstance();
 			
 			// 3. 본인의 게시판만 삭제
-			int result = bd.delete(num, passwd);
+			// 게시글 삭제 기능 삭제 하는것이 아닌 update를 통해 삭제 여부 값을 1로 변경
+			int result = bd.delete(num);
 			
 			// 4. request 객체에  num , pageNum ,result
 			request.setAttribute("num", num);
@@ -40,7 +37,7 @@ public class DeleteProAction implements CommandProcess {
 			e.printStackTrace();
 		}
 
-		return "deletePro.jsp";
+		return "boardDeletePro.jsp";
 	}
 
 }

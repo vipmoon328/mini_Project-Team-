@@ -16,8 +16,8 @@
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("입력하신 암호가 다릅니다");
-			location.href="deleteForm.do?num=${num}&pageNum=${pageNum}";
+			alert("오류가 발생했습니다");
+			location.href="boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}";
 		</script>
 	</c:if>
 </body>
