@@ -373,5 +373,36 @@ public class BoardDao {
 		
 	}
 	
+	public int check(int num, String passwd) throws SQLException {
+		Connection conn = null;	
+		PreparedStatement pstmt= null; 
+		int result = 0;		    
+		ResultSet rs = null;
+		String sql = "select passwd from board where num=?";
+
+		try {
+			String dbPasswd = "";
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dbPasswd = rs.getString(1); 
+				if (dbPasswd.equals(passwd)) {
+					rs.close();  
+					pstmt.close();
+					pstmt.setInt(1, num);
+					result = 1;
+				} else result = 0;
+			} else result = -1;
+		} catch(Exception e) {	
+			System.out.println(e.getMessage()); 
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn !=null) conn.close();
+		}
+		return result;
+	}
+	
 
 }

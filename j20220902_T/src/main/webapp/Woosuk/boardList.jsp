@@ -213,8 +213,13 @@
 					 		<c:if test="${board.brd_secret > 0}"><!--비밀글 값이 1 인 게시물은 잠금 이미지가 나타난다  -->
 							    <img src='images/Lock_icon.png' ">
 						   </c:if>
-							<!-- 지정한 게시글을 불러오기 위한 ContentAction.service 진행 -->
-						 <a href='<%=context%>/boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
+						<!-- 지정한 게시글을 불러오기 위한 ContentAction.service 진행 -->
+						<c:if test="${board.brd_secret > 0 }">
+							<a href='secretCheckForm.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
+						</c:if>
+						<c:if test="${board.brd_secret == 0 }">
+							<a href='boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
+						</c:if>
 					</td>
 					<td>${board.brd_writer}</td>
 					<td>${board.brd_date}</td>

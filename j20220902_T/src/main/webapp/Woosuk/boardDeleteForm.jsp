@@ -9,7 +9,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		location.href = "<%=context%>/deletePro.do"; //디폴트가 get 방식이다
+		location.href = "<%=context%>/deletePro.do?pageNum=${pageNum}"; //디폴트가 get 방식이다
 	</script>
 
 	<%-- <!-- 사용 할지 말지 여부중 -->
