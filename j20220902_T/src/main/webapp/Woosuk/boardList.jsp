@@ -3,6 +3,7 @@
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 <%  String context = request.getContextPath(); %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,8 +151,8 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li><a href="#">user님</li>
-					<li><a href="#">로그아웃</li>
+					<li>${id}님</li>
+					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div> 
 		</div>
@@ -160,12 +161,12 @@
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="#">홈</a></li>
-					<li><a href="#">볼링장정보</a></li>
-					<li><a href="#">예약</a></li>
-					<li><a href="#">오시는길</a></li>
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">마이페이지</a></li>
+					<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
+					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
+					<li><a href="<%=context%>/reschange.do">예약</a></li>
+					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
+					<li><a href="<%=context%>/list.do">게시판</a></li>
+					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 				</ul>
 			</div>
 		</div>
