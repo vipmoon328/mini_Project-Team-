@@ -39,7 +39,7 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
 					int currentPage = Integer.parseInt(pageNum);	//   1        
 					int pageSize  = Integer.parseInt(request.getParameter("pageAmount"));
-					int blockSize = 2;
+					int blockSize = 3;
 					int startRow = (currentPage - 1) * pageSize + 1;  // 1     10   
 					int endRow   = startRow + pageSize - 1;           // 11    20 
 					
@@ -77,6 +77,8 @@ public class AjaxMyResCheckPro implements CommandProcess {
 						obj.put("end", reservation.getRes_endTime());
 						obj.put("customer", reservation.getRes_customer());
 						obj.put("cost", reservation.getRes_sal());
+						obj.put("cancel", reservation.getRes_cancel());
+						obj.put("visit", reservation.getRes_come());
 						if(reservation.getRes_cancel() == 1) {
 							state = "예약취소";
 						}else if(reservation.getRes_come() == 0) {

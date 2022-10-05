@@ -2,14 +2,15 @@
 	div {                      
 		border: 1px solid white;
 	}
-	body {
-		margin: 0;			
+	body, html {
+		padding: 0;
+		margin: 0;
+		height: 100%;
 	}
 	/* -------------------------------------------------------------------- */	
 	#wrapper {
-			height: auto;
 			min-height: 100%;
-			padding-bottom: 130px;
+			position: relative;
 	}
 	.flex-container {
             display: flex;  /* 컨테이너들 수직정렬 */
@@ -112,6 +113,7 @@
 	
 	#content_container	{
 		text-align: center;
+		padding-bottom: 130px;
 	}
 	
 	#jijum {
@@ -124,6 +126,7 @@
 			-webkit-appearance: none; 
 			-moz-appearance: none;
 			appearance: none;
+			cursor: pointer;
 			}
 	
 	caption, #frm {
@@ -168,7 +171,10 @@
 		width: 70%;
 		margin: 0 auto;
 	}
-	
+	#today{
+		font-size: 25px;
+		font-weight: bolder;
+	}
 	
 	#calendar{
 		float: left;
@@ -184,7 +190,7 @@
 	}
 	#timeTableCon {
 		margin: 20px;
-		padding: 20px;
+		padding-bottom: 240px;
 	}
 	
 	#reset, #insert{
@@ -195,7 +201,8 @@
             width: 100px;
             height: 40px;
             border-collapse: collapse;
-            border-radius: 5px; 
+            border-radius: 5px;
+            cursor: pointer;
     }
     
     #next, #prev{
@@ -207,6 +214,7 @@
             height: 30px;
             border-collapse: collapse;
             border-radius: 5px; 
+            cursor: pointer;
     }
     
     #reset:hover, #insert:hover{
@@ -221,10 +229,14 @@
 	/* -------------------------------------------------------------------- */
 	/* 하단내용 영역 */							   
 	#footer {
-			clear: both; 				/* 양쪽 float 해제(contents,sidebar의 float을 따라가지 않는다.) */
-			padding: 20px;    			/* 테두리 안에 여백 */
-			background-color: black;    /* 영역 배경 색상 */
-			color: white;               /* 글자 색상 */
+				width : 100%;
+				height : 100px;
+				padding: 20px;    			/* 테두리 안에 여백 */
+				background-color: black;    /* 영역 배경 색상 */
+				color: white;               /* 글자 색상 */
+				bottom: 0;
+				left : 0;
+				position: absolute;
 			}
 	nav {
 		text-align: center;  /* 글자 정렬 */
