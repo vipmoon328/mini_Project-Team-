@@ -133,10 +133,10 @@
 								<c:choose>
 									<c:when test="${users.gender eq 'M'}">
 										<input type="radio" name="gender" value="M" checked="checked"><span>남성</span>
-										<input type="radio" name="gender" value="F"><span>여성</span>
+										<input type="radio" name="gender" value="F" onclick="return false"><span>여성</span>
 									</c:when>
 									<c:otherwise>
-										<input type="radio" name="gender" value="M"><span>남성</span>
+										<input type="radio" name="gender" value="M" onclick="return false"><span>남성</span>
 										<input type="radio" name="gender" value="F" checked="checked"><span>여성</span>
 									</c:otherwise>
 								</c:choose>
