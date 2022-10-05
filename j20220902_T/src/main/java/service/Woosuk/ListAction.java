@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-
 import dao.Board;
 import dao.BoardDao;
 import service.CommandProcess;
@@ -17,13 +15,24 @@ public class ListAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, JSONException {
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8"); 
 		System.out.println("ListAction Service start...");
-		
+		String srh_input = request.getParameter("srh_input");
+		if (srh_input == null)	srh_input = "%";
+		else                    srh_input = '%'+srh_input+'%';
+		System.out.println("srh_input try->"+srh_input);
+		String srh_select = request.getParameter("srh_select");
+		if (srh_select == null) srh_select = "brd_title";
+		System.out.println("srh_select try->"+srh_select);
+		System.out.println("전totCnt->->");
+			
 		BoardDao bd = BoardDao.getInstance();
 		
 		try {
-			int totCnt = bd.getTotalCnt(); //37개
+			int totCnt = bd.getSearchCnt(srh_select, srh_input); //37개
+     //		int totCnt = bd.getTotalCnt(); //37개
+			System.out.println("ListAction Service totCnt->"+totCnt);
 			
 			String pageNum = request.getParameter("pageNum");
 			if(pageNum == null||pageNum.equals(""))//데이터가 있든 없든 강제로 1페이지 지정
@@ -39,7 +48,7 @@ public class ListAction implements CommandProcess {
 			int startNum = totCnt - startRow + 1;
 			
 			//board 조회						1번부터		(10번)11번까지
-			List<Board> list = bd.boardList(startRow, endRow);
+			List<Board> list = bd.boardListSearch(startRow, endRow, srh_select, srh_input);
 												// 37/10 으로 3.7을 반올림 해서 4페이지 나오게 했다
 			int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
 									//(첫페이지시 1-1 0으로 +1로 1페이지)
@@ -63,7 +72,7 @@ public class ListAction implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println("ListAction e.getMessage()->"+e.getMessage());
 		}
-		return "Woosuk/boardList.jsp";
+		return "boardList.jsp";
 	}
 
 }
