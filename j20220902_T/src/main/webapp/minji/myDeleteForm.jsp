@@ -8,6 +8,16 @@
 <meta charset="UTF-8">
 <title>탈퇴하기</title>
 <link href="<%=context %>/css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	function chk() {
+		if(!frm.user_password.value) {
+			alert("암호를 입력하세요.");
+			frm.title.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
 </head>
 <body>
 <div id="wrapper">
@@ -29,7 +39,7 @@
 					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
 					<li><a href="<%=context%>/reschange.do">예약</a></li>
 					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
-					<li><a href="">게시판</a></li>
+					<li><a href="<%=context%>">게시판</a></li>
 					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 				</ul>
 			</div>
@@ -41,7 +51,7 @@
 	<hr color="#90C3FF" width="70%" size="1">
 		<div class="flex-container center">
 			<div class="item_fifth"> 
-				<form action="myDeletePro.do">
+				<form action="myDeletePro.do" name="frm" onsubmit="return chk()">
 					<table width="500px" height="350px">
 						<!-- 수정 세션 값으로 대체되었습니다 [김건희] -->
 <%-- 					<tr>
