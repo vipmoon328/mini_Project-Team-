@@ -22,8 +22,9 @@
 				reserve_list(data1);
 			}
 		});
-		show_reserve('${ currentPage }');
 		
+		show_reserve('${ currentPage }');
+
 		$(document).on("click","#prev", function(){
 			var prevNum = parseInt($(".numSelect:first").val())-1;
 			show_reserve(prevNum);
@@ -62,50 +63,55 @@
 	function reserve_list(data) {
 		$("#list").empty();
 		var tag;
-		for(var i=1 ; i < data.length ; i++){
-			tag = "<tr>";
-			if(data[i]["state"] == "방문전"){
-				tag += "<td><input form='cancel_form' type='checkbox' name='cancel' value="+ data[i]["res_rid"] +"></td>";
-			}else{
-				tag += "<td></td>";  
-			}
-			tag += "<input form='cancel_form' type='hidden' name='currentPage' value="+ data[0]["currentPage"] +">";
-			tag += "<form action='<%=context%>/reschange.do' id='frm"+ i +"'><td><input form='frm" + i + "' type='hidden' name='res_date' value='" + data[i]["res_date"] + "'>" + data[i]["res_date"] + "</td>";
-			tag += "<td><input form='frm" + i + "' type='hidden' name='brnNum' value='" + data[i]["brnNum"] + "'>" + data[i]["brnNum"] + "</td>";
-			tag += "<td><input form='frm" + i + "' type='hidden' name='lane' value='" + data[i]["lane"] + "'>" + data[i]["lane"] + "</td>";
-			tag += "<td><input form='frm" + i + "' type='hidden' name='start' value='" + data[i]["start"] + "'><input form='frm" + i + "' type='hidden' name='end' value='" + data[i]["end"] + "'>" + data[i]["start"] + ":00 ~ " + data[i]["end"] + ":00</td>";
-			tag += "<td><input form='frm" + i + "' type='hidden' name='customer' value='" + data[i]["customer"] + "'>" + data[i]["customer"] + "</td>";
-			tag += "<td><input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>" + data[i]["cost"] + "</td>";
-			if(data[i]["cancel"] == "1"){
-				tag += "<td style='color:red;'>예약취소</td>";
-				tag += "<td></td>";
-			}else if(data[i]["visit"] == "0"){
-				tag += "<td style='color:blue;'>방문전</td>";
-				tag += "<td><input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 70px;height: 40px;cursor: pointer;'></td>";
-			}else{
-				tag += "<td style='color:green;'>방문완료</td>";
-				tag += "<td></td>";
-			}
-			tag += "<input form='frm" + i + "' type='hidden' name='res_rid' value='" + data[i]["res_rid"] +"'></tr></form>";
+		if(data[0]["totCnt"] == "0"){
+			tag = "<tr><td colspan='9' style='height:400px;'><img src='/j20220902_T/images/예약.png' width='70' height='70'><br>예약정보가 없습니다</td></tr>";
 			$("#list").append(tag);
-			
+		}else{
+			for(var i=1 ; i < data.length ; i++){
+				tag = "<tr>";
+				if(data[i]["state"] == "방문전"){
+					tag += "<td><input form='cancel_form' type='checkbox' name='cancel' value="+ data[i]["res_rid"] +"></td>";
+				}else{
+					tag += "<td></td>";  
+				}
+				tag += "<input form='cancel_form' type='hidden' name='currentPage' value="+ data[0]["currentPage"] +">";
+				tag += "<form action='<%=context%>/reschange.do' id='frm"+ i +"'><td><input form='frm" + i + "' type='hidden' name='res_date' value='" + data[i]["res_date"] + "'>" + data[i]["res_date"] + "</td>";
+				tag += "<td><input form='frm" + i + "' type='hidden' name='brnNum' value='" + data[i]["brnNum"] + "'>" + data[i]["brnNum"] + "</td>";
+				tag += "<td><input form='frm" + i + "' type='hidden' name='lane' value='" + data[i]["lane"] + "'>" + data[i]["lane"] + "</td>";
+				tag += "<td><input form='frm" + i + "' type='hidden' name='start' value='" + data[i]["start"] + "'><input form='frm" + i + "' type='hidden' name='end' value='" + data[i]["end"] + "'>" + data[i]["start"] + ":00 ~ " + data[i]["end"] + ":00</td>";
+				tag += "<td><input form='frm" + i + "' type='hidden' name='customer' value='" + data[i]["customer"] + "'>" + data[i]["customer"] + "</td>";
+				tag += "<td><input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>" + data[i]["cost"] + "</td>";
+				if(data[i]["cancel"] == "1"){
+					tag += "<td style='color:red;'>예약취소</td>";
+					tag += "<td></td>";
+				}else if(data[i]["visit"] == "0"){
+					tag += "<td style='color:blue;'>방문전</td>";
+					tag += "<td><input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 70px;height: 40px;cursor: pointer;'></td>";
+				}else{
+					tag += "<td style='color:green;'>방문완료</td>";
+					tag += "<td></td>";
+				}
+				tag += "<input form='frm" + i + "' type='hidden' name='res_rid' value='" + data[i]["res_rid"] +"'></tr></form>";
+				$("#list").append(tag);
+				
+			}
+			var pageInfo ="";
+			var startPage = parseInt(data[0]["startPage"]);
+			var endPage   = parseInt(data[0]["endPage"]);
+			var blockSize = parseInt(data[0]["blockSize"]);
+			var pageCnt = parseInt(data[0]["pageCnt"]);
+			if(startPage > blockSize){
+				pageInfo+="<input id='prev' type='button' value='<' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
+			}
+			for(startPage ; startPage<=endPage ; startPage++){
+				pageInfo+="<input class='numSelect' type='button' id='" + startPage + "' value='" + startPage +"' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
+			}
+			if(endPage < pageCnt){
+				pageInfo+="<input id='next' type='button' value='>' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
+			}
+			$('#pagenum').html(pageInfo);
+			$("#" +  data[0]["currentPage"]).css('color','white').css('background','skyblue');
 		}
-		var pageInfo ="";
-		var startPage = parseInt(data[0]["startPage"]);
-		var endPage   = parseInt(data[0]["endPage"]);
-		var blockSize = parseInt(data[0]["blockSize"]);
-		var pageCnt = parseInt(data[0]["pageCnt"]);
-		if(startPage > blockSize){
-			pageInfo+="<input id='prev' type='button' value='<' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
-		}
-		for(startPage ; startPage<=endPage ; startPage++){
-			pageInfo+="<input class='numSelect' type='button' id='" + startPage + "' value='" + startPage +"' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
-		}
-		if(endPage < pageCnt){
-			pageInfo+="<input id='next' type='button' value='>' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
-		}
-		$('#pagenum').html(pageInfo);
-		$("#" +  data[0]["currentPage"]).css('color','white').css('background','skyblue');
 	}
 </script>
 <body>
@@ -129,7 +135,7 @@
 					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
 					<li><a href="<%=context%>/reschange.do">예약</a></li>
 					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
-					<li><a href="<%=context%>/list.do">>게시판</a></li>
+					<li><a href="<%=context%>/list.do">게시판</a></li>
 					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 				</ul>
 			</div>

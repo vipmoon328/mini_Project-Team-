@@ -154,17 +154,15 @@
 	#test_table{
 		clear:both;
 		border-collapse: collapse;
+		margin: 0 auto;
 	}
-	#test td{
+	
+	
+	#test_table th {
 		width: 80px;
 		height: 40px;
-	}
-	
-	#test th{
-		width: 100px;
-		height: 40px;
 		font-size : 0.9em;
-	
+		min-width: 80px;
 	}
 	
 	#dateSelectCon{

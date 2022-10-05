@@ -55,6 +55,7 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					String branch="";
 					
 					JSONObject pageInfo = new JSONObject();
+					pageInfo.put("totCnt", totCnt);
 					pageInfo.put("startPage", startPage);
 					pageInfo.put("endPage", endPage);
 					pageInfo.put("blockSize", blockSize);

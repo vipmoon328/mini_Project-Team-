@@ -120,6 +120,7 @@ div {
 		margin : auto;
 		border-collapse: collapse;
 		margin-top: 150px;
+		width: 950px;
 	}
 	
 	.cancel_btn, .cancel_select{
