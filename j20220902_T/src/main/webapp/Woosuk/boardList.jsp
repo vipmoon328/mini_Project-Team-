@@ -150,10 +150,22 @@
 <div id="wrapper">
 		<div class="flex-container flex-end">
 			<div class="item_first">
-				<ul>
-					<li>${id}님</li>
-					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
-				</ul>
+			<!-- 22.10.06 [김건희] 로그인 여부에 따라 화면 출력 차이 구현  -->
+				<c:choose>
+					<c:when test="${empty id}">
+					<ul>
+						<li><a href="<%=context%>/GunHee/loginForm.jsp">로그인 </a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 1 [김건희] -->
+						<li><a href="<%=context%>/GunHee/signUpForm.jsp">회원가입</a></li>
+					</ul>
+					</c:when>
+					
+					<c:otherwise>
+					<ul>
+						<li>${id}님</li>
+						<li><a href="<%=context%>/logout.do">로그아웃</a></li>
+					</ul>
+					</c:otherwise>
+				</c:choose>
 			</div> 
 		</div>
 	<hr color="#D5D5D5" width="100%" size="1">
@@ -245,8 +257,16 @@
 				</table>
 			</div>
 			<!-- <input id="wr_btn" type="button" value="글작성" class="active" href="writeForm.do"> -->
-			<p><input id="wr_btn" style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='<%=context%>/writeForm.do'">
 			
+			<!-- 22.10.06 [김건희] 로그인 여부에 따라 화면 출력 차이 구현  -->
+			<c:choose>
+					<c:when test="${empty id}">
+					</c:when>
+					
+					<c:otherwise>
+						<p><input id="wr_btn" style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='<%=context%>/writeForm.do'">
+					</c:otherwise>
+			</c:choose>
 			
 			<!-- 페이징 -->
 			<div style="text-align: center;">
