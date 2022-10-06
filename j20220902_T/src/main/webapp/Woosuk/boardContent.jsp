@@ -6,6 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+	console.log(${usernum});
+	console.log(${board.usernum});
+</script>
 <meta charset="UTF-8">
 <title>게시글</title>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
@@ -70,10 +74,20 @@ input {
 <div id="wrapper">
 		<div class="flex-container flex-end">
 			<div class="item_first">
-				<ul>
-					<li>${id}님</li>
-					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
-				</ul>
+				<c:choose>
+					<c:when test="${empty id}">
+					<ul>
+						<li><a href="<%=context%>/GunHee/loginForm.jsp">로그인 </a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 1 [김건희] -->
+						<li><a href="<%=context%>/GunHee/signUpForm.jsp">회원가입</a></li>
+					</ul>
+					</c:when>
+					<c:otherwise>
+					<ul>
+						<li>${id}님</li>
+						<li><a href="<%=context%>/logout.do">로그아웃</a></li>
+					</ul>
+					</c:otherwise>
+				</c:choose>
 			</div> 
 		</div>
 	<hr color="#D5D5D5" width="100%" size="1">
@@ -133,17 +147,22 @@ input {
 				</c:forEach>
 		</table>
 	</div> 
+	<!-- 조건시에 삭제랑 수정 기능이 보여질수 있도록 수정 [김건희]-->
 	<!-- 수정 updateFormAction 서비스 실행 -->
-	<input style="margin-left:66%"  type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
 	<!-- 삭제 deleteFormAction 서비스 실행 -->
-	<input type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
 	<!-- 게시판 리스트로 복귀 -->
-	<input type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum }'">
-
+	<c:choose>
+		<c:when test="${usernum eq board.usernum}">
+			<input style="margin-left:66%"  type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+			<input type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+			<input type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+		</c:when>
+		<c:otherwise>
+			<input style="margin-left:66%" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+		</c:otherwise>
+	</c:choose>
 	
 	</form>		
-
-
 		<!--풋터                       -->
 		<div class="flex-container center">
 			<div class="item_end">
