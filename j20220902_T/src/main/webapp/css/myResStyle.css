@@ -153,7 +153,22 @@ div {
 		background-color: #90C3FF;
 	}
 	
-	#cancel_select{
+    
+     input[type=button], input[type=submit], input[type=reset] {
+     	border: 2px solid skyblue;
+        background-color: rgba(0,0,0,0);
+        color: black;
+        padding: 5px;
+        border-collapse: collapse;
+        cursor: pointer;
+     }
+     
+     input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
+     	color:white;
+        background-color: skyblue;
+     }
+     
+     #cancel_select{
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
             margin-right: -1px;
@@ -164,19 +179,26 @@ div {
             margin-left: -1px;
         }
     #cancel_select, #cancel_btn{
-            border: 2px solid skyblue;
-            background-color: rgba(0,0,0,0);
-            color: black;
-            padding: 5px;
             width: 100px;
             height: 40px;
             border-collapse: collapse;
-            cursor: pointer;
+     }
+        
+     #prev, #next, .numSelect{
+            width: 30px;
+            height: 30px;
+            border-collapse: collapse;
+            border-radius: 5px;
         }
-    #cancel_select:hover, #cancel_btn:hover{
-            color:white;
-            background-color: skyblue;
+        
+     .change_btn{
+            width: 70px;
+            height: 40px;
+            border-collapse: collapse;
+            border-radius: 5px;
         }
+      
+      
 	/* -------------------------------------------------------------------- */
 	/* 하단내용 영역 */							   
 	#footer {

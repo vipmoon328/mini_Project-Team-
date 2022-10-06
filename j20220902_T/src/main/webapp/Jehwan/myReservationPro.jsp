@@ -42,18 +42,18 @@
 			show_reserve($(this).val());
 		});
 		
+		$(document).on("click","#cancel_btn", function(){
+			console.log($('input:checkbox[name="cancel"]').is(":checked"));
+			if($('input:checkbox[name="cancel"]').is(":checked") == false){
+				alert("적어도 한개이상의 예약을 선택해주세요");
+			}else{
+				document.getElementById("cancel_form").submit();
+			}
+		});
+		
 		$(document).on("change","#page_amount", function(){
 			show_reserve(1);
 		});
-		
-		$(document).on({
-		    mouseenter: function () {
-		        $(this).css('color','white').css('background','skyblue');
-		    },
-		    mouseleave: function () {
-		    	$(this).css('color','black').css('background','white');
-		    }
-		}, ".change_btn");
 	});
 	
 	function show_reserve(pageNum) {
@@ -62,7 +62,7 @@
 			data	: sendData
 		});
 	} 
-	 
+	
 	function reserve_list(data) {
 		$("#list").empty();
 		var tag;
@@ -98,7 +98,7 @@
 					tag += "<input form='frm" + i + "' type='hidden' name='cost' value='" + data[i]["cost"] + "'>";
 					tag += "<input form='frm" + i + "' type='hidden' name='select_option' value="+ $("#page_amount").val() +">";
 					tag += "<input form='frm" + i + "' type='hidden' name='currentPage' value="+ data[0]["currentPage"] +">";
-					tag += "<input form='frm" + i + "' class='change_btn' type='submit' value='예약변경' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 70px;height: 40px;cursor: pointer;'></td>";
+					tag += "<input form='frm" + i + "' class='change_btn' type='submit' value='예약변경'></td>";
 				}else{
 					tag += "<td style='color:green;'>방문완료</td>";
 					tag += "<td></td>";
@@ -113,13 +113,13 @@
 			var blockSize = parseInt(data[0]["blockSize"]);
 			var pageCnt = parseInt(data[0]["pageCnt"]);
 			if(startPage > blockSize){
-				pageInfo+="<input id='prev' type='button' value='<' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
+				pageInfo+="<input id='prev' type='button' value='<'>";
 			}
 			for(startPage ; startPage<=endPage ; startPage++){
-				pageInfo+="<input class='numSelect' type='button' id='" + startPage + "' value='" + startPage +"' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
+				pageInfo+="<input class='numSelect' type='button' id='" + startPage + "' value='" + startPage +"'>";
 			}
 			if(endPage < pageCnt){
-				pageInfo+="<input id='next' type='button' value='>' style='border-radius: 5px;border: 2px solid skyblue;background-color: white;color: black;width: 30px;height: 30px;cursor: pointer;'>";
+				pageInfo+="<input id='next' type='button' value='>'>";
 			}
 			pageInfo += "<input form='cancel_form' type='hidden' name='currentPage' value="+ data[0]["currentPage"] +">";
 			pageInfo += "<input form='cancel_form' type='hidden' name='select_option' value="+ $("#page_amount").val() +">";
@@ -127,6 +127,7 @@
 			$("#" +  data[0]["currentPage"]).css('color','white').css('background','skyblue');
 		}
 	}
+	
 </script>
 <body>
 <div id="wrapper">
@@ -164,8 +165,8 @@
 	<form action="<%=context%>/resCancel.do" id="cancel_form"></form>
 		<table id="test_table">
 			<caption>
-				<input form="cancel_form" type="reset" value="선택 취소" class="cancel_btn"  id="cancel_select"><input form="cancel_form" type="submit" value="예약 취소" class="cancel_btn" id="cancel_btn">
-				<select id="page_amount" onclick="">
+				<input form="cancel_form" type="reset" value="선택 취소" class="cancel_btn"  id="cancel_select"><input form="cancel_form" type="button" value="예약 취소" class="cancel_btn" id="cancel_btn">
+				<select id="page_amount">
 					<option value="3">3개씩 보기</option>
 					<option value="5">5개씩 보기</option>
 					<option value="10" selected="selected">10개씩 보기</option>
@@ -179,7 +180,6 @@
 		</table>
 		
 		<div id="pagenum">
-			
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
