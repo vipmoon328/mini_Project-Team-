@@ -1,4 +1,4 @@
-package service;
+package service.Minji;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,6 +10,7 @@ import org.json.JSONException;
 
 import dao.UserDao;
 import dao.Users;
+import service.CommandProcess;
 
 public class MyPageFormAction implements CommandProcess {
 
@@ -49,7 +50,7 @@ public class MyPageFormAction implements CommandProcess {
 			System.out.println(e.getMessage());
 		}
 		
-		return "/minji/mypageForm.jsp";
+		return "/Minji/mypageForm.jsp";
 	}
 
 }

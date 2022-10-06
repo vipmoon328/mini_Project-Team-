@@ -1,4 +1,4 @@
-package service;
+package service.Minji;
 
 import java.io.IOException;
 
@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 
 import dao.UserDao;
+import service.CommandProcess;
 
 public class MyDeleteProAction implements CommandProcess {
 
@@ -45,7 +46,7 @@ public class MyDeleteProAction implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return "/minji/myDeletePro.jsp";
+		return "/Minji/myDeletePro.jsp";
 	}
 
 }

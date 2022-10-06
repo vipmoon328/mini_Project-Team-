@@ -1,12 +1,19 @@
 package service.Woosuk;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.Board;
 import dao.BoardDao;
@@ -27,6 +34,20 @@ public class WriteFormAction implements CommandProcess {
 			{
 				pageNum = "1";
 			}
+			
+			/*
+			 * request.setCharacterEncoding("utf-8"); int maxSize = 5 * 1024 * 1024;
+			 * 
+			 * ServletContext context = request.getSession().getServletContext();
+			 * 
+			 * String fileSave = context.getContextPath(); String fileSave2 =
+			 * context.getRealPath("../fileSave");
+			 * 
+			 * System.out.println("파일 저장 위치 1: "+fileSave);
+			 * System.out.println("파일 저장 위치 2: "+fileSave2);
+			 */
+			
+			//MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"utf-8", new DefaultFileRenamePolicy());
 			
 			//지정된 값을 전부 세팅
 			request.setAttribute("num", num);

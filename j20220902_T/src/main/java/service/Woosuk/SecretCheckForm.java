@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-
 import dao.Board;
 import dao.BoardDao;
 import service.CommandProcess;
@@ -16,7 +14,7 @@ public class SecretCheckForm implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, JSONException {
+			throws ServletException, IOException {
 		System.out.println("SecretCheckForm start...");
 		
 		try {
@@ -37,7 +35,7 @@ public class SecretCheckForm implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return "Woosuk/boardSecretForm.jsp";
+		return "boardSecretForm.jsp";
 	}
 
 }

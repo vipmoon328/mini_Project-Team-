@@ -1,4 +1,4 @@
-package service;
+package service.Minji;
 
 import java.io.IOException;
 
@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 import dao.UserDao;
 import dao.Users;
+import service.CommandProcess;
 
 
 public class MyPageProAction implements CommandProcess {
@@ -53,7 +54,7 @@ public class MyPageProAction implements CommandProcess {
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
-				return "/minji/mypagePro.jsp";
+				return "/Minji/mypagePro.jsp";
 			}
 
 		}

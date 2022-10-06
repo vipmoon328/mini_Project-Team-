@@ -1,4 +1,4 @@
-package service;
+package service.Minji;
 
 import java.io.IOException;
 
@@ -10,6 +10,7 @@ import org.json.JSONException;
 
 import dao.UserDao;
 import dao.Users;
+import service.CommandProcess;
 
 
 
@@ -38,7 +39,7 @@ public class MyDeleteFormAction implements CommandProcess {
 						System.out.println(e.getMessage());
 			}
 					
-			return "/minji/myDeleteForm.jsp";
+			return "/Minji/myDeleteForm.jsp";
 	}
 		
 }
