@@ -221,13 +221,7 @@ public class BoardDao {
 				board.setBrd_img_src(brd_img_src);
 				
 			}
-<<<<<<< HEAD
 				
-=======
-			
-			System.out.println("select_usernum->"+board.getUsernum());
-
->>>>>>> branch 'master' of https://github.com/vipmoon328/mini_Project-Team-.git
 		} catch(Exception e) {	
 			System.out.println("dao select error ->"+e.getMessage()); 
 		} finally {
@@ -238,13 +232,8 @@ public class BoardDao {
 		return board;
 	}
 	
-<<<<<<< HEAD
 	
 	public int insert(List<String> dbSavePath, Board board) throws SQLException {
-=======
-	//22.10.06 [김건희] 코드 수정 
-	public int insert(Board board) throws SQLException {
->>>>>>> branch 'master' of https://github.com/vipmoon328/mini_Project-Team-.git
 		int result =0;
 		System.out.println("dao insert start...");
 		System.out.println("dao board.getBrd_bid ->"+board.getBrd_bid());
@@ -255,14 +244,8 @@ public class BoardDao {
 		//게시글의 가장 마지막 고유 번호를 찾는다
 		String sql1 = "select nvl(max(brd_bid),0) from board";
 		//게시글 값 insert
-<<<<<<< HEAD
 		String sql2 =  "insert into board(BRD_BID, BRD_NAME,BRD_TITLE ,BRD_WRITER ,BRD_DATE ,BRD_VIEW ,BRD_CONTENT ,BRD_SECRET ,BRD_DELETED ,USERNUM ,BRD_REF ,BRD_RE_STEP ,BRD_RE_LEVEL)VALUES(?, '게시글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, 1, ?, ?, ?)";
 		String sql3 =  "insert into FILES VALUES(?, ?, ?)";
-=======
-		
-		//22.10.06 [김건희] SQL 문 수정 [기본값으로 설정된 usernum을 사용자의 usernum과 일치할 수 있게 함] 
-		String sql2 =  "insert into board(BRD_BID, BRD_NAME,BRD_TITLE ,BRD_WRITER ,BRD_DATE ,BRD_VIEW ,BRD_CONTENT ,BRD_SECRET ,BRD_DELETED ,USERNUM ,BRD_REF ,BRD_RE_STEP ,BRD_RE_LEVEL)VALUES(?, '게시글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
->>>>>>> branch 'master' of https://github.com/vipmoon328/mini_Project-Team-.git
 		System.out.println("BoardDao insert start...");
 		try {	
 			conn = getConnection();
@@ -275,24 +258,22 @@ public class BoardDao {
 			System.out.println("dao insert num"+num);
 			rs.close();
 			pstmt.close();
-			if (num==0) 
-			{
+			if (num==0) {
 				//num==0 첫 게시글 일때 조건
 				board.setBrd_ref(number);
 			}
 				pstmt = conn.prepareStatement(sql2);
 				//sql2 에 들어갈 값을 지정
 				
-				pstmt.setInt(1, number); //글 고유 번호 
-				pstmt.setString(2, board.getBrd_title());  //글 제목
-				pstmt.setString(3, board.getBrd_writer()); //글 작성자
-				pstmt.setInt(4, board.getBrd_view()); //조회수 
-				pstmt.setString(5, board.getBrd_content()); //글 내용
-				pstmt.setInt(6, board.getBrd_secret()); //비밀 글 여부
-				pstmt.setInt(7, board.getUsernum()); //글 쓴 유저 번호
-				pstmt.setInt(8, board.getBrd_ref()); 
-				pstmt.setInt(9, board.getBrd_re_step()); 
-				pstmt.setInt(10,board.getBrd_re_level());
+				pstmt.setInt(1, number);
+				pstmt.setString(2, board.getBrd_title());
+				pstmt.setString(3, board.getBrd_writer());
+				pstmt.setInt(4, board.getBrd_view());
+				pstmt.setString(5, board.getBrd_content());
+				pstmt.setInt(6, board.getBrd_secret());
+				pstmt.setInt(7, board.getBrd_ref());
+				pstmt.setInt(8, board.getBrd_re_step()); 
+				pstmt.setInt(9,board.getBrd_re_level());
 				result = pstmt.executeUpdate();
 				
 				System.out.println("dao insert number->"+ number);
@@ -300,7 +281,6 @@ public class BoardDao {
 				System.out.println("dao insert board.getBrd_view->"+ board.getBrd_view());
 				System.out.println("dao insert board.getBrd_content->"+ board.getBrd_content());
 				System.out.println("dao insert board.getBrd_secret->"+ board.getBrd_secret());
-				System.out.println("dao insert board.getUsernum->"+ board.getUsernum());
 				System.out.println("dao insert board.getBrd_ref->"+ board.getBrd_ref());
 				System.out.println("dao insert board.getBrd_re_step->"+ board.getBrd_re_step());
 				System.out.println("dao insert board.getBrd_re_level->"+ board.getBrd_re_level());
@@ -330,31 +310,23 @@ public class BoardDao {
 		return result;
 	}
 	
-	//22.10.06 [김건희] 코드 수정 매개변수를 usernum 추가하여 사용자의 usernum과 게시글의 usernum이 일치할 경우에만 수정할 수 있도록 구현
-	public int update(Board board, int usernum) throws SQLException {
+	public int update(Board board) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
 		int result = 0;			
 		// update할 값들 넣는다.
-		
-		//22.10.06 [김건희] sql 수정
-		String sql="update board set brd_title = ?, brd_content = ?, brd_secret=? where brd_bid =? AND usernum = ?";
+		String sql="update board set brd_title = ?, brd_content = ?, brd_secret=? where brd_bid =?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
-			//22.10.06 [김건희] 게시글과 사용자의 usernum 일치 여부 확인 조건문
-			if(board.getUsernum() == usernum)
-			{
-				pstmt.setString(1,board.getBrd_title()); 
-				pstmt.setString(2,board.getBrd_content()); 
-				pstmt.setInt(3, board.getBrd_secret());
-				pstmt.setInt(4, board.getBrd_bid());
-				pstmt.setInt(5, usernum);
-				result = pstmt.executeUpdate();
-			} else {
-				result--;
-			}
+			 pstmt.setString(1,board.getBrd_title()); 
+			 pstmt.setString(2,board.getBrd_content()); 
+			 pstmt.setInt(3, board.getBrd_secret());
+			 pstmt.setInt(4, board.getBrd_bid());
+			 
+			 
+			result = pstmt.executeUpdate();
 		} catch(Exception e) {	
 			System.out.println("dao update"+e.getMessage()); 
 		} finally {
@@ -364,15 +336,12 @@ public class BoardDao {
 		return result;
 	}
 	
-	//22.10.06 [김건희] 코드 수정 매개변수를 usernum 추가하여 사용자의 usernum과 게시글의 usernum이 일치할 경우에만 삭제할 수 있도록 구현
 	public int delete(int num, int usernum) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
 		ResultSet rs = null;
 		int result = 0;		    
-		
 		//게시글을 삭제 하는것이 아닌 삭제여부 값을 1넣는 것으로 게시글 리스트에서 보이지 않게 하고 db에는 값을 남긴다.
-		//22.10.06 [김건희] sql 수정
 		String sql2 = "select usernum from board where brd_bid = ? AND brd_deleted = 0 ";
 		String sql="update board set brd_deleted = '1' where brd_bid = ? AND usernum = ?";
 		try {

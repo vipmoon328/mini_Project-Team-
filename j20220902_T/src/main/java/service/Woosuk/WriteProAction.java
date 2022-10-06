@@ -28,7 +28,7 @@ public class WriteProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException , JSONException{
 			HttpSession session = request.getSession();
-			try {
+		try {
 			System.out.println("writeProAction start....");
 			// 1. num , pageNum, writer ,  email , subject , passwd , content   Get
 			// 2. Board board 생성하고 Value Setting
@@ -54,7 +54,6 @@ public class WriteProAction implements CommandProcess {
 	    		String type = multi.getContentType(parameterName);
 	    		// 전송된 파일속성이 file 태그의 name 속성값을 이용해 파일객체생성
 	    		File file = multi.getFile(parameterName);
-<<<<<<< HEAD
 	    		System.out.println("real Path : " + realPath);
 	    		System.out.println("파라메터 이름 : " + parameterName);
 	    		System.out.println("실제 파일 이름 : " + original);
@@ -64,8 +63,6 @@ public class WriteProAction implements CommandProcess {
 	    			System.out.println("크기 : " + file.length() + "<br>");
 	    		}
 	    		dbSavePath.add("fileSave\\"+serverSaveFilename);
-=======
->>>>>>> branch 'master' of https://github.com/vipmoon328/mini_Project-Team-.git
 	    	}
 	    	System.out.println(dbSavePath);
 	        System.out.println("전 writeProAction 나와라pageNum->"+multi.getParameter("pageNum"));
@@ -73,17 +70,16 @@ public class WriteProAction implements CommandProcess {
 	        System.out.println("전 writeProAction 나와라brd_title->"+multi.getParameter("brd_title"));
 	        System.out.println("전 writeProAction 나와라brd_secret->"+multi.getParameter("brd_secret"));
 	        System.out.println("전 writeProAction 나와라brd_content->"+multi.getParameter("brd_content"));
-	        System.out.println("전 writeProAction 나와라usernumber->"+multi.getParameter("usernum"));
 	        System.out.println("전 writeProAction 나와라brd_ref->"+multi.getParameter("brd_ref"));
 	        System.out.println("전 writeProAction 나와라brd_re_step->"+multi.getParameter("brd_re_step"));
 	        System.out.println("전 writeProAction 나와라brd_re_level->"+multi.getParameter("brd_re_level"));
+	        
 	        
 	        //write 폼에서 있는pagenum을 가져온다.
 	        String pageNum = multi.getParameter("pageNum");
 	        Board board = new Board();
 	        
-	      
-	        //게시글에 사용 되는 값들 게시글번호, 제목, 내용, 비밀글 여부
+	      //게시글에 사용 되는 값들 게시글번호, 제목, 내용, 비밀글 여부
 	        board.setBrd_bid(Integer.parseInt(multi.getParameter("brd_bid")));
 	        board.setBrd_writer(String.valueOf(session.getAttribute("id")));
 			board.setBrd_title(multi.getParameter("brd_title"));
@@ -98,12 +94,6 @@ public class WriteProAction implements CommandProcess {
 				board.setBrd_secret(brd_secret);
 			}
 			board.setBrd_content(multi.getParameter("brd_content"));
-			
-			//22-10-06[김건희] 유저번호를 세션으로 가져온다.
-	        int usernum = Integer.parseInt((String.valueOf(session.getAttribute("usernum"))));
-	        System.out.println("==========유저번호 받아오기: "+usernum);
-			board.setUsernum(usernum);
-			System.out.println(board.getUsernum());
 			
 			System.out.println("후 writeProAction 나와라pageNum->"+multi.getParameter("pageNum"));
 	        System.out.println("후 writeProAction 나와라brd_bid->"+multi.getParameter("brd_bid"));
@@ -122,9 +112,8 @@ public class WriteProAction implements CommandProcess {
 	        System.out.println("writeProAction brd_bid ->"+board.getBrd_bid());
 	        System.out.println("writeProAction result ->"+result);
 	        System.out.println("writeProAction pageNum ->"+pageNum);
-	        
 	        // 4. request 객체에 result, num , pageNum 	
-	        // view 에 넘어갈 값들 지정
+	     // view 에 넘어갈 값들 지정
 	        request.setAttribute("num", board.getBrd_ref());
 	        request.setAttribute("result", result);
 	        request.setAttribute("pageNum", pageNum);
