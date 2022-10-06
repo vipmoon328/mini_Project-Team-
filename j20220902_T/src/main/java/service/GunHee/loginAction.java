@@ -50,13 +50,13 @@ public class loginAction implements CommandProcess {
 				locName = "강남";
 			}
 			
+			session.setAttribute("name", users.getName());
 			session.setAttribute("id",id);
 			session.setAttribute("auth", users.getAuth());
 			session.setAttribute("usernum", users.getUsernum());
 			session.setAttribute("loc", users.getBrn_uid());
 			session.setAttribute("locName",locName);
 			session.setAttribute("login_result", 1);
-			System.out.println("로그인이 완료되었습니다.");
 		}
 		
 		return "/GunHee/loginPro.jsp";
