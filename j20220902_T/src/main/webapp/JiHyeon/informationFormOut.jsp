@@ -97,7 +97,7 @@
 						</figure></li>
 					</ul>
 		</div>
-	</div>			
+				
 		<div id="main_textbox">
 			<div id="content3" class="name"><h2>볼링장시설</h2></div>
 				<div id="main_text">
@@ -119,6 +119,7 @@
 							</div>
 						</figure></li>			
 					</ul>				
+		</div>
 	</div>
 		<div id="footer">
 			<nav>
