@@ -315,20 +315,38 @@ public class BoardDao {
 		return result;
 	}
 	
-	public int delete(int num) throws SQLException {
+	public int delete(int num, int usernum) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
+		ResultSet rs = null;
 		int result = 0;		    
 		//게시글을 삭제 하는것이 아닌 삭제여부 값을 1넣는 것으로 게시글 리스트에서 보이지 않게 하고 db에는 값을 남긴다.
-		String sql="update board set brd_deleted = '1' where brd_bid = ? ";
+		String sql2 = "select usernum from board where brd_bid = ? AND brd_deleted = 0 ";
+		String sql="update board set brd_deleted = '1' where brd_bid = ? AND usernum = ?";
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql2);
 			pstmt.setInt(1, num);
-			result = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				int result_usernum = rs.getInt(1); //해당 글 작성자의 유저번호 받아오는 쿼리문 실행
+				pstmt.close();
+				if( result_usernum == usernum) //글쓴이와 글삭제하는 이가 같을때
+				{
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					pstmt.setInt(2, usernum);
+					result = pstmt.executeUpdate(); //삭제 성공시 1, 삭제 오류시 0
+				}
+				else {
+					result--;
+				}
+			}
 		} catch(Exception e) {	
 			System.out.println(e.getMessage()); 
 		} finally {
+			if (rs != null) rs.close();
 			if (pstmt != null) pstmt.close();
 			if (conn !=null) conn.close();
 		}

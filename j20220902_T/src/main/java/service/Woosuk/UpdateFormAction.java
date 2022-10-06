@@ -25,8 +25,6 @@ public class UpdateFormAction implements CommandProcess {
 				int num = Integer.parseInt(request.getParameter("num"));
 				//pagenum은 boardcontent에서 currentpage
 				String pageNum = request.getParameter("pageNum");
-				
-				
 				try 
 				{
 					// 2. BoardDao bd Instance

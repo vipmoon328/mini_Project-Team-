@@ -1,11 +1,11 @@
 package service.Woosuk;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -23,19 +23,25 @@ public class DeleteFormAction implements CommandProcess {
 		try {
 			// 기능 자체는 ContentAction과 같다 
 			// 1. num, pageNum get
+			System.out.println("삭제 시퀸스 시작 1");
 			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");
+			
+			System.out.println("글 번호: " + num);
+			System.out.println("페이지 번호: " + pageNum);
 			
 			// 2. BoardDao bd Instance
 			BoardDao bd = BoardDao.getInstance();
 			// 3. Board board = bd.select(num);
+			
 			Board board  = bd.select(num);
 			
+			HttpSession session = request.getSession();
+			
 			// 4. request 객체에 num, pageNum, board
-			request.setAttribute("num", num);
-			request.setAttribute("pageNum", pageNum);
+			session.setAttribute("num", num);
+			session.setAttribute("pageNum", pageNum);
 			request.setAttribute("board", board);
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

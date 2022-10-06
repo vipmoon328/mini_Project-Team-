@@ -35,7 +35,6 @@ public class WriteProAction implements CommandProcess {
 	        System.out.println("전 writeProAction 나와라brd_re_step->"+request.getParameter("brd_re_step"));
 	        System.out.println("전 writeProAction 나와라brd_re_level->"+request.getParameter("brd_re_level"));
 	        
-	        
 	        //write 폼에서 있는pagenum을 가져온다.
 	        String pageNum = request.getParameter("pageNum");
 	        Board board = new Board();
@@ -55,7 +54,6 @@ public class WriteProAction implements CommandProcess {
 				board.setBrd_secret(brd_secret);
 			}
 			board.setBrd_content(request.getParameter("brd_content"));
-			
 			System.out.println("후 writeProAction 나와라pageNum->"+request.getParameter("pageNum"));
 	        System.out.println("후 writeProAction 나와라brd_bid->"+request.getParameter("brd_bid"));
 	        System.out.println("후 writeProAction 나와라brd_title->"+request.getParameter("brd_title"));

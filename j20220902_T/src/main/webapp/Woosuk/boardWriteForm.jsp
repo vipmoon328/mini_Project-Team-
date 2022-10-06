@@ -150,7 +150,7 @@ sub {
 </head>
 <body>
 <!-- 22.10.06 코드 전반적인 수정 [김건희] -->
-	<form action="<%=context%>/writePro.do?pageNum=${pageNum }"method="post" method="post" enctype="multipart/form-data">
+	<form action="<%=context%>/writePro.do?pageNum=${pageNum }"method="post">
 		<input type="hidden" name="brd_bid" value="${num }">
 		<input type="hidden" name="brd_ref" value="${brd_ref }">
 		<input type="hidden" name="brd_re_level" value="${brd_re_level }">

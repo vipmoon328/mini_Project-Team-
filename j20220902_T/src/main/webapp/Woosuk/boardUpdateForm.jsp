@@ -12,15 +12,11 @@
 <script type="text/javascript">
 	$(function() {
 		$('#brd_secret').click(function(){
-		
 	        if ($('#brd_secret').prop("checked")) {
 	        	$('#brd_secret').val('Y');
 	        } else {
 	        	 $('#brd_secret').val('N');
 	        }
-			
-	         
-
 		})  
 	});
 </script>
