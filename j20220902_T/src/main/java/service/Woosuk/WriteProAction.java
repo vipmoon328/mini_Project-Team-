@@ -1,14 +1,20 @@
 package service.Woosuk;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.Board;
 import dao.BoardDao;
@@ -26,22 +32,39 @@ public class WriteProAction implements CommandProcess {
 			// 2. Board board 생성하고 Value Setting
 	        request.setCharacterEncoding("utf-8"); 
 	        // 인코딩을 통해 한글이 깨지지 않는다.
-	        System.out.println("전 writeProAction 나와라pageNum->"+request.getParameter("pageNum"));
-	        System.out.println("전 writeProAction 나와라brd_bid->"+request.getParameter("brd_bid"));
-	        System.out.println("전 writeProAction 나와라brd_title->"+request.getParameter("brd_title"));
-	        System.out.println("전 writeProAction 나와라brd_secret->"+request.getParameter("brd_secret"));
-	        System.out.println("전 writeProAction 나와라brd_content->"+request.getParameter("brd_content"));
-	        System.out.println("전 writeProAction 나와라brd_ref->"+request.getParameter("brd_ref"));
-	        System.out.println("전 writeProAction 나와라brd_re_step->"+request.getParameter("brd_re_step"));
-	        System.out.println("전 writeProAction 나와라brd_re_level->"+request.getParameter("brd_re_level"));
+	        
+	        int maxSize = 5 * 1024 * 1024;
+	    	String fileSave = "/fileSave";
+	    	
+	    	String realPath = request.getServletContext().getRealPath(fileSave);
+	    	System.out.println("realPath->" + realPath);
+	    	MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
+	    	
+	    	Enumeration en = multi.getFileNames();
+	    	while(en.hasMoreElements()){
+	    		//input 태그의 속성이 file인 태그의 name 속성값 : 파라미터이름
+	    		String parameterName = (String) en.nextElement();
+	    		File file = multi.getFile(parameterName);
+	    		
+	    		
+	    	}
+	        
+	        System.out.println("전 writeProAction 나와라pageNum->"+multi.getParameter("pageNum"));
+	        System.out.println("전 writeProAction 나와라brd_bid->"+multi.getParameter("brd_bid"));
+	        System.out.println("전 writeProAction 나와라brd_title->"+multi.getParameter("brd_title"));
+	        System.out.println("전 writeProAction 나와라brd_secret->"+multi.getParameter("brd_secret"));
+	        System.out.println("전 writeProAction 나와라brd_content->"+multi.getParameter("brd_content"));
+	        System.out.println("전 writeProAction 나와라brd_ref->"+multi.getParameter("brd_ref"));
+	        System.out.println("전 writeProAction 나와라brd_re_step->"+multi.getParameter("brd_re_step"));
+	        System.out.println("전 writeProAction 나와라brd_re_level->"+multi.getParameter("brd_re_level"));
 	        
 	        
 	        //write 폼에서 있는pagenum을 가져온다.
-	        String pageNum = request.getParameter("pageNum");
+	        String pageNum = multi.getParameter("pageNum");
 	        Board board = new Board();
 	        
 	      //게시글에 사용 되는 값들 게시글번호, 제목, 내용, 비밀글 여부
-	        board.setBrd_bid(Integer.parseInt(request.getParameter("brd_bid")));
+	        board.setBrd_bid(Integer.parseInt(multi.getParameter("brd_bid")));
 	        board.setBrd_writer(String.valueOf(session.getAttribute("id")));
 			board.setBrd_title(request.getParameter("brd_title"));
 			// 체크박스는 체크가 되어야 값이 넘어간다. 체크가 안되어 있으면 null값으로 넘어온다
@@ -56,14 +79,14 @@ public class WriteProAction implements CommandProcess {
 			}
 			board.setBrd_content(request.getParameter("brd_content"));
 			
-			System.out.println("후 writeProAction 나와라pageNum->"+request.getParameter("pageNum"));
-	        System.out.println("후 writeProAction 나와라brd_bid->"+request.getParameter("brd_bid"));
-	        System.out.println("후 writeProAction 나와라brd_title->"+request.getParameter("brd_title"));
-	        System.out.println("후 writeProAction 나와라brd_secret->"+request.getParameter("brd_secret"));
-	        System.out.println("후 writeProAction 나와라brd_content->"+request.getParameter("brd_content"));
-	        System.out.println("후 writeProAction 나와라brd_ref->"+request.getParameter("brd_ref"));
-	        System.out.println("후 writeProAction 나와라brd_re_step->"+request.getParameter("brd_re_step"));
-	        System.out.println("후 writeProAction 나와라brd_re_level->"+request.getParameter("brd_re_level"));
+			System.out.println("후 writeProAction 나와라pageNum->"+multi.getParameter("pageNum"));
+	        System.out.println("후 writeProAction 나와라brd_bid->"+multi.getParameter("brd_bid"));
+	        System.out.println("후 writeProAction 나와라brd_title->"+multi.getParameter("brd_title"));
+	        System.out.println("후 writeProAction 나와라brd_secret->"+multi.getParameter("brd_secret"));
+	        System.out.println("후 writeProAction 나와라brd_content->"+multi.getParameter("brd_content"));
+	        System.out.println("후 writeProAction 나와라brd_ref->"+multi.getParameter("brd_ref"));
+	        System.out.println("후 writeProAction 나와라brd_re_step->"+multi.getParameter("brd_re_step"));
+	        System.out.println("후 writeProAction 나와라brd_re_level->"+multi.getParameter("brd_re_level"));
 	        
 			// 3. BoardDao bd Instance
 	        BoardDao bd = BoardDao.getInstance();//DB 
