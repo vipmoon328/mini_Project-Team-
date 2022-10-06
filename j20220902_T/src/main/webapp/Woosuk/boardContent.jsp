@@ -6,6 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+	console.log(${usernum});
+	console.log(${board.usernum});
+</script>
 <meta charset="UTF-8">
 <title>게시글</title>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
@@ -132,17 +136,21 @@ input {
 			
 		</table>
 	</div> 
+	<!-- 조건시에 삭제랑 수정 기능이 보여질수 있도록 수정 [김건희]-->
 	<!-- 수정 updateFormAction 서비스 실행 -->
-	<input style="margin-left:66%"  type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
 	<!-- 삭제 deleteFormAction 서비스 실행 -->
-	<input type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
 	<!-- 게시판 리스트로 복귀 -->
-	<input type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum }'">
-
+	<c:if test="${usernum eq board.usernum}">
+		<input style="margin-left:66%"  type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+		<input type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+		<input type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+	</c:if>
+	
+	<c:if test="${usernum ne board.usernum}">
+		<input style="margin-left:66%" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+	</c:if>
 	
 	</form>		
-
-
 		<!--풋터                       -->
 		<div class="flex-container center">
 			<div class="item_end">
