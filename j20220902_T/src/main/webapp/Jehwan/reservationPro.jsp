@@ -41,9 +41,9 @@
 		$(document).on("click",".possible", function(){
 			var num = $(".checked").length;
 			if(num == 0){
-				$("#test td").not('.impossible').removeClass('possible').css('background-color', 'lightgray');
+				$("#test td").not('.impossible').not($(this)).removeClass('possible').addClass('cantSelect');
 			}
-			$(this).addClass('checked').removeClass('possible').css('background','lightgreen');
+			$(this).addClass('checked').removeClass('possible');
 			add_probable();
 			print_message();
 		});
@@ -68,8 +68,8 @@
 			}
 			var first = $(this).parent().index();
 			var col = $(this).index() + 1;
-			$("#test tr:nth-child(" + first + ") td:nth-child(" + col + ")").not(".impossible").removeClass('possible').css('background-color', 'lightgray');
-			$(this).removeClass('checked').addClass('possible').css('background-color','skyblue');
+			$("#test tr:nth-child(" + first + ") td:nth-child(" + col + ")").not(".impossible").removeClass('possible').addClass('cantSelect');
+			$(this).removeClass('checked').addClass('possible');
 			print_message();
 		});
 		
@@ -80,8 +80,8 @@
 			}
 			var last = $(this).parent().index() + 2;
 			var col = $(this).index() + 1;
-			$("#test tr:nth-child(" + last + ") td:nth-child(" + col + ")").not(".impossible").removeClass('possible').css('background-color', 'lightgray');
-			$(this).removeClass('checked').addClass('possible').css('background-color','skyblue');
+			$("#test tr:nth-child(" + last + ") td:nth-child(" + col + ")").not(".impossible").removeClass('possible').addClass('cantSelect');
+			$(this).removeClass('checked').addClass('possible');
 			print_message();
 		});
 		
@@ -99,9 +99,9 @@
 		
 		$(document).on("click",".date", function(){
 			
-			$(".selectDate").removeClass('selectDate').css('background','pink');
+			$(".selectDate").removeClass('selectDate');
 			today = new Date(today.getFullYear(),today.getMonth(),$(this).attr('id'));
-			$(this).addClass('selectDate').css('background','cyan');
+			$(this).addClass('selectDate');
 			console.log(today.getDate());
 			make_sendData();
 		});
@@ -120,10 +120,6 @@
 		});
 		
 		$(document).on("click","#insert", function(){
-			if($(".checked").length == 0){
-				alert("시간을 선택해 주세요");
-				return;
-			}
 			
 			var IMP = window.IMP; // 생략가능
 	        IMP.init('imp06482341'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -134,13 +130,7 @@
 	             pay_method : 'card',
 	             merchant_uid : 'merchant_' + new Date().getTime(),
 	             name : '볼링장 실험',
-	             amount : "100",
-	             buyer_email : "naver@naver.com",
-	             buyer_name : "홍길동",
-	             buyer_tel : "010-1234-5678",
-	             buyer_addr : "서울시",
-	             buyer_postcode : '123-456',
-	            //m_redirect_url : 'http://www.naver.com'
+	             amount : $('input[name=cost]').val(),
 	        }, function(rsp) {
 	            if ( rsp.success ) {
 	            	alert("결제성공");
@@ -197,9 +187,9 @@
             	tag += "</tr><tr>";
             }
             if((nowYear<=realDay.getFullYear())&&(nowMonth<=realDay.getMonth())&&(i<realDay.getDate())){
-            	tag += "<td class='cantDate' style='text-align: center;'>" + i +"</td>";
+            	tag += "<td class='cantDate'>" + i +"</td>";
             }else{
-            	tag += "<td class='date' id='" + i +"' style='cursor:pointer;text-align: center;'>"+ i +"</td>";
+            	tag += "<td class='date' id='" + i +"'>"+ i +"</td>";
             }
         }
         while(lastDay!=6){
@@ -209,8 +199,8 @@
         tag += "</tr>";
         $("#calander_test").append(tag);
         
-        $(".selectDate").removeClass('selectDate').css('background','pink');
-		$("#" + nowDate).addClass('selectDate').css('background','cyan');
+        $(".selectDate").removeClass('selectDate');
+		$("#" + nowDate).addClass('selectDate');
     }
 
 	function print_message(){
@@ -227,11 +217,13 @@
 		}else{
 			cost= (end - start + 1) * 50000;
 		}
-		text = "지점 : " + jijum_name +"<p>";
+		text = "<h2>예약 현황</h2>";
+		text += "지점 : " + jijum_name +"<p>";
 		text += "레인 : " +lane +"<p>";
 		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
 		text += "인원수 : <input type='text' name='many' value='1' required='required'><p>";
-		text += "금액 : " + cost + "원";
+		text += "금액 : " + cost + "원<p>";
+		text += "<input type='button' id='insert' value='결제'>";
 		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'>";
 		text += "<input type='hidden' name='inputMonth' value='" + today.getMonth() +"'>";
 		text += "<input type='hidden' name='inputDate' value='" + today.getDate() +"'>";
@@ -268,8 +260,8 @@
 		var tag;
 		for(var i = 10 ; i < maxtime ; i ++){
 			tag = "<tr><th>" + (i%24) + ":00~"+ ((i+1)%24) +":00</th>";
-			for(var j = 0 ; j < '${possibleLane}' ; j ++){
-				tag +=  "<td bgcolor='skyblue' class = 'possible'></td>";
+			for(var j = 1 ; j <= '${possibleLane}' ; j ++){
+				tag +=  "<td class = 'possible " + j +"'></td>";
 			}
 			tag += "</tr>";
 			$("#test").append(tag);
@@ -285,7 +277,7 @@
 			var lane = parseInt(data[i]["lane"]) + 1;
 			
 			for(var j=start ; j < end ; j++){
-				$("#test tr:nth-child(" + j + ") td:nth-child(" + lane + ")").addClass('impossible').removeClass('possible').css('background-color', 'red');
+				$("#test tr:nth-child(" + j + ") td:nth-child(" + lane + ")").addClass('impossible').removeClass('possible');
 			}
 		}
 		if((today.getFullYear() == realDay.getFullYear())&&(today.getMonth() == realDay.getMonth())&&(today.getDate() == realDay.getDate())){
@@ -297,7 +289,7 @@
 
 		if(!('${ res_rid }' ==null || '${ res_rid }' == '')){
 			if((today.getFullYear() == inputDay.getFullYear())&&(today.getMonth() == inputDay.getMonth())&&(today.getDate() == inputDay.getDate())&&($("#jijum option:selected").val() == '${ brnNum }')){
-				$("#test td").not('.impossible').removeClass('possible').css('background-color', 'lightgray');
+				$("#test td").not('.impossible').removeClass('possible').addClass('cantSelect');
 				console.log(parseInt('${ start }') -9);
 				console.log(parseInt('${ end }') -9);
 				console.log('${ lane }');
@@ -308,7 +300,7 @@
 				lane = parseInt('${ lane }') + 1;
 
 				for(var i=start ; i < end ; i++){
-					$("#test tr:nth-child(" + i + ") td:nth-child(" + lane + ")").addClass('checked').removeClass('impossible').css('background-color', 'lightgreen');
+					$("#test tr:nth-child(" + i + ") td:nth-child(" + lane + ")").addClass('checked').removeClass('impossible');
 				}
 				add_probable();
 				print_message();
@@ -320,7 +312,7 @@
 	function reset_table(){
 		$('#many').val("1");
 		$('#msg').html("");
-		$("#test td").not('.impossible').removeClass('checked').addClass('possible').css('background-color', 'skyblue');
+		$("#test td").not('.impossible').removeClass('checked').addClass('possible').removeClass('cantSelect');
 	}
 	function add_probable() {
 		var col = $('.checked').filter(':first').index();
@@ -328,8 +320,8 @@
 		var last = $('.checked').filter(':last').parent().index();
 		last +=2;
 		col +=1;
-		$("#test tr:nth-child(" + first + ") td:nth-child(" + col + ")").not('.impossible').addClass('possible').css('background-color', 'skyblue');
-		$("#test tr:nth-child(" + last + ") td:nth-child(" + col + ")").not('.impossible').addClass('possible').css('background-color', 'skyblue');
+		$("#test tr:nth-child(" + first + ") td:nth-child(" + col + ")").not('.impossible').addClass('possible').removeClass('cantSelect');
+		$("#test tr:nth-child(" + last + ") td:nth-child(" + col + ")").not('.impossible').addClass('possible').removeClass('cantSelect');
 	}
 	
 
@@ -392,12 +384,13 @@
 		        <tbody id="calander_test">
 		        </tbody>
 	    	</table>
-	    	<div id="form_container"><form action="<%=context%>/insertResult.do" id="frm"><h2>예약 현황</h2><span id="msg"></span><input type="button" id="insert" value="결제"></form></div>
+	    	<div id="form_container"><form action="<%=context%>/insertResult.do" id="frm"><span id="msg"></span></form></div>
 	</div>
 
 	<div id="timeTableCon">
 		<table border="1px" id="test_table">
-		<caption><span id="today"></span><input type="button" id="reset" value="초기화" onclick="reset_table()"></caption>
+		<caption><span id="today"></span><input type="button" id="reset" value="초기화" onclick="reset_table()">
+		<span id="color_info"><img src="<%=context%>/images/possible.png">선택 가능 시간<img src="<%=context%>/images/checked.png">선택 시간 <img src="<%=context%>/images/cantSelect.png">선택 불가<img src="<%=context%>/images/impossible.png">예약됨</span></caption>
 			<thead>
 				<tr><th></th>
 				<c:forEach var="laneCnt" begin="1"  end="${possibleLane }">

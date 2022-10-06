@@ -132,14 +132,39 @@
 	caption, #frm {
 		text-align: left;
 	}
+	#color_info{
+		float: right;
+	}
 	
+	#color_info img{
+		width: 30px;
+		height: 30px;
+	}
 	#calendar tbody{
 		border: 1px solid black;
 	}
+	.possible{
+		background-color : skyblue;
+		cursor: pointer;
+	}
+	.impossible{
+		background-color : #E74C3C;
+	}
+	.checked{
+		background-color : lightgreen;
+	}
+	.cantSelect{
+		background-color : lightgray;
+	}
+	.selectDate{
+		background-color : cyan !important;
+	}
+	
 	.date{
 		width: 30px;
 		height: 20px;
 		background-color : pink;
+		cursor: pointer;
 	}
 	.cantDate, .notDate{
 		width: 30px;
@@ -155,6 +180,7 @@
 		clear:both;
 		border-collapse: collapse;
 		margin: 0 auto;
+		margin-top: 350px;
 	}
 	
 	
@@ -172,10 +198,12 @@
 	#today{
 		font-size: 25px;
 		font-weight: bolder;
+		margin-left: 50px;
 	}
 	
 	#calendar{
 		float: left;
+		text-align: center;
 	}
 	
 	h2{
