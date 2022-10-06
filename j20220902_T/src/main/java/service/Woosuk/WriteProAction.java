@@ -61,8 +61,8 @@ public class WriteProAction implements CommandProcess {
 	    		System.out.println("파일 타입 : " + type);
 	    		if(file != null){
 	    			System.out.println("크기 : " + file.length() + "<br>");
+	    			dbSavePath.add("fileSave\\"+serverSaveFilename);
 	    		}
-	    		dbSavePath.add("fileSave\\"+serverSaveFilename);
 	    	}
 	    	System.out.println(dbSavePath);
 	        System.out.println("전 writeProAction 나와라pageNum->"+multi.getParameter("pageNum"));
