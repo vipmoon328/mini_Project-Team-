@@ -66,10 +66,10 @@ public class WriteProAction implements CommandProcess {
 	      //게시글에 사용 되는 값들 게시글번호, 제목, 내용, 비밀글 여부
 	        board.setBrd_bid(Integer.parseInt(multi.getParameter("brd_bid")));
 	        board.setBrd_writer(String.valueOf(session.getAttribute("id")));
-			board.setBrd_title(request.getParameter("brd_title"));
+			board.setBrd_title(multi.getParameter("brd_title"));
 			// 체크박스는 체크가 되어야 값이 넘어간다. 체크가 안되어 있으면 null값으로 넘어온다
 			// 이를 위해 null값은 0으로 넘어 가게 지정
-			if (request.getParameter("brd_secret") == null) {
+			if (multi.getParameter("brd_secret") == null) {
 				int brd_secret = 0;
 				board.setBrd_secret(brd_secret);
 			}
@@ -77,7 +77,7 @@ public class WriteProAction implements CommandProcess {
 				int brd_secret = 1;
 				board.setBrd_secret(brd_secret);
 			}
-			board.setBrd_content(request.getParameter("brd_content"));
+			board.setBrd_content(multi.getParameter("brd_content"));
 			
 			System.out.println("후 writeProAction 나와라pageNum->"+multi.getParameter("pageNum"));
 	        System.out.println("후 writeProAction 나와라brd_bid->"+multi.getParameter("brd_bid"));
