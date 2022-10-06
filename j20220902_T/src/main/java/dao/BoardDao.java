@@ -281,12 +281,10 @@ public class BoardDao {
 				pstmt.setInt(8, board.getBrd_re_step()); 
 				pstmt.setInt(9,board.getBrd_re_level());
 				for(int i = 0 ; i < 3*dbSavePath.size() ; i = i+3) {
-					System.out.println("여길 들어오나?");
 					pstmt.setInt(i + 10, number);
 					pstmt.setInt(i + 11, i+1);
 					pstmt.setString(i + 12, dbSavePath.get(i/3));
 				}
-				System.out.println("여기까진 오나?");
 				result = pstmt.executeUpdate();
 				
 				System.out.println("dao insert number->"+ number);
