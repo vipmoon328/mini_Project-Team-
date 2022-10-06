@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.BoardDao;
 import service.CommandProcess;
@@ -15,6 +16,7 @@ public class SecretCheckPro implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		
 		try {
 			// 1. num , passwd , pageNum Get
@@ -26,7 +28,7 @@ public class SecretCheckPro implements CommandProcess {
 			BoardDao bd = BoardDao.getInstance();
 			
 			// 3. 본인의 게시판만 삭제
-			int result = bd.check(num, passwd);
+			int result = bd.check(String.valueOf(session.getAttribute("id")), passwd);
 			
 			// 4. request 객체에  num , pageNum ,result
 			request.setAttribute("num", num);
