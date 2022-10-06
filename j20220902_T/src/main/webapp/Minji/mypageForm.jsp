@@ -33,15 +33,38 @@
 	{	
 		var check = true;
 		
-		if($('#user_password').val() != $('#user_password_chk').val())
+		$('#passError').text('');
+		$('#passLengthError').text('');
+		$('#emailError').text('');
+		
+		if($("user_password").val="")
 		{
-			$('#passError').text('패스워드가 일치하지 않습니다. 다시 입력해주세요.');
+			$('#passLengthError').text('비밀번호를 입력해주세요.');
+			$("user_password").focus();
 			check = false;
 		}
-		
+		if($("user_password_chk").val="")
+		{
+			$('#passLengthError').text('비밀번호확인을 입력해주세요.');
+			$("user_password_chk").focus();
+			check = false;
+		}
 		if($('#user_password').val().length < 8)
 		{
-			$('#passLengthError').text('패스워드는 8글자 이상 입력해주세요.');
+			$('#passLengthError').text('비밀번호는 8글자 이상 입력해주세요.');
+			$("user_password").focus();
+			check = false;
+		}
+		if($('#user_password_chk').val().length < 8)
+		{
+			$('#passLengthError').text('비밀번호확인은 8글자 이상 입력해주세요.');
+			$("user_password_chk").focus();
+			check = false;
+		}
+		if($('#user_password').val() != $('#user_password_chk').val())
+		{
+			$('#passError').text('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
+			$("user_password_chk").focus();
 			check = false;
 		}
 		
@@ -53,17 +76,14 @@
 
 		console.log(check);
 		
-		if(check == false)
-		{
-			return check;
-		}
+		return check;
 	};
 </script>
 </head>
 <body onload="init()">
 <div id="wrapper">
 	<!-- 22.10.04 로그인 창 이름 수정 [김건희] -->
-	<form action="mypagePro.do" method="post">
+	<form action="mypagePro.do" method="post" onsubmit="return updateCheck()" >
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>

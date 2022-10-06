@@ -8,6 +8,23 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#brd_secret').click(function(){
+		
+	        if ($('#brd_secret').prop("checked")) {
+	        	$('#brd_secret').val('Y');
+	        } else {
+	        	 $('#brd_secret').val('N');
+	        }
+			
+	         
+
+		})  
+	});
+</script>
+
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
 
@@ -53,23 +70,7 @@ sub {
 
 </style>
 
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#brd_secret').click(function(){
-		
-	        if ($('#brd_secret').prop("checked")) {
-	        	$('#brd_secret').val('Y');
-	        } else {
-	        	 $('#brd_secret').val('N');
-	        }
-			
-	         
 
-		})  
-	});
-
-</script>
 
 <!-- 헤더  -->
 <div id="wrapper">

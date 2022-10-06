@@ -236,7 +236,7 @@ public class BoardDao {
 		//게시글의 가장 마지막 고유 번호를 찾는다
 		String sql1 = "select nvl(max(brd_bid),0) from board";
 		//게시글 값 insert
-		String sql2 =  "insert into board(BRD_BID, BRD_NAME,BRD_TITLE ,BRD_WRITER ,BRD_DATE ,BRD_VIEW ,BRD_CONTENT ,BRD_SECRET ,BRD_DELETED ,USERNUM ,BRD_REF ,BRD_RE_STEP ,BRD_RE_LEVEL)VALUES(?, '게시글', ?, '회원', TO_DATE(sysdate), ?, ?, ?, 0, 1, ?, ?, ?)";
+		String sql2 =  "insert into board(BRD_BID, BRD_NAME,BRD_TITLE ,BRD_WRITER ,BRD_DATE ,BRD_VIEW ,BRD_CONTENT ,BRD_SECRET ,BRD_DELETED ,USERNUM ,BRD_REF ,BRD_RE_STEP ,BRD_RE_LEVEL)VALUES(?, '게시글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, 1, ?, ?, ?)";
 		System.out.println("BoardDao insert start...");
 		try {
 			conn = getConnection();
@@ -252,17 +252,19 @@ public class BoardDao {
 			if (num==0) {
 				//num==0 첫 게시글 일때 조건
 				board.setBrd_ref(number);
+			}
 				pstmt = conn.prepareStatement(sql2);
 				//sql2 에 들어갈 값을 지정
 				
 				pstmt.setInt(1, number);
 				pstmt.setString(2, board.getBrd_title());
-				pstmt.setInt(3, board.getBrd_view());
-				pstmt.setString(4, board.getBrd_content());
-				pstmt.setInt(5, board.getBrd_secret());
-				pstmt.setInt(6, board.getBrd_ref());
-				pstmt.setInt(7, board.getBrd_re_step()); 
-				pstmt.setInt(8,board.getBrd_re_level());
+				pstmt.setString(3, board.getBrd_writer());
+				pstmt.setInt(4, board.getBrd_view());
+				pstmt.setString(5, board.getBrd_content());
+				pstmt.setInt(6, board.getBrd_secret());
+				pstmt.setInt(7, board.getBrd_ref());
+				pstmt.setInt(8, board.getBrd_re_step()); 
+				pstmt.setInt(9,board.getBrd_re_level());
 				result = pstmt.executeUpdate();
 				
 				System.out.println("dao insert number->"+ number);
@@ -273,7 +275,7 @@ public class BoardDao {
 				System.out.println("dao insert board.getBrd_ref->"+ board.getBrd_ref());
 				System.out.println("dao insert board.getBrd_re_step->"+ board.getBrd_re_step());
 				System.out.println("dao insert board.getBrd_re_level->"+ board.getBrd_re_level());
-			}
+			
 	
 		} catch (Exception e) {
 			System.out.println("dao insert error ->"+e.getMessage());
@@ -373,25 +375,22 @@ public class BoardDao {
 		
 	}
 	
-	public int check(int num, String passwd) throws SQLException {
+	public int check(String user_id, String passwd) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
 		int result = 0;		    
 		ResultSet rs = null;
-		String sql = "select passwd from board where num=?";
+		String sql = "select PW from USERS where ID=?";
 
 		try {
 			String dbPasswd = "";
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, user_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				dbPasswd = rs.getString(1); 
 				if (dbPasswd.equals(passwd)) {
-					rs.close();  
-					pstmt.close();
-					pstmt.setInt(1, num);
 					result = 1;
 				} else result = 0;
 			} else result = -1;
@@ -402,7 +401,7 @@ public class BoardDao {
 			if (conn !=null) conn.close();
 		}
 		return result;
-	}
+}
 	
 
 }

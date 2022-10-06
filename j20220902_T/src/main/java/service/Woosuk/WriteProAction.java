@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -18,6 +19,7 @@ public class WriteProAction implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException , JSONException{
+			HttpSession session = request.getSession();
 		try {
 			System.out.println("writeProAction start....");
 			// 1. num , pageNum, writer ,  email , subject , passwd , content   Get
@@ -40,6 +42,7 @@ public class WriteProAction implements CommandProcess {
 	        
 	      //게시글에 사용 되는 값들 게시글번호, 제목, 내용, 비밀글 여부
 	        board.setBrd_bid(Integer.parseInt(request.getParameter("brd_bid")));
+	        board.setBrd_writer(String.valueOf(session.getAttribute("id")));
 			board.setBrd_title(request.getParameter("brd_title"));
 			// 체크박스는 체크가 되어야 값이 넘어간다. 체크가 안되어 있으면 null값으로 넘어온다
 			// 이를 위해 null값은 0으로 넘어 가게 지정
