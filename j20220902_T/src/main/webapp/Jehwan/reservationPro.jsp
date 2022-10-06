@@ -221,7 +221,7 @@
 		text += "지점 : " + jijum_name +"<p>";
 		text += "레인 : " +lane +"<p>";
 		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
-		text += "인원수 : <input type='text' name='many' value='1' required='required'><p>";
+		text += "인원수 : <input type='number' max='4' name='many' value='1' required='required'><p>";
 		text += "금액 : " + cost + "원<p>";
 		text += "<input type='button' id='insert' value='결제'>";
 		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'>";

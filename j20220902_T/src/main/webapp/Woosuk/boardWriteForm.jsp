@@ -28,7 +28,7 @@
 			    alert("파일 업로드 최대 개수는 3개 입니다.");
 			    return;
 			}else{  
-				$('.__add').append('<li><input type="file" name="file_path" class="files"> <button type="button" class="_add" onclick="addDel(this);">삭제</button></li>'); 
+				$('.__add').append('<li><input type="file" name="file_path1'+ maxAppend +'" class="files"> <button type="button" class="_add" onclick="addDel(this);">삭제</button></li>'); 
 			    maxAppend ++;
 			}
 		});

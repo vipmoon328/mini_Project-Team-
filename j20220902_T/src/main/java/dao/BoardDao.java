@@ -188,15 +188,17 @@ public class BoardDao {
 	}
 	public Board select(int num) throws SQLException {
 		Connection conn = null;	
-		Statement stmt= null; 
+		PreparedStatement pstmt= null; 
 		ResultSet rs = null;
+		List<String> brd_img_src = new ArrayList<String>();
 								// 지정한 게시글 고유 번호 불러 오기
-		String sql = "select * from board where brd_bid="+num;
+		String sql = "select * from board b, files f where b.brd_bid=? and b.brd_bid = f.brd_bid";
 		Board board = new Board();
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {				
 				//db 값을 전부 불러온다
 				board.setBrd_bid(rs.getInt("brd_bid"));
@@ -212,20 +214,26 @@ public class BoardDao {
 				board.setBrd_ref(rs.getInt("brd_ref"));
 				board.setBrd_re_step(rs.getInt("brd_re_step"));
 				board.setBrd_re_level(rs.getInt("brd_re_level"));
+				brd_img_src.add(rs.getString("file_name"));
+				while(rs.next()) {
+					brd_img_src.add(rs.getString("file_name"));
+				}
+				board.setBrd_img_src(brd_img_src);
+				
 			}
-
+				
 		} catch(Exception e) {	
 			System.out.println("dao select error ->"+e.getMessage()); 
 		} finally {
 			if (rs !=null) rs.close();
-			if (stmt != null) stmt.close();
+			if (pstmt != null) pstmt.close();
 			if (conn !=null) conn.close();
 		}
 		return board;
 	}
 	
 	
-	public int insert(Board board) throws SQLException {
+	public int insert(List<String> dbSavePath, Board board) throws SQLException {
 		int result =0;
 		System.out.println("dao insert start...");
 		System.out.println("dao board.getBrd_bid ->"+board.getBrd_bid());
@@ -237,8 +245,9 @@ public class BoardDao {
 		String sql1 = "select nvl(max(brd_bid),0) from board";
 		//게시글 값 insert
 		String sql2 =  "insert into board(BRD_BID, BRD_NAME,BRD_TITLE ,BRD_WRITER ,BRD_DATE ,BRD_VIEW ,BRD_CONTENT ,BRD_SECRET ,BRD_DELETED ,USERNUM ,BRD_REF ,BRD_RE_STEP ,BRD_RE_LEVEL)VALUES(?, '게시글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, 1, ?, ?, ?)";
+		String sql3 =  "insert into FILES VALUES(?, ?, ?)";
 		System.out.println("BoardDao insert start...");
-		try {
+		try {	
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
 			rs = pstmt.executeQuery();
@@ -275,7 +284,19 @@ public class BoardDao {
 				System.out.println("dao insert board.getBrd_ref->"+ board.getBrd_ref());
 				System.out.println("dao insert board.getBrd_re_step->"+ board.getBrd_re_step());
 				System.out.println("dao insert board.getBrd_re_level->"+ board.getBrd_re_level());
-			
+				
+				for(int i = 0 ; i < dbSavePath.size() ; i ++) {
+					System.out.println("dbSavePath->"+ dbSavePath.get(i));
+					
+					pstmt.close();	
+					pstmt = conn.prepareStatement(sql3);
+					pstmt.setInt(1, number);
+					pstmt.setInt(2, i+1);
+					pstmt.setString(3, dbSavePath.get(i));
+					
+					result = pstmt.executeUpdate();
+				}
+				pstmt.close();	
 	
 		} catch (Exception e) {
 			System.out.println("dao insert error ->"+e.getMessage());
