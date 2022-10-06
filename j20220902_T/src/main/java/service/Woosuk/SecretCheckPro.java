@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-
 import dao.BoardDao;
 import service.CommandProcess;
 
@@ -16,7 +14,7 @@ public class SecretCheckPro implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, JSONException {
+			throws ServletException, IOException {
 		
 		try {
 			// 1. num , passwd , pageNum Get
@@ -38,7 +36,7 @@ public class SecretCheckPro implements CommandProcess {
 			e.printStackTrace();
 		}
 
-		return "Woosuk/boardSecretPro.jsp";
+		return "boardSecretPro.jsp";
 	}
 
 }
