@@ -51,7 +51,6 @@ public class AjaxMyResCheckPro implements CommandProcess {
 					int endPage = startPage + blockSize -1;	                       // 10   
 					// 공갈 Page 방지   10  >  4
 					if (endPage > pageCnt) endPage = pageCnt;	                   // 4
-					String state ="";
 					String branch="";
 					
 					JSONObject pageInfo = new JSONObject();
@@ -80,14 +79,6 @@ public class AjaxMyResCheckPro implements CommandProcess {
 						obj.put("cost", reservation.getRes_sal());
 						obj.put("cancel", reservation.getRes_cancel());
 						obj.put("visit", reservation.getRes_come());
-						if(reservation.getRes_cancel() == 1) {
-							state = "예약취소";
-						}else if(reservation.getRes_come() == 0) {
-							state = "방문전";
-						}else {
-							state = "방문완료";
-						}
-						obj.put("state", state);
 						result.put(obj);
 					}
 					

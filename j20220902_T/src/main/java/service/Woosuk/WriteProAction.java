@@ -72,7 +72,7 @@ public class WriteProAction implements CommandProcess {
 	        System.out.println("writeProAction pageNum ->"+pageNum);
 	        // 4. request 객체에 result, num , pageNum 	
 	     // view 에 넘어갈 값들 지정
-	        request.setAttribute("brd_bid", board.brd_bid);
+	        request.setAttribute("num", board.getBrd_ref());
 	        request.setAttribute("result", result);
 	        request.setAttribute("pageNum", pageNum);
 		

@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+
 import dao.Board;
 import dao.BoardDao;
 import service.CommandProcess;
@@ -15,7 +17,7 @@ public class ListAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, JSONException {
 		request.setCharacterEncoding("utf-8"); 
 		System.out.println("ListAction Service start...");
 		String srh_input = request.getParameter("srh_input");

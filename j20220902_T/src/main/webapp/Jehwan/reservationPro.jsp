@@ -28,9 +28,7 @@
 		realDay = new Date();
 		inputDay = new Date('${ res_date }');
 		today = new Date('${ res_date }'); 
-		if(!('${ brnNum }' ==null || '${ brnNum }' == '')){
-			$('#jijum').val('${brnNum}').prop("selected",true);
-		}
+		$('#jijum').val('${brnNum}').prop("selected",true);
 		if(today.getMonth()<=realDay.getMonth()){
 		 	$("#prev").hide();
          }
@@ -222,13 +220,6 @@
 		var end = parseInt($('.checked').filter(':last').parent().index()) + 10;
 		var jijum = $("#jijum").val();
 		var jijum_name = $("#jijum option:selected").text();
-		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'><input type='hidden' name='inputMonth' value='" + today.getMonth() +"'><input type='hidden' name='inputDate' value='" + today.getDate() +"'>";
-		text += "<input type='hidden' name='start' value='"+ start +"'><input type='hidden' name='end' value='"+ (end+1) +"'>";
-		text += "<input type='hidden' name='lane' value='" + lane +"'><input type='hidden' name='jijum' value='" + jijum +"'>";
-		text += "지점 : " + jijum_name +"<p>";
-		text += "레인 : " +lane +"<p>";
-		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
-		text += "인원수 : <input type='text' name='many' value='1' required='required'><p>";
 		if(end < 12){
 			cost= (end - start + 1) * 20000; 
 		}else if(start < 12 && end >= 12){
@@ -236,7 +227,23 @@
 		}else{
 			cost= (end - start + 1) * 50000;
 		}
-		text += "금액 : " + cost + "원 <input type='hidden' name='cost' value='" + cost +"'><input type='hidden' name='res_rid' value='" + '${ res_rid }' +"'>";
+		text = "지점 : " + jijum_name +"<p>";
+		text += "레인 : " +lane +"<p>";
+		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
+		text += "인원수 : <input type='text' name='many' value='1' required='required'><p>";
+		text += "금액 : " + cost + "원";
+		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'>";
+		text += "<input type='hidden' name='inputMonth' value='" + today.getMonth() +"'>";
+		text += "<input type='hidden' name='inputDate' value='" + today.getDate() +"'>";
+		text += "<input type='hidden' name='start' value='"+ start +"'>";
+		text += "<input type='hidden' name='end' value='"+ (end+1) +"'>";
+		text += "<input type='hidden' name='lane' value='" + lane +"'>";
+		text += "<input type='hidden' name='cost' value='" + cost +"'>";
+		text += "<input type='hidden' name='jijum' value='" + jijum +"'>";
+		
+		text += "<input type='hidden' name='res_rid' value='" + '${ res_rid }' +"'>";
+		text += "<input type='hidden' name='select_option' value='" + '${ select_option }' +"'>";
+		text += "<input type='hidden' name='currentPage' value='" + '${ currentPage }' +"'>";
 		$('#msg').html(text);
 	}
 	

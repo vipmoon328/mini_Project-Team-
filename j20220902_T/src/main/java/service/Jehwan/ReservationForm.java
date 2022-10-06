@@ -29,7 +29,18 @@ public class ReservationForm implements CommandProcess {
 		String brnNum_text = request.getParameter("brnNum");
 		String startString = request.getParameter("start");
 		String endString = request.getParameter("end");
-		if (!(startString==null || startString.equals(""))) {
+		int PossibleLane = 0;
+		int brnNum;
+		if(brnNum_text == "강남점") {
+			brnNum=1;
+		}else {
+			brnNum=0;
+		}
+		if (res_date==null || res_date.equals("")) {
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar cal = Calendar.getInstance();
+			res_date = df.format(cal.getTime());
+		}else {
 			int start =Integer.parseInt(request.getParameter("start"));
 			int end = Integer.parseInt(request.getParameter("end"));
 			if(start<5) {
@@ -39,44 +50,26 @@ public class ReservationForm implements CommandProcess {
 			if(end<5) {
 				end+=24;
 			}
+			request.setAttribute("res_rid", request.getParameter("res_rid"));
+			request.setAttribute("select_option", request.getParameter("select_option"));
+			request.setAttribute("currentPage", request.getParameter("currentPage"));
+			request.setAttribute("lane", request.getParameter("lane"));
+			request.setAttribute("customer", request.getParameter("customer"));
+			request.setAttribute("cost", request.getParameter("cost"));
 			startString = String.valueOf(start);
 			endString = String.valueOf(end);
+			request.setAttribute("start", startString);
+			request.setAttribute("end", endString);
 		}
-		int PossibleLane = 0;
-		System.out.println(brnNum_text);
-		System.out.println(res_date);
-		int brnNum;
-		if (res_date==null || res_date.equals("")) {
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-			Calendar cal = Calendar.getInstance();
-			res_date = df.format(cal.getTime());
-		}
-		System.out.println("res_rid=" + request.getParameter("res_rid"));
-		if(brnNum_text == "강남점") {
-			brnNum=1;
-		}else {
-			brnNum=0;
-		}
-		
 
 		ReservationDao rd = ReservationDao.getInstance();
 		try {
 			PossibleLane= rd.getPossibleLane(brnNum);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.println(res_date);
-		//request.setAttribute("USERNUM", request.getParameter("USERNUM"));
-		request.setAttribute("res_rid", request.getParameter("res_rid"));
-		request.setAttribute("res_date", res_date);
 		request.setAttribute("brnNum", brnNum);
-		request.setAttribute("lane", request.getParameter("lane"));
-		request.setAttribute("start", startString);
-		request.setAttribute("end", endString);
-		request.setAttribute("customer", request.getParameter("customer"));
-		request.setAttribute("cost", request.getParameter("cost"));
+		request.setAttribute("res_date", res_date);
 		request.setAttribute("possibleLane", PossibleLane);
 		
 		return "/Jehwan/reservationPro.jsp";
