@@ -26,7 +26,7 @@
 				<li><a href="<%=context%>/JiHyeon/informationFormOut.jsp">볼링장정보</a></li>
 				<li><a href="<%=context%>/GunHee/res_check.jsp">예약</a></li>
 				<li><a href="<%=context%>/JiHyeon/mapFormOut.jsp">오시는길</a></li>
-				<li><a href="<%=context%>/list.do">게시판</a></li>
+				<li><a href="board.do">게시판</a></li>
 			</ul>
 		</div>
 	</div>

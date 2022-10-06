@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 
@@ -26,12 +25,8 @@ public class UpdateProAction implements CommandProcess {
 			Board board = new Board();
 			try 
 			{
-				HttpSession session = request.getSession();
-				int usernum = Integer.parseInt((String.valueOf(session.getAttribute("usernum"))));
-				int board_usernum = Integer.parseInt((String.valueOf(session.getAttribute("board_usernum"))));
 				// 2. Board board 생성하고 value setting
-				System.out.println("로그인된 계정의 고유 id:" + usernum);
-				System.out.println("게시글의 계정의 고유 id:" + board_usernum);
+				
 				
 				System.out.println("UpdateProAction brd_secret-->"+request.getParameter("brd_secret"));
 				
@@ -39,10 +34,6 @@ public class UpdateProAction implements CommandProcess {
 				board.setBrd_bid(Integer.parseInt(request.getParameter("brd_bid")));
 				board.setBrd_title(request.getParameter("brd_title"));
 				board.setBrd_content(request.getParameter("brd_content"));
-				board.setUsernum(board_usernum);
-				
-				
-				
 				// 체크박스는 체크가 되어야 값이 넘어간다. 체크가 안되어 있으면 null값으로 넘어온다
 				// 이를 위해 null값은 0으로 넘어 가게 지정
 				if (request.getParameter("brd_secret") == null) {
@@ -63,7 +54,7 @@ public class UpdateProAction implements CommandProcess {
 				BoardDao bd = BoardDao.getInstance();
 				
 				// 앞에 지정 했던 값을 db에 업데이트 한다.
-				result = bd.update(board,usernum);
+				result = bd.update(board);
 				
 				// 4. request 객체에 result, num, pageNum
 				

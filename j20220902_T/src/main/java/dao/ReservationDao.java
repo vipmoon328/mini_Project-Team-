@@ -40,7 +40,7 @@ public class ReservationDao {
 			DataSource ds = (DataSource)
 				ctx.lookup("java:comp/env/jdbc/OracleDB");
 			conn = ds.getConnection();
-			System.out.println("sucess");
+			System.out.println("success");
 		}catch(Exception e) { 
 			System.out.println(e.getMessage());	
 		}
@@ -127,28 +127,20 @@ public class ReservationDao {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		int result = 0;
-		String sql1="select nvl(max(\"RES_RID\"),0) from reserve";
-		String sql = "insert into reserve values (?,TO_DATE(?,'YY/MM/DD'),?,?,?,?,?,?,?,sysdate,?,?)";
+		String sql = "insert into reserve values (RES_SEQ.NEXTVAL,TO_DATE(?,'YY/MM/DD'),?,?,?,?,?,?,?,sysdate,?,?)";
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql1);
-			rs = pstmt.executeQuery();
-			rs.next();
-			int number = rs.getInt(1) + 1;
-			rs.close();
-			pstmt.close();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, number);
-			pstmt.setString(2, res_date);
-			pstmt.setInt(3, reservation.getRes_lane());
-			pstmt.setInt(4, reservation.getRes_startTime());
-			pstmt.setInt(5, reservation.getRes_endTime());
-			pstmt.setInt(6, reservation.getRes_customer());
-			pstmt.setInt(7, reservation.getRes_sal());
-			pstmt.setInt(8, 0);
-			pstmt.setInt(9, reservation.getRes_userNum());
-			pstmt.setInt(10, 0);
-			pstmt.setInt(11, reservation.getRes_brnNum());
+			pstmt.setString(1, res_date);
+			pstmt.setInt(2, reservation.getRes_lane());
+			pstmt.setInt(3, reservation.getRes_startTime());
+			pstmt.setInt(4, reservation.getRes_endTime());
+			pstmt.setInt(5, reservation.getRes_customer());
+			pstmt.setInt(6, reservation.getRes_sal());
+			pstmt.setInt(7, 0);
+			pstmt.setInt(8, reservation.getRes_userNum());
+			pstmt.setInt(9, 0);
+			pstmt.setInt(10, reservation.getRes_brnNum());
 			result = pstmt.executeUpdate();
 			if(result >0 ) {
 				System.out.println("성공");

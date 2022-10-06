@@ -48,27 +48,16 @@
 			print_message();
 		});
 		
-		/* $(document).on("click",".checked:first , .checked:last", function(){
-				//var num = $(".checked").length;
-				if($(".checked").length <= 1){
-					reset_table();
-					return;
-				}
-				$(this).removeClass('checked');
-				$(".possible").removeClass('possible').css("background-color","lightgray");
-				add_probable();
-				print_message();
-		}); */
-		
 		$(document).on("click",".checked:first", function(){
-			//var num = $(".checked").length;
 			if($(".checked").length <= 1){
 				reset_table();
 				return;
 			}
-			var first = $(this).parent().index();
-			var col = $(this).index() + 1;
-			$("#test tr:nth-child(" + first + ") td:nth-child(" + col + ")").not(".impossible").removeClass('possible').addClass('cantSelect');
+			var col = $(this).index();
+			var row = $("." + col).index(this)-1;
+			console.log(col);
+			console.log(row);
+			$("." + col).eq(row).not(".impossible").removeClass('possible').addClass('cantSelect');
 			$(this).removeClass('checked').addClass('possible');
 			print_message();
 		});
@@ -78,9 +67,9 @@
 				reset_table();
 				return;
 			}
-			var last = $(this).parent().index() + 2;
-			var col = $(this).index() + 1;
-			$("#test tr:nth-child(" + last + ") td:nth-child(" + col + ")").not(".impossible").removeClass('possible').addClass('cantSelect');
+			var col = $(this).index();
+			var row = $("." + col).index(this)+1;
+			$("." + col).eq(row).not(".impossible").removeClass('possible').addClass('cantSelect');
 			$(this).removeClass('checked').addClass('possible');
 			print_message();
 		});
@@ -205,9 +194,9 @@
 
 	function print_message(){
 		var text="";
-		var lane = $('.checked').filter(':first').index();
-		var start = parseInt($('.checked').filter(':first').parent().index())  + 10;
-		var end = parseInt($('.checked').filter(':last').parent().index()) + 10;
+		var lane = $('.checked:first').index();
+		var start = parseInt($('.checked:first').parent().index())  + 10;
+		var end = parseInt($('.checked:last').parent().index()) + 10;
 		var jijum = $("#jijum").val();
 		var jijum_name = $("#jijum option:selected").text();
 		if(end < 12){
@@ -221,7 +210,7 @@
 		text += "지점 : " + jijum_name +"<p>";
 		text += "레인 : " +lane +"<p>";
 		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
-		text += "인원수 : <input type='text' name='many' value='1' required='required'><p>";
+		text += "인원수 : <input type='number' max='4' name='many' value='1' required='required'><p>";
 		text += "금액 : " + cost + "원<p>";
 		text += "<input type='button' id='insert' value='결제'>";
 		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'>";
@@ -261,23 +250,23 @@
 		for(var i = 10 ; i < maxtime ; i ++){
 			tag = "<tr><th>" + (i%24) + ":00~"+ ((i+1)%24) +":00</th>";
 			for(var j = 1 ; j <= '${possibleLane}' ; j ++){
-				tag +=  "<td class = 'possible " + j +"'></td>";
+				tag +=  "<td class = '" + j +" possible'></td>";
 			}
 			tag += "</tr>";
 			$("#test").append(tag);
 		}
 		
 		for(var i=0 ; i < data.length ; i++){
-			console.log(parseInt(data[i]["start"])-9);
-			console.log(data[i]["end"]-9);
-			console.log(data[i]["lane"]);
+			console.log(parseInt(data[i]["start"])-10);
+			console.log(parseInt(data[i]["end"])-10);
+			console.log(parseInt(data[i]["lane"]));
 
-			var start = parseInt(data[i]["start"])-9;
-			var end = parseInt(data[i]["end"])-9;
-			var lane = parseInt(data[i]["lane"]) + 1;
+			var start = parseInt(data[i]["start"])-10;
+			var end = parseInt(data[i]["end"])-10;
+			var lane = parseInt(data[i]["lane"]);
 			
 			for(var j=start ; j < end ; j++){
-				$("#test tr:nth-child(" + j + ") td:nth-child(" + lane + ")").addClass('impossible').removeClass('possible');
+				$("." + lane).eq(j).removeClass('possible').addClass('impossible');
 			}
 		}
 		if((today.getFullYear() == realDay.getFullYear())&&(today.getMonth() == realDay.getMonth())&&(today.getDate() == realDay.getDate())){
@@ -290,17 +279,17 @@
 		if(!('${ res_rid }' ==null || '${ res_rid }' == '')){
 			if((today.getFullYear() == inputDay.getFullYear())&&(today.getMonth() == inputDay.getMonth())&&(today.getDate() == inputDay.getDate())&&($("#jijum option:selected").val() == '${ brnNum }')){
 				$("#test td").not('.impossible').removeClass('possible').addClass('cantSelect');
-				console.log(parseInt('${ start }') -9);
-				console.log(parseInt('${ end }') -9);
+				console.log(parseInt('${ start }') -10);
+				console.log(parseInt('${ end }') -10);
 				console.log('${ lane }');
 				console.log(today);
 				console.log(inputDay);
-				start = parseInt('${ start }') -9;
-				end = parseInt('${ end }') -9;
-				lane = parseInt('${ lane }') + 1;
+				start = parseInt('${ start }') -10;
+				end = parseInt('${ end }') -10;
+				lane = parseInt('${ lane }');
 
 				for(var i=start ; i < end ; i++){
-					$("#test tr:nth-child(" + i + ") td:nth-child(" + lane + ")").addClass('checked').removeClass('impossible');
+					$("." + lane).eq(i).removeClass('impossible').addClass('checked');
 				}
 				add_probable();
 				print_message();
@@ -315,13 +304,16 @@
 		$("#test td").not('.impossible').removeClass('checked').addClass('possible').removeClass('cantSelect');
 	}
 	function add_probable() {
-		var col = $('.checked').filter(':first').index();
-		var first = $('.checked').filter(':first').parent().index();
-		var last = $('.checked').filter(':last').parent().index();
-		last +=2;
-		col +=1;
-		$("#test tr:nth-child(" + first + ") td:nth-child(" + col + ")").not('.impossible').addClass('possible').removeClass('cantSelect');
-		$("#test tr:nth-child(" + last + ") td:nth-child(" + col + ")").not('.impossible').addClass('possible').removeClass('cantSelect');
+		var col = $('.checked:first').index();
+		var first = $('.checked:first').parent().index();
+		var last = $('.checked:last').parent().index();
+		first -=1;
+		last +=1;
+		console.log(first);
+		console.log(last);
+		
+		$("." + col).eq(first).not('.impossible').addClass('possible').removeClass('cantSelect');
+		$("." + col).eq(last).not('.impossible').addClass('possible').removeClass('cantSelect');
 	}
 	
 

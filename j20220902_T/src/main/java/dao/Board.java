@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.Date;
+import java.util.List;
 
 public class Board {
 	public int brd_bid;
@@ -16,6 +17,16 @@ public class Board {
 	public int brd_ref;
 	public int brd_re_step;
 	public int brd_re_level;
+	public List<String> brd_img_src;
+	
+	
+	
+	public List<String> getBrd_img_src() {
+		return brd_img_src;
+	}
+	public void setBrd_img_src(List<String> brd_img_src) {
+		this.brd_img_src = brd_img_src;
+	}
 	public int getBrd_bid() {
 		return brd_bid;
 	}
