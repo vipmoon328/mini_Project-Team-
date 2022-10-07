@@ -16,7 +16,7 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>00관리자님</li>
+					<li>${name} 관리자님</li>
 					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div> 
