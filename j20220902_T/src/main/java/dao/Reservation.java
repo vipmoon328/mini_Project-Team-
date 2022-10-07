@@ -16,7 +16,23 @@ public class Reservation {
 	private int res_cancel;
 	private int res_brnNum;
 	
+	//[이효정 추가 String name/int    sum_sal]
+	private String name;
+	private int    sum_sal;
 	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getSum_sal() {
+		return sum_sal;
+	}
+	public void setSum_sal(int sum_sal) {
+		this.sum_sal = sum_sal;
+	}
 	public int getRes_rid() {
 		return res_rid;
 	}

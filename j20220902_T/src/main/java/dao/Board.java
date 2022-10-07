@@ -20,7 +20,6 @@ public class Board {
 	public List<String> brd_img_src;
 	
 	
-	
 	public List<String> getBrd_img_src() {
 		return brd_img_src;
 	}

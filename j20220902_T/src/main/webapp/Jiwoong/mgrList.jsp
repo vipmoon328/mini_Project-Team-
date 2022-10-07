@@ -58,7 +58,7 @@
 					<ul>
 						<li>중앙볼링장</li>
 						<li><a href="<%=context%>/mgrList.do" style="text-decoration: underline; color:#5A8DF3 "><strong>회원관리</strong></a></li>
-						<li><a href="#">매장관리</a></li>
+						<li><a href="<%=context%>/managerSales.do">매장관리</a></li>
 						<li><a href="<%=context%>/mgrBrdMgt.do">게시판관리</a></li>
 				   </ul>
 				</div>
