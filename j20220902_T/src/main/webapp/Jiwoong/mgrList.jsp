@@ -46,7 +46,7 @@
 			<div class="flex-container flex-end">
 				<div class="item_first">
 					<ul>
-						<li><strong>${locName}점 관리자 ${id}님</strong></li> <!-- 22.10.05 링크 및 관리자 표시 수정 [김건희] -->
+						<li><strong>${name} 관리자님</strong></li> <!-- 22.10.05 링크 및 관리자 표시 수정 [김건희] -->
 						<li><a href="<%=context%>/logout.do">로그아웃</a></li> <!-- 22.10.05 링크 및 관리자 표시 수정 [김건희] -->
 					</ul>
 				</div> 
