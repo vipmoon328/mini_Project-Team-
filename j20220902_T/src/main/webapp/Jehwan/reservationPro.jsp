@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%   String context = request.getContextPath();%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +47,7 @@
 			}
 			$(this).addClass('checked').removeClass('possible');
 			add_probable();
-			print_message();
+			print_message('${customer }');
 		});
 		
 		$(document).on("click",".checked:first", function(){
@@ -57,9 +59,11 @@
 			var row = $("." + col).index(this)-1;
 			console.log(col);
 			console.log(row);
-			$("." + col).eq(row).not(".impossible").removeClass('possible').addClass('cantSelect');
+			if(row>=0){
+				$("." + col).eq(row).not(".impossible").removeClass('possible').addClass('cantSelect');
+			}
 			$(this).removeClass('checked').addClass('possible');
-			print_message();
+			print_message('${customer }');
 		});
 		
 		$(document).on("click",".checked:last", function(){
@@ -71,19 +75,16 @@
 			var row = $("." + col).index(this)+1;
 			$("." + col).eq(row).not(".impossible").removeClass('possible').addClass('cantSelect');
 			$(this).removeClass('checked').addClass('possible');
-			print_message();
+			print_message('${customer }');
 		});
 		
 		$(document).on("change","#jijum", function(){
 			make_sendData();
-            
-            /* inputYear : today.getFullYear(),
-			   inputMonth: today.getMonth(),
-			   inputDate : today.getDate(),
-			   branch	 : $("#jijum").val() */
 		});
 		
-
+		$(document).on("change","#many", function(){
+			print_message($(this).val());
+		});
 		
 		
 		$(document).on("click",".date", function(){
@@ -192,7 +193,7 @@
 		$("#" + nowDate).addClass('selectDate');
     }
 
-	function print_message(){
+	function print_message(many_input){
 		var text="";
 		var lane = $('.checked:first').index();
 		var start = parseInt($('.checked:first').parent().index())  + 10;
@@ -210,8 +211,8 @@
 		text += "지점 : " + jijum_name +"<p>";
 		text += "레인 : " +lane +"<p>";
 		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
-		text += "인원수 : <input type='number' max='4' name='many' value='1' required='required'><p>";
-		text += "금액 : " + cost + "원<p>";
+		text += "인원수 : <select id='many'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select><p>";
+		text += "금액 : " + cost * parseInt(many_input) + "원<p>";
 		text += "<input type='button' id='insert' value='결제'>";
 		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'>";
 		text += "<input type='hidden' name='inputMonth' value='" + today.getMonth() +"'>";
@@ -226,6 +227,7 @@
 		text += "<input type='hidden' name='select_option' value='" + '${ select_option }' +"'>";
 		text += "<input type='hidden' name='currentPage' value='" + '${ currentPage }' +"'>";
 		$('#msg').html(text);
+		$('#many').val(many_input).prop("selected",true);
 	}
 	
 	function buildTimeTable(data) {
@@ -292,8 +294,7 @@
 					$("." + lane).eq(i).removeClass('impossible').addClass('checked');
 				}
 				add_probable();
-				print_message();
-				$('input[name=many]').attr('value','${customer }');
+				print_message('${customer }');
 			}
 		}
 	}
@@ -311,8 +312,9 @@
 		last +=1;
 		console.log(first);
 		console.log(last);
-		
-		$("." + col).eq(first).not('.impossible').addClass('possible').removeClass('cantSelect');
+		if(first>=0){
+			$("." + col).eq(first).not('.impossible').addClass('possible').removeClass('cantSelect');
+		}
 		$("." + col).eq(last).not('.impossible').addClass('possible').removeClass('cantSelect');
 	}
 	
@@ -323,7 +325,7 @@
 	<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>${name}님</li>
+					<li>${id}님</li>
 					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div> 
@@ -385,9 +387,9 @@
 		<span id="color_info"><img src="<%=context%>/images/possible.png">선택 가능 시간<img src="<%=context%>/images/checked.png">선택 시간 <img src="<%=context%>/images/cantSelect.png">선택 불가<img src="<%=context%>/images/impossible.png">예약됨</span></caption>
 			<thead>
 				<tr><th></th>
-				<c:forEach var="laneCnt" begin="1"  end="${possibleLane }">
-					<th>${laneCnt }레인</th>
-				</c:forEach>
+					<c:forEach var="laneCnt" begin="1"  end="${possibleLane }">
+						<th>${laneCnt }레인</th>
+					</c:forEach>
 				</tr>
 			</thead>
 			<tbody id="test">

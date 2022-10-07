@@ -116,7 +116,7 @@
 		padding-bottom: 130px;
 	}
 	
-	#jijum {
+	#jijum{
 			width: 150px; 
 			padding: .8em .5em; 
 			border: 1px solid skyblue;
@@ -128,6 +128,19 @@
 			appearance: none;
 			cursor: pointer;
 			}
+	
+	#many{
+			width: 150px; 
+			padding: .4em .2em; 
+			border: 1px solid skyblue;
+			font-family: inherit;  
+			background: url('../images/arrow.png') no-repeat 95% 40%/20px auto; 
+			border-radius: 5px; 
+			-webkit-appearance: none; 
+			-moz-appearance: none;
+			appearance: none;
+			cursor: pointer;
+	}
 	
 	caption, #frm {
 		text-align: left;

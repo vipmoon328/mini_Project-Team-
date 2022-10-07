@@ -29,6 +29,7 @@ public class ReservationForm implements CommandProcess {
 		String brnNum_text = request.getParameter("brnNum");
 		String startString = request.getParameter("start");
 		String endString = request.getParameter("end");
+		String customer = "1";
 		int PossibleLane = 0;
 		int brnNum;
 		if(brnNum_text == "강남점") {
@@ -54,7 +55,7 @@ public class ReservationForm implements CommandProcess {
 			request.setAttribute("select_option", request.getParameter("select_option"));
 			request.setAttribute("currentPage", request.getParameter("currentPage"));
 			request.setAttribute("lane", request.getParameter("lane"));
-			request.setAttribute("customer", request.getParameter("customer"));
+			customer = request.getParameter("customer");
 			request.setAttribute("cost", request.getParameter("cost"));
 			startString = String.valueOf(start);
 			endString = String.valueOf(end);
@@ -71,7 +72,7 @@ public class ReservationForm implements CommandProcess {
 		request.setAttribute("brnNum", brnNum);
 		request.setAttribute("res_date", res_date);
 		request.setAttribute("possibleLane", PossibleLane);
-		
+		request.setAttribute("customer", customer);
 		return "/Jehwan/reservationPro.jsp";
 	}
 
