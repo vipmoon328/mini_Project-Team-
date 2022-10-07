@@ -6,9 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>유저복구 결과창</title>
+<title>관리자 유저복구 결과창</title>
 </head>
 <body>
+<!-- 지웅씨의 관리자 권한시 유저 복구 기능 구현 [김건희] -->
 	<c:if test="${result eq 1}">
 		<script type="text/javascript">
 			alert('회원님의 계정 복구 성공했습니다.');

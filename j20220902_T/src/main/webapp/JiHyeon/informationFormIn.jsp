@@ -13,7 +13,7 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>${id}님</li> <!-- 22.09.30[김건희] 수정 -->
+					<li>${name}님</li> <!-- 22.09.30[김건희] 수정 -->
 					<li><a href="<%=context%>/logout.do">로그아웃</a></li> <!-- 22.09.30[김건희] 수정 -->
 				</ul>
 			</div> 

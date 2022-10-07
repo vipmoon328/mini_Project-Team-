@@ -5,17 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>로그인 결과</title>
-<script type="text/javascript">
-	console.log(${auth})
-</script>
+	<meta charset="UTF-8">
+	<title>로그인 결과</title>
+	
+	<script type="text/javascript">
+		console.log(${auth})
+	</script>
 </head>
 <body>
-	
 	<c:if test="${login_result eq 1 && auth eq 1}">
 		<script type="text/javascript">
-			alert("${id}님 환영합니다.");
+			alert("${name}님 환영합니다."); 
 			location.href='<%=context%>/hyojung/loginHomeView.jsp';
 		</script>
 	</c:if>

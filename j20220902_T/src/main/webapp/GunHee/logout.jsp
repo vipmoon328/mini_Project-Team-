@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript">
-	alert("로그아웃 되었습니다.")
-	location.href='<%=context%>/hyojung/mainHomeView.jsp';
-</script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		alert("로그아웃 되었습니다.")
+		location.href='<%=context%>/hyojung/mainHomeView.jsp';
+	</script>
 </head>
 <body>
 

@@ -151,6 +151,7 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 			<!-- 22.10.06 [김건희] 로그인 여부에 따라 화면 출력 차이 구현  -->
+			<!-- 로그인 여부에 따른 분기를 하나의 페이지로 구현하기 위해서 사용 [김건희] -->
 				<c:choose>
 					<c:when test="${empty id}">
 					<ul>
@@ -161,7 +162,7 @@
 					
 					<c:otherwise>
 					<ul>
-						<li>${id}님</li>
+						<li>${name}님</li>
 						<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 					</ul>
 					</c:otherwise>
@@ -172,13 +173,28 @@
 		<div class="flex-container">
 			<div class="item_second">
 				<ul>
-					<li>중앙볼링장</li>
-					<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
-					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
-					<li><a href="<%=context%>/reschange.do">예약</a></li>
-					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
-					<li><a href="<%=context%>/list.do">게시판</a></li>
-					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
+					<!-- 22.10.06 [김건희] 로그인 여부에 따라 화면 출력 차이 구현  -->
+					<!-- 로그인 여부에 따른 분기를 하나의 페이지로 구현하기 위해서 사용 [김건희] -->
+					<c:choose>
+						<c:when test="${empty id}">
+							<li>중앙볼링장</li>
+							<li><a href="<%=context%>/hyojung/mainHomeView.jsp">홈</a></li>
+							<li><a href="<%=context%>/JiHyeon/informationFormOut.jsp">볼링장정보</a></li>
+							<li><a href="<%=context%>/GunHee/res_check.jsp">예약</a></li>
+							<li><a href="<%=context%>/JiHyeon/mapFormOut.jsp">오시는길</a></li>
+							<li><a href="<%=context%>/list.do">게시판</a></li>
+						</c:when>
+						
+						<c:otherwise>
+							<li>중앙볼링장</li>
+							<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
+							<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
+							<li><a href="<%=context%>/reschange.do">예약</a></li>
+							<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
+							<li><a href="<%=context%>/list.do">게시판</a></li>
+							<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>

@@ -49,7 +49,7 @@
 				<img alt="" src="<%=context%>/images/icon.png" >
 		</div>	
 		
-		<div><h3 style=" text-align: center;">${id}님의 변경하실 비밀 번호를 입력해주세요</h3></div>
+		<div><h3 style=" text-align: center;">${name}님의 변경하실 비밀 번호를 입력해주세요</h3></div>
 		
 		<div>
 			<table>

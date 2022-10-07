@@ -5,135 +5,141 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>중앙볼링장 회원가입</title>
-<link href="<%=context%>/css/signUpForm.css" type="text/css" rel="stylesheet"> 
-<style type="text/css">
-	.error {
-		color: red;
-		position: relative;
-		left: 160px;
-		font-weight: 700;
-		padding: 0px;
-		font-size: 13px;
-	}
-	
-	#idCheck{
-		font-weight: 500;
-	}
-	
-	img { 
-    	width: 500px;
-    	height: 400px;
-    }
-</style>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-	var id_check = false;
-	
-	$(function(){
-		$('#user_id_chk').click(function(){
-			var id = $('#user_id').val();
-			$.ajax({
-				url			: '<%=context%>/chkId.do',
-				type 		: 'get',
-				data		: "id="+id,
-				success		: function(data){
-					console.log("결과 : "+ data);
-					if (data == 'Exist') {
-						$("#idCheck").text("사용중인 아이디입니다");
-						$("#idCheck").css("color","red");
-						id_check = false;
-					} else {
-						$("#idCheck").text("사용 가능한 아이디입니다");
-						$("#idCheck").css("color","blue");
-						id_check = true;
+	<meta charset="UTF-8">
+	<title>중앙볼링장 회원가입</title>
+	<link href="<%=context%>/css/signUpForm.css" type="text/css" rel="stylesheet"> 
+	<style type="text/css">
+		.error {
+			color: red;
+			position: relative;
+			left: 160px;
+			font-weight: 700;
+			padding: 0px;
+			font-size: 13px;
+		}
+		
+		#idCheck{
+			font-weight: 500;
+		}
+		
+		img { 
+	    	width: 500px;
+	    	height: 400px;
+	    }
+	</style>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+		var id_check = false;
+		
+		/* 아이디 중복 체크를 알려주는 ajax 구현 [김건희] */
+		$(function(){
+			$('#user_id_chk').click(function(){
+				var id = $('#user_id').val();
+				$.ajax({
+					url			: '<%=context%>/chkId.do',
+					type 		: 'get',
+					data		: "id="+id,
+					success		: function(data){
+						console.log("결과 : "+ data);
+						if (data == 'Exist') {
+							$("#idCheck").text("사용중인 아이디입니다");
+							$("#idCheck").css("color","red");
+							id_check = false;
+						} else {
+							$("#idCheck").text("사용 가능한 아이디입니다");
+							$("#idCheck").css("color","blue");
+							id_check = true;
+						}
 					}
-				}
+				});
 			});
 		});
-	});
+		
+		/* 이메일 가입시 특정 도메인을 사용시 자동으로 값을 입력해주는 함수 [김건희] */
+		function changeDomain()
+		{
+			if($('#domain_list').val() == 'type')
+			{
+				$('#user_email2').val("");
+				$('#user_email2').attr("readonly", false);
+			}
+			else
+			{
+				$('#user_email2').val($('#domain_list').val());
+				$('#user_email2').attr("readonly", true);
+			}
+		}
+		
+		/* 아이디 입력시 변경이 감지되면 알려주는 함수 -> 아이디 체크후 중복체크 유효성의 오류를 체크를 통과한 후 아이디를 변경해서 가입을 하는 경우를 방지하기 위함
+		[김건희] */
+		function changeId()
+		{
+			id_check = false;
+			$("#idCheck").text("아이디 체크를 부탁드립니다.");
+			$("#idCheck").css("color","red");
+		}
+		
+		/* 회원 가입시 유효성 체크하는 함수 [김건희] */
+		function signUpCheck()
+		{	
+			var check = true;
+			
+			if(id_check == false)
+			{
+				alert("아이디 중복 체크 여부를 먼저 확인해 주세요!");
+				check = false;
+			}
+			
+			$('#idError').text('');
+			$('#passError').text('');
+			$('#passLengthError').text('');
+			$('#emailError').text('');
+			
+			if($('#user_id').val().length < 5 || $('#user_id').val().length > 20)
+			{
+				$('#idError').text('아이디는 최소 6자리 최대 20자리까지 입력해주세요.');
+				check = false;
+			}
+			
+			if($('#user_password').val() != $('#user_password_chk').val())
+			{
+				$('#passError').text('패스워드가 일치하지 않습니다. 다시 입력해주세요.');
+				check = false;
+			}
+			
+			if($('#user_password').val().length < 8)
+			{
+				$('#passLengthError').text('패스워드는 보안상의 이유로 8글자 이상 입력해주세요');
+				check = false;
+			}
+			
+			if($('#user_email2').val().indexOf('.') == -1)
+			{
+				$('#emailError').text('이메일 형식이 일치 하지 않습니다. 다시 입력해주세요');
+				check = false;
+			}
 	
-	function changeDomain()
-	{
-		if($('#domain_list').val() == 'type')
-		{
-			$('#user_email2').val("");
-			$('#user_email2').attr("readonly", false);
-		}
-		else
-		{
-			$('#user_email2').val($('#domain_list').val());
-			$('#user_email2').attr("readonly", true);
-		}
-	}
-	
-	function changeId()
-	{
-		id_check = false;
-		$("#idCheck").text("아이디 체크를 부탁드립니다.");
-		$("#idCheck").css("color","red");
-	}
-	
-	function signUpCheck()
-	{	
-		var check = true;
-		
-		if(id_check == false)
-		{
-			alert("아이디 중복 체크 여부를 먼저 확인해 주세요!");
-			check = false;
+			console.log(check);
+			
+			if(check == false)
+			{
+				return check;
+			}
+			
 		}
 		
-		$('#idError').text('');
-		$('#passError').text('');
-		$('#passLengthError').text('');
-		$('#emailError').text('');
+	/*  테스트용 초기값 함수 [김건희] */
+	/* 	function init() {
+			user_id.value = "woo";
+			user_password.value = 12345678;
+			user_password_chk.value = 12345678;
+			user_name.value = "김우석";
+			user_phone_number.value = "010-1234-5678";
+			user_email1.value = "woo123";
+			user_email2.value = "naver.com";
+		} */
 		
-		if($('#user_id').val().length < 5 || $('#user_id').val().length > 20)
-		{
-			$('#idError').text('아이디는 최소 6자리 최대 20자리까지 입력해주세요.');
-			check = false;
-		}
-		
-		if($('#user_password').val() != $('#user_password_chk').val())
-		{
-			$('#passError').text('패스워드가 일치하지 않습니다. 다시 입력해주세요.');
-			check = false;
-		}
-		
-		if($('#user_password').val().length < 8)
-		{
-			$('#passLengthError').text('패스워드는 보안상의 이유로 8글자 이상 입력해주세요');
-			check = false;
-		}
-		
-		if($('#user_email2').val().indexOf('.') == -1)
-		{
-			$('#emailError').text('이메일 형식이 일치 하지 않습니다. 다시 입력해주세요');
-			check = false;
-		}
-
-		console.log(check);
-		
-		if(check == false)
-		{
-			return check;
-		}
-		
-	}
-	
-	function init() {
-		user_id.value = "woo";
-		user_password.value = 12345678;
-		user_password_chk.value = 12345678;
-		user_name.value = "김우석";
-		user_phone_number.value = "010-1234-5678";
-		user_email1.value = "woo123";
-		user_email2.value = "naver.com";
-	}
-	
-</script>
+	</script>
 </head>
 <body onload="init()">
 <div class="frame" >
