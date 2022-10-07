@@ -22,7 +22,7 @@ public class MgrUpdateProAction implements CommandProcess {
 		response.setContentType("text/html; charset=utf-8");		
 			
 		
-		System.out.println("MyPageActionPro Start...");
+		System.out.println("MgrPageActionPro Start...");
 		String email = request.getParameter("user_email1");
 		email += "@";
 		email += request.getParameter("user_email2");

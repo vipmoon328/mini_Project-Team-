@@ -9,150 +9,27 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 관리</title>
-<link rel="stylesheet" href="<%=context%>/css/mgrBrdMgt.css" type="text/css">
-<style type="text/css">
-	table {
-    width: 70%;
-	border-top: 2px solid #444444;
-	border-bottom: 2px solid #444444;
-    border-collapse: collapse;
-    margin: auto;
- 	 }
-  	th{
-  		padding: 10px;
-  		text-align: center;
- 	 }
-  
-	td {
-	border-bottom : 1px solid black;
-    padding: 10px;
-    font-size: 75%;
-    text-align: center;
-  }
-  
-  	input{
-  		border: 1px solid #bbb;
-	 	border-radius: 8px;
-	  	padding: 8px 10px;
-	  	font-size: 14px;
-  	}
+<link rel="stylesheet" href="<%=context%>/css/mgrBrdMgt.css?v=<%=System.currentTimeMillis() %>" type="text/css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	
 
-	#hrline {
-	width: 84%;
-	margin: auto;
-	color : #99ccff; 
-} 
-	#wr_btn{
-	position: relative;
-	border: 0;
-	height: 30px;
-	width:75px;
-	background-color: #90C3FF;
-	text-align: center;
-	font-weight: bold; 
-	color: white; 
-	border-radius: 12px;
-	box-shadow: 0px 3px 0px #5A8DF3; 
-	}
-	
-	
-	#wr_btn :active{
-	box-shadow: 0 0 #90C3FF; 
-	background-color: #90C3FF;
-	top: 3px;
-	}
- 
-	#search{
-		position: relative;
-  		width: 400px;
-  		margin: auto;
-  		margin-top: 50px;
-  		
-  		
-	}
 
-	#srh_input{
-		width: 200px;
-	  	border: 1px solid #bbb;
-	 	border-radius: 8px;
-	  	padding: 10px 12px;
-	  	font-size: 14px;
-	  	
-	}
-	
-	
-	#srh_btn {
-		 position: relative;
-		 top:2px;
-		 background-color:#99ccff;
-		color:#fff;
-	}
-	
-	#srh_select{
-		border: 1px solid #bbb;
-	 	border-radius: 8px;
-	  	padding: 8px 10px;
-	  	font-size: 14px;
-	}
-	
-	.page_wrap {
-	text-align:center;
-	font-size:0;
-	margin-top: 30px;
-	margin: auto;
-	 }
-	.page_nation {
-		display:inline-block;
-	}
-	.page_nation .none {
-		display:none;
-	}
-	.page_nation a {
-		display:block;
-		margin:0 3px;
-		float:left;
-		border:1px solid #e6e6e6;
-		width:28px;
-		height:28px;
-		line-height:28px;
-		text-align:center;
-		background-color:#fff;
-		font-size:13px;
-		color:#999999;
-		text-decoration:none;
-	}
-	.page_nation .arrow {
-		border:1px solid #ccc;
-	}
-	.page_nation .pprev {
-		background:#f8f8f8 url('images/page_pprev.png') no-repeat center center;
-		margin-left:0;
-	}
-	.page_nation .prev {
-		background:#f8f8f8 url('images/page_prev.png') no-repeat center center;
-		margin-right:7px;
-	}
-	.page_nation .next {
-		background:#f8f8f8 url('images/page_next.png') no-repeat center center;
-		margin-left:7px;
-	}
-	.page_nation .nnext {
-		background:#f8f8f8 url('images/page_nnext.png') no-repeat center center;
-		margin-right:0;
-	}
-	.page_nation a.active {
-		background-color:#1E90FF;
-		color:#fff;
-		border:1px solid #42454c;
-	}
-</style>
+
+</script>	
+
+
+
+
+
 
 <!-- 헤더  -->
+<!-- <div style="width:1920px;" align="center"> -->
 <div id="wrapper">
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>${name}님</li>
+					<li>${id}님</li>
 					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div> 
@@ -179,9 +56,10 @@
 	
 </head>
 <body>	
-			<div class="boardList">
+			
 				<table>
 					<colgroup>
+						<col width="100">
 						<col width="100">
 						<col width="200">
 						<col width="1000">
@@ -191,6 +69,7 @@
 					</colgroup>
 					
 					<tr bgcolor="#e9ecef">
+						<th>선택</th>
 						<th>번호</th>
 						<th>게시명</th>
 				        <th>제목</th>
@@ -202,8 +81,9 @@
 			        
 			        <c:if test="${totCnt > 0 }">
 			<c:forEach var="board" items="${list }"><!--반복문을 통해 리스트 출력  -->
-				<tr>
-					<td>${startNum }</td>  
+				<tr>	
+					<td><input type="checkbox" name="checkBox" value=""></td>  
+					<td>${startNum }</td>
 					<td>${board.brd_name }</td>
 					<td class="left" width=200 height="20">
 					 		<c:if test="${board.brd_secret > 0}"><!--비밀글 값이 1 인 게시물은 잠금 이미지가 나타난다  -->
@@ -229,19 +109,15 @@
 			<tr>
 				<td colspan=7>데이터가 없네</td>
 			</tr>
-		</c:if>
-			      <!--   <tr>
-			          <td>1</td>
-			          <td class="title">공지사항</td>
-			          <td class="name">글쓴이 이름</td>
-			          <td class="date">2008/02/14</td>
-			          <td class="see">1214</td>
-			        </tr> -->
-					
+		</c:if>		
 				</table>
+			
+			
+			<!-- 게시글 삭제 및 공지사항 작성 버튼 -->
+			<div id="brd_Btn">
+				<input id="delete_btn"  type="button" value="선택삭제" onclick="location.href='<%=context%>/do'"> <input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/.do'">
 			</div>
-			<!-- <input id="wr_btn" type="button" value="글작성" class="active" href="writeForm.do"> -->
-			<p><input id="wr_btn" style="margin-left:80.3%"  type="button" value="공지사항" onclick="location.href='<%=context%>/writeForm.do'">
+			
 			
 			
 			<!-- 페이징 -->
@@ -294,6 +170,11 @@
 				<div><pre>이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
+		
+
 
 </body>
+
 </html>
+</div>
+

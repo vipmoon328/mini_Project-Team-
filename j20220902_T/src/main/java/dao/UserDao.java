@@ -433,7 +433,7 @@ public class UserDao
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
 					Users users = new Users();
-					users.setUsernum(rs.getInt("userNum"));
+					users.setUsernum(rs.getInt("usernum"));
 					users.setId(rs.getString("id"));
 					users.setPw(rs.getString("pw"));
 					users.setName(rs.getString("name"));
