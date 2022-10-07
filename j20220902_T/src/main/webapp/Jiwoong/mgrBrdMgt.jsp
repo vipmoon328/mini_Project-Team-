@@ -12,33 +12,22 @@
 <link rel="stylesheet" href="<%=context%>/css/mgrBrdMgt.css?v=<%=System.currentTimeMillis() %>" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	function chk() {
-		var chk_arr= [];
-		console.log('chk_arr',chk_arr); // 디버깅
-	$("input[name=checkBox]:checked").each(function(){  
-		var chk =$(this).val();
-		console.log('chk_arr',chk_arr); // 디버깅
-		chk_arr.push(chk);
+	function allChk() { // 전체체크 및 해제
 		
-	})
-		console.log('chk_arr',chk_arr);
-	}
+		if($("#all_chk").is(':checked')){
+		 	$("#delete_btn").val('전체삭제'); 
+			$("input[name=chk]").prop("checked",true);
+			
+		}else{
+			 $("#delete_btn").val('선택삭제'); 
+			$("input[name=chk]").prop("checked",false);		
+		}
+	}	
+			
 		
-		
+</script>
+<!--  여기까지 Header  -->
 
-	
-	
-
-
-
-</script>	
-
-
-
-
-
-
-<!-- 헤더  -->
 <!-- <div style="width:1920px;" align="center"> -->
 <div id="wrapper">
 		<div class="flex-container flex-end">
@@ -71,7 +60,7 @@
 	
 </head>
 <body>	
-			
+		<form name="chk_delete" method="post"  action="<%=context%>/mgrBrdDeletePro.do">	
 				<table>
 					<colgroup>
 						<col width="100">
@@ -84,7 +73,7 @@
 					</colgroup>
 					
 					<tr bgcolor="#e9ecef">
-						<th>선택</th>
+						<th><input type="checkbox" name="all_chk" id="all_chk" onclick="allChk()" ></th>
 						<th>번호</th>
 						<th>게시명</th>
 				        <th>제목</th>
@@ -97,7 +86,7 @@
 			        <c:if test="${totCnt > 0 }">
 			<c:forEach var="board" items="${list }"><!--반복문을 통해 리스트 출력  -->
 				<tr>	
-					<td><input  type="checkbox" name="checkBox" value="${board.brd_bid}" ></td>  
+					<td><input  type="checkbox" name="chk" value="${board.brd_bid}" ></td>  
 					<td>${startNum }</td>
 					<td>${board.brd_name }</td>
 					<td class="left" width=200 height="20">
@@ -126,13 +115,14 @@
 			</tr>
 		</c:if>		
 				</table>
-			
-			
 			<!-- 게시글 삭제 및 공지사항 작성 버튼 -->
 			<div id="brd_Btn">
-				<input id="delete_btn"  type="button" value="선택삭제"   onclick="chk()">
-				 <input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/.do'">
+				<input type="submit" id="delete_btn"  value="선택삭제">  <!-- 삭제버튼 -->
+				<%-- <input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/.do'"> --%>
 			</div>
+			
+		</form>	
+			
 			
 			
 			
@@ -167,7 +157,7 @@
 			      <a class="arrow nnext" href="#"></a>
 			   </div>
 			</div> -->
-		</form><!-- 검색기능  -->
+		<!-- 검색기능  -->
 		<form action="<%=context%>/mgrBrdMgt.do?pageNum=${pageNum }" method="post">
 			<div id="search">
 				<select id="srh_select" name="srh_select">
@@ -193,4 +183,16 @@
 
 </html>
 </div>
+
+	
+	
+
+
+
+	
+
+
+
+
+
 

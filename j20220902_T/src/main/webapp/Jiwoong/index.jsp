@@ -10,6 +10,6 @@
 <body>
 <script type="text/javascript">
    location.href = "<%=context%>/mgrBrdMgt.do"; 
-	</script>
+</script>
 </body>
 </html>
