@@ -246,7 +246,7 @@ public class BoardDao {
 		//게시글의 가장 마지막 고유 번호를 찾는다
 		String sql1 = "select nvl(max(brd_bid),0) from board";
 		//게시글 값 insert
-		String sql2 =  "insert into board(BRD_BID, BRD_NAME,BRD_TITLE ,BRD_WRITER ,BRD_DATE ,BRD_VIEW ,BRD_CONTENT ,BRD_SECRET ,BRD_DELETED ,USERNUM ,BRD_REF ,BRD_RE_STEP ,BRD_RE_LEVEL)VALUES(?, '게시글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
+		String sql2 =  "insert all into board values(?, '게시글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
 		for(int i = 0 ; i < dbSavePath.size() ; i ++) {
 			sql2 += "into FILES VALUES(?, ?, ?) ";
 		}
@@ -284,9 +284,9 @@ public class BoardDao {
 				pstmt.setInt(10,board.getBrd_re_level());
 				
 				for(int i = 0 ; i < 3*dbSavePath.size() ; i = i+3) {
-					pstmt.setInt(i + 10, number);
-					pstmt.setInt(i + 11, i+1);
-					pstmt.setString(i + 12, dbSavePath.get(i/3));
+					pstmt.setInt(i + 11, number);
+					pstmt.setInt(i + 12, i+1);
+					pstmt.setString(i + 13, dbSavePath.get(i/3));
 				}
 				result = pstmt.executeUpdate();
 				
