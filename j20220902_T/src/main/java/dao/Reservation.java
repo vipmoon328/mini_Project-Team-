@@ -11,12 +11,12 @@ public class Reservation {
 	private int res_customer;
 	private int res_sal;
 	private int res_come;
-	private int res_userNum;
+	private int usernum;
 	private Date pay_date;
 	private int res_cancel;
 	private int res_brnNum;
 	
-	//[이효정 추가 String name/int    sum_sal]
+	//[이효정 추가 String name/int sum_sal]
 	private String name;
 	private int    sum_sal;
 	
@@ -81,11 +81,11 @@ public class Reservation {
 	public void setRes_come(int res_come) {
 		this.res_come = res_come;
 	}
-	public int getRes_userNum() {
-		return res_userNum;
+	public int getusernum() {
+		return usernum;
 	}
-	public void setRes_userNum(int res_userNum) {
-		this.res_userNum = res_userNum;
+	public void setusernum(int usernum) {
+		this.usernum = usernum;
 	}
 	public Date getPay_date() {
 		return pay_date;

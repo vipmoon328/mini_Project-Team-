@@ -83,7 +83,7 @@
 					<c:forEach var="reserve" items="${reserveList}">
 						<tr>
 							<td>${startNum}</td>
-							<td>${reserve.res_userNum}</td>
+							<td>${reserve.usernum}</td>
 							<td>${reserve.name}</td>
 							<td>${reserve.res_lane}</td>
 							<td>${reserve.res_customer}</td>

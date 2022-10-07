@@ -138,7 +138,7 @@ public class ReservationDao {
 			pstmt.setInt(5, reservation.getRes_customer());
 			pstmt.setInt(6, reservation.getRes_sal());
 			pstmt.setInt(7, 0);
-			pstmt.setInt(8, reservation.getRes_userNum());
+			pstmt.setInt(8, reservation.getusernum());
 			pstmt.setInt(9, 0);
 			pstmt.setInt(10, reservation.getRes_brnNum());
 			result = pstmt.executeUpdate();
@@ -180,7 +180,7 @@ public class ReservationDao {
 				reservation.setRes_customer(rs.getInt(6));
 				reservation.setRes_sal(rs.getInt(7));
 				reservation.setRes_come(rs.getInt(8));
-				reservation.setRes_userNum(rs.getInt(9));
+				reservation.setusernum(rs.getInt(9));
 				reservation.setPay_date(rs.getDate(10));
 				reservation.setRes_cancel(rs.getInt(11));
 				reservation.setRes_brnNum(rs.getInt(12));
@@ -287,18 +287,18 @@ public class ReservationDao {
 		
 		String sql1 = "SELECT * "
 				   + "FROM (SELECT rownum rn , a.* "
-				   + "		FROM ( SELECT reserve.res_usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
+				   + "		FROM ( SELECT reserve.usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
 				   + "			   FROM users,reserve "
-				   + "			   WHERE reserve.res_usernum = users.res_usernum "
+				   + "			   WHERE reserve.usernum = users.usernum "
 				   + "			   ORDER BY res_date ) a ) "
 				   + "WHERE rn BETWEEN ? AND ? ";
 		
 		
 		String sql2 = "SELECT * "
 				   + "FROM (Select rownum rn , a.* "
-				   + "		FROM ( SELECT reserve.res_usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
+				   + "		FROM ( SELECT reserve.usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
 				   + "			   FROM users,reserve "
-				   + "             WHERE reserve.res_usernum = users.res_usernum AND res_date BETWEEN ?  AND ? "
+				   + "             WHERE reserve.usernum = users.usernum AND res_date BETWEEN ?  AND ? "
 				   + "			   ORDER BY res_date ) a ) "
 				   + "WHERE rn BETWEEN ? AND ? ";	
 		
@@ -325,7 +325,7 @@ public class ReservationDao {
 			while (rs.next()) {
 				Reservation reserve = new Reservation();
 				System.out.println("ReserveDao userslist name->"+rs.getString("name"));
-				reserve.setRes_userNum  (rs.getInt("res_userNum"));
+				reserve.setusernum  (rs.getInt("usernum"));
 				reserve.setName         (rs.getString("name"));
 				reserve.setRes_lane     (rs.getInt("res_lane"));
 				reserve.setRes_customer (rs.getInt("res_customer"));
@@ -381,9 +381,9 @@ public class ReservationDao {
 		ResultSet         rs    = null;	
 		String sql = "SELECT * "
 				   + "FROM (SELECT rownum rn , a.* "
-				   + "      FROM ( SELECT reserve.res_usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
+				   + "      FROM ( SELECT reserve.usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
 				   + "             FROM users,reserve "
-				   + "             WHERE reserve.res_usernum = users.res_usernum AND res_date BETWEEN ?  AND ? "
+				   + "             WHERE reserve.usernum = users.usernum AND res_date BETWEEN ?  AND ? "
 				   + "             ORDER BY res_date ) a ) "
 				   + "WHERE rn BETWEEN ? AND ? ";		
 		
@@ -397,7 +397,7 @@ public class ReservationDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Reservation reserve = new Reservation();
-				reserve.setRes_userNum  (rs.getInt("res_userNum"));
+				reserve.setusernum  (rs.getInt("usernum"));
 				reserve.setName         (rs.getString("name"));				
 				reserve.setRes_lane     (rs.getInt("res_lane"));
 				reserve.setRes_customer (rs.getInt("res_customer"));
@@ -425,7 +425,7 @@ public class ReservationDao {
 		Statement  stmt = null;
 		ResultSet  rs   = null;
 		int usertotCnt  = 0;
-		String sql = "SELECT count(DISTINCT res_userNum) "
+		String sql = "SELECT count(DISTINCT usernum) "
 				   + "FROM   reserve ";
 		
 		try {
@@ -453,10 +453,10 @@ public class ReservationDao {
 		ResultSet 		  rs    = null;
 		String sql = "SELECT * "
 				   + "FROM (SELECT rownum rn , a.* "
-				   + "      FROM ( SELECT  reserve.res_userNum , users.name , sum(res_sal) "
+				   + "      FROM ( SELECT  reserve.usernum , users.name , sum(res_sal) "
 				   + "             FROM    users, reserve "
-				   + "             WHERE   reserve.res_userNum = users.res_userNum "
-				   + "			   GROUP BY reserve.res_userNum , users.name "
+				   + "             WHERE   reserve.usernum = users.usernum "
+				   + "			   GROUP BY reserve.usernum , users.name "
 				   + "             ORDER BY  sum(res_sal) DESC ) a ) "
 				   + "WHERE rn BETWEEN     ?     AND    ?     ";
 		System.out.println("reserveSalesList sql>" + sql);
@@ -468,9 +468,9 @@ public class ReservationDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Reservation reserve = new Reservation();
-				reserve.setRes_userNum(rs.getInt("res_userNum"));				
-				reserve.setName       (rs.getString("name"));
-				reserve.setSum_sal    (rs.getInt("sum(res_sal)"));
+				reserve.setusernum(rs.getInt("usernum"));				
+				reserve.setName(rs.getString("name"));
+				reserve.setSum_sal(rs.getInt("sum(res_sal)"));
 				reserveSalesList.add(reserve);
 				
 			}
