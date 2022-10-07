@@ -24,6 +24,7 @@ public class UpdateProAction implements CommandProcess {
 			System.out.println("UpdateProAction start...");
 			int result = 0;
 			Board board = new Board();
+			
 			try 
 			{
 				HttpSession session = request.getSession();
@@ -40,6 +41,7 @@ public class UpdateProAction implements CommandProcess {
 				board.setBrd_title(request.getParameter("brd_title"));
 				board.setBrd_content(request.getParameter("brd_content"));
 				board.setUsernum(board_usernum);
+				
 				// 체크박스는 체크가 되어야 값이 넘어간다. 체크가 안되어 있으면 null값으로 넘어온다
 				// 이를 위해 null값은 0으로 넘어 가게 지정
 				if (request.getParameter("brd_secret") == null) {
@@ -50,7 +52,6 @@ public class UpdateProAction implements CommandProcess {
 					int brd_secret = 1;
 					board.setBrd_secret(brd_secret);
 				}
-				
 				System.out.println("brd_bid->" + board.brd_bid);
 				System.out.println("brd_title->" +board.brd_title);
 				System.out.println("brd_content->" +board.brd_content);
@@ -63,11 +64,9 @@ public class UpdateProAction implements CommandProcess {
 				result = bd.update(board,usernum);
 				
 				// 4. request 객체에 result, num, pageNum
-				
+				System.out.println(result);
 				System.out.println("brd_bid->" +board.getBrd_bid());
 				System.out.println("pageNum->" +pageNum);
-				
-
 			} 
 			catch (Exception e) 
 			{
