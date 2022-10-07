@@ -287,18 +287,18 @@ public class ReservationDao {
 		
 		String sql1 = "SELECT * "
 				   + "FROM (SELECT rownum rn , a.* "
-				   + "		FROM ( SELECT reserve.usernum , users.name , res_lane , res_customer , res_date ,  res_starttime , res_endtime , res_cancel , res_sal "
+				   + "		FROM ( SELECT reserve.res_usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
 				   + "			   FROM users,reserve "
-				   + "			   WHERE reserve.usernum = users.usernum "
+				   + "			   WHERE reserve.res_usernum = users.res_usernum "
 				   + "			   ORDER BY res_date ) a ) "
 				   + "WHERE rn BETWEEN ? AND ? ";
 		
 		
 		String sql2 = "SELECT * "
 				   + "FROM (Select rownum rn , a.* "
-				   + "		FROM ( SELECT reserve.usernum , users.name , res_lane , res_customer , res_date ,  res_starttime , res_endtime , res_cancel , res_sal "
+				   + "		FROM ( SELECT reserve.res_usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
 				   + "			   FROM users,reserve "
-				   + "             WHERE reserve.usernum = users.usernum AND res_date BETWEEN ?  AND ? "
+				   + "             WHERE reserve.res_usernum = users.res_usernum AND res_date BETWEEN ?  AND ? "
 				   + "			   ORDER BY res_date ) a ) "
 				   + "WHERE rn BETWEEN ? AND ? ";	
 		
@@ -381,9 +381,9 @@ public class ReservationDao {
 		ResultSet         rs    = null;	
 		String sql = "SELECT * "
 				   + "FROM (SELECT rownum rn , a.* "
-				   + "      FROM ( SELECT reserve.usernum , users.name , res_lane , res_customer , res_date ,  res_starttime , res_endtime , res_cancel , res_sal "
+				   + "      FROM ( SELECT reserve.res_usernum , users.name , res_lane , res_customer , res_date ,  res_startTime , res_endTime , res_cancel , res_sal "
 				   + "             FROM users,reserve "
-				   + "             WHERE reserve.usernum = users.usernum AND res_date BETWEEN ?  AND ? "
+				   + "             WHERE reserve.res_usernum = users.res_usernum AND res_date BETWEEN ?  AND ? "
 				   + "             ORDER BY res_date ) a ) "
 				   + "WHERE rn BETWEEN ? AND ? ";		
 		
@@ -425,7 +425,7 @@ public class ReservationDao {
 		Statement  stmt = null;
 		ResultSet  rs   = null;
 		int usertotCnt  = 0;
-		String sql = "SELECT count(DISTINCT usernum) "
+		String sql = "SELECT count(DISTINCT res_userNum) "
 				   + "FROM   reserve ";
 		
 		try {
@@ -453,10 +453,10 @@ public class ReservationDao {
 		ResultSet 		  rs    = null;
 		String sql = "SELECT * "
 				   + "FROM (SELECT rownum rn , a.* "
-				   + "      FROM ( SELECT  reserve.usernum , users.name , sum(res_sal) "
+				   + "      FROM ( SELECT  reserve.res_userNum , users.name , sum(res_sal) "
 				   + "             FROM    users, reserve "
-				   + "             WHERE   reserve.usernum = users.usernum "
-				   + "			   GROUP BY reserve.usernum , users.name "
+				   + "             WHERE   reserve.res_userNum = users.res_userNum "
+				   + "			   GROUP BY reserve.res_userNum , users.name "
 				   + "             ORDER BY  sum(res_sal) DESC ) a ) "
 				   + "WHERE rn BETWEEN     ?     AND    ?     ";
 		System.out.println("reserveSalesList sql>" + sql);

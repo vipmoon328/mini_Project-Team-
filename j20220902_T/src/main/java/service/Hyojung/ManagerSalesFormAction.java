@@ -45,8 +45,8 @@ public class ManagerSalesFormAction implements CommandProcess {
 				System.out.println("ManagerSalesFormAction NN endDate->"+endDate);
 				
 			}
-			System.out.println("ManagerSalesFormAction startDate->"+startDate);			
-			System.out.println("ManagerSalesFormAction endDate->"+endDate);
+			//System.out.println("ManagerSalesFormAction startDate->"+startDate);			
+			//System.out.println("ManagerSalesFormAction endDate->"+endDate);
 			
 			if(pageNum==null || pageNum.equals("")) { pageNum = "1"; }
 			int currentPage = Integer.parseInt(pageNum);

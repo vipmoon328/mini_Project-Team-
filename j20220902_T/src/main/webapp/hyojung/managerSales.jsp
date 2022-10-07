@@ -79,16 +79,16 @@
 							<th>예약처리</th>
 							<th>구매금액</th>
 						</tr>
-					<c:if test="${mgrTotCnt>0}">
+					<c:if test="${mgrTotCnt > 0}">
 					<c:forEach var="reserve" items="${reserveList}">
 						<tr>
 							<td>${startNum}</td>
-							<td>${reserve.usernum}</td>
+							<td>${reserve.res_userNum}</td>
 							<td>${reserve.name}</td>
 							<td>${reserve.res_lane}</td>
 							<td>${reserve.res_customer}</td>
 							<td>${reserve.res_date}</td>
-							<td>${reserve.res_starttime} ~ ${reserve.res_endtime}</td>
+							<td>${reserve.res_startTime} ~ ${reserve.res_endTime}</td>
 							<td>
 								<c:choose>
 									<c:when test="${reserve.res_cancel == 0}">
@@ -106,7 +106,7 @@
 						<c:set var="startNum" value="${startNum-1}"></c:set>
 					</c:forEach>
 					</c:if>
-					<c:if test="${mgrTotCnt ==0}">
+					<c:if test="${mgrTotCnt == 0}">
 						<tr>
 							<td colspan="9"> 조회 데이터가 없습니다.</td>
 						</tr>
