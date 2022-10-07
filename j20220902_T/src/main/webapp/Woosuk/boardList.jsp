@@ -243,7 +243,7 @@
 						   </c:if>
 						<!-- 지정한 게시글을 불러오기 위한 ContentAction.service 진행 -->
 						<c:if test="${board.brd_secret > 0 }">
-							<a href='secretCheckForm.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
+							<a href='secretCheckPro.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
 						</c:if>
 						<c:if test="${board.brd_secret == 0 }">
 							<a href='boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>

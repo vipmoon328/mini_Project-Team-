@@ -211,7 +211,7 @@
 		text += "지점 : " + jijum_name +"<p>";
 		text += "레인 : " +lane +"<p>";
 		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
-		text += "인원수 : <select id='many'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select><p>";
+		text += "인원수 : <select id='many' name='many'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select><p>";
 		text += "금액 : " + cost * parseInt(many_input) + "원<p>";
 		text += "<input type='button' id='insert' value='결제'>";
 		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'>";

@@ -18,8 +18,8 @@
 	</c:if>
 	<c:if test="${result != 1 }">
 		<script type="text/javascript">
-			alert("입력하신 암호가 다릅니다");
-			location.href="<%=context%>/SecretCheckForm.do?num=${board.brd_bid}&pageNum=${currentPage}";
+			alert("작성자만 게시글을 볼 수 있습니다");
+			location.href="<%=context%>/secretCheckForm.do?num=${board.brd_bid}&pageNum=${currentPage}";
 		</script>
 	</c:if>
 </body>

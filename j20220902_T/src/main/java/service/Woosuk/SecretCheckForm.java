@@ -35,7 +35,7 @@ public class SecretCheckForm implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return "boardSecretForm.jsp";
+		return "/Woosuk/boardSecretForm.jsp";
 	}
 
 }

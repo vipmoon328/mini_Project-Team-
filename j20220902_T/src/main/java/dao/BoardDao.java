@@ -413,25 +413,24 @@ public class BoardDao {
 		
 	}
 	
-	public int check(String user_id, String passwd) throws SQLException {
+	public int check(String user_id, int brd_bid) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
 		int result = 0;		    
 		ResultSet rs = null;
-		String sql = "select PW from USERS where ID=?";
+		String sql = "select BRD_WRITER from BOARD where BRD_BID=?";
 
 		try {
-			String dbPasswd = "";
+			String BRD_WRITER = "";
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user_id);
+			pstmt.setInt(1, brd_bid);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				dbPasswd = rs.getString(1); 
-				if (dbPasswd.equals(passwd)) {
-					result = 1;
-				} else result = 0;
-			} else result = -1;
+			rs.next();
+			BRD_WRITER = rs.getString(1); 
+			if(user_id.equals(BRD_WRITER)) {
+				result = 1;
+			}else result =0;
 		} catch(Exception e) {	
 			System.out.println(e.getMessage()); 
 		} finally {
