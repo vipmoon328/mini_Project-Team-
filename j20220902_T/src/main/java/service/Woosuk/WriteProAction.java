@@ -79,7 +79,7 @@ public class WriteProAction implements CommandProcess {
 	        String pageNum = multi.getParameter("pageNum");
 	        Board board = new Board();
 	        
-	      //게시글에 사용 되는 값들 게시글번호, 제목, 내용, 비밀글 여부
+	        //게시글에 사용 되는 값들 게시글번호, 제목, 내용, 비밀글 여부
 	        board.setBrd_bid(Integer.parseInt(multi.getParameter("brd_bid")));
 	        board.setBrd_writer(String.valueOf(session.getAttribute("id")));
 			board.setBrd_title(multi.getParameter("brd_title"));
@@ -94,6 +94,12 @@ public class WriteProAction implements CommandProcess {
 				board.setBrd_secret(brd_secret);
 			}
 			board.setBrd_content(multi.getParameter("brd_content"));
+			
+			//22-10-06[김건희] 유저번호를 세션으로 가져온다.
+	        int usernum = Integer.parseInt((String.valueOf(session.getAttribute("usernum"))));
+	        System.out.println("==========유저번호 받아오기: "+usernum);
+			board.setUsernum(usernum);
+			System.out.println(board.getUsernum());
 			
 			System.out.println("후 writeProAction 나와라pageNum->"+multi.getParameter("pageNum"));
 	        System.out.println("후 writeProAction 나와라brd_bid->"+multi.getParameter("brd_bid"));
@@ -113,7 +119,7 @@ public class WriteProAction implements CommandProcess {
 	        System.out.println("writeProAction result ->"+result);
 	        System.out.println("writeProAction pageNum ->"+pageNum);
 	        // 4. request 객체에 result, num , pageNum 	
-	     // view 에 넘어갈 값들 지정
+	        // view 에 넘어갈 값들 지정
 	        request.setAttribute("num", board.getBrd_ref());
 	        request.setAttribute("result", result);
 	        request.setAttribute("pageNum", pageNum);

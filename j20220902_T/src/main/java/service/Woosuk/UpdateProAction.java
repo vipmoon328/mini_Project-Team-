@@ -11,6 +11,7 @@ import org.json.JSONException;
 import dao.Board;
 import dao.BoardDao;
 import service.CommandProcess;
+import javax.servlet.http.HttpSession;
 
 public class UpdateProAction implements CommandProcess {
 
@@ -18,22 +19,27 @@ public class UpdateProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
 			request.setCharacterEncoding("utf-8");
-		
+			
 			String pageNum = request.getParameter("pageNum");
 			System.out.println("UpdateProAction start...");
 			int result = 0;
 			Board board = new Board();
 			try 
 			{
+				HttpSession session = request.getSession();
+				int usernum = Integer.parseInt((String.valueOf(session.getAttribute("usernum"))));
+				int board_usernum = Integer.parseInt((String.valueOf(session.getAttribute("board_usernum"))));
+
 				// 2. Board board 생성하고 value setting
-				
-				
+				System.out.println("로그인된 계정의 고유 id:" + usernum);
+				System.out.println("게시글의 계정의 고유 id:" + board_usernum);
 				System.out.println("UpdateProAction brd_secret-->"+request.getParameter("brd_secret"));
 				
 				//게시글에 사용 되는 값들 게시글번호, 제목, 내용, 비밀글 여부
 				board.setBrd_bid(Integer.parseInt(request.getParameter("brd_bid")));
 				board.setBrd_title(request.getParameter("brd_title"));
 				board.setBrd_content(request.getParameter("brd_content"));
+				board.setUsernum(board_usernum);
 				// 체크박스는 체크가 되어야 값이 넘어간다. 체크가 안되어 있으면 null값으로 넘어온다
 				// 이를 위해 null값은 0으로 넘어 가게 지정
 				if (request.getParameter("brd_secret") == null) {
@@ -54,7 +60,7 @@ public class UpdateProAction implements CommandProcess {
 				BoardDao bd = BoardDao.getInstance();
 				
 				// 앞에 지정 했던 값을 db에 업데이트 한다.
-				result = bd.update(board);
+				result = bd.update(board,usernum);
 				
 				// 4. request 객체에 result, num, pageNum
 				
