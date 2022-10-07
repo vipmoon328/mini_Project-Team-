@@ -12,6 +12,21 @@
 <link rel="stylesheet" href="<%=context%>/css/mgrBrdMgt.css?v=<%=System.currentTimeMillis() %>" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+	function chk() {
+		var chk_arr= [];
+		console.log('chk_arr',chk_arr); // 디버깅
+	$("input[name=checkBox]:checked").each(function(){  
+		var chk =$(this).val();
+		console.log('chk_arr',chk_arr); // 디버깅
+		chk_arr.push(chk);
+		
+	})
+		console.log('chk_arr',chk_arr);
+	}
+		
+		
+
+	
 	
 
 
@@ -82,7 +97,7 @@
 			        <c:if test="${totCnt > 0 }">
 			<c:forEach var="board" items="${list }"><!--반복문을 통해 리스트 출력  -->
 				<tr>	
-					<td><input type="checkbox" name="checkBox" value=""></td>  
+					<td><input  type="checkbox" name="checkBox" value="${board.brd_bid}" ></td>  
 					<td>${startNum }</td>
 					<td>${board.brd_name }</td>
 					<td class="left" width=200 height="20">
@@ -115,7 +130,8 @@
 			
 			<!-- 게시글 삭제 및 공지사항 작성 버튼 -->
 			<div id="brd_Btn">
-				<input id="delete_btn"  type="button" value="선택삭제" onclick="location.href='<%=context%>/do'"> <input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/.do'">
+				<input id="delete_btn"  type="button" value="선택삭제"   onclick="chk()">
+				 <input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/.do'">
 			</div>
 			
 			
@@ -123,13 +139,13 @@
 			<!-- 페이징 -->
 			<div style="text-align: center;">
 				<c:if test="${startPage > blockSize }">
-					<a href='<%=context%>/list.do?pageNum=${startPage-blockSize}'>[이전]</a>
+					<a href='<%=context%>/mgrBrdMgt.do?pageNum=${startPage-blockSize}'>[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href='<%=context%>/list.do?pageNum=${i}'>[${i}]</a>
+					<a href='<%=context%>/mgrBrdMgt.do?pageNum=${i}'>[${i}]</a>
 				</c:forEach>
 				<c:if test="${endPage < pageCnt }">
-					<a href='<%=context%>/list.do?pageNum=${startPage+blockSize}'>[다음]</a>
+					<a href='<%=context%>/mgrBrdMgt.do?pageNum=${startPage+blockSize}'>[다음]</a>
 				</c:if>
 			</div> 
 			
@@ -152,7 +168,7 @@
 			   </div>
 			</div> -->
 		</form><!-- 검색기능  -->
-		<form action="<%=context%>/list.do?pageNum=${pageNum }" method="post">
+		<form action="<%=context%>/mgrBrdMgt.do?pageNum=${pageNum }" method="post">
 			<div id="search">
 				<select id="srh_select" name="srh_select">
 					<option value="brd_title">제목</option>
