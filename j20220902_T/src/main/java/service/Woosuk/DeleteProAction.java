@@ -25,11 +25,13 @@ public class DeleteProAction implements CommandProcess {
 			HttpSession session = request.getSession();
 			
 			int num = Integer.parseInt((String.valueOf(session.getAttribute("num"))));
+			System.out.println("글 번호: " + num);
 			String pageNum = (String) session.getAttribute ("pageNum");
+			System.out.println("페이지 번호: " + pageNum);
 			int usernum = Integer.parseInt((String.valueOf(session.getAttribute("usernum"))));
 			
-			System.out.println("글 번호: " + num);
-			System.out.println("페이지 번호: " + pageNum);
+			
+			
 			System.out.println("유저 번호: " + usernum);
 			// 2. BoardDao bd Instance
 			BoardDao bd = BoardDao.getInstance();
@@ -44,7 +46,7 @@ public class DeleteProAction implements CommandProcess {
 			request.setAttribute("result", result);
 			System.out.println(result);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("삭제 오류"+e.getMessage());
 		}
 
 		return "Woosuk/boardDeletePro.jsp";

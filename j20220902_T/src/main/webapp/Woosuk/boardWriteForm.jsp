@@ -173,7 +173,7 @@ sub {
 				<col width="900">
 			</colgroup>
 				<tr><td style="	text-align: center;">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
-				<input type="text" name="brd_title" id="brd_title" required="required" ></td></tr>
+				<input type="text" name="brd_title" id="brd_title" required="required" style="width:99%;" ></td></tr>
 				</table>
 			<p>
 		</div>
@@ -185,7 +185,8 @@ sub {
 					<col width="900">
 				</colgroup>
 				<tr height="300"><td style="text-align: center;">내용<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;	 text-align:center;">
-				<input style="width:300px; height:300px;" type="text" name="brd_content" id="brd_content" required="required" ></td></tr>
+				<!-- <input style="width:300px; height:300px;" type="text" name="brd_content" id="brd_content" required="required" > -->
+				<textarea style="width:99%;" rows="30"  ></textarea> </td></tr>
 				<tr height="100">
 					<td style="text-align: center;">첨부파일</td>
 					<td style="border: 1.5px solid #DCDCDC; vertical-align : top;">

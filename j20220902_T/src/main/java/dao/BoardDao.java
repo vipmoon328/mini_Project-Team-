@@ -69,6 +69,43 @@ public class BoardDao {
 		
 	}
 	
+	public int refTotalCnt(int num) throws SQLException
+	{
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		String sql = "select count(*) from board where brd_deleted = 0 and brd_re_step >0 and brd_ref ="+ num;
+		//sql문을 통해 보드에 지워진글 값이 0 만 전부 카운트
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next())
+			{
+				tot = rs.getInt(1); //sql문 전체 값을 tot에 삽입
+			}
+			System.out.println("rsnext->"+ rs.getInt(1));
+		} catch (Exception e) {
+			System.out.println("dao totcnt error ->"+e.getMessage());
+		}
+		finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+		return tot;
+		
+	}
+	
+	
 	public List<Board> boardList(int startRow, int endRow) throws SQLException {
 		List<Board> list = new ArrayList<Board>(); //리스트 생성
 		Connection conn = null;	
@@ -239,18 +276,30 @@ public class BoardDao {
 		int result =0;
 		System.out.println("dao insert start...");
 		System.out.println("dao board.getBrd_bid ->"+board.getBrd_bid());
+		System.out.println("여기까지는 왔냐?1");
 		int num = board.getBrd_bid(); //게시글 고유 번호 지정
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println("여기까지는 왔냐?2");
 		//게시글의 가장 마지막 고유 번호를 찾는다
 		String sql1 = "select nvl(max(brd_bid),0) from board";
 		//게시글 값 insert
 		String sql2 =  "insert all into board values(?, '게시글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
-		for(int i = 0 ; i < dbSavePath.size() ; i ++) {
-			sql2 += "into FILES VALUES(?, ?, ?) ";
-		}
+		String sql2_1 =  "insert all into board values(?, '댓글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
+		System.out.println("여기까지는 왔냐?3");
+		System.out.println("sql2->" + sql2);
+		System.out.println("sql2_1->" + sql2_1);
+//		for(int i = 0 ; i < dbSavePath.size() ; i ++) {
+//			sql2 += "into FILES VALUES(?, ?, ?) ";
+//			sql2_1 += "into FILES VALUES(?, ?, ?) ";
+//		}
+		System.out.println("이후sql2->" + sql2);
+		System.out.println("이후sql2_1->" + sql2_1);
+		
+		System.out.println("여기까지는 왔냐?4");
 		sql2 += "SELECT * FROM dual";
+		String sql3 ="update board set brd_re_step = brd_re_step+1 where  brd_ref=? and brd_re_step > ?";
 		System.out.println("sql2->" + sql2);
 		System.out.println("dbSavePath->" + dbSavePath);
 		System.out.println("BoardDao insert start...");
@@ -265,11 +314,40 @@ public class BoardDao {
 			System.out.println("dao insert num"+num);
 			rs.close();
 			pstmt.close();
+			
+			//댓글기능 2022.10.09
+			if(num != 0)
+			{
+				System.out.println("BoardDAO insert 댓글 sql3->"+sql3);
+				
+				pstmt = conn.prepareStatement(sql3);
+				pstmt.setInt(1, board.getBrd_ref());
+				pstmt.setInt(2, board.getBrd_re_step());
+				pstmt.executeUpdate();
+				pstmt.close();
+				
+				//댓글 관련 정보
+				board.setBrd_re_step((board.getBrd_re_step()+1));
+				board.setBrd_re_level((board.getBrd_re_level()+1));
+				System.out.println("BoardDAO insert 댓글 num->"+num);
+				System.out.println("BoardDAO insert 댓글 board.getRef()->"+board.getBrd_ref());
+				System.out.println("BoardDAO insert 댓글 board.getRe_step()->"+board.getBrd_re_step());
+				System.out.println("BoardDAO insert 댓글 board.getBrd_re_level()->"+board.getBrd_re_level());
+				
+				
+			}
 			if (num==0) {
 				//num==0 첫 게시글 일때 조건
 				board.setBrd_ref(number);
 			}
+			
+			//null 일때 댓글 아닐때 게시글2022.10.09
+			if (board.getBrd_title() != null) {
 				pstmt = conn.prepareStatement(sql2);
+			}
+			else if (board.getBrd_title() == null) {
+				pstmt = conn.prepareStatement(sql2_1);
+			}
 				//sql2 에 들어갈 값을 지정
 				
 				pstmt.setInt(1, number); //글 고유 번호 
@@ -387,6 +465,46 @@ public class BoardDao {
 		return result;
 	}
 	
+	//22.10.10 [김우석] 댓글 삭제
+		public int deleteComment(int num, int usernum) throws SQLException {
+			Connection conn = null;	
+			PreparedStatement pstmt= null; 
+			ResultSet rs = null;
+			int result = 0;		    
+			//게시글을 삭제 하는것이 아닌 삭제여부 값을 1넣는 것으로 게시글 리스트에서 보이지 않게 하고 db에는 값을 남긴다.
+			//22.10.06 [김건희] sql 수정
+			String sql2 = "select usernum from board where brd_bid = ? AND brd_deleted = 0 ";
+			String sql="update board set brd_deleted = '1' where brd_bid = ? AND usernum = ?";
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+				if(rs.next())
+				{
+					int result_usernum = rs.getInt(1); //해당 글 작성자의 유저번호 받아오는 쿼리문 실행
+					pstmt.close();
+					if( result_usernum == usernum) //글쓴이와 글삭제하는 이가 같을때
+					{
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, num);
+						pstmt.setInt(2, usernum);
+						result = pstmt.executeUpdate(); //삭제 성공시 1, 삭제 오류시 0
+					}
+					else {
+						result--;
+					}
+				}
+			} catch(Exception e) {	
+				System.out.println(e.getMessage()); 
+			} finally {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn !=null) conn.close();
+			}
+			return result;
+		}
+	
 	
 	//검색기능 건드리지 마시오
 	public int getSearchCnt(String srh_select, String srh_input) throws SQLException
@@ -453,6 +571,47 @@ public class BoardDao {
 		}
 		return result;
 }
+	
+	//댓글 리스트 생성
+	public List<Board> commentList(int brd_bid) throws SQLException {
+		List<Board> commentlist = new ArrayList<Board>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		//게시글 ref는 같지만 step는 0이상의 댓글 표시
+		String sql = "select * from board where brd_ref = ? and brd_re_step > 0 and brd_deleted = 0";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, brd_bid);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				//유저 세션 표시
+				Board board = new Board();
+				board.setBrd_bid(rs.getInt("brd_bid"));
+				board.setBrd_name(rs.getString("brd_name"));
+				board.setBrd_title(rs.getString("brd_title"));
+				board.setBrd_writer(rs.getString("brd_writer"));
+				board.setBrd_date(rs.getDate("brd_date"));
+				board.setBrd_view(rs.getInt("brd_view"));
+				board.setBrd_content(rs.getString("brd_content"));
+				board.setBrd_secret(rs.getInt("brd_secret"));
+				board.setBrd_deleted(rs.getInt("brd_deleted"));
+				board.setBrd_ref(rs.getInt("brd_ref"));
+				board.setBrd_re_step(rs.getInt("brd_re_step"));
+				board.setBrd_re_level(rs.getInt("brd_re_level"));
+				commentlist.add(board);
+				
+			}
+		} catch (Exception e) {
+			System.out.println("dao commentlist error ->"+e.getMessage()); 
+		}finally {
+			if (rs !=null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn !=null) conn.close();
+		} 
+		return commentlist;
+	}
 	
 
 }

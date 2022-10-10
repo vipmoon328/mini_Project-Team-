@@ -16,6 +16,27 @@
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
 
+#commentwrite{
+	width: 50%;
+	margin: auto;
+	border-collapse: collapse;
+	background-color: #D5D5D5;
+}
+
+#srh_btn {
+		 position: relative;
+		 top:2px;
+		 background-color:#99ccff;
+		color:#fff;
+	}
+
+#comment{
+	width: 50%;
+	/* border-collapse: collapse; */
+	border-bottom : 1px solid black;
+	margin: auto;
+
+}
 	#hrline {
 	width: 54%;
 	margin: auto;
@@ -32,6 +53,7 @@
     width: 46%;
   /*   border: 1px solid #444444; */
    /*  border-collapse: collapse; */
+   border-bottom : 1px solid #D5D5D5;
     margin: auto;
   }
  th, td {
@@ -169,18 +191,72 @@ input {
 	<!-- 수정 updateFormAction 서비스 실행 -->
 	<!-- 삭제 deleteFormAction 서비스 실행 -->
 	<!-- 게시판 리스트로 복귀 -->
+	<p>
 	<c:choose>
 		<c:when test="${usernum eq board.usernum}">
-			<input style="margin-left:66%"  type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+			<input style="margin-left:66%" type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
 			<input type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
 			<input type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
 		</c:when>
 		<c:otherwise>
-			<input style="margin-left:66%" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+			<input style="margin-left:66%" style="margin-left:66%" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
 		</c:otherwise>
 	</c:choose>
 	
-	</form>		
+	
+	
+	</form>	
+	
+	<!-- 댓글 기능 2022.10.09 -->
+	<h4 style="margin-left:25%">댓글 ${refcnt }</h4>
+	<hr color="#D5D5D5" width="50%" size="1">
+		<c:forEach var="board" items="${mentList }">
+			<table  id="comment">
+				<tr><td>${board.brd_writer}</td></tr><!-- 아이디 -->
+				<tr><td>
+				${board.brd_content }
+				</td></tr><!-- 내용 -->
+				<tr><td style="font-size:4px; vertical-align : bottom; ">${board.brd_date }</td></tr>
+				<tr><td></td></tr><!-- 날짜 -->
+				
+				<!-- 2022.10.10 삭제가 안나옴 수정도 마찬가지   -->
+			<c:choose>
+				<c:when test="${usernum eq board.usernum}">
+				<tr><td style="padding:4px;"><input style="margin-left:1%;" type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'"> 
+						<input type="button" value="삭제" onclick="location.href='<%=context%>/deletePro.do?num=${board.brd_bid}&pageNum=${pageNum }'"></td></tr>
+				</c:when>
+			</c:choose>
+			</table>
+		</c:forEach>
+	
+	<form action="commentWritePro.do?num=${board.brd_bid}&pageNum=${pageNum }"method="post">
+		<div>
+			
+			<input type="hidden" name="brd_bid" value="${board.brd_bid }">
+			<input type="hidden" name="brd_ref" value="${board.brd_ref }">
+			<input type="hidden" name="brd_re_level" value="${board.brd_re_level }">
+			<input type="hidden" name="brd_re_step" value="${board.brd_re_step }">
+			<input type="hidden" name="brd_title" value="">
+			<input type="hidden" name="brd_secret" value="">
+		
+			<p>
+			<c:choose>
+				<c:when test="${usernum eq board.usernum}">
+					<table border="1" id="commentwrite">
+						<tr><td style="padding:4px;">${board.brd_writer}</td></tr><!-- 아이디 -->
+						<tr><td>
+						<textarea name="brd_content" id="brd_content" required="required" style="width: 99%" rows="6" ></textarea>
+						</td></tr><!-- 내용 -->
+						<tr><td></td></tr><!-- 날짜 -->
+						<tr><td style="padding:4px; "><input style="margin-left: 1%; vertical-align : top;" type="submit" value="답글" ></td></tr>
+					</table>		
+				</c:when>
+			</c:choose>
+			
+			
+			
+		</div>
+	</form>	
 		<!--풋터                       -->
 		<div class="flex-container center">
 			<div class="item_end">

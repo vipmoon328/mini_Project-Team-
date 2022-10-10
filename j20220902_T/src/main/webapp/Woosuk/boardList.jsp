@@ -262,15 +262,8 @@
 				<td colspan=7>데이터가 없네</td>
 			</tr>
 		</c:if>
-			      <!--   <tr>
-			          <td>1</td>
-			          <td class="title">공지사항</td>
-			          <td class="name">글쓴이 이름</td>
-			          <td class="date">2008/02/14</td>
-			          <td class="see">1214</td>
-			        </tr> -->
 					
-				</table>
+					</table>
 			</div>
 			<!-- <input id="wr_btn" type="button" value="글작성" class="active" href="writeForm.do"> -->
 			
@@ -297,24 +290,6 @@
 				</c:if>
 			</div> 
 			
-		<!-- 	 <div class="page_wrap">
-			   <div class="page_nation">
-			      <a class="arrow pprev" href="#"></a>
-			      <a class="arrow prev" href="#"></a>
-			      <a href="#" class="active">1</a>
-			      <a href="#">2</a>
-			      <a href="#">3</a>
-			      <a href="#">4</a>
-			      <a href="#">5</a>
-			      <a href="#">6</a>
-			      <a href="#">7</a>
-			      <a href="#">8</a>
-			      <a href="#">9</a>
-			      <a href="#">10</a>
-			      <a class="arrow next" href="#"></a>
-			      <a class="arrow nnext" href="#"></a>
-			   </div>
-			</div> -->
 		</form><!-- 검색기능  -->
 		<form action="<%=context%>/list.do?pageNum=${pageNum }" method="post">
 			<div id="search">
