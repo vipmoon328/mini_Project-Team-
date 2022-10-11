@@ -9,6 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판리스트</title>
+<script type="text/javascript">
+	console.log('현재 유저 번호: ${usernum}');
+</script>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
 	table {
@@ -174,8 +177,16 @@
 			<div class="item_second">
 				<ul>
 					<!-- 22.10.06 [김건희] 로그인 여부에 따라 화면 출력 차이 구현  -->
+					<!-- 22.10.11 [김건희] 관리자일떄의 분기 수정  -->
 					<!-- 로그인 여부에 따른 분기를 하나의 페이지로 구현하기 위해서 사용 [김건희] -->
 					<c:choose>
+						<c:when test="${auth eq 0}">
+							<li>중앙볼링장</li>
+							<li><a href="<%=context%>/mgrList.do" style="text-decoration: underline; color:#5A8DF3 "><strong>회원관리</strong></a></li>
+							<li><a href="<%=context%>/managerSales.do">매장관리</a></li>
+							<li><a href="<%=context%>/mgrBrdMgt.do">게시판관리</a></li>
+						</c:when>
+						
 						<c:when test="${empty id}">
 							<li>중앙볼링장</li>
 							<li><a href="<%=context%>/hyojung/mainHomeView.jsp">홈</a></li>

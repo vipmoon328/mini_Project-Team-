@@ -8,8 +8,8 @@
 <html>
 <head>
 <script type="text/javascript">
-	console.log(${usernum});
-	console.log(${board.usernum});
+	console.log('현재 유저 번호: ${usernum}');
+	console.log('게시판 작성자 번호: ${board.usernum}');
 </script>
 <meta charset="UTF-8">
 <title>게시글</title>
@@ -120,6 +120,13 @@ input {
 			<div class="item_second">
 				<ul>
 					<c:choose>
+						<c:when test="${auth eq 0}">
+							<li>중앙볼링장</li>
+							<li><a href="<%=context%>/mgrList.do" style="text-decoration: underline; color:#5A8DF3 "><strong>회원관리</strong></a></li>
+							<li><a href="<%=context%>/managerSales.do">매장관리</a></li>
+							<li><a href="<%=context%>/mgrBrdMgt.do">게시판관리</a></li>
+						</c:when>
+					
 						<c:when test="${empty id}">
 							<li>중앙볼링장</li>
 							<li><a href="<%=context%>/hyojung/mainHomeView.jsp">홈</a></li>
