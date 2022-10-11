@@ -22,6 +22,11 @@
 			<!-- 2022.10.11 로그인 관련 수정 [건희] -->
 			<div class="item_first">
 				<c:choose>
+					<c:when test="${auth eq 0}">
+							<li>${name} 관리자님</li>
+							<li><a href="<%=context%>/logout.do">로그아웃</a></li>
+					</c:when>
+					
 					<c:when test="${empty id}">
 					<ul>
 						<li><a href="<%=context%>/GunHee/loginForm.jsp">로그인 </a></li> <!-- 22.09.29 효정씨가 링크한 부분 수정함 1 [김건희] -->
@@ -78,8 +83,8 @@
 </head>
 <body>
 	<div id="secret_chk">
+		<!-- 2022.10.11 관리자일 경우 암호 생략 기능 구현 [건희] -->
 		<c:choose>
-				<!-- 2022.10.11 관리자일 경우 암호 생략 기능 구현 [건희] -->
 				<c:when test="${auth eq 0}">
 					<script type="text/javascript">
 						location.href='<%=context%>/boardContent.do?num=${board.brd_bid}&pageNum=${pageNum}';
