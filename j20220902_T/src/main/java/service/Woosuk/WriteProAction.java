@@ -61,7 +61,7 @@ public class WriteProAction implements CommandProcess {
 	    		System.out.println("파일 타입 : " + type);
 	    		if(file != null){
 	    			System.out.println("크기 : " + file.length() + "<br>");
-	    			dbSavePath.add("fileSave\\"+serverSaveFilename);
+	    			dbSavePath.add(serverSaveFilename);
 	    		}
 	    	}
 	    	System.out.println(dbSavePath);
@@ -83,6 +83,7 @@ public class WriteProAction implements CommandProcess {
 	        board.setBrd_bid(Integer.parseInt(multi.getParameter("brd_bid")));
 	        board.setBrd_writer(String.valueOf(session.getAttribute("id")));
 			board.setBrd_title(multi.getParameter("brd_title"));
+			board.setBrd_img_src(dbSavePath);
 			// 체크박스는 체크가 되어야 값이 넘어간다. 체크가 안되어 있으면 null값으로 넘어온다
 			// 이를 위해 null값은 0으로 넘어 가게 지정
 			if (multi.getParameter("brd_secret") == null) {
@@ -114,7 +115,7 @@ public class WriteProAction implements CommandProcess {
 	        BoardDao bd = BoardDao.getInstance();//DB 
 	        
 	        // 값을 insert를 통해 게시글 작성
-	        int result = bd.insert(dbSavePath, board);
+	        int result = bd.insert(board);
 	        System.out.println("writeProAction brd_bid ->"+board.getBrd_bid());
 	        System.out.println("writeProAction result ->"+result);
 	        System.out.println("writeProAction pageNum ->"+pageNum);

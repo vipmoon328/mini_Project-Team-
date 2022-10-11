@@ -42,12 +42,14 @@
 		
 		$(document).on("click",".possible", function(){
 			var num = $(".checked").length;
+			var many_input = $('#many').val();
 			if(num == 0){
 				$("#test td").not('.impossible').not($(this)).removeClass('possible').addClass('cantSelect');
+				many_input = '1';
 			}
 			$(this).addClass('checked').removeClass('possible');
 			add_probable();
-			print_message('${customer }');
+			print_message(many_input);
 		});
 		
 		$(document).on("click",".checked:first", function(){
@@ -63,7 +65,7 @@
 				$("." + col).eq(row).not(".impossible").removeClass('possible').addClass('cantSelect');
 			}
 			$(this).removeClass('checked').addClass('possible');
-			print_message('${customer }');
+			print_message($('#many').val());
 		});
 		
 		$(document).on("click",".checked:last", function(){
@@ -75,7 +77,7 @@
 			var row = $("." + col).index(this)+1;
 			$("." + col).eq(row).not(".impossible").removeClass('possible').addClass('cantSelect');
 			$(this).removeClass('checked').addClass('possible');
-			print_message('${customer }');
+			print_message($('#many').val());
 		});
 		
 		$(document).on("change","#jijum", function(){
@@ -300,7 +302,6 @@
 	}
 	
 	function reset_table(){
-		$('#many').val("1");
 		$('#msg').html("");
 		$("#test td").not('.impossible').removeClass('checked').addClass('possible').removeClass('cantSelect');
 	}

@@ -189,7 +189,7 @@ input {
 			<tr height="300"><td style="vertical-align : top;">${board.brd_content }</td></tr>
 				<c:if test="${not empty board.brd_img_src}">
 					<c:forEach var="img_path" items="${board.brd_img_src }">
-						<tr height="100"><td style="vertical-align : top;"><img src= "<%=context%>/${img_path }"></td></tr>
+						<tr height="100"><td style="vertical-align : top;"><img src= "<%=context%>/fileSave/${img_path }"></td></tr>
 					</c:forEach>
 				</c:if>
 		</table>

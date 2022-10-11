@@ -272,7 +272,7 @@ public class BoardDao {
 	}
 	
 	
-	public int insert(List<String> dbSavePath, Board board) throws SQLException {
+	public int insert(Board board) throws SQLException {
 		int result =0;
 		System.out.println("dao insert start...");
 		System.out.println("dao board.getBrd_bid ->"+board.getBrd_bid());
@@ -286,11 +286,11 @@ public class BoardDao {
 		String sql1 = "select nvl(max(brd_bid),0) from board";
 		//게시글 값 insert
 		String sql2 =  "insert all into board values(?, '게시글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
-		String sql2_1 =  "insert all into board values(?, '댓글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
+		String sql2_1 =  "insert into board values(?, '댓글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
 		System.out.println("여기까지는 왔냐?3");
 		System.out.println("sql2->" + sql2);
 		System.out.println("sql2_1->" + sql2_1);
-		for(int i = 0 ; i < dbSavePath.size() ; i ++) {
+		for(int i = 0 ; i < board.getBrd_img_src().size() ; i ++) {
 			sql2 += "into FILES VALUES(?, ?, ?) ";
 		}
 		System.out.println("이후sql2->" + sql2);
@@ -300,7 +300,7 @@ public class BoardDao {
 		sql2 += "SELECT * FROM dual";
 		String sql3 ="update board set brd_re_step = brd_re_step+1 where  brd_ref=? and brd_re_step > ?";
 		System.out.println("sql2->" + sql2);
-		System.out.println("dbSavePath->" + dbSavePath);
+		System.out.println("dbSavePath->" + board.getBrd_img_src());
 		System.out.println("BoardDao insert start...");
 		try {	
 			conn = getConnection();
@@ -360,10 +360,10 @@ public class BoardDao {
 				pstmt.setInt(9, board.getBrd_re_step()); 
 				pstmt.setInt(10,board.getBrd_re_level());
 				
-				for(int i = 0 ; i < 3*dbSavePath.size() ; i = i+3) {
+				for(int i = 0 ; i < 3*board.getBrd_img_src().size() ; i = i+3) {
 					pstmt.setInt(i + 11, number);
 					pstmt.setInt(i + 12, i+1);
-					pstmt.setString(i + 13, dbSavePath.get(i/3));
+					pstmt.setString(i + 13, board.getBrd_img_src().get(i/3));
 				}
 				result = pstmt.executeUpdate();
 				
@@ -390,14 +390,18 @@ public class BoardDao {
 	}
 	
 	//22.10.06 [김건희] 코드 수정 매개변수를 usernum 추가하여 사용자의 usernum과 게시글의 usernum이 일치할 경우에만 수정할 수 있도록 구현
-	public int update(Board board, int usernum) throws SQLException {
+	public int update(List<String>dbDeletePath, Board board, int usernum) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
 		int result = 0;			
 		// update할 값들 넣는다.
 		//22.10.06 [김건희] sql 수정
 		String sql="update board set brd_title = ?, brd_content = ?, brd_secret=? where brd_bid =? AND usernum = ?";
-		
+		String sql2 = "delete from files where brd_bid = ? and FILE_NAME IN(";
+		for(int i = 0 ; i < board.getBrd_img_src().size() ; i ++) {
+			sql2 += "?,";
+		}
+		sql2 += ")";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
