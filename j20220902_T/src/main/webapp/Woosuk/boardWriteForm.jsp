@@ -145,7 +145,7 @@ sub {
 			<hr color="#D5D5D5" width="100%" size="1">
 	</div>
 	
-	<!--헤더                                        -->
+	<!--헤더 -->
 	
 </head>
 <body>

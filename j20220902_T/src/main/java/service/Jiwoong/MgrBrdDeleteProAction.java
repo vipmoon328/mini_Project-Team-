@@ -13,7 +13,7 @@ import org.json.JSONException;
 import dao.BoardDao;
 import service.CommandProcess;
 
-public class mgrBrdDeleteProAction implements CommandProcess {
+public class MgrBrdDeleteProAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
@@ -22,7 +22,7 @@ public class mgrBrdDeleteProAction implements CommandProcess {
 		response.setContentType("text/html; charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		
-		System.out.println("mgrBrdDeleteProAction Start...");
+		System.out.println("mgrBrdDeleteProAction Start..."); // 디버깅
 		
 		
 		String pageNum=request.getParameter("pageNum");
@@ -32,7 +32,7 @@ public class mgrBrdDeleteProAction implements CommandProcess {
 		
 		int[]brd_bid = Arrays.stream(brd_bid1).mapToInt(Integer::parseInt).toArray(); // brd_bid 배열 int로 변환
 		
-		System.out.println("mgrBrdDeleteProAction Service brd_bid[] => "+ Arrays.toString(brd_bid));
+		System.out.println("mgrBrdDeleteProAction Service brd_bid[] => "+ Arrays.toString(brd_bid)); // 디버깅
 		
 		BoardDao bd=BoardDao.getInstance();
 		

@@ -112,14 +112,14 @@
 		</c:if>
 		<c:if test="${totCnt == 0 }">
 			<tr>
-				<td colspan=7>데이터가 없네</td>
+				<td colspan=7>데이터가 존재하지 않습니다.</td>
 			</tr>
 		</c:if>		
 				</table>
 			<!-- 게시글 삭제 및 공지사항 작성 버튼 -->
 			<div id="brd_Btn">
 				<input type="submit" id="delete_btn"  value="선택삭제">  <!-- 삭제버튼 -->
-				<input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/.do'"> 
+				<input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/brdNoticeForm.do'"> 
 			</div>
 			
 		</form>	
