@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -394,26 +395,29 @@ public class BoardDao {
 	public int update(List<String>dbDeletePath, Board board, int usernum) throws SQLException {
 	      Connection conn = null;   
 	      PreparedStatement pstmt= null; 
+	      CallableStatement cstmt = null;
 	      int result = 0;         
 	      ResultSet rs = null;
 	      // update할 값들 넣는다.
 	      //22.10.06 [김건희] sql 수정
-	      
+	      String delete_img = null;
+	      String insert_img = null;
 	      String sql="update board set brd_title = ?, brd_content = ?, brd_secret=? where brd_bid =? AND usernum = ?";
-	      String sql2 = "delete from files where brd_bid = ? and FILE_NAME IN(";
-	      for(int i = 0 ; i < dbDeletePath.size() ; i ++) {
-	         sql2 += "?,";
+	      String sql2 = "{ call img_src_update(?, ?, ?) }";
+	      if(dbDeletePath.size()!=0) {
+	    	  delete_img ="";
+	    	  for(int i = 0 ; i < dbDeletePath.size() ; i ++) {
+		    	  delete_img += dbDeletePath.get(i) + ",";
+		      }
+	    	  delete_img = delete_img.substring(0, delete_img.length()-1);
 	      }
-	      sql2 = sql2.substring(0, sql2.length()-1);
-	      sql2 += ")";
-	      System.out.println("sql2 = " + sql2);
-	      String sql3 = "select nvl(max(file_fid),0) from files where brd_bid = ?";
-	      String sql4 = "insert all ";
-	      for(int i = 0 ; i < board.getBrd_img_src().size() ; i ++) {
-	         sql4 += "into FILES VALUES(?, ?, ?) ";
+	      if(board.getBrd_img_src().size()!=0) {
+	    	  insert_img = "";
+	    	  for(int i = 0 ; i < board.getBrd_img_src().size() ; i ++) {
+		    	  insert_img += board.getBrd_img_src().get(i)  + ",";
+		      }
+	    	  insert_img = insert_img.substring(0, insert_img.length()-1);
 	      }
-	      sql4 += "SELECT * FROM dual";
-	      String sql5 = "UPDATE files f SET FILE_FID = ( SELECT rn FROM ( SELECT rid, ROWNUM rn FROM ( SELECT ROWID rid FROM files where brd_bid = ? ORDER BY file_fid) ) WHERE rid = f.ROWID ) WHERE f.brd_bid = ?";
 	      try {
 	         conn = getConnection();
 	         pstmt = conn.prepareStatement(sql);
@@ -431,40 +435,11 @@ public class BoardDao {
 	            result--;
 	         }
 	         pstmt.close();
-	         if(dbDeletePath.size()>0) {
-	            pstmt = conn.prepareStatement(sql2);
-	            pstmt.setInt(1, board.getBrd_bid());
-	            for(int i = 0 ; i < dbDeletePath.size() ; i ++) {
-	               pstmt.setString(i+2, dbDeletePath.get(i));
-	            }
-	            pstmt.executeUpdate();
-	            pstmt.close();
-	            pstmt = conn.prepareStatement(sql5);
-	            pstmt.setInt(1, board.getBrd_bid());
-	            pstmt.setInt(2, board.getBrd_bid());
-	            pstmt.executeQuery();
-	            pstmt.close();
-	         }
-	         if(board.getBrd_img_src().size()>0) {
-	            pstmt = conn.prepareStatement(sql3);
-	            pstmt.setInt(1, board.getBrd_bid());
-	            rs = pstmt.executeQuery();
-	            rs.next();
-	            // 가장 마지막 게시글 고유 번호에 +1 을 하여 새로 만들 게시글의 새 고유번호 지정
-	            int number = rs.getInt(1)+1;
-	            rs.close();
-	            pstmt.close();
-	            pstmt = conn.prepareStatement(sql4);
-	            pstmt.setInt(1, board.getBrd_bid());
-	            for(int i = 0 ; i < 3*board.getBrd_img_src().size() ; i = i+3) {
-	               pstmt.setInt(i + 1, board.getBrd_bid());
-	               pstmt.setInt(i + 2, number + (i/3));
-	               pstmt.setString(i + 3, board.getBrd_img_src().get(i/3));
-	            }
-	            System.out.println("오는지 테스트" + sql4);
-	            pstmt.executeUpdate();
-	            pstmt.close();
-	         }
+	         cstmt = conn.prepareCall(sql2);
+	         cstmt.setInt(1, board.getBrd_bid());
+	         cstmt.setString(2, delete_img);
+	         cstmt.setString(3, insert_img);
+	         result = cstmt.executeUpdate();
 	      } catch(Exception e) {   
 	         System.out.println("dao update"+e.getMessage()); 
 	      } finally {
