@@ -1,6 +1,7 @@
 package service.Woosuk;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,7 +32,7 @@ public class CommentWriteProAction implements CommandProcess {
             System.out.println("전 CommenwriteProAction 나와라brd_ref->"+request.getParameter("brd_ref"));
             System.out.println("전 CommenwriteProAction 나와라brd_re_step->"+request.getParameter("brd_re_step"));
             System.out.println("전 CommenwriteProAction 나와라brd_re_level->"+request.getParameter("brd_re_level"));
-           
+            List<String> dbSavePath = new ArrayList<String>();
             String pageNum = request.getParameter("pageNum");
             int brd_bid = Integer.parseInt(request.getParameter("brd_bid"));
             String brd_content = request.getParameter("brd_content");
@@ -54,7 +55,7 @@ public class CommentWriteProAction implements CommandProcess {
             board.setBrd_ref(Integer.parseInt(request.getParameter("brd_ref")));
             board.setBrd_re_step(Integer.parseInt(request.getParameter("brd_re_step")));
             board.setBrd_re_level(Integer.parseInt(request.getParameter("brd_re_level")));
-
+            board.setBrd_img_src(dbSavePath);
             
        
             
@@ -71,7 +72,7 @@ public class CommentWriteProAction implements CommandProcess {
          // 3. BoardDao bd Instance
 	        BoardDao bd = BoardDao.getInstance();//DB 
 	        
-	        int result = bd.insert(null, board);
+	        int result = bd.insert(board);
 	        
 	        List<Board>mentList = bd.commentList(brd_ref);
 	        
@@ -98,7 +99,7 @@ public class CommentWriteProAction implements CommandProcess {
         
         
 //		return "boardContent.do";
-		return "boardContent.jsp";
+		return "Woosuk/boardContent.jsp";
 	}
 
 }

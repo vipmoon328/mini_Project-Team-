@@ -139,7 +139,7 @@
 	
 </head>
 <body onload="init()">
-	<form action="<%=context%>/updatePro.do" method="post" >
+	<form action="<%=context%>/updatePro.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="brd_bid" value="${board.brd_bid }">
 		<input type="hidden" name="pageNum" value="${pageNum }">
 	
@@ -188,18 +188,19 @@
 					<td style="text-align: center;">첨부파일</td>
 					<td style="border: 1.5px solid #DCDCDC; vertical-align : top;">
 						<ul class="__add"> 
-							<li>	
-							   <input type="file" name="file_path" class="files" style="width: 231px; height: 46px;">
-							   <button  type="button"class="_add" style="vertical-align: sub">추가</button>						   
+							<li>
+							  <!--  <input type="file" name="file_path" class="files" style="width: 231px; height: 46px;"> -->
+							   <button  type="button"class="_add" style="vertical-align: sub">추가</button>	
+							</li> 					   
 							   <c:if test="${not empty board.brd_img_src}">
 							   		<c:forEach var="img_path" items="${board.brd_img_src }">
+							   		<input type="hidden" name="exist_img" value="${img_path}">
 										<li>
-											<input type="text" value="${img_path}">
+											<input type="hidden" name="update_img" value="${img_path}">${img_path }
 											<button type="button" class="_add" onclick="addDel(this);">삭제</button>
 										</li>
 									</c:forEach>
 							   </c:if>
-							</li> 
 						</ul>
 					</td>
 				</tr>
