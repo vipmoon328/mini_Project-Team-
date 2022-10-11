@@ -49,7 +49,7 @@
 			<table>
 				<tr>
 					<td style="padding-right: 415px; font-weight: bold;">매장소개</td>
-					<td style="padding-left: 400px; font-weight: bold;"><a href="<%=context%>/JiHyeon/informationFormOut.jsp">&lt; 더보기</a></td>
+					<td style="padding-left: 400px; font-weight: bold;"><a href="<%=context%>/JiHyeon/informationFormOut.jsp#content2">&lt; 더보기</a></td>
 				</tr>
 			</table>
 			<hr color="#90C3FF" width="960px" size="1">	
