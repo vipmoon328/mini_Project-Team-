@@ -10,7 +10,7 @@
 <title>중앙 볼링장 매출관리</title>
 <link href="<%=context%>/css/managerSales.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body style="overflow-x: hidden">
 <c:if test="${loc eq 0}">
 	<c:set var="locName" value="이대"></c:set>
 </c:if>
