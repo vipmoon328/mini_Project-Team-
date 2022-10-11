@@ -112,7 +112,7 @@ public class BoardDao {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		// 삭제 값이 0이며, 공지 사항 상단 sql문
-		 String sql =    "SELECT *  "
+		 String sql = "SELECT *  "
 		 	    	+ "FROM (Select rownum rn ,a.*  "
 		 		    + "From (select * from board where brd_deleted = 0 order by brd_name desc, brd_ref desc ) a )  "
 		 		    + "WHERE rn BETWEEN ? AND ?";
@@ -613,5 +613,53 @@ public class BoardDao {
 		return commentlist;
 	}
 	
+	//22.10.10 관리자 권한 게시물[체크박스 선택] 삭제 메서드 [최지웅]
+	public int mgrDelete(int[]brd_bid) throws SQLException {
+		Connection conn = null;	
+		PreparedStatement pstmt= null; 
+		
+		int result = 0;
+		int[] cnt = null;
+		String sql="update board set brd_deleted = '1' where brd_bid = ?";
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			System.out.println("BoardDao mgrDelete sql=>"+sql); // 디버깅
+			for(int i=0; i<brd_bid.length; i++) {
+				pstmt.setInt(1,brd_bid[i]);
+				pstmt.addBatch();  // 쿼리 값 일괄셋팅
+				}
+			System.out.println("BoardDao mgrDelete brd_bid.length=>"+brd_bid.length); // 디버깅
+			cnt = pstmt.executeBatch();
+			System.out.println("BoardDao mgrDelete cnt.length=>"+cnt.length); // 디버깅
+			
+			
+			for(int i=0; i<cnt.length; i++) { 
+				if(cnt[i]==-2) {
+					result++;
+					
+				}
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
+		}
+		return result;
+
+	}
 
 }
+			
+					
+				
+		
+			
+			
+			
+			

@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,6 @@ import org.json.JSONException;
 public interface CommandProcess {
    public String requestPro(HttpServletRequest  request,
 		                    HttpServletResponse response)
-		         throws ServletException , IOException, JSONException;
+		         throws ServletException , IOException, JSONException, SQLException;
    
 }

@@ -16,17 +16,18 @@
 		
 		if($("#all_chk").is(':checked')){
 		 	$("#delete_btn").val('전체삭제'); 
-			$("input[name=chk]").prop("checked",true);
+			$("input[name=brd_bid]").prop("checked",true);
 			
 		}else{
 			 $("#delete_btn").val('선택삭제'); 
-			$("input[name=chk]").prop("checked",false);		
+			$("input[name=brd_bid]").prop("checked",false);		
 		}
 	}	
 			
 		
 </script>
 <!--  여기까지 Header  -->
+
 
 <!-- <div style="width:1920px;" align="center"> -->
 <div id="wrapper">
@@ -86,7 +87,7 @@
 			        <c:if test="${totCnt > 0 }">
 			<c:forEach var="board" items="${list }"><!--반복문을 통해 리스트 출력  -->
 				<tr>	
-					<td><input  type="checkbox" name="chk" value="${board.brd_bid}" ></td>  
+					<td><input  type="checkbox" name="brd_bid" value="${board.brd_bid}" ></td>  
 					<td>${startNum }</td>
 					<td>${board.brd_name }</td>
 					<td class="left" width=200 height="20">
@@ -118,7 +119,7 @@
 			<!-- 게시글 삭제 및 공지사항 작성 버튼 -->
 			<div id="brd_Btn">
 				<input type="submit" id="delete_btn"  value="선택삭제">  <!-- 삭제버튼 -->
-				<%-- <input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/.do'"> --%>
+				<input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/.do'"> 
 			</div>
 			
 		</form>	
