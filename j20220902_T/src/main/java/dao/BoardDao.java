@@ -290,10 +290,9 @@ public class BoardDao {
 		System.out.println("여기까지는 왔냐?3");
 		System.out.println("sql2->" + sql2);
 		System.out.println("sql2_1->" + sql2_1);
-//		for(int i = 0 ; i < dbSavePath.size() ; i ++) {
-//			sql2 += "into FILES VALUES(?, ?, ?) ";
-//			sql2_1 += "into FILES VALUES(?, ?, ?) ";
-//		}
+		for(int i = 0 ; i < dbSavePath.size() ; i ++) {
+			sql2 += "into FILES VALUES(?, ?, ?) ";
+		}
 		System.out.println("이후sql2->" + sql2);
 		System.out.println("이후sql2_1->" + sql2_1);
 		

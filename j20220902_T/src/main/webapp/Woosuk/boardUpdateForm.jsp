@@ -194,7 +194,7 @@
 							   <c:if test="${not empty board.brd_img_src}">
 							   		<c:forEach var="img_path" items="${board.brd_img_src }">
 										<li>
-											<input type="text" value="<%=context%>/${img_path }">
+											<input type="text" value="${img_path}">
 											<button type="button" class="_add" onclick="addDel(this);">삭제</button>
 										</li>
 									</c:forEach>
