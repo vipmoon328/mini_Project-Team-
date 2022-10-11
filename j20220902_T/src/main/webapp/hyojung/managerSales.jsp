@@ -79,7 +79,7 @@
 							<th>예약처리</th>
 							<th>구매금액</th>
 						</tr>
-					<c:if test="${mgrTotCnt > 0}">
+					<c:if test="${totCnt > 0}">
 					<c:forEach var="reserve" items="${reserveList}">
 						<tr>
 							<td>${startNum}</td>
@@ -106,7 +106,7 @@
 						<c:set var="startNum" value="${startNum-1}"></c:set>
 					</c:forEach>
 					</c:if>
-					<c:if test="${mgrTotCnt == 0}">
+					<c:if test="${totCnt == 0}">
 						<tr>
 							<td colspan="9"> 조회 데이터가 없습니다.</td>
 						</tr>
