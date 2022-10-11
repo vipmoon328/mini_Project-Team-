@@ -326,6 +326,7 @@ public class BoardDao {
 				pstmt.close();
 				
 				//댓글 관련 정보
+				board.setBrd_ref(num);//
 				board.setBrd_re_step((board.getBrd_re_step()+1));
 				board.setBrd_re_level((board.getBrd_re_level()+1));
 				System.out.println("BoardDAO insert 댓글 num->"+num);

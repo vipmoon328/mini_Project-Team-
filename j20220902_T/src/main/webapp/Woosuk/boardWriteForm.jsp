@@ -64,6 +64,10 @@
 	color : #99ccff; 
 } 
 
+textarea{
+	border: none;
+}
+
 button {
 			position: relative;
 			border: 0;
@@ -186,7 +190,7 @@ sub {
 				</colgroup>
 				<tr height="300"><td style="text-align: center;">내용<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;	 text-align:center;">
 				<!-- <input style="width:300px; height:300px;" type="text" name="brd_content" id="brd_content" required="required" > -->
-				<textarea style="width:99%;" rows="30"  ></textarea> </td></tr>
+				<textarea style="width:99%;" rows="30"  type="text" name="brd_content" id="brd_content" required="required" ></textarea> </td></tr>
 				<tr height="100">
 					<td style="text-align: center;">첨부파일</td>
 					<td style="border: 1.5px solid #DCDCDC; vertical-align : top;">

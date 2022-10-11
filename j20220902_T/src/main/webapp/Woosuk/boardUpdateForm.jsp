@@ -53,6 +53,10 @@
 		color : #99ccff; 
 	} 
 	
+	textarea{
+	border: none;
+}
+
 	li {
 	margin: 10px;
 	}
@@ -167,7 +171,7 @@
 				<col width="900">
 			</colgroup>
 				<tr><td style="	text-align: center;">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
-				<input type="text" name="brd_title" required="required" value="${board.brd_title }" ></td></tr>
+				<input type="text" name="brd_title" required="required" value="${board.brd_title }" style="width:99%;"></td></tr>
 				</table>
 			<p>
 		</div>
@@ -181,7 +185,7 @@
 				
 				<tr height="300">
 					<td style="text-align: center;">내용<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;	 text-align:center;">
-						<input style="width:300px; height:300px;" type="text" name="brd_content" required="required" value="${board.brd_content }" >
+						<textarea style="width:99%;" rows="30"  type="text" name="brd_content" id="brd_content" required="required">${board.brd_content }</textarea>
 					</td>
 				</tr>
 				<tr height="100">

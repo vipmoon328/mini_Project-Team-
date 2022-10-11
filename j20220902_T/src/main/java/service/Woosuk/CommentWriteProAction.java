@@ -32,7 +32,7 @@ public class CommentWriteProAction implements CommandProcess {
             System.out.println("전 CommenwriteProAction 나와라brd_ref->"+request.getParameter("brd_ref"));
             System.out.println("전 CommenwriteProAction 나와라brd_re_step->"+request.getParameter("brd_re_step"));
             System.out.println("전 CommenwriteProAction 나와라brd_re_level->"+request.getParameter("brd_re_level"));
-            List<String> dbSavePath = new ArrayList<String>();
+
             String pageNum = request.getParameter("pageNum");
             int brd_bid = Integer.parseInt(request.getParameter("brd_bid"));
             String brd_content = request.getParameter("brd_content");
@@ -43,11 +43,15 @@ public class CommentWriteProAction implements CommandProcess {
             
             Board board = new Board();
 
-            // 작성자 세션 여부 2022.10.10
+         // 작성자 세션 여부 2022.10.10
             board.setBrd_writer(String.valueOf(session.getAttribute("id")));
             System.out.println("후 CommenwriteProAction 나와라id->"+session.getAttribute("id"));
             
-            //writer 세션
+            //22-10-10[김우석] 유저번호를 세션으로 가져온다.
+	        int usernum = Integer.parseInt((String.valueOf(session.getAttribute("usernum"))));
+	        System.out.println("==========유저번호 받아오기: "+usernum);
+			board.setUsernum(usernum);
+			System.out.println(board.getUsernum());
 			
 			
             board.setBrd_bid(Integer.parseInt(request.getParameter("brd_bid")));
@@ -55,7 +59,7 @@ public class CommentWriteProAction implements CommandProcess {
             board.setBrd_ref(Integer.parseInt(request.getParameter("brd_ref")));
             board.setBrd_re_step(Integer.parseInt(request.getParameter("brd_re_step")));
             board.setBrd_re_level(Integer.parseInt(request.getParameter("brd_re_level")));
-            board.setBrd_img_src(dbSavePath);
+  
             
        
             
@@ -72,17 +76,24 @@ public class CommentWriteProAction implements CommandProcess {
          // 3. BoardDao bd Instance
 	        BoardDao bd = BoardDao.getInstance();//DB 
 	        
+	        List<String> dbSavePath = new ArrayList<String>();
+	        board.setBrd_img_src(dbSavePath);
 	        int result = bd.insert(board);
 	        
 	        List<Board>mentList = bd.commentList(brd_ref);
 	        
+	        //댓글 리스트에 필요
 	        request.setAttribute("mentList", mentList);
-	        request.setAttribute("num", board.getBrd_ref());
-	        request.setAttribute("brd_writer", board.getBrd_writer());
-	        request.setAttribute("brd_re_step", board.getBrd_re_step());
-	        request.setAttribute("brd_content", board.getBrd_content());
 	        request.setAttribute("result", result);
+	        request.setAttribute("num",  board.getBrd_bid());
 	        request.setAttribute("pageNum", pageNum);
+	        request.setAttribute("brd_content", board.getBrd_content());
+//	        request.setAttribute("num", board.getBrd_ref());
+//	        request.setAttribute("brd_writer", board.getBrd_writer());
+//	        request.setAttribute("brd_re_step", board.getBrd_re_step());
+//	        request.setAttribute("brd_content", board.getBrd_content());
+
+//	        request.setAttribute("pageNum", pageNum);
 	        
 	        System.out.println("CommenwriteProAction mentList->"+mentList);
 	        System.out.println("CommenwriteProAction num->"+board.getBrd_ref());
@@ -99,7 +110,7 @@ public class CommentWriteProAction implements CommandProcess {
         
         
 //		return "boardContent.do";
-		return "Woosuk/boardContent.jsp";
+		return "Woosuk/boardCommentPro.jsp";
 	}
 
 }

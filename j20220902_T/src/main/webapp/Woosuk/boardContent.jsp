@@ -15,7 +15,14 @@
 <title>게시글</title>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
+pre{
+	word-wrap: break-word;
+	position: top;
+}
 
+textarea{
+	border: none;
+}
 #commentwrite{
 	width: 50%;
 	margin: auto;
@@ -193,7 +200,9 @@ input {
 				<col width="800">
 			</colgroup>
 			<!-- 게시글 내용 출력 -->
-			<tr height="300"><td style="vertical-align : top;">${board.brd_content }</td></tr>
+
+			<tr><td align="top" ><p/><p/><pre>${board.brd_content }</pre><p/><p/></td></tr>
+
 				<c:if test="${not empty board.brd_img_src}">
 					<c:forEach var="img_path" items="${board.brd_img_src }">
 						<tr height="100"><td style="vertical-align : top;"><img src= "<%=context%>/fileSave/${img_path }"></td></tr>
@@ -235,9 +244,8 @@ input {
 				
 				<!-- 2022.10.10 삭제가 안나옴 수정도 마찬가지   -->
 			<c:choose>
-				<c:when test="${usernum eq board.usernum}">
-				<tr><td style="padding:4px;"><input style="margin-left:1%;" type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'"> 
-						<input type="button" value="삭제" onclick="location.href='<%=context%>/deletePro.do?num=${board.brd_bid}&pageNum=${pageNum }'"></td></tr>
+				<c:when test="${id eq board.brd_writer}">
+						<tr><td style="padding:4px;"><input style="margin-left:1%;" type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'"></td></tr>
 				</c:when>
 			</c:choose>
 			</table>
@@ -255,16 +263,18 @@ input {
 		
 			<p>
 			<c:choose>
-				<c:when test="${usernum eq board.usernum}">
-					<table border="1" id="commentwrite">
-						<tr><td style="padding:4px;">${board.brd_writer}</td></tr><!-- 아이디 -->
+				<c:when test="${empty id}">
+				</c:when>
+				<c:otherwise>
+						<table border="1" id="commentwrite">
+						<tr><td style="padding:4px;">${id}</td></tr><!-- 아이디 -->
 						<tr><td>
 						<textarea name="brd_content" id="brd_content" required="required" style="width: 99%" rows="6" ></textarea>
 						</td></tr><!-- 내용 -->
 						<tr><td></td></tr><!-- 날짜 -->
 						<tr><td style="padding:4px; "><input style="margin-left: 1%; vertical-align : top;" type="submit" value="답글" ></td></tr>
-					</table>		
-				</c:when>
+					</table>	
+				</c:otherwise>
 			</c:choose>
 			
 			
