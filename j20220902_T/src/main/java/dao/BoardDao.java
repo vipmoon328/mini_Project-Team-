@@ -158,7 +158,7 @@ public class BoardDao {
 		 String sql =    " SELECT *  "
 		 	    	+ " FROM (Select rownum rn ,a.*  "
 		 		    + "       From ( select * from board   "
-		 		    + "              where brd_deleted = 0 "
+		 		    + "              where brd_name !='댓글' and brd_deleted = 0 "
 		 		    + "              and "   + srh_select +  " Like ?   " 
 		 		    + "              order by brd_name desc, brd_ref desc "
 		 		    + "             ) "
@@ -362,10 +362,10 @@ public class BoardDao {
 				pstmt.setInt(10,board.getBrd_re_level());
 				
 				for(int i = 0 ; i < 3*board.getBrd_img_src().size() ; i = i+3) {
-					pstmt.setInt(i + 11, number);
-					pstmt.setInt(i + 12, i+1);
-					pstmt.setString(i + 13, board.getBrd_img_src().get(i/3));
-				}
+		               pstmt.setInt(i + 11, number);
+		               pstmt.setInt(i + 12, (i+3)/3);
+		               pstmt.setString(i + 13, board.getBrd_img_src().get(i/3));
+		            }
 				result = pstmt.executeUpdate();
 				
 				System.out.println("dao insert number->"+ number);
@@ -392,42 +392,87 @@ public class BoardDao {
 	
 	//22.10.06 [김건희] 코드 수정 매개변수를 usernum 추가하여 사용자의 usernum과 게시글의 usernum이 일치할 경우에만 수정할 수 있도록 구현
 	public int update(List<String>dbDeletePath, Board board, int usernum) throws SQLException {
-		Connection conn = null;	
-		PreparedStatement pstmt= null; 
-		int result = 0;			
-		// update할 값들 넣는다.
-		//22.10.06 [김건희] sql 수정
-		String sql="update board set brd_title = ?, brd_content = ?, brd_secret=? where brd_bid =? AND usernum = ?";
-		String sql2 = "delete from files where brd_bid = ? and FILE_NAME IN(";
-		for(int i = 0 ; i < board.getBrd_img_src().size() ; i ++) {
-			sql2 += "?,";
-		}
-		sql2 += ")";
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			//22.10.06 [김건희] 게시글과 사용자의 usernum 일치 여부 확인 조건문
-			if(board.getUsernum() == usernum)
-			{
-				pstmt.setString(1,board.getBrd_title()); 
-				pstmt.setString(2,board.getBrd_content()); 
-				pstmt.setInt(3, board.getBrd_secret());
-				pstmt.setInt(4, board.getBrd_bid());
-				pstmt.setInt(5, usernum);
-				result = pstmt.executeUpdate();
-			} else {
-				result--;
-			}
-	
-		} catch(Exception e) {	
-			System.out.println("dao update"+e.getMessage()); 
-		} finally {
-			if (pstmt != null) pstmt.close();
-			if (conn !=null)   conn.close();
-		}
-		return result;
-	}
+	      Connection conn = null;   
+	      PreparedStatement pstmt= null; 
+	      int result = 0;         
+	      ResultSet rs = null;
+	      // update할 값들 넣는다.
+	      //22.10.06 [김건희] sql 수정
+	      
+	      String sql="update board set brd_title = ?, brd_content = ?, brd_secret=? where brd_bid =? AND usernum = ?";
+	      String sql2 = "delete from files where brd_bid = ? and FILE_NAME IN(";
+	      for(int i = 0 ; i < dbDeletePath.size() ; i ++) {
+	         sql2 += "?,";
+	      }
+	      sql2 = sql2.substring(0, sql2.length()-1);
+	      sql2 += ")";
+	      System.out.println("sql2 = " + sql2);
+	      String sql3 = "select nvl(max(file_fid),0) from files where brd_bid = ?";
+	      String sql4 = "insert all ";
+	      for(int i = 0 ; i < board.getBrd_img_src().size() ; i ++) {
+	         sql4 += "into FILES VALUES(?, ?, ?) ";
+	      }
+	      sql4 += "SELECT * FROM dual";
+	      String sql5 = "UPDATE files f SET FILE_FID = ( SELECT rn FROM ( SELECT rid, ROWNUM rn FROM ( SELECT ROWID rid FROM files where brd_bid = ? ORDER BY file_fid) ) WHERE rid = f.ROWID ) WHERE f.brd_bid = ?";
+	      try {
+	         conn = getConnection();
+	         pstmt = conn.prepareStatement(sql);
+	         
+	         //22.10.06 [김건희] 게시글과 사용자의 usernum 일치 여부 확인 조건문
+	         if(board.getUsernum() == usernum)
+	         {
+	            pstmt.setString(1,board.getBrd_title()); 
+	            pstmt.setString(2,board.getBrd_content()); 
+	            pstmt.setInt(3, board.getBrd_secret());
+	            pstmt.setInt(4, board.getBrd_bid());
+	            pstmt.setInt(5, usernum);
+	            result = pstmt.executeUpdate();
+	         } else {
+	            result--;
+	         }
+	         pstmt.close();
+	         if(dbDeletePath.size()>0) {
+	            pstmt = conn.prepareStatement(sql2);
+	            pstmt.setInt(1, board.getBrd_bid());
+	            for(int i = 0 ; i < dbDeletePath.size() ; i ++) {
+	               pstmt.setString(i+2, dbDeletePath.get(i));
+	            }
+	            pstmt.executeUpdate();
+	            pstmt.close();
+	            pstmt = conn.prepareStatement(sql5);
+	            pstmt.setInt(1, board.getBrd_bid());
+	            pstmt.setInt(2, board.getBrd_bid());
+	            pstmt.executeQuery();
+	            pstmt.close();
+	         }
+	         if(board.getBrd_img_src().size()>0) {
+	            pstmt = conn.prepareStatement(sql3);
+	            pstmt.setInt(1, board.getBrd_bid());
+	            rs = pstmt.executeQuery();
+	            rs.next();
+	            // 가장 마지막 게시글 고유 번호에 +1 을 하여 새로 만들 게시글의 새 고유번호 지정
+	            int number = rs.getInt(1)+1;
+	            rs.close();
+	            pstmt.close();
+	            pstmt = conn.prepareStatement(sql4);
+	            pstmt.setInt(1, board.getBrd_bid());
+	            for(int i = 0 ; i < 3*board.getBrd_img_src().size() ; i = i+3) {
+	               pstmt.setInt(i + 1, board.getBrd_bid());
+	               pstmt.setInt(i + 2, number + (i/3));
+	               pstmt.setString(i + 3, board.getBrd_img_src().get(i/3));
+	            }
+	            System.out.println("오는지 테스트" + sql4);
+	            pstmt.executeUpdate();
+	            pstmt.close();
+	         }
+	      } catch(Exception e) {   
+	         System.out.println("dao update"+e.getMessage()); 
+	      } finally {
+	         if (pstmt != null) pstmt.close();
+	         if (conn !=null) conn.close();
+	      }
+	      return result;
+	   }
 	
 	//22.10.06 [김건희] 코드 수정 매개변수를 usernum 추가하여 사용자의 usernum과 게시글의 usernum이 일치할 경우에만 삭제할 수 있도록 구현
 	public int delete(int num, int usernum) throws SQLException {
