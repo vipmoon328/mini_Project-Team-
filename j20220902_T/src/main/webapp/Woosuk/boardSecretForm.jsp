@@ -46,6 +46,7 @@
 	<hr color="#D5D5D5" width="100%" size="1">
 		<div class="flex-container">
 			<div class="item_second">
+				<ul>
 					<!-- 2022.10.11 링크 관련 수정 [건희] -->
 					<c:choose>
 						<c:when test="${auth eq 0}">
@@ -74,6 +75,7 @@
 							<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
+				</ul>
 			</div>
 		</div>
 			<hr color="#D5D5D5" width="100%" size="1">

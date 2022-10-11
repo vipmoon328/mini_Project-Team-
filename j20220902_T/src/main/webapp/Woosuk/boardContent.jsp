@@ -106,6 +106,13 @@ input {
 					</ul>
 					</c:when>
 					
+					<c:when test="${auth eq 0}">
+					<ul>
+						<li>${name} 관리자님</li>
+						<li><a href="<%=context%>/logout.do">로그아웃</a></li>
+					</ul>
+					</c:when>
+					
 					<c:otherwise>
 					<ul>
 						<li>${name}님</li>
