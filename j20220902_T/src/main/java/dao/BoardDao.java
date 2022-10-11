@@ -397,7 +397,11 @@ public class BoardDao {
 		// update할 값들 넣는다.
 		//22.10.06 [김건희] sql 수정
 		String sql="update board set brd_title = ?, brd_content = ?, brd_secret=? where brd_bid =? AND usernum = ?";
-		
+		String sql2 = "delete from files where brd_bid = ? and FILE_NAME IN(";
+		for(int i = 0 ; i < board.getBrd_img_src().size() ; i ++) {
+			sql2 += "?,";
+		}
+		sql2 += ")";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
