@@ -28,7 +28,7 @@ public class ManagerSalesFormAction implements CommandProcess {
 		System.out.println("ManagerSalesFormAction year kkk->"+year);
 
 		try {
-			int mgrTotCnt = rd.getMgrTotalCnt();
+			int totCnt = rd.getmTotalCnt();  
 
 			String pageNum    = request.getParameter("pageNum");
 			String startDate  = request.getParameter("startDate");
@@ -53,18 +53,18 @@ public class ManagerSalesFormAction implements CommandProcess {
 			int pageSize = 10, blockSize = 10;
 			int startRow = (currentPage -1) * pageSize +1;
 			int endRow   = startRow + pageSize -1;
-			int startNum = mgrTotCnt - startRow +1;
+			int startNum = totCnt - startRow +1;
 									
 			List<Reservation> reserveList = rd.reserveList(startRow,endRow,startDate,endDate);    		 	
 			System.out.println("ManagerSalesFormAction reserveList.size()->"+reserveList.size());
 		
-			int pageCnt = (int) Math.ceil((double)mgrTotCnt/pageSize);
+			int pageCnt = (int) Math.ceil((double)totCnt/pageSize);
 			int startPage = (int)(currentPage -1)/blockSize*blockSize +1;
 			int endPage = startPage + blockSize -1;
 			if(endPage > pageCnt) endPage = pageCnt;
 			
 			request.setAttribute("reserveList", reserveList);
-			request.setAttribute("mgrTotCnt", mgrTotCnt);
+			request.setAttribute("totCnt", totCnt);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("startNum", startNum);

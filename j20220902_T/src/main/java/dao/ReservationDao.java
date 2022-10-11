@@ -255,7 +255,7 @@ public class ReservationDao {
 	}
 	
 	/* 1.ManagerSalesFormAction.java - 모든 데이터 카운팅 [이효정] */
-	public int getMgrTotalCnt() throws SQLException {
+	public int getmTotalCnt() throws SQLException {
 		Connection conn = null;
 		Statement  stmt = null;
 		ResultSet  rs   = null;
