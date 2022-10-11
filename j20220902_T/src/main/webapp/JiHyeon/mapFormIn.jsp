@@ -8,7 +8,7 @@
 <title>오시는길</title>
 <link href="<%=context%>/css/mapForm.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body style="overflow-x: hidden">
 	<div id="wrapper">
 		<div class="flex-container flex-end">
 			<div class="item_first">

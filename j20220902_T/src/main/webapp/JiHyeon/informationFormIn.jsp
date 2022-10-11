@@ -8,7 +8,7 @@
 <title>볼링장정보</title>
 <link href="<%=context%>/css/informationForm.css?ver0.1" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body style="overflow-x: hidden">
 	<div id="wrapper">
 		<div class="flex-container flex-end">
 			<div class="item_first">
