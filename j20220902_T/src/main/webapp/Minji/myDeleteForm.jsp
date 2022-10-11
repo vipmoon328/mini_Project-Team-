@@ -20,8 +20,7 @@
 	}; 
 </script>
 </head>
-<body>
-<div id="wrapper">
+<body style="overflow-x: hidden">
 	<div class="flex-container flex-end">
 		<div class="item_first">
 			<ul>
@@ -45,6 +44,7 @@
 		</div>
 	</div>
 	<hr color="#D5D5D5" width="100%" size="1">
+<main>
 	<div class="flex-container">
 		<div class="item_third">마이페이지</div>
 	</div>
@@ -66,6 +66,7 @@
 			</form>
 		</div> 
 	</div> 
+</main>
 	<a href="#" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 	<div class="flex-container center">
 		<div class="item_end">
@@ -73,6 +74,5 @@
 			<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 		</div>
 	</div>
-</div>
 </body>
 </html>

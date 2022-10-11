@@ -80,7 +80,7 @@
 	};
 </script>
 </head>
-<body onload="init()">
+<body onload="init()" style="overflow-x: hidden">
 <div id="wrapper">
 	<!-- 22.10.04 로그인 창 이름 수정 [김건희] -->
 	<form action="mypagePro.do" method="post" onsubmit="return updateCheck()" >
