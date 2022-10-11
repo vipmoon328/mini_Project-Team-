@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>중앙볼링장</title>
 <!-- 22.10.04 링크 수정 [김건희] -->
-<link rel="stylesheet" href="<%=context%>/css/mainHomepage.css?ver0.1" type="">
+<link rel="stylesheet" href="<%=context%>/css/mainHomeView.css?ver0.1" type="">
 
 </head>
 <body>
@@ -33,6 +33,12 @@
 	<div class="body1_container">
 		<!-- 메인 큰사진 -->
 	</div>
+			
+	<!--원하는 위치에 버튼 넣기-->
+	<a href="tel:02-313-1711" title="" class="movebutton" style="display:scroll;position:fixed;bottom:160px;right:10px;">CALL</a>
+	<a href="<%=context%>/JiHyeon/mapFormOut.jsp"   title="" class="movebutton" style="display:scroll;position:fixed;bottom:90px;right:10px;">MAP</a>
+	<a href="#" 			  title="" class="movebutton" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
+		
 	<div class="body2_container">
 		<p>이대역과 강남점 두개의 지점으로 운영되는 중앙볼링장입니다.
 		<br>

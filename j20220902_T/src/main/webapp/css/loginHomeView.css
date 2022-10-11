@@ -30,46 +30,59 @@
 				float: right;
 				margin-top: 20px;
 				margin-bottom: 20px;
-				padding: 0px;
-				
+				padding-right: 25px;		
+	}
+	.login_list {
+				margin-right: -20px;
+	}
+	#login_list1{
+				width: 170px;
+				height: 50px;
+				float: left;
+				margin-top: 10px;
+				margin-left: 90px;
+	}
+	#login_list1 li{
+					float: right;
+
+	}
+	#login_list2{
+				width: 80px;
+				height: 50px;
+				float: right;
+				margin-bottom: 10px;	
+				padding-top: 7px;			
+	}
+	.logout {
+			padding-left: 5px;
+			padding-bottom: 2px;
+			padding-right: 20px;
 	}
 	#login_box li{
 				list-style: none;
-				float: left;
 				padding-right: 30px;    /* 글자 사이사이 여백 */
 		    	font-size:15px;			/* 글자크기 */
 		    	font-weight:bold;
 		    	color: black;			/* 글자색상 */
-		    	padding-top: 15px;
+		    	padding-top: 5px;
 	}
-	#login_box li a:after {
-                          content:"";
-                          position: absolute;
-                          left: 50%;
-                          bottom: 0;
-         				  width: 0;
-          				  height: 1px;
-          				  background-color: #90C3FF;
-          				  transition: all .5s;
-    }
-    #login_box li a:before {
-         				  content:"";
-          				  position: absolute;
-          				  right: 50%;
-        				  bottom: 0;
-                          width: 0;
-                          height: 1px;
-                          background-color: #90C3FF;
-                          transition: all .5s;
-    }
-    #login_box li a:hover:after {
-          						width: 50%
-    }
-    #login_box li a:hover:before {
-         						 width: 50%
-    }
-	.login_list{
-				float: right;
+	#login_box button {
+			position: relative;
+			border: 0;
+			margin-right: 30px;
+			height: 25px;
+			width: 75px;
+			background-color: #90C3FF;
+			text-align: center;
+			font-weight: bold; 
+			color: white; 
+			border-radius: 9px;
+			box-shadow: 0px 3px 0px #5A8DF3;						
+	}
+	#login_box button:active { 
+			box-shadow: 0 0 #90C3FF; 
+			background-color: #90C3FF;
+			top: 3px;
 	}
 	/* menu 영역 */
 	#menu_box{
@@ -108,7 +121,7 @@
         				  bottom: 0;
                           width: 0;
                           height: 1px;
-                          background-color: #90C3FF;
+                          background-color: #5A8DF3;
                           transition: all .5s;
     }
     #menu_box li a:hover:after {
@@ -129,6 +142,30 @@
 					background: url("../images/main_img.jpg") ;
 					background-position: center;
 	}
+/*================================================================================*/
+	/* 움직이는 아이콘 */
+	.movebutton {
+		text-decoration: none;
+		display: block; 
+		position: relative;
+		width: 50px;
+		padding: 0;
+		margin: 20px;
+		font-weight: 600;
+		text-align: center;
+		line-height: 50px;
+		color: #FFF;
+		border-radius: 50px;
+		transition: all 0.2s ;
+		background: #90C3FF;
+		box-shadow: 0px 0px 0px 0px #5A8DF3;
+	} 
+	.movebutton:hover {
+		box-shadow: 0px 0px 0px 5px #5A8DF3;
+	}
+	
+/*================================================================================*/
+
 	/* 메인사진 밑 문장 */
 	.body2_container{
 					text-align: center;
