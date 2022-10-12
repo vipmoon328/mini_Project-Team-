@@ -1,4 +1,4 @@
-	/* 모든 div 테두리 생성 */
+/* 모든 div 테두리 생성 */
 	/* div {border: 1px solid black;} */
 	/* 모든 a태그 없애기 */
 	a{
@@ -219,12 +219,7 @@
 	.body4_container table td{
 							width: 280px;
 							text-align: center;
-	}
-	thead {
-			background: #90C3FF;
-	}
-	tfoot{
-			background: #def8fe;
+							
 	}
 	#time_table{
 				width: 450px;
@@ -234,12 +229,25 @@
 				padding-top: 70px;
 				
 	}
+	#time_table th {
+					padding: 10px;
+	}
+	#time_table td {
+					padding: 10px;
+	}
+
 	#money_table{
 				width: 450px;
 				height: 200px;
 				float: right;
 				padding: 10px;
 				padding-top: 70px;			
+	}
+	#money_table th {
+					padding: 10px;
+	}
+	#money_table td {
+					padding: 10px;
 	}	
 /*================================================================================*/
 	/* 오시는길 영역 */

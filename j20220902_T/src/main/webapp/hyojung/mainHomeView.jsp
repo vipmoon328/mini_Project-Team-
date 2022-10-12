@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙볼링장</title>
-<!-- 22.10.04 링크 수정 [김건희] -->
-<link rel="stylesheet" href="<%=context%>/css/mainHomeView.css?ver0.1" type="">
+<!-- 22.10.12 css 수정 [이효정] -->
+<link rel="stylesheet" href="<%=context%>/css/mainHomepage.css?ver0.1" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" >
 
 </head>
-<body>
+<body style="margin: 0px">
 	<div class="top_container">
 		<div id="login_box">
 		<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
@@ -77,7 +77,7 @@
 			<hr color="#90C3FF" width="960px" size="1">	
 		</div>
 		<div id="time_table">
-			<table>
+			<table border="1" style="border: solid; border-color: #90C3FF;">
 				<thead>
 					<tr>
 						<th colspan="2">이용시간</th>
@@ -96,7 +96,7 @@
 			</table>
 		</div>
 		<div id="money_table">
-			<table>
+			<table border="1" style="border: solid; border-color: #90C3FF;">
 				<thead>
 					<tr>
 						<th colspan="2">이용요금</th>
@@ -109,7 +109,7 @@
 					</tr>
 					<tr>
 						<td>오후(12 : 00 ~ 02 : 00)</td>
-						<td>10,000원 (1인당)</td>
+						<td>50,000원 (1인당)</td>
 					</tr>
 				</tfoot>
 			</table>

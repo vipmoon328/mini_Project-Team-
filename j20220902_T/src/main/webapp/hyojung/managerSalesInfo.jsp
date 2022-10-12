@@ -25,7 +25,7 @@
 				<div class="item_first">
 					<ul>
 						<li>${name} 관리자님</li>
-						<li><a href="<%=context%>/logout.do"">로그아웃</a></li>
+						<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 					</ul>
 				</div> 
 			</div>
