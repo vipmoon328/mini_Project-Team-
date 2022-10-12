@@ -160,6 +160,22 @@ button:active {
 	height: 100%;
 }
 
+#title{
+	position: relative;
+	margin-left: 15%;
+	margin-top : 1.5%;
+}
+#content{
+	position: relative;
+	margin-left: 15%;
+	
+}
+#enroll_btn{
+	position:relative;
+	margin-left: 977%;
+	margin-top: 1%;
+}
+
 .item_end {
 	margin-top: 30px;
 	width: 100%;
@@ -172,4 +188,7 @@ button:active {
 	align-content: center;
 	justify-content: space-around;
 	align-items: center;
-}
+}	
+
+
+	

@@ -637,7 +637,7 @@ public class BoardDao {
 		return commentlist;
 	}
 	
-	//22.10.10 관리자 권한 게시물[체크박스 선택] 삭제 메서드 [최지웅]
+	//  10.10 관리자 권한 게시물[체크박스 선택] 삭제 메서드 [최지웅]
 	public int mgrDelete(int[]brd_bid) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
@@ -677,6 +677,126 @@ public class BoardDao {
 		return result;
 
 	}
+	
+	//  10/11일 관리자 공지사항 게시글 등록 메서드 [최지웅]
+	public int mgrInsert(Board board) throws SQLException {
+		int result =0;
+		System.out.println("BoardDao mgrInsert start...");
+		System.out.println("BoardDao board.getBrd_bid ->"+board.getBrd_bid());
+		int num = board.getBrd_bid(); //게시글 고유 번호 지정
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		//게시글의 가장 마지막 고유 번호를 찾는다
+		String sql1 = "select nvl(max(brd_bid),0) from board";
+		//게시글 값 insert
+		String sql2   =  "insert all into board values(?, '공지사항', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
+		String sql2_1 =  "insert into board values(?, '댓글', ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, ?, ?)";
+		System.out.println("BoardDao mgrInsert sql2=>"+sql2);
+		System.out.println("BoardDao mgrInsert sql2_1=>" +sql2_1);
+		for(int i = 0 ; i < board.getBrd_img_src().size() ; i ++) {
+			sql2 += "into FILES VALUES(?, ?, ?) ";
+		}
+		System.out.println("File 추가후 sql2->" + sql2);
+		System.out.println("File 추가후 sql2_1->" + sql2_1);
+		
+		sql2 += "SELECT * FROM dual";
+		String sql3 ="update board set brd_re_step = brd_re_step+1 where  brd_ref=? and brd_re_step > ?";
+		System.out.println("BoardDao mgrInsert sql2(+dual)->"+ sql2);
+		System.out.println("BoardDao mgrInsert dbSavePath->"+ board.getBrd_img_src());
+		System.out.println("BoardDao mgrInsert start...");
+		try {	
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			rs = pstmt.executeQuery();
+			rs.next();
+			// 가장 마지막 게시글 고유 번호에 +1 을 하여 새로 만들 게시글의 새 고유번호 지정
+			int number = rs.getInt(1)+1;
+			System.out.println("BoardDao insert number"+number);
+			System.out.println("BoardDao insert num"+num);
+			rs.close();
+			pstmt.close();
+			
+			//댓글기능 2022.10.09
+			if(num != 0)
+			{
+				System.out.println("BoardDAO insert 댓글 sql3->"+sql3);
+				
+				pstmt = conn.prepareStatement(sql3);
+				pstmt.setInt(1, board.getBrd_ref());
+				pstmt.setInt(2, board.getBrd_re_step());
+				pstmt.executeUpdate();
+				pstmt.close();
+				
+				//댓글 관련 정보
+				board.setBrd_ref(num);//
+				board.setBrd_re_step((board.getBrd_re_step()+1));
+				board.setBrd_re_level((board.getBrd_re_level()+1));
+				System.out.println("BoardDAO insert 댓글 num->"+num);
+				System.out.println("BoardDAO insert 댓글 board.getRef()->"+board.getBrd_ref());
+				System.out.println("BoardDAO insert 댓글 board.getRe_step()->"+board.getBrd_re_step());
+				System.out.println("BoardDAO insert 댓글 board.getBrd_re_level()->"+board.getBrd_re_level());
+				
+				
+			}
+			if (num==0) {
+				//num==0 첫 게시글 일때 조건
+				board.setBrd_ref(number);
+			}
+			
+			//null 일때 댓글 아닐때 게시글2022.10.09
+			if (board.getBrd_title() != null) {
+				pstmt = conn.prepareStatement(sql2);
+			}
+			else if (board.getBrd_title() == null) {
+				pstmt = conn.prepareStatement(sql2_1);
+			}
+				//sql2 에 들어갈 값을 지정
+				
+				pstmt.setInt(1, number); //글 고유 번호 
+				pstmt.setString(2, board.getBrd_title());  //글 제목
+				pstmt.setString(3, board.getBrd_writer()); //글 작성자
+				pstmt.setInt(4, board.getBrd_view()); //조회수 
+				pstmt.setString(5, board.getBrd_content()); //글 내용
+				pstmt.setInt(6, board.getBrd_secret()); //비밀 글 여부
+				pstmt.setInt(7, board.getUsernum()); //글 쓴 유저 번호
+				pstmt.setInt(8, board.getBrd_ref()); 
+				pstmt.setInt(9, board.getBrd_re_step()); 
+				pstmt.setInt(10,board.getBrd_re_level());
+				
+				for(int i = 0 ; i < 3*board.getBrd_img_src().size() ; i = i+3) {
+		               pstmt.setInt(i + 11, number);
+		               pstmt.setInt(i + 12, (i+3)/3);
+		               pstmt.setString(i + 13, board.getBrd_img_src().get(i/3));
+		            }
+				result = pstmt.executeUpdate();
+				
+				System.out.println("BoardDAO insert number->"+ number);
+				System.out.println("BoardDAO insert board.getBrd_title->"+ board.getBrd_title());
+				System.out.println("BoardDAO insert board.getBrd_view->"+ board.getBrd_view());
+				System.out.println("BoardDAO insert board.getBrd_content->"+ board.getBrd_content());
+				System.out.println("BoardDAO insert board.getBrd_secret->"+ board.getBrd_secret());
+				System.out.println("BoardDAO insert board.getBrd_ref->"+ board.getBrd_ref());
+				System.out.println("BoardDAO insert board.getBrd_re_step->"+ board.getBrd_re_step());
+				System.out.println("BoardDAO insert board.getBrd_re_level->"+ board.getBrd_re_level());
+				
+	
+		} catch (Exception e) {
+			System.out.println("BoardDAO insert error ->"+e.getMessage());
+		}
+		finally {
+			if (rs !=null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn !=null) conn.close();
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
 
 }
 			
