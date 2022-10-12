@@ -49,12 +49,11 @@
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <style type="text/css">
 	#input_ch {
-				height:30px;  /* 입력창 높이 */
-				border-radius: 12px;  /* 테두리 모서리 둥굴게 */
-				border: 1;  /* 테두리 두께 */
-				border-color: #EAEAEA; /* 테두리 색상 */
-		}
-	
+		height:30px;  /* 입력창 높이 */
+		border-radius: 12px;  /* 테두리 모서리 둥굴게 */
+		border: 1;  /* 테두리 두께 */
+		border-color: #EAEAEA; /* 테두리 색상 */
+	}
 	#btn {
 		border: 1px solid #99ccff;
 	 	border-radius: 8px;
@@ -68,46 +67,38 @@
 		margin: auto;
 		color : #99ccff; 
 	} 
-	
-	textarea{
-	border: none;
-}
-
+	textarea {
+		border: none;
+	}
 	li {
-	margin: 10px;
+		margin: 10px;
 	}
-	
 	button {
-				position: relative;
-				border: 0;
-				height: 30px;
-				width: 50px;
-				background-color: #90C3FF;
-				text-align: center;
-				font-weight: bold; 
-				color: white; 
-				border-radius: 12px;
-				box-shadow: 0px 3px 0px #5A8DF3; 
-				color: white; 
+		position: relative;
+		border: 0;
+		height: 30px;
+		width: 50px;
+		background-color: #90C3FF;
+		text-align: center;
+		font-weight: bold; 
+		color: white; 
+		border-radius: 12px;
+		box-shadow: 0px 3px 0px #5A8DF3; 
+		color: white; 
 	}
-	
-	 table {
+	table {
 	    width: 80%;
 	  /*   border: 1px solid #444444; */
 	   /*  border-collapse: collapse; */
 	    margin: auto;
-	  }
-	 th, td {
+	}
+	th, td {
 		border-color: #DCDCDC;
-	
-	  }
-	 	 
-	
+	}
 	label {
 		width: 80%;
 		text-align: left;
 	}
-	
 	sub {
 		color: red;
 	}
@@ -116,21 +107,16 @@
 		border: none;
 		border: 1.5px solid #DCDCDC; 
 		vertical-align : top;
-	
-	
 	} */
-	
 	#scr_box{
 		position: relative;
 		left: 79%;
-}
-
+	}
 </style>
-
-
-
-<!-- 헤더  -->
-<div id="wrapper">
+</head>
+<body onload="init()" style="overflow-x: hidden">
+	<!-- 헤더  -->
+	<div id="wrapper">
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
@@ -153,19 +139,12 @@
 				</ul>
 			</div>
 		</div>
-			<hr color="#D5D5D5" width="100%" size="1">
+	<hr color="#D5D5D5" width="100%" size="1">
 	</div>
-	
-	<!--헤더                                        -->
-	
-</head>
-<body onload="init()">
+	<!-- 헤더 -->
 	<form action="<%=context%>/updatePro.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="brd_bid" value="${board.brd_bid }">
 		<input type="hidden" name="pageNum" value="${pageNum }">
-	
-		
-		
 			<div id="hrline">
 				<h2>게시판</h2>
 				<hr>
@@ -178,9 +157,7 @@
 			<c:if test="${board.brd_secret != 0  }">
 				<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  checked="checked" value="Y">비밀글 작성</label>
 			</c:if>
-			
 		</div>
-		
 		<div id="title"><!--제목  -->
 			<table>
 			<colgroup>
@@ -189,17 +166,15 @@
 			</colgroup>
 				<tr><td style="	text-align: center;">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
 				<input type="text" name="brd_title" required="required" value="${board.brd_title }" style="width:99%; border:none;"></td></tr>
-				</table>
+			</table>
 			<p>
 		</div>
-		
 		<div id="content"><!-- 내용 -->
 			<table>
 				<colgroup>
 					<col width="100">
 					<col width="900">
 				</colgroup>
-				
 				<tr height="300">
 					<td style="text-align: center;">내용<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;	 text-align:center;">
 						<textarea style="width:99%;" rows="30"  type="text" name="brd_content" id="brd_content" required="required">${board.brd_content }</textarea>
@@ -227,21 +202,16 @@
 				</tr>
 			</table>
 		</div> 
-				<!-- 수정submit form통해 updateProAction 서비스 실행 -->
-		<table>
-				<tr>
-					<td><input  style="margin-left:90%" id="input_ch" type="submit" value="수정">
-					<!-- 뒤로가기 -->
-			   		<input id="input_ch" type="button" onclick="history.back()" value="취소"></td>
-			   	</tr>
+		<!-- 수정submit form통해 updateProAction 서비스 실행 -->
+		<table style="margin-left:80%">
+			<tr>
+				<td><input id="input_ch" type="submit" value="수정">
+				<!-- 뒤로가기 -->
+			   	<input id="input_ch" type="button" onclick="history.back()" value="취소"></td>
+			</tr>
 		</table>
-		
-	
-
 	</form>		
-
-
-		<!--풋터                       -->
+		<!-- 풋터 -->
 		<div class="flex-container center">
 			<div class="item_end">
 				<div><pre>쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
