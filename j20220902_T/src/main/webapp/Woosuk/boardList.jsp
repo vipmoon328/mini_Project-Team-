@@ -24,146 +24,12 @@
 		return true;
 	}
 </script>
-<link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
+<link rel="stylesheet" href="<%=context%>/css/boardList.css" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
-<style type="text/css">
-	table {
-    width: 80%;
-	border-top: 2px solid #444444;
-	border-bottom: 2px solid #444444;
-    border-collapse: collapse;
-    margin: auto;
- 	 }
-  	th{
-  		padding: 10px;
-  		text-align: center;
- 	 }
-  
-	td {
-	border-bottom : 1px solid black;
-    padding: 10px;
-    font-size: 75%;
-    text-align: center;
-  }
-  
-  	input{
-  		height:30px;  /* 입력창 높이 */
-		border-radius: 12px;  /* 테두리 모서리 둥굴게 */
-		border: 1;  /* 테두리 두께 */
-		border-color: #EAEAEA; /* 테두리 색상 */
-  	}
-
-	#hrline {
-	width: 84%;
-	margin: auto;
-	color : #99ccff; 
-} 
-	#wr_btn{
-	position: relative;
-	border: 0;
-	height: 30px;
-	width: 60px;
-	background-color: #90C3FF;
-	text-align: center;
-	font-weight: bold; 
-	color: white; 
-	border-radius: 12px;
-	box-shadow: 0px 3px 0px #5A8DF3; 
-	}
-	
-	#wr_btn :active{
-	box-shadow: 0 0 #90C3FF; 
-	background-color: #90C3FF;
-	top: 3px;
-	}
- 
-	#search{
-		position: relative;
-  		width: 400px;
-  		margin: auto;
-  		margin-top: 50px;
-  		
-  		
-	}
-
-	#srh_input{
-		width: 200px;
-	  	border: 1px solid #bbb;
-	 	border-radius: 8px;
-	  	padding: 3px 12px;
-	  	font-size: 14px;
-	  	
-	}
-	
-	
-	#srh_btn {
-		 position: relative;
-		 top:2px;
-		 background-color:#99ccff;
-		color:#fff;
-	}
-	
-	#srh_select{
-		border: 1px solid #bbb;
-	 	border-radius: 8px;
-	  	padding: 8px 10px;
-	  	font-size: 14px;
-	}
-	
-	.page_wrap {
-	text-align:center;
-	font-size:0;
-	margin-top: 30px;
-	margin: auto;
-	 }
-	.page_nation {
-		display:inline-block;
-	}
-	.page_nation .none {
-		display:none;
-	}
-	.page_nation a {
-		display:block;
-		margin:0 3px;
-		float:left;
-		border:1px solid #e6e6e6;
-		width:28px;
-		height:28px;
-		line-height:28px;
-		text-align:center;
-		background-color:#fff;
-		font-size:13px;
-		color:#999999;
-		text-decoration:none;
-	}
-	.page_nation .arrow {
-		border:1px solid #ccc;
-	}
-	.page_nation .pprev {
-		background:#f8f8f8 url('images/page_pprev.png') no-repeat center center;
-		margin-left:0;
-	}
-	.page_nation .prev {
-		background:#f8f8f8 url('images/page_prev.png') no-repeat center center;
-		margin-right:7px;
-	}
-	.page_nation .next {
-		background:#f8f8f8 url('images/page_next.png') no-repeat center center;
-		margin-left:7px;
-	}
-	.page_nation .nnext {
-		background:#f8f8f8 url('images/page_nnext.png') no-repeat center center;
-		margin-right:0;
-	}
-	.page_nation a.active {
-		background-color:#1E90FF;
-		color:#fff;
-		border:1px solid #42454c;
-	}
-</style>
-
-<!-- 헤더  -->
+</head>
+<body style="overflow-x: hidden">
 <div id="wrapper">
+	<!-- 헤더  -->
 		<div class="flex-container flex-end">
 			<div class="item_first">
 			<!-- 22.10.06 [김건희] 로그인 여부에 따라 화면 출력 차이 구현  -->
@@ -222,33 +88,27 @@
 				</ul>
 			</div>
 		</div>
-			<hr color="#D5D5D5" width="100%" size="1">
-	</div>
-	
-	<!--헤더                                        -->
-	
-</head>
-<body>
+	<hr color="#D5D5D5" width="100%" size="1">
+		<div class="flex-container">
+			<div class="item_third">게시판</div>
+		</div>
+	<hr color="#90C3FF" width="70%" size="1">
+	<div class="flex-container center">
 		<form action="">
-			<div id="hrline">
-				<h2>게시판</h2>
-				<hr>
-			</div>
-			
 			<div class="boardList">
 				<table>
 					<colgroup>
 						<col width="100">
-						<col width="200">
-						<col width="1000">
-						<col width="300">
-						<col width="200">
-						<col width="200">
+						<col width="100">
+						<col width="600">
+						<col width="150">
+						<col width="150">
+						<col width="100">
 					</colgroup>
 					
 					<tr bgcolor="#e9ecef">
 						<th>번호</th>
-						<th>게시명</th>
+						<th>구분</th>
 				        <th>제목</th>
 				        <th>작성자</th>
 				        <th>작성일자</th>
@@ -261,16 +121,16 @@
 				<tr>
 					<td>${startNum }</td>  
 					<td>${board.brd_name }</td>
-					<td class="left" width=200 height="20">
+					<td class="left" width=100 height="20">
 					 		<c:if test="${board.brd_secret > 0}"><!--비밀글 값이 1 인 게시물은 잠금 이미지가 나타난다  -->
-							    <img src='images/Lock_icon.png' ">
+							    <img src='images/Lock_icon.png'>
 						   </c:if>
 						<!-- 지정한 게시글을 불러오기 위한 ContentAction.service 진행 -->
 						<c:if test="${board.brd_secret > 0 }">
-							<a href='secretCheckPro.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
+							<a class="list_title" href='secretCheckPro.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
 						</c:if>
 						<c:if test="${board.brd_secret == 0 }">
-							<a href='boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
+							<a class="list_title" href='boardContent.do?num=${board.brd_bid}&pageNum=${currentPage}'>${board.brd_title}</a>
 						</c:if>
 					</td>
 					<td>${board.brd_writer}</td>
@@ -280,41 +140,45 @@
 				<c:set var="startNum" value="${startNum - 1 }" />
 			<%-- 	<c:set var="numbering" value="${numbering + 1 }" /> --%>
 			</c:forEach>
-		</c:if>
-		<c:if test="${totCnt == 0 }">
-			<tr>
-				<td colspan=7>데이터가 없네</td>
-			</tr>
-		</c:if>
-					
-					</table>
+					</c:if>
+					<c:if test="${totCnt == 0 }">
+						<tr>
+							<td colspan=7>데이터가 없네</td>
+						</tr>
+					</c:if>					
+				</table>
 			</div>
 			<!-- <input id="wr_btn" type="button" value="글작성" class="active" href="writeForm.do"> -->
 			
 			<!-- 22.10.06 [김건희] 로그인 여부에 따라 화면 출력 차이 구현  -->
+			
 			<c:choose>
 					<c:when test="${empty id}">
 					</c:when>
 					
 					<c:otherwise>
-						<p><input style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='<%=context%>/writeForm.do'">
+						<div class="flex-container.right">
+							<p><input class="button" type="button" value="글쓰기" onclick="location.href='<%=context%>/writeForm.do'">
+						</div>
 					</c:otherwise>
 			</c:choose>
 			
 			<!-- 페이징 -->
-			<div style="text-align: center;">
+			<div class="page" style="text-align: center;">
 				<c:if test="${startPage > blockSize }">
-					<a href='<%=context%>/list.do?pageNum=${startPage-blockSize}&srh_input=${srh_input }&srh_select=${srh_select}'>[이전]</a>
+					<a class="page" href='<%=context%>/list.do?pageNum=${startPage-blockSize}&srh_input=${srh_input }&srh_select=${srh_select}'>[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href='<%=context%>/list.do?pageNum=${i}&srh_input=${srh_input }&srh_select=${srh_select}'>[${i}]</a>
+					<a class="page" href='<%=context%>/list.do?pageNum=${i}&srh_input=${srh_input }&srh_select=${srh_select}'>[${i}]</a>
 				</c:forEach>
 				<c:if test="${endPage < pageCnt }">
-					<a href='<%=context%>/list.do?pageNum=${startPage+blockSize}&srh_input=${srh_input }&srh_select=${srh_select}'>[다음]</a>
+					<a class="page" href='<%=context%>/list.do?pageNum=${startPage+blockSize}&srh_input=${srh_input }&srh_select=${srh_select}'>[다음]</a>
 				</c:if>
 			</div> 
-			
-		</form><!-- 검색기능  -->
+		</form>
+	</div>
+		<!-- 검색기능  -->
+	<div class="flex-container.center">
 		<form action="<%=context%>/list.do?pageNum=${pageNum }" id="search_frm" method="post" onsubmit="return length_check()">
 			<div id="search">
 				<select id="srh_select" name="srh_select" >
@@ -326,7 +190,8 @@
 				
 			</div>
 		</form>
-		
+	</div>
+</div>
 		<!--풋터                       -->
 		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">
@@ -335,6 +200,5 @@
 				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
-
 </body>
 </html>
