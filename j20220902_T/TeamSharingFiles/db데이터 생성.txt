@@ -152,3 +152,13 @@ begin
             insert into FILES VALUES(p_brd_bid, v_max_num, V_DATA);
     END LOOP;
 end;
+
+예약 테이블 스케쥴러
+create or replace Procedure update_reserve
+ Is
+ begin
+    update reserve 
+    set RES_COME=1 
+    where RES_DATE =  TO_DATE(sysdate,'YY/MM/DD') 
+    AND RES_STARTTIME = TO_CHAR(sysdate,'hh24');
+End;
