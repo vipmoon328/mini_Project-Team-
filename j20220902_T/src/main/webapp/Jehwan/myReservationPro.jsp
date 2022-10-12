@@ -24,6 +24,8 @@
 		});
 		if(!('${ select_option }' ==null || '${ select_option }' == '')){
 			$('#page_amount').val('${select_option}').prop("selected",true);
+		}
+		if(!('${result}' ==null || '${result}' == '')){
 			alert('${result}');
 		}
 		show_reserve('${ currentPage }');
