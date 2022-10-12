@@ -38,7 +38,7 @@
 	<hr color="#D5D5D5" width="100%" size="1">
 	
 	<div class="flex-container">
-		<div class="item_third"><h2>오시는길</h2></div>
+		<div class="item_third">오시는길</div>
 	</div>
 
 	<hr color="#90C3FF" width="70%" size="1">
