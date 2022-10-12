@@ -204,6 +204,8 @@
 	#calendar {
 		float: left;
 		text-align: center;
+		width: 300px;
+		height: 250px;
 	}
 	#msg {
 		width: 200px;
@@ -227,6 +229,9 @@
             border-radius: 5px;
             cursor: pointer;
     }
+    #reset{
+    	margin: 5px;
+    } 
     #next, #prev{
             border: 1px solid skyblue;
             background-color: rgba(0,0,0,0);

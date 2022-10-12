@@ -114,6 +114,7 @@
 	}
 	.cancel_btn, .cancel_select{
 		float: left;
+		margin-bottom: 4px;
 	}
 	#page_amount{
 		float: right;
