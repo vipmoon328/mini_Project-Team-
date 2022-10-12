@@ -14,6 +14,8 @@
 	function chkPw()
 	{
 		var check = true;
+		$('#passError').text('');
+		$('#passLengthError').text('');
 		
 		if($('#user_password').val() != $('#user_password_chk').val())
 		{
