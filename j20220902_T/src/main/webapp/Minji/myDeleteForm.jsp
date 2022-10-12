@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>탈퇴하기</title>
 <link href="<%=context %>/css/myDelete.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
  	function chk() {

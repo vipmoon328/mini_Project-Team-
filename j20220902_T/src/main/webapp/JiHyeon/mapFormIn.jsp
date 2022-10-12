@@ -7,8 +7,9 @@
 <meta charset="UTF-8">
 <title>오시는길</title>
 <link href="<%=context%>/css/mapForm.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
-<body style="overflow-x: hidden">
+<body style="overflow-x: hidden"><!-- 페이지 하단의 가로스크롤 삭제  -->
 	<div id="wrapper">
 		<div class="flex-container flex-end">
 			<div class="item_first">

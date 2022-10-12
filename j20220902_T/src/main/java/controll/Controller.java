@@ -75,8 +75,13 @@ public class Controller extends HttpServlet {
 	         
 	         try {
 	        	//  ListAction la = new ListAction();
-				Class  commandClass    = Class.forName(className);
-				Object commandInstance = commandClass.newInstance();
+//				Class  commandClass    = Class.forName(className);
+//				Object commandInstance = commandClass.newInstance();
+				
+	        	 //클래스 유형을 모를때 <?> 라 표시 -> 제네릭의 요점은 클래스 유형을 모른다
+				Class<?> commandClass = Class.forName(className);
+				CommandProcess commandInstance =
+						(CommandProcess)commandClass.getDeclaredConstructor().newInstance();
 				//            list.do   service.ListAction
 				commandMap.put(command, commandInstance);
 				

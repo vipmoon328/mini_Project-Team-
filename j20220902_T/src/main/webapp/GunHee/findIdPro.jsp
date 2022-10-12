@@ -31,7 +31,7 @@
 			
 			<div style=" text-align: center;">
 				<input type="button" class="button" value="확인" onclick="location.href='<%=context%>/GunHee/loginForm.jsp'">
-				<input type="button" class="button" value="비밀번호 찾기" onclick="location.href='<%=context%>/GunHee/findPwPro.jsp'">
+				<input type="button" class="button" value="비밀번호 찾기" onclick="location.href='<%=context%>/GunHee/findPwForm.jsp'">
 			</div>
 	</div>
 </body>
