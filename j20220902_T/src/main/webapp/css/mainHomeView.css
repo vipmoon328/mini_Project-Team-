@@ -1,5 +1,5 @@
 	/* 모든 div 테두리 생성 */
-	div {border: 1px solid black;}
+	/* div {border: 1px solid black;} */
 	/* 모든 a태그 없애기 */
 	a{
 		text-decoration: none;
@@ -43,8 +43,8 @@
                           left: 50%;
                           bottom: 0;
          				  width: 0;
-          				  height: 1px;
-          				  background-color: #90C3FF;
+          				  height: 2px;
+          				  background-color: #5A8DF3;
           				  transition: all .5s;
     }
     #login_box li a:before {
@@ -53,8 +53,8 @@
           				  right: 50%;
         				  bottom: 0;
                           width: 0;
-                          height: 1px;
-                          background-color: #90C3FF;
+                          height: 2px;
+                          background-color: #5A8DF3;
                           transition: all .5s;
     }
     #login_box li a:hover:after {
@@ -92,8 +92,8 @@
                           left: 50%;
                           bottom: 0;
          				  width: 0;
-          				  height: 1px;
-          				  background-color: #90C3FF;
+          				  height: 2px;
+          				  background-color: #5A8DF3;
           				  transition: all .5s;
     }
     #menu_box li a:before {
@@ -102,8 +102,8 @@
           				  right: 50%;
         				  bottom: 0;
                           width: 0;
-                          height: 1px;
-                          background-color: #90C3FF;
+                          height: 2px;
+                          background-color: #5A8DF3;
                           transition: all .5s;
     }
     #menu_box li a:hover:after {
@@ -280,27 +280,9 @@
 				margin: 0 auto;		
 				padding: 10px;	
 	}
-	.list_text1{
-				width: 960px;
-				height: 25px;
-	}
-	.list_text2{
-				width: 960px;
-				height: 25px;
-	}
-	.list_text1 p{
-				  float: left;
-				  padding: 0px;
-				  padding-left: 10px;
-				  margin: 0px;
-				  font-weight: lighter;
+ 	.list_text1 pre{
 				  font-size: 13px;
 	}
-	.list_text2 p{
-				  float: left;
-				  padding: 0px;
-				  padding-left: 10px;
-				  margin: 0px;
-				  font-weight: lighter;
+	.list_text2 pre{
 				  font-size: 13px;
-	}
+	} 

@@ -9,7 +9,8 @@
 <meta charset="UTF-8">
 <title>중앙 볼링장 매출관리</title>
 <link href="<%=context%>/css/managerSales.css?ver0.1" rel="stylesheet" type="text/css">
-<link href="<%=context%>/css/font.css" rel="stylesheet" > 
+<link href="<%=context%>/css/font.css" rel="stylesheet" >
+
 </head>
 <body style="overflow-x: hidden">
 <c:if test="${loc eq 0}">
@@ -36,7 +37,7 @@
 					<ul>
 						<li>중앙볼링장</li>
 						<li><a href="<%=context%>/mgrList.do">회원관리</a></li>
-						<li><a href="<%=context%>/managerSales.do">매장관리</a></li>
+						<li><a style="color: #5A8DF3" href="<%=context%>/managerSales.do">매장관리</a></li>
 						<li><a href="<%=context%>/mgrBrdMgt.do">게시판관리</a></li>
 					</ul>
 				</div>
@@ -59,7 +60,7 @@
 					<div class="searchbox">
 						<form action="<%=context%>/managerSelectDate.do" name="frm"> 
 						<h4>매출현황</h4>
-						<label>조회기간  :  </label><input type="date" name="startDate" id="startDate">  -  <input type="date"  name="endDate"  id="endDate"> 
+						<label>조회기간  :  </label><input type="date" name="startDate" id="startDate" value="${startDate}" >  -  <input type="date"  name="endDate"  id="endDate" value="${endDate}"> 
 												 <input type="submit" value="조회">
 												 <input type="reset"  value="새로고침">
 												 <input type="button" value="전체조회"  onclick="location.href='managerSales.do'">
@@ -116,13 +117,13 @@
 					</div>
 					<div id="number" style="text-align: center;">
 						<c:if test="${startPage > blockSize}">
-							<a href="managerSales.do?pageNum=${startPage-blockSize}">[이전]</a>
+							<a href="managerSelectDate.do?pageNum=${startPage-blockSize}&startDate=${startDate}&endDate=${endDate}">[이전]</a>
 						</c:if>
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
-							<a href="managerSales.do?pageNum=${i}">[${i}]</a>
+							<a href="managerSelectDate.do?pageNum=${i}&startDate=${startDate}&endDate=${endDate}">[${i}]</a>
 						</c:forEach>
 						<c:if test="${endPage <pageCnt}">
-							<a href="managerSales.do?pageNum=${startPage+blockSize}">[다음]</a>
+							<a href="managerSelectDate.do?pageNum=${startPage+blockSize}&startDate=${startDate}&endDate=${endDate}">[다음]</a>
 						</c:if>						
 					</div>						
 				</div> 

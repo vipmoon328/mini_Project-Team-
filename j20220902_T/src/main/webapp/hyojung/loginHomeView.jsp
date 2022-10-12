@@ -7,25 +7,18 @@
 <meta charset="UTF-8">
 <title>중앙볼링장</title>
 <!-- 22.10.12 css 수정 [이효정] -->
-<link rel="stylesheet" href="<%=context%>/css/loginHomepage.css?ver0.1" type="text/css">
+<link rel="stylesheet" href="<%=context%>/css/loginHomeView.css?ver0.1" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" >
-
 </head>
 <body style="margin: 0px">
 	<div class="top_container">
-		<div id="login_box">
-			<div id="login_list1">
-				<ul class="login_list">
-					<li> ${name} 님</li>	<!-- 22.09.29 효정씨가 한 부분 수정 [김건희]	 -->					
-				</ul>
-			</div>
-			<div id="login_list2">
-			<!-- 22.09.30 로그아웃 구현 [김건희]	 -->
-				<ul class="logout">
-					<li><a href="<%=context%>/logout.do"><button type="button" class="" onclick="">로그아웃</button></a></li>
-				</ul>	
-			</div>			
-		</div>
+		<div id="login_box">			
+			<ul class="login_list">
+				<li> ${name} 님</li>	<!-- 22.09.29 효정씨가 한 부분 수정 [김건희]	 -->	
+				<li><a href="<%=context%>/logout.do">로그아웃</a></li>				
+			</ul>
+		</div>					
+		
 		<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
 		<div id="menu_box">
 			<ul class="menu_list">
@@ -185,10 +178,10 @@ for (var i = 0; i < positions.length; i ++) {
 	<div class="footer">
 		<div id="footer_list">
 			<div class="list_text1">
-				<p>쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</p>
+				<pre>쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre>
 			</div>	
 			<div class="list_text2">
-				<p>이메일  choongang@naver.com</p>
+				<pre>이메일  choongang@naver.com</pre>
 			</div>	
 		</div>
 	</div>

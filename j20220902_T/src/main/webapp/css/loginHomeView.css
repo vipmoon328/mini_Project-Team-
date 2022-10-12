@@ -25,59 +25,46 @@
 				float: right;
 				margin-top: 20px;
 				margin-bottom: 20px;
-				padding-right: 25px;		
-	}
-	.login_list {
-				margin-right: -20px;
-	}
-	#login_list1{
-				width: 170px;
-				height: 50px;
-				float: left;
-				margin-top: 10px;
-				margin-left: 90px;
-	}
-	#login_list1 li{
-					float: right;
-
-	}
-	#login_list2{
-				width: 80px;
-				height: 50px;
-				float: right;
-				margin-bottom: 10px;	
-				padding-top: 7px;			
-	}
-	.logout {
-			padding-left: 5px;
-			padding-bottom: 2px;
-			padding-right: 20px;
+				padding: 0px;
+				
 	}
 	#login_box li{
 				list-style: none;
+				float: left;
 				padding-right: 30px;    /* 글자 사이사이 여백 */
 		    	font-size:15px;			/* 글자크기 */
 		    	font-weight:bold;
 		    	color: black;			/* 글자색상 */
-		    	padding-top: 5px;
+		    	padding-top: 15px;
 	}
-	#login_box button {
-			position: relative;
-			border: 0;
-			margin-right: 30px;
-			height: 25px;
-			width: 75px;
-			background-color: #90C3FF;
-			text-align: center;
-			font-weight: bold; 
-			color: white; 
-			border-radius: 9px;
-			box-shadow: 0px 3px 0px #5A8DF3;						
-	}
-	#login_box button:active { 
-			box-shadow: 0 0 #90C3FF; 
-			background-color: #90C3FF;
-			top: 3px;
+	#login_box li a:after {
+                          content:"";
+                          position: absolute;
+                          left: 50%;
+                          bottom: 0;
+         				  width: 0;
+          				  height: 2px;
+          				  background-color: #5A8DF3;
+          				  transition: all .5s;
+    }
+    #login_box li a:before {
+         				  content:"";
+          				  position: absolute;
+          				  right: 50%;
+        				  bottom: 0;
+                          width: 0;
+                          height: 2px;
+                          background-color: #5A8DF3;
+                          transition: all .5s;
+    }
+    #login_box li a:hover:after {
+          						width: 50%
+    }
+    #login_box li a:hover:before {
+         						 width: 50%
+    }
+	.login_list{
+				float: right;
 	}
 	/* menu 영역 */
 	#menu_box{
@@ -105,8 +92,8 @@
                           left: 50%;
                           bottom: 0;
          				  width: 0;
-          				  height: 1px;
-          				  background-color: #90C3FF;
+          				  height: 2px;
+          				  background-color: #5A8DF3;
           				  transition: all .5s;
     }
     #menu_box li a:before {
@@ -115,7 +102,7 @@
           				  right: 50%;
         				  bottom: 0;
                           width: 0;
-                          height: 1px;
+                          height: 2px;
                           background-color: #5A8DF3;
                           transition: all .5s;
     }
@@ -280,7 +267,7 @@
 /*================================================================================*/
 	/* 발 영역 */
 	.footer{
-			height: 110px;
+			height: 120px;
 			background-color: black;
 			color: white;
 			text-align: center;
@@ -292,27 +279,9 @@
 				margin: 0 auto;		
 				padding: 10px;	
 	}
-	.list_text1{
-				width: 960px;
-				height: 25px;
-	}
-	.list_text2{
-				width: 960px;
-				height: 25px;
-	}
-	.list_text1 p{
-				  float: left;
-				  padding: 0px;
-				  padding-left: 10px;
-				  margin: 0px;
-				  font-weight: lighter;
+ 	.list_text1 pre{
 				  font-size: 13px;
 	}
-	.list_text2 p{
-				  float: left;
-				  padding: 0px;
-				  padding-left: 10px;
-				  margin: 0px;
-				  font-weight: lighter;
+	.list_text2 pre{
 				  font-size: 13px;
-	}
+	} 

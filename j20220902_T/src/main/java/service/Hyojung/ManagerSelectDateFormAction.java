@@ -49,7 +49,8 @@ public class ManagerSelectDateFormAction implements CommandProcess {
 				System.out.println("ManagerSelectDateFormAction NN endDate->"+endDate);				
 			}
 			
-			if(pageNum==null || pageNum.equals("")) { pageNum = "1"; }
+			if(pageNum==null || pageNum.equals(""))
+			{ pageNum = "1"; }
 			int currentPage = Integer.parseInt(pageNum);
 			int pageSize = 10, blockSize = 10;
 			int startRow = (currentPage -1) * pageSize +1;
@@ -60,7 +61,7 @@ public class ManagerSelectDateFormAction implements CommandProcess {
 			
 			System.out.println("ManagerSelectDateFormAction totCnt->"+totCnt);
 			System.out.println("ManagerSelectDateFormAction endRow->"+endRow);
-			
+			System.out.println("ManagerSelectDateFormAction pageNum->"+ pageNum);
 
 			List<Reservation> reserveSelectList = rd.reserveSelectList(startRow,endRow,startDate,endDate);    		 	
 			System.out.println("ManagerSelectDateFormAction reserveSelectList.size()->"+reserveSelectList.size());
@@ -82,7 +83,8 @@ public class ManagerSelectDateFormAction implements CommandProcess {
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("startNum", startNum);
 			request.setAttribute("blockSize", blockSize);
-			request.setAttribute("pageCnt", pageCnt);
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDate);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 		} catch (Exception e) {

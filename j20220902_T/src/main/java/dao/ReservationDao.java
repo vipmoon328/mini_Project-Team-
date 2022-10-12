@@ -394,10 +394,11 @@ public class ReservationDao {
 			pstmt.setString(2, endDate);
 			pstmt.setInt(3, startRow);
 			pstmt.setInt(4, endRow);	
+			System.out.println("startRow" + startRow);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Reservation reserve = new Reservation();
-				reserve.setusernum  (rs.getInt("usernum"));
+				reserve.setusernum      (rs.getInt("usernum"));
 				reserve.setName         (rs.getString("name"));				
 				reserve.setRes_lane     (rs.getInt("res_lane"));
 				reserve.setRes_customer (rs.getInt("res_customer"));

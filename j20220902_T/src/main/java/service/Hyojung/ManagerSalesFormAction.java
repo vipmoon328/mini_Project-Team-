@@ -70,6 +70,8 @@ public class ManagerSalesFormAction implements CommandProcess {
 			request.setAttribute("startNum", startNum);
 			request.setAttribute("blockSize", blockSize);
 			request.setAttribute("pageCnt", pageCnt);
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDate);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 
