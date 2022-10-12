@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의 예약 정보</title>
 <link href="<%=context%>/css/myResStyle.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">

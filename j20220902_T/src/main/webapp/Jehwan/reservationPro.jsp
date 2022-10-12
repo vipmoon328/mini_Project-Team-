@@ -8,8 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약하기</title>
 <link href="<%=context%>/css/ResStyle.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
