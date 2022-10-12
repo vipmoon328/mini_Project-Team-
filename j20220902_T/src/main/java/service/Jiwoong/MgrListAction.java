@@ -30,7 +30,7 @@ public class MgrListAction implements CommandProcess {
 			
 			// 검색필드 및 검색어 파라미터 가져오기
 			String searchField = request.getParameter("searchField");  //  검색 항목
-			if(searchField==null|| searchField.equals("")) {searchField="";}
+			if(searchField==null || searchField.equals("")) {searchField="";}
 			String query   = request.getParameter("query");            //  검색어
 			if(query==null || query.equals(""))	{query ="";}
 			
@@ -44,14 +44,14 @@ public class MgrListAction implements CommandProcess {
 			if(pageNum==null || pageNum.equals("")) {pageNum ="1";}
 			
 			// 한 페이지에 출력될 회원 수, 블록 크기
-			int pageSize = 5, blockSize =5;
+			int pageSize = 2, blockSize =5;
 			
 			int currentPage = Integer.parseInt(pageNum);   			  //  현재 페이지
 			System.out.println("MgrListAction Service currentPage: "+currentPage); 						 
 			int startRow = (currentPage - 1) * pageSize + 1;         //   페이지의 시작글 번호  -->  delete,insert 등을 대비한 늘 일정한 단위로 구분되는 가상 번호
 			int endRow   = startRow + pageSize - 1;                 //    페이지의 마지막글 번호 --> delete,insert 등을 대비한 늘 일정한 단위로 구분되는 가상 번호
 			int startNum = startRow; 
-			
+			System.out.println("MgrListAction Service startRow, endRow, searchField, query=>"+startRow+ endRow +searchField+ query);
 			
 			// Users 전체 조회 및 검색 조회
 			List<Users> list = ud.getUsersList(startRow, endRow, searchField, query);
@@ -78,6 +78,7 @@ public class MgrListAction implements CommandProcess {
 			request.setAttribute("pageCnt", pageCnt);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
+			request.setAttribute("searchField",searchField);
 		} catch (Exception e) {
 			System.out.println("mgrListAction e.getMessage()->"+e.getMessage());
 		}

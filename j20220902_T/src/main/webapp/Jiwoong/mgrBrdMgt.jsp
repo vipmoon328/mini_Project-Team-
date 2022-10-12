@@ -10,8 +10,21 @@
 <meta charset="UTF-8">
 <title>게시판 관리</title>
 <link rel="stylesheet" href="<%=context%>/css/mgrBrdMgt.css?v=<%=System.currentTimeMillis() %>" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+$(function() { // 삭제 버튼 동적 생성
+	$("#delete_btn").hide();
+	$(document).on("change",".brd_bid,#all_chk", function(){
+	if(	$(".brd_bid").is(':checked')){
+		$("#delete_btn").show();
+	}else{
+		$("#delete_btn").hide();
+	}
+			
+	});
+});
+	
 	function allChk() { // 전체체크 및 해제
 		
 		if($("#all_chk").is(':checked')){
@@ -88,7 +101,7 @@
 			        <c:if test="${totCnt > 0 }">
 			<c:forEach var="board" items="${list }"><!--반복문을 통해 리스트 출력  -->
 				<tr>	
-					<td><input  type="checkbox" name="brd_bid" value="${board.brd_bid}" ></td>  
+					<td><input type="checkbox" class="brd_bid " name="brd_bid" value="${board.brd_bid}" ></td>  
 					<td>${startNum }</td>
 					<td>${board.brd_name }</td>
 					<td class="left" width=200 height="20">
@@ -119,8 +132,8 @@
 				</table>
 			<!-- 게시글 삭제 및 공지사항 작성 버튼 -->
 			<div id="brd_Btn">
-				<input type="submit" id="delete_btn"  value="선택삭제">  <!-- 삭제버튼 -->
-				<input id="wr_btn"  type="button" value="공지작성" onclick="location.href='<%=context%>/brdNoticeForm.do'"> 
+				<input type="submit" id="delete_btn"  value="선택삭제" >  <!-- 삭제버튼 -->
+				<input id="wr_btn"  type="button" value="글쓰기" onclick="location.href='<%=context%>/brdNoticeForm.do'"> 
 			</div>
 			
 		</form>	

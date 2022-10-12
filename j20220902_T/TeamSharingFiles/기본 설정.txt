@@ -22,7 +22,7 @@ JSTL 사용하기
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 폰트 적용법 
-<link href="<%=context%>/css/font.css" rel="stylesheet" > 
+<link href="<%=context%>/css/font.css" rel="stylesheet"> 
 
 --SQL문 1--
 select reserve.usernum as 회원번호, users.name as 이름, res_lane as 레인, res_customer as 인원, res_date as 예약날짜, concat(concat(res_starttime,'~'),reserve.res_endtime)as 예약시간, res_cancel as 예약처리, res_sal as 구매금액

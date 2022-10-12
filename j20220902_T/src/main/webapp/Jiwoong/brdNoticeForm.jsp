@@ -7,6 +7,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="<%=context%>/css/brdNoticeForm.css?v=<%=System.currentTimeMillis() %>" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet"> 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	var maxAppend = 1;

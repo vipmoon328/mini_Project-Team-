@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>탈퇴하기</title>
 <link href="<%=context%>/css/mgrDeleteForm.css" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet"> 
 </head>
 <body>
 <div id="wrapper">

@@ -18,8 +18,41 @@
 					}
 	</style>
 <link rel="stylesheet" type="text/css" href="<%=context%>/css/mgrList.css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+$(function() {
+	if('${searchField}'!=null && '${searchField}'!=""){
+		$('#searchField').val('${searchField}').prop("selected",true);
+	}
+	
+	
+	
+	$(document).on("click","#prev,#next,.pageNum",function(){
+			
+		if(	$(this).attr("id")=="prev"){
+			var prevNum=parseInt($('.pageNum:first').val())-1
+			valueChk(prevNum);
+		}else if($(this).attr("id")=="next"){
+			var nextNum=parseInt($('.pageNum:last').val())+1
+			valueChk(nextNum);
+		}else{
+			valueChk($(this).attr("id"));
+		}
+				
+		});
+	
+});
+	function valueChk(pageNum) {
+		if('${searchField}'==null || '${searchField}'==""){
+		location.href="<%=context%>/mgrList.do?pageNum="+pageNum+"&query="+$('#query').val();
+		}else {
+		location.href="<%=context%>/mgrList.do?pageNum="+pageNum+"&searchField="+$('#searchField').val()+"&query="+$('#query').val();
+		
+	}
+		}
+
+
 	 function searchOption()
 	{
 		if($('#searchField').val()=='name' ||'id')
@@ -28,7 +61,6 @@
 		}
 			
 	}
- 
 </script>
 
 </head>
@@ -135,17 +167,43 @@
 		</c:if>		
 		</table>		
 		
+		<!-- 페이징 -->
 		<div style="text-align: center;">
 			<c:if test="${startPage > blockSize }">
-			<a href='mgrList.do?pageNum=${startPage-blockSize}'>[이전]</a>
+			<button id="prev">[이전]</button>
 			</c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<a href='mgrList.do?pageNum=${i}'>[${i}]</a>
+			<button id="${i}" class="pageNum">${i }</button>
 			</c:forEach>
 			<c:if test="${endPage < pageCnt }">
-			<a href='mgrList.do?pageNum=${startPage+blockSize}'>[다음]</a>
+			<button id="next" >[다음]</button>
 			</c:if>
+		</div> 
+	<!--  <div class="flex-container center">
+			<div class="footer">
+				<div><pre>쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
+				<div><pre>이메일  choongang@naver.com</pre></div>
+			</div>
 		</div>
+     -->
+    
+    
+     </div>	
+    </div>
+    
+   
+  
+	            
+	</body>
+</html>   
+   	
+		
+		
+
+
+
+
+
 
 					
 					
@@ -175,26 +233,7 @@
     
     
     
-   		<!--  <div class="flex-container center">
-			<div class="footer">
-				<div><pre>쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
-				<div><pre>이메일  choongang@naver.com</pre></div>
-			</div>
-		</div>
-     -->
-    
-    
-     </div>	
-    </div>
-    
-   
-  
-	            
-	</body>
-</html>   
    	
-		
-		
 			
 	
 	

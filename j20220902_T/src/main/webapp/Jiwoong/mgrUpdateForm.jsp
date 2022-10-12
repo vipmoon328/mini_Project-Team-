@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>중앙 볼링장 마이페이지</title>
 <link href="<%=context %>/css/mgrUpdateForm.css" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet"> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	function init()

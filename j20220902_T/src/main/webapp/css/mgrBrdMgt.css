@@ -188,7 +188,7 @@
 	border: 0;
 	height: 30px;
 	width:75px;
-	background-color: #90C3FF;
+	background-color: #5A8DF3;
 	text-align: center;
 	font-weight: bold; 
 	color: white; 
@@ -201,7 +201,7 @@
 	border: 0;
 	height: 30px;
 	width:75px;
-	background-color: #90C3FF;
+	background-color: #5A8DF3;
 	text-align: center;
 	font-weight: bold; 
 	color: white; 
@@ -236,7 +236,7 @@
 	#srh_btn {
 		 position: relative;
 		 top:2px;
-		 background-color:#99ccff;
+		 background-color:#5A8DF3;
 		color:#fff;
 	}
 	#srh_select{

@@ -160,7 +160,7 @@ public class BoardDao {
 		 	    	+ " FROM (Select rownum rn ,a.*  "
 		 		    + "       From ( select * from board   "
 		 		    + "              where brd_name !='댓글' and brd_deleted = 0 "
-		 		    + "              and "   + srh_select +  " Like ?   " 
+		 		    + "              and "   + srh_select +  " Like ?   "
 		 		    + "              order by brd_name desc, brd_ref desc "
 		 		    + "             ) "
 		 		    + "       a )  "

@@ -387,7 +387,7 @@ public class UserDao
 			
 			
 			System.out.println("DAO  getTotalCnt sql->"+sql);
-
+			
 
 			try {
 				conn = getConnection();
@@ -402,7 +402,9 @@ public class UserDao
 				if(conn !=null) conn.close();
 				
 			}
+			System.out.println("DAO  getTotalCnt tot=>"+tot);
 			return tot;
+			
 		}
 
 		//  관리자 회원 조회 및 조건 검색 조회 method 09/30  [최지웅]
@@ -414,11 +416,11 @@ public class UserDao
 			String sql =null;
 			// 조건에 따른 실행할 sql 문 선택 로직
 			if (searchField.equals("")){ 
-				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users where auth=1 order by usernum) a)"
+				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users where auth=1  order by usernum) a)"
 						+ "where rn BETWEEN ? and  ?";
 			} else{
-				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users where auth=1 order by usernum) a)"
-						+ "where "+searchField+" LIKE '%" + query + "%' and rn BETWEEN ? and  ?";
+				sql = "select * FROM (select rownum rn,a.*" + "from(select * from users where auth=1 and "+searchField+" LIKE '%" + query + "%'  order by usernum) a)"
+						+ "where rn BETWEEN ? and  ?";
 			}
 			
 			

@@ -23,10 +23,10 @@ public class MgrBrdMgtAction implements CommandProcess {
 			request.setCharacterEncoding("utf-8");
 			
 			System.out.println("MgrBrdMgtAction Service start...."); // 디버깅
-			String srh_input = request.getParameter("srh-input");
+			String srh_input = request.getParameter("srh_input");
 			if(srh_input == null) srh_input= "%";
 			else				  srh_input='%'+srh_input+'%';
-			System.out.println("MgrBrdMgtAction srh-input =>"+srh_input); // 디버깅
+			System.out.println("MgrBrdMgtAction srh_input =>"+srh_input); // 디버깅
 			String srh_select = request.getParameter("srh_select");
 			if(srh_select == null) srh_select="brd_title";
 			System.out.println("MgrBrdMgtAction srh_select =>" + srh_select); // 디버깅

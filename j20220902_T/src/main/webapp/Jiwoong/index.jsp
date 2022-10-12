@@ -7,9 +7,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
 <script type="text/javascript">
-   location.href = "<%=context%>/mgrBrdMgt.do"; 
+   
+		function login() {
+			location.href="<%=context%>//GunHee/loginForm.jsp";
+		}
+		   
+		function mgrList() {
+			location.href="<%=context%>/mgrList.do";
+		}
+  
 </script>
+<body>
+	<input type="button" value="관리자로그인" onclick="login()"><p>  <!-- Id :김우석 비번:121412141214 -->
+	<input type="button" value="관리자페이지로" onclick="mgrList()">
+	
 </body>
 </html>
