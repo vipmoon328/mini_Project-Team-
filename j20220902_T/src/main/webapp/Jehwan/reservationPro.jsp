@@ -323,7 +323,7 @@
 	
 
 </script>
-<body>
+<body style="overflow-x: hidden">
 <div id="wrapper">
 	<div class="flex-container flex-end">
 			<div class="item_first">
@@ -351,7 +351,7 @@
 	
 	<hr color="#D5D5D5" width="100%" size="1">
 	<div class="flex-container">
-			<div class="item_third"><h2>예약하기</h2></div>
+			<div class="item_third">예약하기</div>
 		</div>		
 	<hr color="#90C3FF" width="70%" size="1">
 	<div id="dateSelectCon">
