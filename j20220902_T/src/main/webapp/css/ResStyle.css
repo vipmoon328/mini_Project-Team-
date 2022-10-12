@@ -110,9 +110,8 @@
 		text-align: center;
 		padding-bottom: 130px;
 	}
-	
-	#jijum{
-			width: 150px; 
+	#jijum {
+			width: 80px; 
 			padding: .8em .5em; 
 			border: 1px solid skyblue;
 			font-family: inherit;  
@@ -122,10 +121,9 @@
 			-moz-appearance: none;
 			appearance: none;
 			cursor: pointer;
-			}
-	
-	#many{
-			width: 150px; 
+	}
+	#many {
+			width: 50px; 
 			padding: .4em .2em; 
 			border: 1px solid skyblue;
 			font-family: inherit;  
@@ -136,17 +134,17 @@
 			appearance: none;
 			cursor: pointer;
 	}
-	
 	caption, #frm {
 		text-align: left;
 	}
 	#color_info{
 		float: right;
+		vertical-align: middle;
 	}
-	
 	#color_info img{
 		width: 30px;
 		height: 30px;
+		vertical-align: middle;
 	}
 	#calendar tbody{
 		border: 1px solid black;
@@ -167,7 +165,6 @@
 	.selectDate{
 		background-color : cyan !important;
 	}
-	
 	.date{
 		width: 30px;
 		height: 20px;
@@ -190,34 +187,25 @@
 		margin: 0 auto;
 		margin-top: 350px;
 	}
-	
-	
 	#test_table th {
 		width: 80px;
 		height: 40px;
 		font-size : 0.9em;
-		min-width: 80px;
 	}
-	
-	#dateSelectCon{
+	#dateSelectCon {
 		width: 70%;
 		margin: 0 auto;
 	}
-	#today{
+	#today {
 		font-size: 25px;
 		font-weight: bolder;
 		margin-left: 50px;
 	}
-	
-	#calendar{
+	#calendar {
 		float: left;
 		text-align: center;
 	}
-	
-	/* h2{
-		color : navy;
-	} */
-	#msg{
+	#msg {
 		width: 200px;
 		height: 200px;
 		margin: left;
@@ -226,19 +214,19 @@
 		margin: 20px;
 		padding-bottom: 240px;
 	}
-	
 	#reset, #insert{
             border: 2px solid skyblue;
             background-color: rgba(0,0,0,0);
-            color: black;
+            color: skyblue;
+            font-size: medium;
+            font-weight: bold;
             padding: 5px;
-            width: 100px;
+            width: 80px;
             height: 40px;
             border-collapse: collapse;
             border-radius: 5px;
             cursor: pointer;
     }
-    
     #next, #prev{
             border: 1px solid skyblue;
             background-color: rgba(0,0,0,0);
@@ -250,10 +238,11 @@
             border-radius: 5px; 
             cursor: pointer;
     }
-    
     #reset:hover, #insert:hover, #next:hover, #prev:hover{
             color:white;
             background-color: skyblue;
+            font-size: medium;
+            font-weight: bold;
     }
 	#form_container{
 			width: 250px;
