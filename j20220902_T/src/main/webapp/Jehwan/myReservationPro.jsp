@@ -132,7 +132,7 @@
 	}
 	
 </script>
-<body>
+<body style="overflow-x: hidden">
 <div id="wrapper">
 	<!-- 헤드 부분을 제거하고 수정 -->
 	<div class="flex-container flex-end">
@@ -161,7 +161,7 @@
 	
 	<hr color="#D5D5D5" width="100%" size="1">
 	<div class="flex-container">
-			<div class="item_third"><h2>나의 예약 정보</h2></div>
+			<div class="item_third">나의 예약 정보</div>
 		</div>		
 	<hr color="#90C3FF" width="70%" size="1">
 	<div id="content_container">

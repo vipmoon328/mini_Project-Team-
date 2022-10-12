@@ -133,7 +133,7 @@
 					height : 500px; 			/* 높이 */
 					margin-bottom: 10px;       /* 아래 요소들과의 간격 */
 					background-color: black;   /* 사진삽입 여백 */
-					background: url("../images/main_img.jpg") ;
+					background: url("images/main_img.jpg") ;
 					background-position: center;
 	}
 /*================================================================================*/
@@ -187,7 +187,7 @@
 			width: 230px;
 			height: 200px;
 			margin: 10px;
-			background-image: url("../images/m1.JPG");
+			background-image: url("images/m1.JPG");
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;		
@@ -196,7 +196,7 @@
 			width: 230px;
 			height: 200px;
 			margin: 10px;
-			background-image: url("../images/m2.JPG");
+			background-image: url("images/m2.JPG");
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;		
@@ -205,7 +205,7 @@
 			width: 230px;
 			height: 200px;
 			margin: 10px;
-			background-image: url("../images/m3.JPG");
+			background-image: url("images/m3.JPG");
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;		
@@ -214,7 +214,7 @@
 			width: 230px;
 			height: 200px;
 			margin: 10px;
-			background-image: url("../images/m4.JPG");
+			background-image: url("images/m4.JPG");
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;		

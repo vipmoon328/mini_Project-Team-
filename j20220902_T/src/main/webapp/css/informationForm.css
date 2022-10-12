@@ -3,9 +3,7 @@
 	}
 	/* -------------------------------------------------------------------- */	
 	#wrapper {
-			height: auto;
-			min-height: 100%;
-			padding-bottom: 130px;
+			height: 100%;
 	}
 	.flex-container {
             display: flex;  /* 컨테이너들 수직정렬 */
@@ -159,15 +157,19 @@
 	
 	/* -------------------------------------------------------------------- */
 	/* 하단내용 영역 */							   
-	#footer {
-			clear: both; 				/* 양쪽 float 해제(contents,sidebar의 float을 따라가지 않는다.) */
-			padding: 20px;    			/* 테두리 안에 여백 */
-			background-color: black;    /* 영역 배경 색상 */
-			color: white;               /* 글자 색상 */
-			}
-	nav {
-		text-align: center;  /* 글자 정렬 */
-		}
+	.item_end {   
+			margin-top: 30px; 
+			width: 100%;  
+			background-color: black;
+    		color: white;
+    		font-size: 12px;
+		    display: flex; 
+		    height: 100px;
+		    flex-direction: column;
+		    align-content: center;
+		    justify-content: space-around;
+		    align-items: center;
+	}
 	/* -------------------------------------------------------------------- */
 	/* 상단으로 가는 버튼 */
 	a.button_top {
