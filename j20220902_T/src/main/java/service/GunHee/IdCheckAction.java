@@ -30,6 +30,10 @@ public class IdCheckAction implements CommandProcess {
 			{
 				res = "Not Exist";
 			}
+			else if(result == -1)
+			{
+				res = "Length Error";
+			}
 			else
 			{
 				res = "Exist";

@@ -46,6 +46,10 @@
 							$("#idCheck").text("사용중인 아이디입니다");
 							$("#idCheck").css("color","red");
 							id_check = false;
+						} else if (data == 'Length Error'){
+							$("#idCheck").text("아이디 길이가 부족합니다.");
+							$("#idCheck").css("color","red");
+							id_check = false;
 						} else {
 							$("#idCheck").text("사용 가능한 아이디입니다");
 							$("#idCheck").css("color","blue");
