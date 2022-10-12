@@ -24,6 +24,7 @@
 	}
 </script>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <style type="text/css">
 	table {
     width: 80%;

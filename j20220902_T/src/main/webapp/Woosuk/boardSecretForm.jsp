@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <style type="text/css">
 
 #secret_chk{

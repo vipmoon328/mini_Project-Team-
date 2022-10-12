@@ -14,11 +14,20 @@
 <meta charset="UTF-8">
 <title>게시글</title>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <style type="text/css">
+
+@font-face 
+{
+	src: url("../font/NanumSquareNeo-bRg.ttf");
+	font-family: "NanumSquareNeo";
+}
+
 pre{
 	word-wrap: break-word;
 	position: top;
 	 font-size: 16px;
+	font-family: "NanumSquareNeo";
 }
 
 textarea{
