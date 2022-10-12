@@ -48,6 +48,13 @@
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <style type="text/css">
+	#input_ch {
+				height:30px;  /* 입력창 높이 */
+				border-radius: 12px;  /* 테두리 모서리 둥굴게 */
+				border: 1;  /* 테두리 두께 */
+				border-color: #EAEAEA; /* 테두리 색상 */
+		}
+	
 	#btn {
 		border: 1px solid #99ccff;
 	 	border-radius: 8px;
@@ -181,7 +188,7 @@
 				<col width="900">
 			</colgroup>
 				<tr><td style="	text-align: center;">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
-				<input type="text" name="brd_title" required="required" value="${board.brd_title }" style="width:99%;"></td></tr>
+				<input type="text" name="brd_title" required="required" value="${board.brd_title }" style="width:99%; border:none;"></td></tr>
 				</table>
 			<p>
 		</div>
@@ -204,14 +211,14 @@
 						<ul class="__add"> 
 							<li>
 							  <!--  <input type="file" name="file_path" class="files" style="width: 231px; height: 46px;"> -->
-							   <button  type="button"class="_add" style="vertical-align: sub">추가</button>	
+							   <button id="input_ch"  type="button"class="_add" style="vertical-align: sub">추가</button>	
 							</li> 					   
 							   <c:if test="${not empty board.brd_img_src}">
 							   		<c:forEach var="img_path" items="${board.brd_img_src }">
 							   		<input type="hidden" name="exist_img" value="${img_path}">
 										<li>
 											<input type="hidden" name="update_img" value="${img_path}">${img_path }
-											<button type="button" class="_add" onclick="addDel(this);">삭제</button>
+											<button id="input_ch" type="button" class="_add" onclick="addDel(this);">삭제</button>
 										</li>
 									</c:forEach>
 							   </c:if>
@@ -223,9 +230,9 @@
 				<!-- 수정submit form통해 updateProAction 서비스 실행 -->
 		<table>
 				<tr>
-					<td><input style="margin-left:90%" id="btn" type="submit" value="수정">
+					<td><input  style="margin-left:90%" id="input_ch" type="submit" value="수정">
 					<!-- 뒤로가기 -->
-			   		<input id="btn" type="button" onclick="history.back()" value="취소"></td>
+			   		<input id="input_ch" type="button" onclick="history.back()" value="취소"></td>
 			   	</tr>
 		</table>
 		

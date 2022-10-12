@@ -16,7 +16,13 @@
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <style type="text/css">
-
+#input_ch {
+			height:30px;  /* 입력창 높이 */
+			border-radius: 12px;  /* 테두리 모서리 둥굴게 */
+			border: 1;  /* 테두리 두께 */
+			border-color: #EAEAEA; /* 테두리 색상 */
+	}
+	
 @font-face 
 {
 	src: url("../font/NanumSquareNeo-bRg.ttf");
@@ -227,12 +233,12 @@ input {
 	<p>
 	<c:choose>
 		<c:when test="${usernum eq board.usernum}">
-			<input style="margin-left:66%" type="button" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
-			<input type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
-			<input type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+			<input style="margin-left:66%" type="button" id="input_ch" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+			<input type="button" id="input_ch" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+			<input type="button" id="input_ch" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
 		</c:when>
 		<c:otherwise>
-			<input style="margin-left:66%" style="margin-left:66%" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+			<input id="input_ch" style="margin-left:66%" style="margin-left:66%" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
 		</c:otherwise>
 	</c:choose>
 	
@@ -282,7 +288,7 @@ input {
 						<textarea name="brd_content" id="brd_content" required="required" style="width: 99.6%" rows="6" ></textarea>
 						</td></tr><!-- 내용 -->
 						<tr><td></td></tr><!-- 날짜 -->
-						<tr><td style="padding:4px; "><input style="margin-left: 1%; vertical-align : top;" type="submit" value="답글" ></td></tr>
+						<tr><td style="padding:4px; "><input id="input_ch" style="margin-left: 1%; vertical-align : top;" type="submit" value="답글" ></td></tr>
 					</table>	
 				</c:otherwise>
 			</c:choose>

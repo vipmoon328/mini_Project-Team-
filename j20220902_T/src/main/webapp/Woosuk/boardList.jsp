@@ -46,10 +46,10 @@
   }
   
   	input{
-  		border: 1px solid #bbb;
-	 	border-radius: 8px;
-	  	padding: 8px 10px;
-	  	font-size: 14px;
+  		height:30px;  /* 입력창 높이 */
+		border-radius: 12px;  /* 테두리 모서리 둥굴게 */
+		border: 1;  /* 테두리 두께 */
+		border-color: #EAEAEA; /* 테두리 색상 */
   	}
 
 	#hrline {
@@ -89,7 +89,7 @@
 		width: 200px;
 	  	border: 1px solid #bbb;
 	 	border-radius: 8px;
-	  	padding: 10px 12px;
+	  	padding: 3px 12px;
 	  	font-size: 14px;
 	  	
 	}
@@ -296,7 +296,7 @@
 					</c:when>
 					
 					<c:otherwise>
-						<p><input id="wr_btn" style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='<%=context%>/writeForm.do'">
+						<p><input style="margin-left:84%"  type="button" value="글쓰기" onclick="location.href='<%=context%>/writeForm.do'">
 					</c:otherwise>
 			</c:choose>
 			
@@ -321,7 +321,7 @@
 					<option value="brd_writer">작성자</option>
 				</select>
 				<input id="srh_input" name="srh_input" type="text" placeholder="검색어 입력">
-				<input id="srh_btn" type="submit" value="검색">
+				<input type="submit" value="검색">
 				
 			</div>
 		</form>

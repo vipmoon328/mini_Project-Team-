@@ -116,14 +116,18 @@ label {
 sub {
 	color: red;
 }
-/* input{
-	width: 98%;
-	border: none;
-	border: 1.5px solid #DCDCDC; 
-	vertical-align : top;
-
-
-} */
+#input_ch {
+			height:30px;  /* 입력창 높이 */
+			border-radius: 12px;  /* 테두리 모서리 둥굴게 */
+			border: 1;  /* 테두리 두께 */
+			border-color: #EAEAEA; /* 테두리 색상 */
+	}
+	button{
+	height:30px;  /* 입력창 높이 */
+			border-radius: 12px;  /* 테두리 모서리 둥굴게 */
+			border: 1;  /* 테두리 두께 */
+			border-color: #EAEAEA; /* 테두리 색상 */
+	}
 
 #scr_box{
 	position: relative;
@@ -184,10 +188,10 @@ sub {
 			<table>
 			<colgroup>
 				<col width="100">
-				<col width="900">
+				<col width="800">
 			</colgroup>
-				<tr><td style="	text-align: center;">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
-				<input type="text" name="brd_title" id="brd_title" required="required" style="width:99%;" ></td></tr>
+				<tr><td style="	text-align: center; ">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
+				<input style="border : none; width:99%;" type="text" name="brd_title" id="brd_title" required="required"  ></td></tr>
 				</table>
 			<p>
 		</div>
@@ -207,7 +211,7 @@ sub {
 						<ul class="__add"> 
 						  <li>
 						   <input type="file" name="file_path" class="files" style="width: 231px; height: 46px;">
-						   <button type="button" class="_add" style="vertical-align: sub">추가</button>
+						   <button type="button" class="_add" style="vertical-align: sub" id="input_ch">추가</button>
 						  </li> 
 						</ul>
 					</td>
@@ -215,7 +219,7 @@ sub {
 			</table>
 		</div> 
 			<!-- submit 실행시 writeProAction 서비스 실행 -->
-		<table><tr><td><input style="margin-left:96%" id="btn" type="submit" value="확인"></td></table>
+		<table><tr><td><input style="margin-left:96%" id="input_ch" type="submit" value="확인"></td></table>
 
 	</form>		
 
