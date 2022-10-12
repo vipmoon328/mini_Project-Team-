@@ -23,12 +23,6 @@
 			border-color: #EAEAEA; /* 테두리 색상 */
 	}
 	
-@font-face 
-{
-	src: url("../font/NanumSquareNeo-bRg.ttf");
-	font-family: "NanumSquareNeo";
-}
-
 pre{
 	word-wrap: break-word;
 	position: top;
@@ -113,11 +107,10 @@ input {
 	} 
 
 </style>
-
-
-
-<!-- 헤더  -->
+</head>
+<body>
 <div id="wrapper">
+	<!-- 헤더  -->
 		<div class="flex-container flex-end">
 			<div class="item_first">
 			<!-- 로그인 여부에 따른 분기를 하나의 페이지로 구현하기 위해서 사용 [김건희] -->
@@ -180,12 +173,9 @@ input {
 			</div>
 		</div>
 			<hr color="#D5D5D5" width="100%" size="1">
-	</div>
+	
 	
 	<!--헤더                                        -->
-	
-</head>
-<body>
 	<!-- 게시판 출력 -->
 	<form action="">
 		<div id="hrline">
@@ -298,11 +288,13 @@ input {
 		</div>
 	</form>	
 		<!--풋터                       -->
+		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">
 			<div class="item_end">
-				<div><pre>쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
-				<div><pre>이메일  choongang@naver.com</pre></div>
+				<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
+				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

@@ -58,84 +58,8 @@
 <title>게시글</title>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
-<style type="text/css">
-#btn {
-		border: 1px solid #99ccff;
-	 	border-radius: 8px;
-	  	padding: 8px 10px;
-	  	font-size: 14px;
-	  	background-color: #99ccff;
-	  	color: white; 
-	}
-
-#hrline {
-	width: 84%;
-	margin: auto;
-	color : #99ccff; 
-} 
-
-textarea{
-	border: none;
-}
-
-button {
-			position: relative;
-			border: 0;
-			height: 30px;
-			width: 50px;
-			background-color: #90C3FF;
-			text-align: center;
-			font-weight: bold; 
-			color: white; 
-			border-radius: 12px;
-			box-shadow: 0px 3px 0px #5A8DF3; 
-}
-
-li {
-	margin: 10px;
-	
-}
-
-table {
-    width: 80%;
-  /*   border: 1px solid #444444; */
-   /*  border-collapse: collapse; */
-    margin: auto;
-}
-
-th, td {
-	border-color: #DCDCDC;
-}
- 	 
-
-label {
-	width: 80%;
-	text-align: left;
-}
-
-sub {
-	color: red;
-}
-#input_ch {
-			height:30px;  /* 입력창 높이 */
-			border-radius: 12px;  /* 테두리 모서리 둥굴게 */
-			border: 1;  /* 테두리 두께 */
-			border-color: #EAEAEA; /* 테두리 색상 */
-	}
-	button{
-	height:30px;  /* 입력창 높이 */
-			border-radius: 12px;  /* 테두리 모서리 둥굴게 */
-			border: 1;  /* 테두리 두께 */
-			border-color: #EAEAEA; /* 테두리 색상 */
-	}
-
-#scr_box{
-	position: relative;
-	left: 79%;
-}
-
-</style>
-
+</head>
+<body>
 <!-- 헤더  -->
 <div id="wrapper">
 		<div class="flex-container flex-end">
@@ -160,13 +84,13 @@ sub {
 				</ul>
 			</div>
 		</div>
-			<hr color="#D5D5D5" width="100%" size="1">
-	</div>
+	<hr color="#D5D5D5" width="100%" size="1">
+		<div class="item_third">게시판</div>
+		</div>
+	<hr color="#90C3FF" width="70%" size="1">
 	
 	<!--헤더 -->
 	
-</head>
-<body>
 <!-- 22.10.06 코드 전반적인 수정 [김건희] -->
 	<form action="<%=context%>/writePro.do"method="post" enctype="multipart/form-data">
 		<input type="hidden" name="pageNum" value="${pageNum }">
@@ -174,11 +98,8 @@ sub {
 		<input type="hidden" name="brd_ref" value="${brd_ref }">
 		<input type="hidden" name="brd_re_level" value="${brd_re_level }">
 		<input type="hidden" name="brd_re_step" value="${brd_re_step }">
-		
-		<div id="hrline">
-			<h2>게시판</h2>
-			<hr>
-		</div>
+
+
 			<!-- 비밀값 여부를 ajax를 통해 넘어가게 했다. 체크시 비밀글 값을 1 안했을 시 0으로 넘어간다. -->
 		<div id="scr_box">
 			<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  value="0" >비밀글 작성</label>
@@ -225,11 +146,13 @@ sub {
 
 
 		<!--풋터                       -->
+		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">
 			<div class="item_end">
-				<div><pre>쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
-				<div><pre>이메일  choongang@naver.com</pre></div>
+				<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
+				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>
