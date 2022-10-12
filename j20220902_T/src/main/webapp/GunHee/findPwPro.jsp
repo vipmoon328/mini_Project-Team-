@@ -34,6 +34,7 @@
 	}	
 </script>
 	<link href="<%=context%>/css/findPwPro.css" type="text/css" rel="stylesheet"> 
+	<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <body>
 	<c:if test="${usernum eq 0}">

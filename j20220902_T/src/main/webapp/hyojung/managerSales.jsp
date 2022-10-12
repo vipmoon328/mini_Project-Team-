@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>중앙 볼링장 매출관리</title>
 <link href="<%=context%>/css/managerSales.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <body style="overflow-x: hidden">
 <c:if test="${loc eq 0}">

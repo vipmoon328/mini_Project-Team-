@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>중앙 볼링장 로그인</title>
 <link href="<%=context%>/css/loginForm.css" type="text/css" rel="stylesheet"> 
+<link href="<%=context%>/css/font.css" rel="stylesheet" >
 </head>
 <body>
 	<div class="Login">

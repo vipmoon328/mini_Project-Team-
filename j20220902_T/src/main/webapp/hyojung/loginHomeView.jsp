@@ -8,6 +8,8 @@
 <title>중앙볼링장</title>
 <!-- 22.10.04 링크 수정 [김건희] -->
 <link rel="stylesheet" href="<%=context%>/css/loginHomeView.css?ver0.1" type="">
+<link href="<%=context%>/css/font.css" rel="stylesheet" >
+
 </head>
 <body>
 	<div class="top_container">

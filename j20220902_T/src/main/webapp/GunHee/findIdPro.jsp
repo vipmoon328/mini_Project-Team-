@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<title>아이디 찾기 결과</title>
 	<link href="<%=context%>/css/loginForm.css" type="text/css" rel="stylesheet">
+	<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <body>
 	<c:if test="${id eq null}">

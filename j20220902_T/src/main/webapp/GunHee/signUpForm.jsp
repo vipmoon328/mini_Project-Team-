@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<title>중앙볼링장 회원가입</title>
 	<link href="<%=context%>/css/signUpForm.css" type="text/css" rel="stylesheet"> 
+	<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 	<style type="text/css">
 		.error {
 			color: red;
