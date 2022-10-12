@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>볼링장정보</title>
 <link href="<%=context%>/css/informationForm.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <body style="overflow-x: hidden">
 	<div id="wrapper">

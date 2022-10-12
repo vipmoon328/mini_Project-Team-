@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>오시는길</title>
 <link href="<%=context%>/css/mapForm.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <body style="overflow-x: hidden">
 	<div id="wrapper">
