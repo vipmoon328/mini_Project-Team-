@@ -21,7 +21,7 @@
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-$(function() {
+	$(function() {
 	if('${searchField}'!=null && '${searchField}'!=""){
 		$('#searchField').val('${searchField}').prop("selected",true);
 	}
@@ -42,7 +42,7 @@ $(function() {
 				
 		});
 	
-});
+	});
 	function valueChk(pageNum) {
 		if('${searchField}'==null || '${searchField}'==""){
 		location.href="<%=context%>/mgrList.do?pageNum="+pageNum+"&query="+$('#query').val();
@@ -51,9 +51,7 @@ $(function() {
 		
 	}
 		}
-
-
-	 function searchOption()
+ 	function searchOption()
 	{
 		if($('#searchField').val()=='name' ||'id')
 		{
@@ -61,6 +59,8 @@ $(function() {
 		}
 			
 	}
+
+	
 </script>
 
 </head>
@@ -188,14 +188,14 @@ $(function() {
      -->
     
     
-     </div>	
+     	</div>	
     </div>
-    
+    	</body>
+</html>  
    
   
 	            
-	</body>
-</html>   
+ 
    	
 		
 		

@@ -57,6 +57,8 @@ public class loginAction implements CommandProcess {
 			session.setAttribute("loc", users.getBrn_uid());
 			session.setAttribute("locName",locName);
 			session.setAttribute("login_result", 1);
+			
+			System.out.println("auth=>" +users.getAuth());
 		}
 		
 		return "/GunHee/loginPro.jsp";

@@ -17,7 +17,7 @@
 	</c:if>
 	<c:if test="${result ==0 }">
 		<script type="text/javascript">
-			alert("공지사항 등록중 오류가 발생했습니다");
+			alert("공지사항 등록 중 오류가 발생했습니다");
 			location.href="<%=context%>/brdNoticeForm.do?num=${num}&pageNum=${pageNum}";
 		</script>
 	</c:if>
