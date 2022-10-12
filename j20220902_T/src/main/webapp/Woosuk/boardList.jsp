@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>게시판리스트</title>
 <script type="text/javascript">
+	$('#srh_select').val('${srh_select}').prop("selected",true);
 	console.log('현재 유저 번호: ${usernum}');
 	function length_check() {
 		if(search_frm.srh_input.value.length<2){
@@ -303,24 +304,24 @@
 			<!-- 페이징 -->
 			<div style="text-align: center;">
 				<c:if test="${startPage > blockSize }">
-					<a href='<%=context%>/list.do?pageNum=${startPage-blockSize}'>[이전]</a>
+					<a href='<%=context%>/list.do?pageNum=${startPage-blockSize}&srh_input=${srh_input }&srh_select=${srh_select}'>[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href='<%=context%>/list.do?pageNum=${i}'>[${i}]</a>
+					<a href='<%=context%>/list.do?pageNum=${i}&srh_input=${srh_input }&srh_select=${srh_select}'>[${i}]</a>
 				</c:forEach>
 				<c:if test="${endPage < pageCnt }">
-					<a href='<%=context%>/list.do?pageNum=${startPage+blockSize}'>[다음]</a>
+					<a href='<%=context%>/list.do?pageNum=${startPage+blockSize}&srh_input=${srh_input }&srh_select=${srh_select}'>[다음]</a>
 				</c:if>
 			</div> 
 			
 		</form><!-- 검색기능  -->
 		<form action="<%=context%>/list.do?pageNum=${pageNum }" id="search_frm" method="post" onsubmit="return length_check()">
 			<div id="search">
-				<select id="srh_select" name="srh_select">
+				<select id="srh_select" name="srh_select" >
 					<option value="brd_title">제목</option>
 					<option value="brd_writer">작성자</option>
 				</select>
-				<input id="srh_input" name="srh_input" type="text" placeholder="검색어 입력">
+				<input id="srh_input" name="srh_input" type="text" placeholder="검색어 입력" value="${srh_input }">
 				<input type="submit" value="검색">
 				
 			</div>

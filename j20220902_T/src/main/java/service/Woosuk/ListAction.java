@@ -59,7 +59,11 @@ public class ListAction implements CommandProcess {
 			
 			if(endPage>pageCnt) endPage = pageCnt;
 			
+			if (srh_input != "") {
+				srh_input = srh_input.replaceAll("%", "");
+			}
 			
+			System.out.println("srh_input->"+srh_input);
 			request.setAttribute("list", list); // 
 			//페이지 정보들을 전부 보낸다
 			request.setAttribute("totCnt", totCnt);
@@ -71,6 +75,8 @@ public class ListAction implements CommandProcess {
 			request.setAttribute("pageCnt", pageCnt);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
+			request.setAttribute("srh_input", srh_input);
+			request.setAttribute("srh_select", srh_select);
 		} catch (Exception e) {
 			System.out.println("ListAction e.getMessage()->"+e.getMessage());
 		}
