@@ -11,6 +11,17 @@
 <title>게시판리스트</title>
 <script type="text/javascript">
 	console.log('현재 유저 번호: ${usernum}');
+	function length_check() {
+		if(search_frm.srh_input.value.length<2){
+			//value는 이 태그안에 값(id에 값을 안넣었다면)
+			alert("검색어는 2글자 이상 설정해주세요");
+			search_frm.srh_input.focus();//해당 요소로 대기상태옮겨줌
+			return false;
+		}else{
+			return true;
+		}
+		return true;
+	}
 </script>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
@@ -302,7 +313,7 @@
 			</div> 
 			
 		</form><!-- 검색기능  -->
-		<form action="<%=context%>/list.do?pageNum=${pageNum }" method="post">
+		<form action="<%=context%>/list.do?pageNum=${pageNum }" id="search_frm" method="post" onsubmit="return length_check()">
 			<div id="search">
 				<select id="srh_select" name="srh_select">
 					<option value="brd_title">제목</option>
