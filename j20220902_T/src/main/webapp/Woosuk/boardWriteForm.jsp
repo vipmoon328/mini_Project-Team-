@@ -59,10 +59,12 @@
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
 #btn {
-		border: 1px solid #bbb;
+		border: 1px solid #99ccff;
 	 	border-radius: 8px;
 	  	padding: 8px 10px;
 	  	font-size: 14px;
+	  	background-color: #99ccff;
+	  	color: white; 
 	}
 
 #hrline {
@@ -193,7 +195,7 @@ sub {
 			<table>
 				<colgroup>
 					<col width="100">
-					<col width="900">
+					<col width="800">
 				</colgroup>
 				<tr height="300"><td style="text-align: center;">내용<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;	 text-align:center;">
 				<!-- <input style="width:300px; height:300px;" type="text" name="brd_content" id="brd_content" required="required" > -->
@@ -204,7 +206,7 @@ sub {
 						<ul class="__add"> 
 						  <li>
 						   <input type="file" name="file_path" class="files" style="width: 231px; height: 46px;">
-						   <button  type="button" class="_add" style="vertical-align: sub">추가</button>
+						   <button type="button" class="_add" style="vertical-align: sub">추가</button>
 						  </li> 
 						</ul>
 					</td>
@@ -212,7 +214,7 @@ sub {
 			</table>
 		</div> 
 			<!-- submit 실행시 writeProAction 서비스 실행 -->
-		<table><tr><td><input id="btn" type="submit" value="확인"></td></table>
+		<table><tr><td><input style="margin-left:96%" id="btn" type="submit" value="확인"></td></table>
 
 	</form>		
 

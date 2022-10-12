@@ -19,7 +19,7 @@
 	<c:if test="${result != 1 }">
 		<script type="text/javascript">
 			alert("작성자만 게시글을 볼 수 있습니다");
-			location.href="<%=context%>/list.do?pageNum=${pageNum}";
+			history.back();
 		</script>
 	</c:if>
 </body>

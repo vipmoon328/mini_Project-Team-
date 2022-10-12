@@ -18,6 +18,7 @@
 pre{
 	word-wrap: break-word;
 	position: top;
+	 font-size: 16px;
 }
 
 textarea{
@@ -235,9 +236,9 @@ input {
 	<hr color="#D5D5D5" width="50%" size="1">
 		<c:forEach var="board" items="${mentList }">
 			<table  id="comment">
-				<tr><td>${board.brd_writer}</td></tr><!-- 아이디 -->
+				<tr><td style="padding:4px; background-color: #99ccff;">${board.brd_writer}</td></tr><!-- 아이디 -->
 				<tr><td>
-				${board.brd_content }
+				<pre>${board.brd_content }</pre>
 				</td></tr><!-- 내용 -->
 				<tr><td style="font-size:4px; vertical-align : bottom; ">${board.brd_date }</td></tr>
 				<tr><td></td></tr><!-- 날짜 -->
@@ -267,9 +268,9 @@ input {
 				</c:when>
 				<c:otherwise>
 						<table border="1" id="commentwrite">
-						<tr><td style="padding:4px;">${id}</td></tr><!-- 아이디 -->
+						<tr><td style="padding:4px; background-color: #99ccff;">${id}</td></tr><!-- 아이디 -->
 						<tr><td>
-						<textarea name="brd_content" id="brd_content" required="required" style="width: 99%" rows="6" ></textarea>
+						<textarea name="brd_content" id="brd_content" required="required" style="width: 99.6%" rows="6" ></textarea>
 						</td></tr><!-- 내용 -->
 						<tr><td></td></tr><!-- 날짜 -->
 						<tr><td style="padding:4px; "><input style="margin-left: 1%; vertical-align : top;" type="submit" value="답글" ></td></tr>

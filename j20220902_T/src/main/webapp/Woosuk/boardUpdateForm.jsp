@@ -48,10 +48,12 @@
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
 <style type="text/css">
 	#btn {
-		border: 1px solid #bbb;
+		border: 1px solid #99ccff;
 	 	border-radius: 8px;
 	  	padding: 8px 10px;
 	  	font-size: 14px;
+	  	background-color: #99ccff;
+	  	color: white; 
 	}
 	#hrline {
 		width: 84%;
@@ -78,6 +80,7 @@
 				color: white; 
 				border-radius: 12px;
 				box-shadow: 0px 3px 0px #5A8DF3; 
+				color: white; 
 	}
 	
 	 table {
@@ -219,9 +222,9 @@
 				<!-- 수정submit form통해 updateProAction 서비스 실행 -->
 		<table>
 				<tr>
-					<td><input id="btn" type="submit" value="수정"></td>
+					<td><input style="margin-left:90%" id="btn" type="submit" value="수정">
 					<!-- 뒤로가기 -->
-			   		<td><input id="btn" type="button" onclick="history.back()" value="취소"></td>
+			   		<input id="btn" type="button" onclick="history.back()" value="취소"></td>
 			   	</tr>
 		</table>
 		
