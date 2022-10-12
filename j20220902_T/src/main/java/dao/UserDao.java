@@ -56,6 +56,11 @@ public class UserDao
 		
 		//아이디 중복을 확인하지만 삭제된 아이디일 경우에는 아이디 중복이 가능하기 위한 쿼리문
 		String sql = "SELECT id FROM users WHERE id = ? and deleted = ?";
+		if (id.length() < 8)
+		{
+			System.out.println("아이디 길이가 8자리 이하입니다.");
+			return -1;
+		}
 		try 
 		{
 			conn = getConnection();
