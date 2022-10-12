@@ -10,7 +10,7 @@
 <link href="<%=context%>/css/loginForm.css" type="text/css" rel="stylesheet"> 
 <link href="<%=context%>/css/font.css" rel="stylesheet" >
 </head>
-<body>
+<body style="overflow-x: hidden">
 	<div class="Login">
 		
 		<form action="<%=context%>/login.do" class="LoginForm" method="post">

@@ -23,7 +23,7 @@
 		<link href="<%=context%>/css/font.css" rel="stylesheet" > 
 	</head>
 	
-	<body>
+	<body style="overflow-x: hidden">
 	<div class="findId">
 		<form action="<%=context%>/findId.do" class="findIdForm" method="post">
 		

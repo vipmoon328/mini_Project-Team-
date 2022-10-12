@@ -25,7 +25,7 @@
 		<link href="<%=context%>/css/loginForm.css" type="text/css" rel="stylesheet"> 
 	</head>
 	
-<body>
+<body style="overflow-x: hidden">
 	<div class="findPw">
 		<form action="<%=context%>/findPw.do" class="findPwForm" method="post">
 		

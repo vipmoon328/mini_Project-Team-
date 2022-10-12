@@ -142,7 +142,7 @@
 		
 	</script>
 </head>
-<body onload="init()">
+<body onload="init()" style="overflow-x: hidden">
 <div class="frame" >
 	<form action="<%=context%>/signUp.do" method="post">
 		<div class="image">
