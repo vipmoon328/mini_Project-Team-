@@ -1,11 +1,17 @@
 @charset "UTF-8";
+	html, body {
+		height: 100%;
+	}
 	body {
 		margin: 0;
+		display: flex;
+		flex-direction: column;
+		position: relative;
 	}
 	/* -------------------------------------------------------------------- */
  	/* Head */
  	#wrapper {
-			height: 100%;
+			flex: 1;
 	}
  	.flex-container {
             display: flex;  /* 컨테이너들 수직정렬 */
@@ -172,8 +178,9 @@
 	/* -------------------------------------------------------------------- */
 	/* Foot */							   
 	.item_end {   
-			margin-top: 14.1%; 
-			width: 100%;  
+			margin-top: 30px;
+			position: relative;
+			width: 100%;
 			background-color: black;
     		color: white;
     		font-size: 12px;
