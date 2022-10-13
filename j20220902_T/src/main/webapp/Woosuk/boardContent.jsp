@@ -128,9 +128,9 @@
 	<p>
 	<c:choose>
 		<c:when test="${usernum eq board.usernum}">
-			<input class="comment_btn" style="margin-left:66%" type="button" id="input_ch" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+			<input class="comment_btn" type="button" id="input_ch" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">			
 			<input class="comment_btn" type="button" id="input_ch" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
-			<input class="comment_btn" type="button" id="input_ch" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+			<input class="comment_btn" type="button" id="input_ch" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">			
 		</c:when>
 		<c:otherwise>
 			<input id="input_ch" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
