@@ -52,7 +52,7 @@
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
-					<li>${id}님</li>
+					<li>${name}님</li>
 					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
 				</ul>
 			</div> 
@@ -64,7 +64,7 @@
 					<li>중앙볼링장</li>
 					<li><a href="<%=context%>/mgrList.do">회원관리</a></li>
 					<li><a href="#">매장관리</a></li>
-					<li><a href="<%=context%>/mgrBrdMgt.do" style="color:#5A8DF3 ">게시판 관리</a></li>
+					<li><a href="<%=context%>/mgrBrdMgt.do" style="color:#5A8DF3">게시판 관리</a></li>
 				</ul>
 			</div>
 		</div>
@@ -103,7 +103,7 @@
 				<textarea style="width:99%;" rows="30" name="brd_content"  required="required" ></textarea> </td></tr>
 				<tr height="100">
 					<td style="text-align: center;">첨부파일</td>
-					<td style="border: 1.5px solid #DCDCDC; vertical-align : top;">
+					<td style="border: 1.5px solid #DCDCDC; vertical-align: top;">
 						<ul class="__add"> 
 						  <li>
 						   <input type="file" name="file_path" class="files" style="width: 231px; height: 46px;">
