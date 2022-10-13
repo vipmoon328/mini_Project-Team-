@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = { "/mgrList.do" ,"/managerSales.do"})
+@WebFilter(urlPatterns = { "/mgrList.do" ,"/managerSales.do","/mgrBrdMgt.do"})
 public class MgrCheck implements Filter {
 
 	@Override
