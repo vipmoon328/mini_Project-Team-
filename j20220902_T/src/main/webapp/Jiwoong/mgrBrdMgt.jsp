@@ -15,23 +15,28 @@
 <script type="text/javascript">
 	$(function() { // 삭제 버튼 동적 생성
 		$("#delete_btn").hide();
-		$(document).on("change",".brd_bid,#all_chk", function(){
-		if(	$(".brd_bid").is(':checked')){
-			$("#delete_btn").show();
-		}else{
-			$("#delete_btn").hide();
-		}
+		$(document).on("click",".brd_bid", function(){
+			if($("#all_chk").is(':checked')){
+				$("#all_chk").prop("checked",false);
+				}
+			if(	$(".brd_bid").is(':checked')){
+				$("#delete_btn").val('선택삭제'); 
+				$("#delete_btn").show();
+			}else{
+				$("#delete_btn").hide();
+			}
+			});
 		});
-	});
 	
 	function allChk() { // 전체체크 및 해제
 		
 		if($("#all_chk").is(':checked')){
 		 	$("#delete_btn").val('전체삭제'); 
 			$("input[name=brd_bid]").prop("checked",true);
+			$("#delete_btn").show();
 			
 		}else{
-			 $("#delete_btn").val('선택삭제'); 
+			$("#delete_btn").hide();  
 			$("input[name=brd_bid]").prop("checked",false);		
 		}
 	}	
@@ -78,7 +83,7 @@
 						<col width="80">
 					</colgroup>
 					<tr bgcolor="#90C3FF">
-						<th><input type="checkbox" name="all_chk" id="all_chk" onclick="allChk()" ></th>
+						<th><input type="checkbox" name="all_chk" id="all_chk" onchange="allChk()" ></th>
 						<th>번호</th>
 						<th>구분</th>
 					    <th>제목</th>
@@ -153,6 +158,7 @@
 	</div>
 </div>
 	<!--풋터-->
+	
 	<div class="flex-container center">
 		<div class="item_end">
 			<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>

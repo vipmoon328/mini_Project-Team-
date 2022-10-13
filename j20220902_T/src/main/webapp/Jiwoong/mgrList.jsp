@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 매출관리</title>
-<link href="<%=context%>/css/mgrList2.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/mgrList.css?ver0.1" rel="stylesheet" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" >
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
