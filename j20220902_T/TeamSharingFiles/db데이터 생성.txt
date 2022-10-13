@@ -1,3 +1,7 @@
+[계정 생성]
+CREATE USER j20220902 IDENTIFIED BY tiger;
+GRANT DBA TO j20220902;
+
 [설정시 숙지 내용]
 김우석 이외에는 모든 사용자는 일반 유저이면 김우석은 관리자로써 이대, 강남의 회원정보나 매장 관리 내용을 모두 열람거나 수정, 삭제 할 수 있다.
 
@@ -148,7 +152,6 @@ VALUES(9, '공지사항', '이대점 오픈 기념', '관리자', TO_DATE('22/09
 
 insert into board
 VALUES(10, '게시글', '알바 모집도 하나요?', 'jeewoong5018', TO_DATE('22/10/01', 'YY/MM/DD'), 7, '혹시 이번에 오픈한걸로 보이는데 따로 알바 모집은 안하시나요?', 1, 0, 4, 0, 0, 0);
-
 
 Insert into Files (brd_bid, file_fid, file_name) values(1,1,'C:\Users\Desktop\umages\17a6a69c8f7512f68.gif');
 Insert into Files (brd_bid, file_fid, file_name) values(3,1,'C:\Users\Desktop\umages\17a6a69c8413.gif');
