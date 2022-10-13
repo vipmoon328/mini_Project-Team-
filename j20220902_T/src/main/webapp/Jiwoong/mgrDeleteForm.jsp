@@ -48,17 +48,17 @@
 							<td><span>회원 암호 재확인  </span><input type="password" name="user_password"></td>
 							<td><button type="submit" value="삭제하기">삭제하기</button></td>
 						</tr>
-					</table>
-				</form>
-			</div> 
-		</div> 
-		<a href="#" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
-		<div class="flex-container center">
-			<div class="item_end">
-				<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
-				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
+				</table>
 			</div>
 		</div>
+	</form>
+	<a href="#" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
+	<div class="flex-container center">
+		<div class="item_end">
+			<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
+			<div><pre class="footer">이메일  choongang@naver.com</pre></div>
+		</div>
+	</div>
 </div>
 </body>
 </html>
