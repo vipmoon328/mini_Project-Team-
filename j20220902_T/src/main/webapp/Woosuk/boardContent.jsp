@@ -112,7 +112,7 @@
 			</colgroup>
 			<!-- 게시글 내용 출력 -->
 
-			<tr><td align="top" ><p/><p/><pre>${board.brd_content }</pre><p/><p/></td></tr>
+			<tr><td align="top" ><p/><p/><pre class="content_font">${board.brd_content }</pre><p/><p/></td></tr>
 
 				<c:if test="${not empty board.brd_img_src}">
 					<c:forEach var="img_path" items="${board.brd_img_src }">
@@ -152,7 +152,7 @@
 				<tr><td style="padding:4px;">${board.brd_writer}</td>
 				<td style="font-size:12px; vertical-align : bottom; text-align: right;">${board.brd_date }</td></tr><!-- 아이디 -->
 				<tr><td>
-				<pre>${board.brd_content }</pre>
+				<pre class="content_font">${board.brd_content }</pre>
 				</td><!-- 내용 -->
 				<!-- 2022.10.10 삭제가 안나옴 수정도 마찬가지   -->
 			<c:choose>

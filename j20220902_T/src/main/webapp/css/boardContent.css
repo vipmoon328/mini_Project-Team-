@@ -175,6 +175,14 @@
 			background-color: #90C3FF;
 			top: 3px;
 	}
+	@font-face {
+			src: url("../font/NanumSquareNeo-bRg.ttf");
+			font-family: "NanumSquareNeo";
+	}
+	.content_font {
+			font-size: 14.5px;
+			font-family: "NanumSquareNeo"
+	}
 	/* -------------------------------------------------------------------- */
 	/* Foot */							   
 	.item_end {   
