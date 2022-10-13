@@ -186,7 +186,7 @@
 					<option value="brd_writer">작성자</option>
 				</select>
 				<input id="srh_input" name="srh_input" type="text" placeholder="검색어 입력" value="${srh_input }">
-				<input type="submit" value="검색">
+				<input style="margin-right: 20px;" class="button" type="submit" value="검색">
 				
 			</div>
 		</form>

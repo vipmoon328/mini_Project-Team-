@@ -241,17 +241,19 @@ input {
 	<hr color="#D5D5D5" width="50%" size="1">
 		<c:forEach var="board" items="${mentList }">
 			<table  id="comment">
-				<tr><td style="padding:4px; background-color: #99ccff;">${board.brd_writer}</td></tr><!-- 아이디 -->
+				<colgroup>
+					<col width="800">
+					<col width="100">
+				</colgroup>
+				<tr><td style="padding:4px;">${board.brd_writer}</td>
+				<td style="font-size:4px; vertical-align : bottom; text-align: right;">${board.brd_date }</td></tr><!-- 아이디 -->
 				<tr><td>
 				<pre>${board.brd_content }</pre>
-				</td></tr><!-- 내용 -->
-				<tr><td style="font-size:4px; vertical-align : bottom; ">${board.brd_date }</td></tr>
-				<tr><td></td></tr><!-- 날짜 -->
-				
+				</td><!-- 내용 -->
 				<!-- 2022.10.10 삭제가 안나옴 수정도 마찬가지   -->
 			<c:choose>
 				<c:when test="${id eq board.brd_writer}">
-						<tr><td style="padding:4px;"><input style="margin-left:1%;" type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'"></td></tr>
+						<td style="padding:4px;"><input style="margin-left:50px;" type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'"></td></tr>
 				</c:when>
 			</c:choose>
 			</table>
@@ -273,12 +275,15 @@ input {
 				</c:when>
 				<c:otherwise>
 						<table border="1" id="commentwrite">
-						<tr><td style="padding:4px; background-color: #99ccff;">${id}</td></tr><!-- 아이디 -->
+						<colgroup>
+							<col width="900">
+							<col width="45">
+						</colgroup>
+						<tr><td style="padding:4px;">${id}</td></tr><!-- 아이디 -->
 						<tr><td>
 						<textarea name="brd_content" id="brd_content" required="required" style="width: 99.6%" rows="6" ></textarea>
-						</td></tr><!-- 내용 -->
-						<tr><td></td></tr><!-- 날짜 -->
-						<tr><td style="padding:4px; "><input id="input_ch" style="margin-left: 1%; vertical-align : top;" type="submit" value="답글" ></td></tr>
+						</td>
+						<td style="padding:4px; "><input id="comment_button" style="margin-left: 1%; vertical-align : top;" type="submit" value="답글" ></td></tr>
 					</table>	
 				</c:otherwise>
 			</c:choose>

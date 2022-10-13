@@ -137,10 +137,28 @@
 			position: relative;
 			margin-right: 500px;
 	}
+	
   	.button {
   			float: right;
+  			position: relative;
+			border: 0;
+			margin-right: 30px;
+			height: 30px;
+			width: 60px;
+			background-color: #90C3FF;
+			text-align: center;
+			font-weight: bold; 
+			color: white; 
+			border-radius: 12px;
+			box-shadow: 0px 3px 0px #5A8DF3; 
   	}
-
+	
+	.button:active { 
+			box-shadow: 0 0 #90C3FF; 
+			background-color: #90C3FF;
+			top: 3px;
+	}
+	
 	#search{
 			position: relative;
 	  		width: 400px;

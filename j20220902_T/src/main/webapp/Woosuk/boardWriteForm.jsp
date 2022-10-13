@@ -57,6 +57,7 @@
 <meta charset="UTF-8">
 <title>게시글</title>
 <link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
+
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <body>
@@ -140,7 +141,7 @@
 			</table>
 		</div> 
 			<!-- submit 실행시 writeProAction 서비스 실행 -->
-		<table><tr><td><input style="margin-left:96%" id="input_ch" type="submit" value="확인"></td></table>
+		<table><tr><td><input  id="write_button" type="submit" value="확인"></td></table>
 
 	</form>		
 
