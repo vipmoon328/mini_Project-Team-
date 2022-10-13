@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글</title>
+<title>게시글수정</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
@@ -45,78 +45,12 @@
 	 
 </script>
 
-<link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
+<link rel="stylesheet" href="<%=context%>/css/boardUpdateForm.css" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
-<style type="text/css">
-	#input_ch {
-		height:30px;  /* 입력창 높이 */
-		border-radius: 12px;  /* 테두리 모서리 둥굴게 */
-		border: 1;  /* 테두리 두께 */
-		border-color: #EAEAEA; /* 테두리 색상 */
-	}
-	#btn {
-		border: 1px solid #99ccff;
-	 	border-radius: 8px;
-	  	padding: 8px 10px;
-	  	font-size: 14px;
-	  	background-color: #99ccff;
-	  	color: white; 
-	}
-	#hrline {
-		width: 84%;
-		margin: auto;
-		color : #99ccff; 
-	} 
-	textarea {
-		border: none;
-	}
-	li {
-		margin: 10px;
-	}
-	button {
-		position: relative;
-		border: 0;
-		height: 30px;
-		width: 50px;
-		background-color: #90C3FF;
-		text-align: center;
-		font-weight: bold; 
-		color: white; 
-		border-radius: 12px;
-		box-shadow: 0px 3px 0px #5A8DF3; 
-		color: white; 
-	}
-	table {
-	    width: 80%;
-	  /*   border: 1px solid #444444; */
-	   /*  border-collapse: collapse; */
-	    margin: auto;
-	}
-	th, td {
-		border-color: #DCDCDC;
-	}
-	label {
-		width: 80%;
-		text-align: left;
-	}
-	sub {
-		color: red;
-	}
-	/* input{
-		width: 98%;
-		border: none;
-		border: 1.5px solid #DCDCDC; 
-		vertical-align : top;
-	} */
-	#scr_box{
-		position: relative;
-		left: 79%;
-	}
-</style>
 </head>
 <body onload="init()" style="overflow-x: hidden">
 	<!-- 헤더  -->
-	<div id="wrapper">
+<div id="wrapper">
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
@@ -140,29 +74,20 @@
 			</div>
 		</div>
 	<hr color="#D5D5D5" width="100%" size="1">
-	</div>
-	<!-- 헤더 -->
-	<form action="<%=context%>/updatePro.do" method="post" enctype="multipart/form-data">
+	<div class="item_third">게시판</div>
+	<hr color="#90C3FF" width="70%" size="1">
+
+<div class="flex-container center">
+	<div class= "content_box">
+		<form action="<%=context%>/updatePro.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="brd_bid" value="${board.brd_bid }">
 		<input type="hidden" name="pageNum" value="${pageNum }">
-			<div id="hrline">
-				<h2>게시판</h2>
-				<hr>
-			</div>
-			<!-- 비밀글 값 여부에 따라 체크박스에 체크가 유뮤 조건 -->
-		<div id="scr_box">
-			<c:if test="${board.brd_secret == 0  }">
-				<label><input  type="checkbox" name="brd_secret"  id="brd_secret"   value="N">비밀글 작성</label>
-			</c:if>
-			<c:if test="${board.brd_secret != 0  }">
-				<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  checked="checked" value="Y">비밀글 작성</label>
-			</c:if>
-		</div>
+		
 		<div id="title"><!--제목  -->
 			<table>
 			<colgroup>
 				<col width="100">
-				<col width="900">
+				<col width="800">
 			</colgroup>
 				<tr><td style="	text-align: center;">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
 				<input type="text" name="brd_title" required="required" value="${board.brd_title }" style="width:99%; border:none;"></td></tr>
@@ -173,7 +98,7 @@
 			<table>
 				<colgroup>
 					<col width="100">
-					<col width="900">
+					<col width="800">
 				</colgroup>
 				<tr height="300">
 					<td style="text-align: center;">내용<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;	 text-align:center;">
@@ -201,16 +126,30 @@
 					</td>
 				</tr>
 			</table>
-		</div> 
+		</div>
+		<div>
+		<!-- 비밀글 값 여부에 따라 체크박스에 체크가 유뮤 조건 -->
+		<div id="scr_box">
+			<c:if test="${board.brd_secret == 0  }">
+				<label><input  type="checkbox" name="brd_secret"  id="brd_secret"   value="N">비밀글 작성</label>
+			</c:if>
+			<c:if test="${board.brd_secret != 0  }">
+				<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  checked="checked" value="Y">비밀글 작성</label>
+			</c:if>
+		</div>
 		<!-- 수정submit form통해 updateProAction 서비스 실행 -->
-		<table style="margin-left:80%">
-			<tr>
-				<td><input id="input_ch" type="submit" value="수정">
+		<div class="submit">
+				<input class="bottom_btn1" id="input_ch" type="submit" value="수정">
 				<!-- 뒤로가기 -->
-			   	<input id="input_ch" type="button" onclick="history.back()" value="취소"></td>
-			</tr>
-		</table>
-	</form>		
+			   	<input class="bottom_btn2" id="input_ch" type="button" onclick="history.back()" value="취소">
+		</div>
+		</div>
+			
+		</form>
+	</div>
+</div>
+
+</div>
 		<!--풋터                       -->
 		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">

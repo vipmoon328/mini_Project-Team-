@@ -54,7 +54,7 @@
 	}
 </script>
 <meta charset="UTF-8">
-<title>게시글</title>
+<title>게시글작성</title>
 <link rel="stylesheet" href="<%=context%>/css/boardWriteForm.css" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
@@ -106,8 +106,8 @@
 				<col width="800">
 			</colgroup>
 				<tr><td style="	text-align: center; ">제목<sub>*</sub></td><td style="border: 1.5px solid #DCDCDC;">
-				<input style="border : none; width:99%;" type="text" name="brd_title" id="brd_title" required="required"  ></td></tr>
-				</table>
+				<input type="text" name="brd_title" id="brd_title" required="required" style="width:99%;border:none;" ></td></tr>
+			</table>
 			<p>
 		</div>
 		
@@ -137,11 +137,11 @@
 		<div>
 			<!-- 비밀값 여부를 ajax를 통해 넘어가게 했다. 체크시 비밀글 값을 1 안했을 시 0으로 넘어간다. -->
 		<div id="scr_box">
-			<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  value="0" >비밀글 작성</label>
+			<label><input type="checkbox" name="brd_secret"  id="brd_secret"  value="0" >비밀글 작성</label>
 		</div>
 			<!-- submit 실행시 writeProAction 서비스 실행 -->
 		<div class="submit">
-		<input id="input_ch" type="submit" value="확인">
+		<input class="sub_bt" id="input_ch" type="submit" value="확인">
 		</div>
 		</div>	
 		</form>
