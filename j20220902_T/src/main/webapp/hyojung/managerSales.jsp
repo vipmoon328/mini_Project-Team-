@@ -62,7 +62,6 @@
 						<h4>매출현황</h4>
 						<label>조회기간  :  </label><input type="date" name="startDate" id="startDate" value="${startDate}" >  -  <input type="date"  name="endDate"  id="endDate" value="${endDate}"> 
 												 <input type="submit" value="조회">
-												 <input type="reset"  value="새로고침">
 												 <input type="button" value="전체조회"  onclick="location.href='managerSales.do'">
 																		 
 						</form>
