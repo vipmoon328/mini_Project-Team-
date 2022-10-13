@@ -115,6 +115,7 @@
 			border: 1;  /* 테두리 두께 */
 			border-color: #EAEAEA; /* 테두리 색상 */
 	}
+	
 	label {
 			font-size: 15px;
 			line-height: 2rem;
@@ -162,6 +163,15 @@
 			border-radius: 12px;
 			box-shadow: 0px 3px 0px #5A8DF3; 
 	}
+	#searchField{
+			border: 1px solid #bbb;
+		 	border-radius: 8px;
+		  	padding: 8px 10px;
+		  	font-size: 14px;
+		  	margin-bottom: 5px;
+	
+	}
+	
 			
 	button:active { 
 			box-shadow: 0 0 #90C3FF; 
@@ -203,6 +213,30 @@
 		    justify-content: space-around;
 		    align-items: center;
 	}
+	#query{
+			width: 200px;
+		  	border: 1px solid #bbb;
+		 	border-radius: 8px;
+		  	padding: 3px 12px;
+		  	font-size: 14px;
+	
+	}
+	.btn_success{
+			position: relative;
+			border: 0;
+			width: 60px;
+			background-color: #90C3FF;
+			text-align: center;
+			font-weight: bold; 
+			color: white;
+			border-radius: 12px;
+			box-shadow: 0px 3px 0px #5A8DF3; 
+	}
+	#search_box{
+	 text-align: right;
+	 padding-bottom: 1px;
+	}
+	
 	/* 추가사항 */
 	table {
 			text-align: center;

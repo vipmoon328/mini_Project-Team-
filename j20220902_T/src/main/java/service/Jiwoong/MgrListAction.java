@@ -44,7 +44,7 @@ public class MgrListAction implements CommandProcess {
 			if(pageNum==null || pageNum.equals("")) {pageNum ="1";}
 			
 			// 한 페이지에 출력될 회원 수, 블록 크기
-			int pageSize = 2, blockSize =5;
+			int pageSize = 10, blockSize =2;
 			
 			int currentPage = Integer.parseInt(pageNum);   			  //  현재 페이지
 			System.out.println("MgrListAction Service currentPage: "+currentPage); 						 

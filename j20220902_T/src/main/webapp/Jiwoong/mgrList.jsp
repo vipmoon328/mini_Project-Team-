@@ -28,7 +28,7 @@
 </c:if>
 
 	<div id="wrapper">	
-		<form action="mypagePro.do" method="post" onsubmit="return updateCheck()" >
+		<form action="mypagePro.do" method="post" onsubmit="return updateCheck()">
 			<div class="flex-container flex-end">
 				<div class="item_first">
 					<ul>
@@ -65,7 +65,7 @@
 			<div class="flex-container center">
 				<div class="item_fifth"> 
 					<div class="searchbox">
-						<form method="post" name="search_form" action="<%=context%>/mgrList.do" >
+						<form method="post" name="search_form" action="<%=context%>/mgrList.do" id="search_box" >
 						<center><h3>회원목록</h3></center>
 						<label></label><select class="form_control" id="searchField" name="searchField" onclick="searchOption()">
 											<option value="" disabled selected>--선택--</option>
@@ -77,9 +77,9 @@
 																		 
 						</form>
 					</div>
-					<br>
+					
 					<div id="table_box">
-					<table border="1" style="border: solid; border-color: #90C3FF;  ">
+					<table border="1" style="border: solid; border-color: #90C3FF;">
 						<tr>
 							<th>회원번호</th>
 							<th>아이디</th>
