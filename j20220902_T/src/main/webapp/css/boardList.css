@@ -126,6 +126,10 @@
 		    font-size: 75%;
 		    text-align: center;
 		    font-size: 14px;
+		    vertical-align: middle;
+	}
+	img {
+			vertical-align: middle;   /* 비밀글 잠금이미지와 글씨 수평 조정 */
 	}
   	input {
 	  		height: 30px;  /* 입력창 높이 */
