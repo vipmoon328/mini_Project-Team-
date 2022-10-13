@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 매출관리</title>
-<link href="<%=context%>/css/managerSalesInfo.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/managerSalesInfopage.css?ver0.1" rel="stylesheet" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
 <body style="overflow-x: hidden">
@@ -49,7 +49,7 @@
 			<div class="flex-container center">
 				<div class="item_fourth">
 					<ul>
-						<li><a href="<%=context%>/managerSales.do">매출현황</a></li>
+						<li><a href="<%=context%>/managerSales.do">매장현황</a></li>
 						<li><a href="<%=context%>/managerSalesInfo.do">매출정보</a></li>		
 					</ul>
 				</div>
@@ -102,24 +102,24 @@
 								</div>
 							</div>
 							<div id="moneybox">
-								<table border="1" style="border: solid; border-color: #90C3FF; width: 300px;" >
+								<table border="1" style="border: solid; border-color: #90C3FF; width: 350px;" >
 									<tr>
-										<td>현재 월매출 총금액 : </td><td>${monSales}</td>
+										<td>현재 월매출 총금액</td><td><fmt:formatNumber value="${monSales}" pattern="#,###"></fmt:formatNumber></td>
 									</tr>
 									<tr>
-										<td>현재 월방문 총인원수 : </td><td>${monVisit}</td>
+										<td>현재 월방문 방문인원수</td><td>${monVisit}</td>
 									</tr>
 									<tr>
-										<td>현재 월평균 매출금액 : </td><td>${monAvgSales}</td>
+										<td>현재 월평균 매출금액</td><td><fmt:formatNumber value="${monAvgSales}" pattern="#,###"></fmt:formatNumber></td>
 									</tr>
 									<tr>
-										<td>현재 월평균 방문인원수 : </td><td>${monAvgVisit}</td>
+										<td>현재 월평균 방문인원수</td><td>${monAvgVisit}</td>
 									</tr>
 									<tr>
-										<td>누적 매출금액 : </td><td>${totSales}</td>
+										<td>누적 매출금액</td><td><fmt:formatNumber value="${totSales}" pattern="#,###"></fmt:formatNumber></td>
 									</tr>
 									<tr>
-										<td>누적 방문인원수 : </td><td>${totVisit}</td>
+										<td>누적 방문인원수</td><td>${totVisit}</td>
 									</tr>
 								</table>
 							</div>

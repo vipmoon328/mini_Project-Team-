@@ -8,9 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 매출관리</title>
-<link href="<%=context%>/css/managerSales.css?ver0.1" rel="stylesheet" type="text/css">
+<link href="<%=context%>/css/managerSalespage.css?ver0.1" rel="stylesheet" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" >
-
 </head>
 <body style="overflow-x: hidden">
 <c:if test="${loc eq 0}">
@@ -50,7 +49,7 @@
 			<div class="flex-container center">
 				<div class="item_fourth">
 					<ul>
-						<li><a href="<%=context%>/managerSales.do">매출현황</a></li>
+						<li><a href="<%=context%>/managerSales.do">매장현황</a></li>
 						<li><a href="<%=context%>/managerSalesInfo.do">매출정보</a></li>		
 					</ul>
 				</div>
@@ -59,7 +58,7 @@
 				<div class="item_fifth"> 
 					<div class="searchbox">
 						<form action="<%=context%>/managerSelectDate.do" name="frm"> 
-						<h4>매출현황</h4>
+						<h4>매장현황</h4>
 						<label>조회기간  :  </label><input type="date" name="startDate" id="startDate" value="${startDate}" >  -  <input type="date"  name="endDate"  id="endDate" value="${endDate}"> 
 												 <input type="submit" value="조회">
 												 <input type="button" value="전체조회"  onclick="location.href='managerSales.do'">
@@ -68,7 +67,7 @@
 					</div>
 					<br>
 					<div id="table_box">
-					<table class="store" border="1" style="border: solid; border-color: #90C3FF; width: 900px;">
+					<table border="1" style="border: solid; border-color: #90C3FF; width: 900px; ">
 						<tr>
 							<th>순서</th>
 							<th>회원번호</th>
