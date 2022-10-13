@@ -56,11 +56,10 @@
 </script>
 <meta charset="UTF-8">
 <title>게시글</title>
-<link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
-
+<link rel="stylesheet" href="<%=context%>/css/boardWriteForm.css" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
 </head>
-<body>
+<body style="overflow-x: hidden">
 <!-- 헤더  -->
 <div id="wrapper">
 		<div class="flex-container flex-end">
@@ -87,11 +86,10 @@
 		</div>
 	<hr color="#D5D5D5" width="100%" size="1">
 		<div class="item_third">게시판</div>
-		</div>
 	<hr color="#90C3FF" width="70%" size="1">
 	
-	<!--헤더 -->
-	
+	<div class="flex-container center">
+	<div class= "content_box">
 <!-- 22.10.06 코드 전반적인 수정 [김건희] -->
 	<form action="<%=context%>/writePro.do"method="post" enctype="multipart/form-data">
 		<input type="hidden" name="pageNum" value="${pageNum }">
@@ -100,12 +98,8 @@
 		<input type="hidden" name="brd_re_level" value="${brd_re_level }">
 		<input type="hidden" name="brd_re_step" value="${brd_re_step }">
 
-
-			<!-- 비밀값 여부를 ajax를 통해 넘어가게 했다. 체크시 비밀글 값을 1 안했을 시 0으로 넘어간다. -->
-		<div id="scr_box">
-			<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  value="0" >비밀글 작성</label>
-		</div>
-		
+	
+			
 		<div id="title"><!--제목  -->
 			<table>
 			<colgroup>
@@ -139,12 +133,23 @@
 					</td>
 				</tr>
 			</table>
-		</div> 
+		</div>
+	 	
+		<div>
+			<!-- 비밀값 여부를 ajax를 통해 넘어가게 했다. 체크시 비밀글 값을 1 안했을 시 0으로 넘어간다. -->
+		<div id="scr_box">
+			<label><input  type="checkbox" name="brd_secret"  id="brd_secret"  value="0" >비밀글 작성</label>
+		</div>
 			<!-- submit 실행시 writeProAction 서비스 실행 -->
-		<table><tr><td><input  id="write_button" type="submit" value="확인"></td></table>
-
-	</form>		
-
+		<div class="submit">
+		<input id="input_ch" type="submit" value="확인">
+		</div>
+		</div>	
+		</form>
+	</div>
+	</div>
+		
+</div>
 
 		<!--풋터                       -->
 		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
@@ -154,6 +159,5 @@
 				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
