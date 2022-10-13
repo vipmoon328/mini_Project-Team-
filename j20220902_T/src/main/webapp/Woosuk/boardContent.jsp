@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%  String context = request.getContextPath(); %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,102 +12,10 @@
 </script>
 <meta charset="UTF-8">
 <title>게시글</title>
-<link rel="stylesheet" href="<%=context%>/css/HeadFoot.css" type="text/css">
+<link rel="stylesheet" href="<%=context%>/css/boardContent.css" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet" > 
-<style type="text/css">
-#input_ch {
-			height:30px;  /* 입력창 높이 */
-			border-radius: 12px;  /* 테두리 모서리 둥굴게 */
-			border: 1;  /* 테두리 두께 */
-			border-color: #EAEAEA; /* 테두리 색상 */
-	}
-	
-pre{
-	word-wrap: break-word;
-	position: top;
-	 font-size: 16px;
-	font-family: "NanumSquareNeo";
-}
-
-textarea{
-	border: none;
-}
-#commentwrite{
-	width: 50%;
-	margin: auto;
-	border-collapse: collapse;
-	background-color: #D5D5D5;
-}
-
-#srh_btn {
-		 position: relative;
-		 top:2px;
-		 background-color:#99ccff;
-		color:#fff;
-	}
-
-#comment{
-	width: 50%;
-	/* border-collapse: collapse; */
-	border-bottom : 1px solid black;
-	margin: auto;
-
-}
-	#hrline {
-	width: 54%;
-	margin: auto;
-	color : #99ccff; 
-} 
-
- #title{
-    width: 50%;
-  /*   border: 1px solid #444444; */
-   /*  border-collapse: collapse; */
-    margin: auto;
-  }
-  #content{
-    width: 46%;
-  /*   border: 1px solid #444444; */
-   /*  border-collapse: collapse; */
-   border-bottom : 1px solid #D5D5D5;
-    margin: auto;
-  }
- th, td {
-	border-color: #DCDCDC;
-  }
- 	 
-
-label {
-	width: 50%;
-	text-align: left;
-}
-
-sub {
-	color: red;
-}
-
-
-input {
-			position: relative;
-			border: 0;
-			height: 30px;
-			width: 60px;
-			background-color: #90C3FF;
-			text-align: center;
-			font-weight: bold; 
-			color: white; 
-			border-radius: 12px;
-			box-shadow: 0px 3px 0px #5A8DF3; 
-	}
-	input:active { 
-			box-shadow: 0 0 #90C3FF; 
-			background-color: #90C3FF;
-			top: 3px;
-	} 
-
-</style>
 </head>
-<body>
+<body style="overflow-x: hidden">
 <div id="wrapper">
 	<!-- 헤더  -->
 		<div class="flex-container flex-end">
@@ -172,16 +79,14 @@ input {
 				</ul>
 			</div>
 		</div>
-			<hr color="#D5D5D5" width="100%" size="1">
-	
-	
-	<!--헤더                                        -->
+	<hr color="#D5D5D5" width="100%" size="1">
+		<div class="item_third">게시판</div>
+	<hr color="#90C3FF" width="70%" size="1">
+
 	<!-- 게시판 출력 -->
+<div class="flex-container center">
+	<div class= "content_box">
 	<form action="">
-		<div id="hrline">
-			<h2>게시판</h2>
-			<hr>
-		</div>
 	<!-- <div id="scr_box">
 		<label><input  type="checkbox" name="secret" value="1" >비밀글 작성</label>
 	</div> -->
@@ -193,12 +98,12 @@ input {
 			<col width="100">
 			<col width="100">
 		</colgroup>
-		<tr><td style="vertical-align : bottom;">${board.brd_title }</td><td style="font-size:4px; vertical-align : bottom;" >${board.brd_writer }</td><td style="font-size:4px; vertical-align : bottom;" >${board.brd_date }</td></tr>
+		<tr><td style="vertical-align : bottom;">${board.brd_title }</td><td style="font-size:12px; vertical-align : bottom;" >${board.brd_writer }</td><td style="font-size:12px; vertical-align : bottom;" >${board.brd_date }</td></tr>
 		</table>
 		<!-- Content action으로 통해 db 값을 적용 -->
 		<p>
 	</div>
-	<hr style="width: 50%;">
+	<hr style="width: 100%;">
 	
 	<div id="content"><!-- 내용 -->
 		<table>
@@ -223,12 +128,12 @@ input {
 	<p>
 	<c:choose>
 		<c:when test="${usernum eq board.usernum}">
-			<input style="margin-left:66%" type="button" id="input_ch" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
-			<input type="button" id="input_ch" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
-			<input type="button" id="input_ch" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+			<input class="comment_btn" style="margin-left:66%" type="button" id="input_ch" value="수정" onclick="location.href='<%=context%>/updateForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+			<input class="comment_btn" type="button" id="input_ch" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'">
+			<input class="comment_btn" type="button" id="input_ch" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
 		</c:when>
 		<c:otherwise>
-			<input id="input_ch" style="margin-left:66%" style="margin-left:66%" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
+			<input id="input_ch" type="button" value="목록" onclick="location.href='<%=context%>/list.do?pageNum=${pageNum}'">
 		</c:otherwise>
 	</c:choose>
 	
@@ -237,8 +142,7 @@ input {
 	</form>	
 	
 	<!-- 댓글 기능 2022.10.09 -->
-	<h4 style="margin-left:25%">댓글 ${refcnt }</h4>
-	<hr color="#D5D5D5" width="50%" size="1">
+	<h4>댓글 ${refcnt }</h4>
 		<c:forEach var="board" items="${mentList }">
 			<table  id="comment">
 				<colgroup>
@@ -246,14 +150,14 @@ input {
 					<col width="100">
 				</colgroup>
 				<tr><td style="padding:4px;">${board.brd_writer}</td>
-				<td style="font-size:4px; vertical-align : bottom; text-align: right;">${board.brd_date }</td></tr><!-- 아이디 -->
+				<td style="font-size:12px; vertical-align : bottom; text-align: right;">${board.brd_date }</td></tr><!-- 아이디 -->
 				<tr><td>
 				<pre>${board.brd_content }</pre>
 				</td><!-- 내용 -->
 				<!-- 2022.10.10 삭제가 안나옴 수정도 마찬가지   -->
 			<c:choose>
 				<c:when test="${id eq board.brd_writer}">
-						<td style="padding:4px;"><input style="margin-left:50px;" type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'"></td></tr>
+						<td style="padding:4px;"><input class="del_btn" type="button" value="삭제" onclick="location.href='<%=context%>/deleteForm.do?num=${board.brd_bid}&pageNum=${pageNum }'"></td></tr>
 				</c:when>
 			</c:choose>
 			</table>
@@ -274,14 +178,14 @@ input {
 				<c:when test="${empty id}">
 				</c:when>
 				<c:otherwise>
-						<table border="1" id="commentwrite">
+						<table id="commentwrite">
 						<colgroup>
 							<col width="900">
 							<col width="45">
 						</colgroup>
 						<tr><td style="padding:4px;">${id}</td></tr><!-- 아이디 -->
 						<tr><td>
-						<textarea name="brd_content" id="brd_content" required="required" style="width: 99.6%" rows="6" ></textarea>
+						<textarea name="brd_content" id="brd_content" required="required" rows="6" ></textarea>
 						</td>
 						<td style="padding:4px; "><input id="comment_button" style="margin-left: 1%; vertical-align : top;" type="submit" value="답글" ></td></tr>
 					</table>	
@@ -291,7 +195,11 @@ input {
 			
 			
 		</div>
-	</form>	
+	</form>
+	</div>
+</div>
+
+</div>
 		<!--풋터                       -->
 		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">
@@ -300,6 +208,5 @@ input {
 				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
