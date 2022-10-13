@@ -48,7 +48,7 @@
 		$(document).on("click","#cancel_btn", function(){
 			console.log($('input:checkbox[name="cancel"]').is(":checked"));
 			if($('input:checkbox[name="cancel"]').is(":checked") == false){
-				alert("적어도 한개이상의 예약을 선택해주세요");
+				alert("적어도 한개 이상의 예약을 선택해주세요");
 			}else{
 				document.getElementById("cancel_form").submit();
 			}
@@ -136,52 +136,50 @@
 <div id="wrapper">
 	<!-- 헤드 부분을 제거하고 수정 -->
 	<div class="flex-container flex-end">
-			<div class="item_first">
-				<ul>
-					<li>${name}님</li>
-					<li><a href="<%=context%>/logout.do">로그아웃</a></li>
-				</ul>
-			</div> 
+		<div class="item_first">
+			<ul>
+				<li>${name}님</li>
+				<li><a href="<%=context%>/logout.do">로그아웃</a></li>
+			</ul>
+		</div> 
 	</div>
-		
 	<hr color="#D5D5D5" width="100%" size="1">	
-		<div class="flex-container">
-			<div class="item_second">
-				<ul>
-					<li>중앙볼링장</li>
-					<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
-					<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
-					<li><a href="<%=context%>/reschange.do">예약</a></li>
-					<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
-					<li><a href="<%=context%>/list.do">게시판</a></li>
-					<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
-				</ul>
-			</div>
+	<div class="flex-container">
+		<div class="item_second">
+			<ul>
+				<li>중앙볼링장</li>
+				<li><a href="<%=context%>/hyojung/loginHomeView.jsp">홈</a></li>
+				<li><a href="<%=context%>/JiHyeon/informationFormIn.jsp">볼링장정보</a></li>
+				<li><a href="<%=context%>/reschange.do">예약</a></li>
+				<li><a href="<%=context%>/JiHyeon/mapFormIn.jsp">오시는길</a></li>
+				<li><a href="<%=context%>/list.do">게시판</a></li>
+				<li><a href="<%=context%>/mypage.do">마이페이지</a></li>
+			</ul>
+		</div>
 	</div>		
-	
 	<hr color="#D5D5D5" width="100%" size="1">
 	<div class="flex-container">
 			<div class="item_third">나의 예약 정보</div>
-		</div>		
+	</div>		
 	<hr color="#90C3FF" width="70%" size="1">
 	<div id="content_container">
-	<form action="<%=context%>/resCancel.do" id="cancel_form"></form>
-		<table id="test_table">
-			<caption>
-				<input form="cancel_form" type="reset" value="선택 취소" class="cancel_btn"  id="cancel_select"><input form="cancel_form" type="button" value="예약 취소" class="cancel_btn" id="cancel_btn">
-				<select id="page_amount">
-					<option value="3">3개씩 보기</option>
-					<option value="5">5개씩 보기</option>
-					<option value="10" selected="selected">10개씩 보기</option>
-				</select>
-			</caption>
-			<thead>
-				<tr><th>예약취소</th><th>예약일자</th><th>지점</th><th>레인</th><th>시간</th><th>인원</th><th>금액</th><th>방문/취소</th><th>예약변경</th></tr>
-			</thead>
-			<tbody id="list">
-			</tbody>
-		</table>
-		
+		<form action="<%=context%>/resCancel.do" id="cancel_form"></form>
+			<table id="test_table">
+				<caption>
+					<input form="cancel_form" type="reset" value="선택 취소" class="cancel_btn"  id="cancel_select">
+					<input form="cancel_form" type="button" value="예약 취소" class="cancel_btn" id="cancel_btn">
+					<select id="page_amount">
+						<option value="3">3개씩 보기</option>
+						<option value="5">5개씩 보기</option>
+						<option value="10" selected="selected">10개씩 보기</option>
+					</select>
+				</caption>
+				<thead>
+					<tr><th>예약취소</th><th>예약일자</th><th>지점</th><th>레인</th><th>시간</th><th>인원</th><th>금액</th><th>방문/취소</th><th>예약변경</th></tr>
+				</thead>
+				<tbody id="list">
+				</tbody>
+			</table>
 		<div id="pagenum">
 		</div>
 	</div>

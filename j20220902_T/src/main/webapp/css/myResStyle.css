@@ -112,13 +112,13 @@
 		margin-top: 150px;
 		width: 1000px;
 	}
-	.cancel_btn, .cancel_select{
+	.cancel_btn, .cancel_select {
 		float: left;
-		margin-bottom: 4px;
+		margin-bottom: 20px;
 	}
-	#page_amount{
+	#page_amount {
 		float: right;
-		width: 150px; 
+		width: 110px; 
 		height : 40px;
 		padding: .8em .5em; 
 		border: 2px solid skyblue; 
@@ -141,7 +141,9 @@
     input[type=button], input[type=submit], input[type=reset] {
      	border: 2px solid skyblue;
         background-color: rgba(0,0,0,0);
-        color: black;
+        color: skyblue;
+        font-weight: bold;
+        font-size: medium;
         padding: 5px;
         border-collapse: collapse;
         cursor: pointer;
@@ -161,7 +163,7 @@
         margin-left: -1px;
     }
     #cancel_select, #cancel_btn{
-        width: 100px;
+        width: 90px;
         height: 40px;
         border-collapse: collapse;
     }
@@ -171,14 +173,12 @@
         border-collapse: collapse;
         border-radius: 5px;
     }
-    .change_btn{
-            width: 70px;
-            height: 40px;
-            border-collapse: collapse;
-            border-radius: 5px;
-        }
-      
-      
+    .change_btn {
+        width: 70px;
+        height: 40px;
+        border-collapse: collapse;
+        border-radius: 5px;
+     }
 	/* -------------------------------------------------------------------- */
 	/* 하단내용 영역 */							   
 	a.button_top {
