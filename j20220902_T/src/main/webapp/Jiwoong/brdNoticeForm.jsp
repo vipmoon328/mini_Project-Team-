@@ -42,22 +42,11 @@
 		}
 		return true;
 	}
-	
 </script>
-
-
-
-
-
-
-
 <meta charset="UTF-8">
 <title>공지사항 작성</title>
-
 </head>
-
-<body>
-	
+<body  style="overflow-x: hidden">
 	<!-- header -->
 	<div id="wrapper">
 		<div class="flex-container flex-end">
@@ -81,13 +70,10 @@
 		</div>
 			<hr color="#D5D5D5" width="100%" size="1">
 	</div>
-	
 		<div class="flex-container">
 			<div class="item_third">공지사항</div>
 		</div>
 	<hr color="#90C3FF" width="70%" size="1">
-	
-	
 	<form action="<%=context%>/brdNoticePro.do"method="post" enctype="multipart/form-data">
 		<input type="hidden" name="pageNum" value="${pageNum }">
 		<input type="hidden" name="brd_bid" value="${num }">
@@ -106,7 +92,6 @@
 				</table>
 			<p>
    </div>
-	
 	<div id="content"><!-- 내용 -->
 			<table style="width: 80%;">
 				<colgroup>
@@ -140,6 +125,5 @@
 				<div><pre>이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
-	
 </body>
 </html>
