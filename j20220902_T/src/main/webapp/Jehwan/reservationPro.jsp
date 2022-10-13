@@ -30,8 +30,10 @@
 		});
 		realDay = new Date();
 		inputDay = new Date('${ res_date }');
-		today = new Date('${ res_date }'); 
+		today = new Date('${ res_date }');
+		
 		$('#jijum').val('${brnNum}').prop("selected",true);
+		
 		if(today.getMonth()<=realDay.getMonth()){
 		 	$("#prev").hide();
          }
@@ -383,7 +385,7 @@
 		        <tbody id="calander_test">
 		        </tbody>
 	    	</table>
-	    	<div id="form_container"><form action="<%=context%>/insertResult.do" id="frm"><span id="msg"></span></form></div>
+	    	<div id="form_container"><form action="<%=context%>/insertResult.do" id="frm" meth><span id="msg"></span></form></div>
 	</div>
 
 	<div id="timeTableCon">

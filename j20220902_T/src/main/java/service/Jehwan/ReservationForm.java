@@ -31,12 +31,7 @@ public class ReservationForm implements CommandProcess {
 		String endString = request.getParameter("end");
 		String customer = "1";
 		int PossibleLane = 0;
-		int brnNum;
-		if(brnNum_text == "강남점") {
-			brnNum=1;
-		}else {
-			brnNum=0;
-		}
+		int brnNum = 0;
 		if (res_date==null || res_date.equals("")) {
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar cal = Calendar.getInstance();
@@ -61,8 +56,13 @@ public class ReservationForm implements CommandProcess {
 			endString = String.valueOf(end);
 			request.setAttribute("start", startString);
 			request.setAttribute("end", endString);
+			if(brnNum_text.equals("강남점")) {
+				brnNum=1;
+			}
 		}
-
+		System.out.println("brnNum_text" + brnNum_text);
+		
+		System.out.println(brnNum);
 		ReservationDao rd = ReservationDao.getInstance();
 		try {
 			PossibleLane= rd.getPossibleLane(brnNum);

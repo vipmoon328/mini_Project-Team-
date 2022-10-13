@@ -91,7 +91,7 @@
 					tag += "<td></td>";
 				}else if(data[i]["visit"] == "0"){
 					tag += "<td style='color:blue;'>방문전</td>";
-					tag += "<td><form action='<%=context%>/reschange.do' id='frm"+ i +"'>";
+					tag += "<td><form action='<%=context%>/reschange.do' id='frm"+ i +"' method='post'>";
 					tag += "<input form='frm" + i + "' type='hidden' name='res_date' value='" + data[i]["res_date"] + "'>";
 					tag += "<input form='frm" + i + "' type='hidden' name='brnNum' value='" + data[i]["brnNum"] + "'>";
 					tag += "<input form='frm" + i + "' type='hidden' name='lane' value='" + data[i]["lane"] + "'>";
@@ -163,7 +163,7 @@
 	</div>		
 	<hr color="#90C3FF" width="70%" size="1">
 	<div id="content_container">
-		<form action="<%=context%>/resCancel.do" id="cancel_form"></form>
+		<form action="<%=context%>/resCancel.do" id="cancel_form" method="post"></form>
 			<table id="test_table">
 				<caption>
 					<input form="cancel_form" type="reset" value="선택 취소" class="cancel_btn"  id="cancel_select">
