@@ -21,7 +21,6 @@ $(function() { // 삭제 버튼 동적 생성
 	}else{
 		$("#delete_btn").hide();
 	}
-			
 	});
 });
 	
@@ -74,7 +73,7 @@ $(function() { // 삭제 버튼 동적 생성
 	
 	
 </head>
-<body>	
+<body style="overflow-x: hidden">	
 		<form name="chk_delete" method="post"  action="<%=context%>/mgrBrdDeletePro.do">	
 				<table>
 					<colgroup>

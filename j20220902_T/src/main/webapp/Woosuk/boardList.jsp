@@ -143,7 +143,7 @@
 					</c:if>
 					<c:if test="${totCnt == 0 }">
 						<tr>
-							<td colspan=7>데이터가 없네</td>
+							<td colspan=7>게시글이 없습니다.</td>
 						</tr>
 					</c:if>					
 				</table>

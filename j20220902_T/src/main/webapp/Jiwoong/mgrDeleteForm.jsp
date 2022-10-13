@@ -6,13 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>탈퇴하기</title>
+<title>회원정보 삭제</title>
 <link href="<%=context%>/css/mgrDeleteForm.css" rel="stylesheet" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet"> 
 </head>
-<body>
+<body style="overflow-x: hidden">
 <div id="wrapper">
-	
 	<form action="<%=context%>/mgrDeletePro.do" method="post">
 		<div class="flex-container flex-end">
 			<div class="item_first">
@@ -22,8 +21,6 @@
 				</ul>
 			</div> 
 		</div>
-		
-
 	<hr color="#D5D5D5" width="100%" size="1">
 		<div class="flex-container">
 			<div class="item_second">
@@ -41,7 +38,7 @@
 		</div>
 	<hr color="#90C3FF" width="70%" size="1">
 		<div class="flex-container center">
-			<div class="item_fifth"> 
+			<div class="item_forth"> 
 				<table width="500px" height="350px">
 						<tr>
 							<td><input type="hidden" name="user_id" value="${users.id}">
@@ -49,7 +46,7 @@
 						</tr>
 						<tr>			
 							<td><span>회원 암호 재확인  </span><input type="password" name="user_password"></td>
-							<td><button type="submit" value="탈퇴하기">삭제하기</button></td>
+							<td><button type="submit" value="삭제하기">삭제하기</button></td>
 						</tr>
 					</table>
 				</form>
