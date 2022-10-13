@@ -85,7 +85,7 @@
 				tag += "<td>" + data[i]["lane"] + "</td>";
 				tag += "<td>" + data[i]["start"] + ":00 ~ " + data[i]["end"] + ":00</td>";
 				tag += "<td>" + data[i]["customer"] + "</td>";
-				tag += "<td>" + data[i]["cost"] + "</td>";
+				tag += "<td>" + data[i]["cost"].toLocaleString('en-US') + "</td>";
 				if(data[i]["cancel"] == "1"){
 					tag += "<td style='color:red;'>예약취소</td>";
 					tag += "<td></td>";
