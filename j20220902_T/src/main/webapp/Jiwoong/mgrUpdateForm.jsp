@@ -78,7 +78,7 @@
 		
 	</script>
 </head>
-<body onload="init()">
+<body onload="init()" style="overflow-x: hidden">
 <div id="wrapper">
 	<form action="<%=context%>/mgrUpdatePro.do"  method="post">
 		<div class="flex-container flex-end">
