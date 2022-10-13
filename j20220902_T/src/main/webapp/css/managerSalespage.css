@@ -104,7 +104,10 @@
 			text-decoration: none;  /* 글자 밑줄 제거 */
 	}
 	td {
-			padding: 10px;  
+		padding: 10px;  
+	}
+	th {
+		padding: 10px;  
 	}
 	input {
 			height:30px;  /* 입력창 높이 */
@@ -199,38 +202,16 @@
 		    justify-content: space-around;
 		    align-items: center;
 	}
-	/* 추가 내용 영역 */
-	#salesbox{
-			  width: 600px;
-			  height: 500px;
-			  margin-left: -50px;
-			  float: left;
-			  padding: 5px;
-			  
+	/* 추가사항 */
+	table {
+			text-align: center;
 	}
-	#moneybox{
-			  width: 300px;
-			  margin: 0px auto;
-			  float: right;
-			  padding: 5px;
-			  margin-top: 5px;
-	}
-	#sales_list{
-				width: 600px;
-				margin: 0px auto;
-				padding: 5px;
-	}
-	#sales_list table {
-					  margin: 0px auto;
+	#table_box {
+			    height: 500px;
 	}
 	#number {
-			width: 600px;
-			margin: 0px auto;
-			padding: 5px;
+			margin-bottom: 20px;
 	}
-	.searchbox {
-				margin-left: 10px;
-	}
-	table {
-		   text-align: center;
+	#number a {
+				text-decoration: none;
 	}

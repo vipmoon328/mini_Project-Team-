@@ -52,7 +52,6 @@
 		}
 		return true;
 	}
-	
 </script>
 <meta charset="UTF-8">
 <title>게시글</title>
@@ -88,7 +87,7 @@
 		<div class="item_third">게시판</div>
 	<hr color="#90C3FF" width="70%" size="1">
 	
-	<div class="flex-container center">
+<div class="flex-container center">
 	<div class= "content_box">
 <!-- 22.10.06 코드 전반적인 수정 [김건희] -->
 	<form action="<%=context%>/writePro.do"method="post" enctype="multipart/form-data">
@@ -147,7 +146,7 @@
 		</div>	
 		</form>
 	</div>
-	</div>
+</div>
 		
 </div>
 

@@ -6,9 +6,90 @@ META-INF에서 실제 시연시 username="scott2" 값을 username="j20220902"
 
 -시퀸스 설절 [필수] -> 설정 이후 회원 가입을 한번 실행한 후 오류가 없는지 확인한다.
 
+[회원 가입 관련 시퀀스]
 CREATE SEQUENCE usernum_count
 MINVALUE 11;
 
+[예약 관련 시퀀스]
+예약테이블 시퀀스 start with를 현재 최댓값으로
+CREATE SEQUENCE res_seq 
+MINVALUE 1 
+MAXVALUE 9999999999999999999999999999 
+INCREMENT BY 1 
+START WITH 1255 
+CACHE 20 
+NOORDER  
+NOCYCLE;
+
+[프로시저]
+[게시판 수정 프로시저]
+create or replace procedure img_src_update
+(
+     p_brd_bid in files.brd_bid%type,
+     p_delete in VARCHAR2,
+     p_insert in  VARCHAR2
+)
+is
+V_LIST VARCHAR2(32767 BYTE);
+V_DATA VARCHAR2(100 BYTE);
+v_max_num NUMBER;
+begin
+
+       V_LIST := p_delete;
+       WHILE V_LIST IS NOT NULL LOOP
+        IF INSTR( V_LIST, ',' ) > 0 THEN
+            V_DATA := SUBSTR( V_LIST, 1, INSTR( V_LIST, ',' ) - 1 );
+            V_LIST := SUBSTR( V_LIST, INSTR( V_LIST, ',' ) + 1 );
+        ELSE
+            V_DATA := V_LIST;
+            V_LIST := NULL;
+        END IF;
+        delete from files where  brd_bid = p_brd_bid and FILE_NAME = V_DATA;
+    END LOOP;
+    
+    UPDATE files f
+        SET FILE_FID = ( SELECT rn 
+                     FROM ( SELECT rid, ROWNUM rn
+                            FROM ( SELECT ROWID rid
+                                   FROM files
+                                   where brd_bid = p_brd_bid
+                                   ORDER BY file_fid)
+                          )
+        WHERE rid = f.ROWID )
+        WHERE f.brd_bid = p_brd_bid;
+    
+     select nvl(max(file_fid),0)
+              into v_max_num
+              from files
+              where brd_bid = p_brd_bid;
+    
+    V_LIST := p_insert;
+    
+     WHILE V_LIST IS NOT NULL LOOP
+     v_max_num := v_max_num+1;
+        IF INSTR( V_LIST, ',' ) > 0 THEN
+            V_DATA := SUBSTR( V_LIST, 1, INSTR( V_LIST, ',' ) - 1 );
+            V_LIST := SUBSTR( V_LIST, INSTR( V_LIST, ',' ) + 1 );
+        ELSE
+            V_DATA := V_LIST;
+            V_LIST := NULL;
+        END IF;
+            insert into FILES VALUES(p_brd_bid, v_max_num, V_DATA);
+    END LOOP;
+end;
+
+[예약 테이블 스케줄러]
+create or replace Procedure update_reserve
+ Is
+ begin
+    update reserve 
+    set RES_COME=1 
+    where RES_DATE =  TO_DATE(sysdate,'YY/MM/DD') 
+    AND RES_STARTTIME = TO_CHAR(sysdate,'hh24');
+End;
+
+
+[데이터 베이스 SQL문]
 drop table board;
 drop table reserve;
 drop table users;
@@ -97,79 +178,3 @@ Insert into reserve values (1253,to_date('22/09/28','RR/MM/DD'),4,13,14,2,50000,
 Insert into reserve values (1254,to_date('22/10/03','RR/MM/DD'),5,16,18,4,100000,0,7,to_date('22/09/21','RR/MM/DD'),0,0);
 
 commit
-
-예약테이블 시퀀스 start with를 현재 최댓값으로
-CREATE SEQUENCE res_seq 
-MINVALUE 1 
-MAXVALUE 9999999999999999999999999999 
-INCREMENT BY 1 
-START WITH 1255 
-CACHE 20 
-NOORDER  
-NOCYCLE;
-
-게시판 수정 프로시저
-create or replace procedure img_src_update
-(
-     p_brd_bid in files.brd_bid%type,
-     p_delete in VARCHAR2,
-     p_insert in  VARCHAR2
-)
-is
-V_LIST VARCHAR2(32767 BYTE);
-V_DATA VARCHAR2(100 BYTE);
-v_max_num NUMBER;
-begin
-
-       V_LIST := p_delete;
-       WHILE V_LIST IS NOT NULL LOOP
-        IF INSTR( V_LIST, ',' ) > 0 THEN
-            V_DATA := SUBSTR( V_LIST, 1, INSTR( V_LIST, ',' ) - 1 );
-            V_LIST := SUBSTR( V_LIST, INSTR( V_LIST, ',' ) + 1 );
-        ELSE
-            V_DATA := V_LIST;
-            V_LIST := NULL;
-        END IF;
-        delete from files where  brd_bid = p_brd_bid and FILE_NAME = V_DATA;
-    END LOOP;
-    
-    UPDATE files f
-        SET FILE_FID = ( SELECT rn 
-                     FROM ( SELECT rid, ROWNUM rn
-                            FROM ( SELECT ROWID rid
-                                   FROM files
-                                   where brd_bid = p_brd_bid
-                                   ORDER BY file_fid)
-                          )
-        WHERE rid = f.ROWID )
-        WHERE f.brd_bid = p_brd_bid;
-    
-     select nvl(max(file_fid),0)
-              into v_max_num
-              from files
-              where brd_bid = p_brd_bid;
-    
-    V_LIST := p_insert;
-    
-     WHILE V_LIST IS NOT NULL LOOP
-     v_max_num := v_max_num+1;
-        IF INSTR( V_LIST, ',' ) > 0 THEN
-            V_DATA := SUBSTR( V_LIST, 1, INSTR( V_LIST, ',' ) - 1 );
-            V_LIST := SUBSTR( V_LIST, INSTR( V_LIST, ',' ) + 1 );
-        ELSE
-            V_DATA := V_LIST;
-            V_LIST := NULL;
-        END IF;
-            insert into FILES VALUES(p_brd_bid, v_max_num, V_DATA);
-    END LOOP;
-end;
-
-예약 테이블 스케쥴러
-create or replace Procedure update_reserve
- Is
- begin
-    update reserve 
-    set RES_COME=1 
-    where RES_DATE =  TO_DATE(sysdate,'YY/MM/DD') 
-    AND RES_STARTTIME = TO_CHAR(sysdate,'hh24');
-End;
