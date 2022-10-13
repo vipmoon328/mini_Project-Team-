@@ -137,7 +137,7 @@ body {
 			border-color: #EAEAEA; /* 테두리 색상 */	
   	}
   	input.button {
-			margin-right: 50px;
+			
 			margin-top: 20px;
 			text-align: center;
   	}
@@ -146,11 +146,17 @@ body {
 			margin-left: 96%;
 			float: right;
 	}
+	
+	#wr_btn{
+		margin-right: 60px;
+		margin-left: 10px;
+	
+	}
   	.button {
   			float: right;
   			position: relative;
 			border: 0;
-			margin-right: 30px;
+			
 			height: 30px;
 			width: 60px;
 			background-color: #90C3FF;
