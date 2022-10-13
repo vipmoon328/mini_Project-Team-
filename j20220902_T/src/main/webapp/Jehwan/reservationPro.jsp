@@ -30,10 +30,8 @@
 		});
 		realDay = new Date();
 		inputDay = new Date('${ res_date }');
-		today = new Date('${ res_date }');
-		
+		today = new Date('${ res_date }'); 
 		$('#jijum').val('${brnNum}').prop("selected",true);
-		
 		if(today.getMonth()<=realDay.getMonth()){
 		 	$("#prev").hide();
          }
@@ -115,27 +113,30 @@
 		});
 		
 		$(document).on("click","#insert", function(){
-			
-			var IMP = window.IMP; // 생략가능
-	        IMP.init('imp06482341'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-	        var msg;
-	        
-	        IMP.request_pay({
-	        	 pg : 'kakaopay',
-	             pay_method : 'card',
-	             merchant_uid : 'merchant_' + new Date().getTime(),
-	             name : '볼링장 실험',
-	             amount : $('input[name=cost]').val(),
-	        }, function(rsp) {
-	            if ( rsp.success ) {
-	            	alert("결제성공");
-	            	document.getElementById("frm").submit();
-	           }  else {
-	                msg = '결제에 실패하였습니다.';
-	                msg += '에러내용 : ' + rsp.error_msg;
-	                alert(msg);
-	            }
-	        });
+			if(cost == 0){
+				document.getElementById("frm").submit();
+			}else{
+				var IMP = window.IMP; // 생략가능
+		        IMP.init('imp06482341'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		        var msg;
+		        
+		        IMP.request_pay({
+		        	 pg : 'kakaopay',
+		             pay_method : 'card',
+		             merchant_uid : 'merchant_' + new Date().getTime(),
+		             name : '볼링장 실험',
+		             amount : $('input[name=cost]').val(),
+		        }, function(rsp) {
+		            if ( rsp.success ) {
+		            	alert("결제성공");
+		            	document.getElementById("frm").submit();
+		           }  else {
+		                msg = '결제에 실패하였습니다.';
+		                msg += '에러내용 : ' + rsp.error_msg;
+		                alert(msg);
+		            }
+		        });
+			}
 		});
 		
 		$(document).on("click","#next", function(){
@@ -213,13 +214,20 @@
 			cost= (end - start + 1) * 50000;
 		}	
 		cost = cost * parseInt(many_input);
-		//internationalNumberFormat = new Intl.NumberFormat('en-US');
-		//internationalNumberFormat.format(cost)
 		text = "<h2>예약 현황</h2>";
 		text += "지점 : " + jijum_name +"<p>";
 		text += "레인 : " +lane +"<p>";
 		text += "시간 : " + start +":00 ~ " + (end+1) + ":00<p>";
 		text += "인원수 : <select id='many' name='many'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select><p>";
+		if(!('${ cost }' ==null || '${ cost }' == '')){
+			if(cost> parseInt('${ cost }')){
+				cost = cost - parseInt('${ cost }');
+				text += "<input type='hidden' name='cost' value='" + cost +"'>";
+			}else{
+				text += "<input type='hidden' name='cost' value='" + cost +"'>";
+				cost = 0;
+			}
+		}
 		text += "금액 : "+ cost.toLocaleString('en-US') + "원<p>";
 		text += "<input type='button' id='insert' value='결제'>";
 		text += "<input type='hidden' name='inputYear' value='" + today.getFullYear() +"'>";
@@ -228,7 +236,6 @@
 		text += "<input type='hidden' name='start' value='"+ start +"'>";
 		text += "<input type='hidden' name='end' value='"+ (end+1) +"'>";
 		text += "<input type='hidden' name='lane' value='" + lane +"'>";
-		text += "<input type='hidden' name='cost' value='" + cost +"'>";
 		text += "<input type='hidden' name='jijum' value='" + jijum +"'>";
 		
 		text += "<input type='hidden' name='res_rid' value='" + '${ res_rid }' +"'>";

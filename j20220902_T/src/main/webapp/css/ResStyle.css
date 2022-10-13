@@ -121,6 +121,7 @@
 			-moz-appearance: none;
 			appearance: none;
 			cursor: pointer;
+			margin-bottom: 5px;
 	}
 	#many {
 			width: 50px; 
@@ -145,9 +146,6 @@
 		width: 30px;
 		height: 30px;
 		vertical-align: middle;
-	}
-	#calendar tbody{
-		border: 1px solid black;
 	}
 	.possible{
 		background-color : skyblue;
@@ -185,7 +183,7 @@
 		clear:both;
 		border-collapse: collapse;
 		margin: 0 auto;
-		margin-top: 350px;
+		margin-top: 400px;
 	}
 	#test_table th {
 		width: 80px;
@@ -206,6 +204,15 @@
 		text-align: center;
 		width: 300px;
 		height: 250px;
+		border-collapse: collapse;
+	}
+	#calendar td,#calendar th {
+		width: 40px;
+		height: 32px;
+	}
+	#calendar th {
+		border : 1px solid skyblue;
+		border-radius: 5px;
 	}
 	#msg {
 		width: 200px;
@@ -237,8 +244,8 @@
             background-color: rgba(0,0,0,0);
             color: black;
             padding: 5px;
-            width: 30px;
-            height: 30px;
+            width: inherit;
+            height: inherit;
             border-collapse: collapse;
             border-radius: 5px; 
             cursor: pointer;
