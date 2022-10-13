@@ -106,7 +106,7 @@
 						<col width="100">
 					</colgroup>
 					
-					<tr bgcolor="#e9ecef">
+					<tr bgcolor="#90C3FF">
 						<th>번호</th>
 						<th>구분</th>
 				        <th>제목</th>
@@ -186,7 +186,7 @@
 					<option value="brd_writer">작성자</option>
 				</select>
 				<input id="srh_input" name="srh_input" type="text" placeholder="검색어 입력" value="${srh_input }">
-				<input style="margin-right: 20px;" class="button" type="submit" value="검색">
+				<input class="button2" type="submit" value="검색">
 				
 			</div>
 		</form>
