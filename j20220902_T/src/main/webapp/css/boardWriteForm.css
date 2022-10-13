@@ -123,8 +123,8 @@
 	}
 	.submit {
 			margin-top: 50px;
-			margin-left: 96%;
-			float: right;
+			margin-left: 86%;
+			float: left;
 	}
 	#input_ch {
 			border: 0;
@@ -136,6 +136,7 @@
 			background-color: #90C3FF;				
 			border-radius: 12px; /* 테두리 모서리 둥굴게 */
 			box-shadow: 0px 3px 0px #5A8DF3;
+			
 	}
 	#input_ch:active { 
 			box-shadow: 0 0 #90C3FF; 

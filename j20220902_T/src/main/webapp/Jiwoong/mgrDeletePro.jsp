@@ -13,14 +13,15 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("회원삭제가 완료되었습니다.");
+			alert("회원 탈퇴가 완료되었습니다.");
 			location.href="<%=context%>/mgrList.do";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
 			alert("패스워드가 일치하지 않습니다.");
-			location.href="<%=context%>/mgrDeleteForm.do?id=${id}&pw=${pw}";
+			<%-- location.href="<%=context%>/mgrDeleteForm.do?id=${id}&pw=${pw}"; --%>
+			history.back();
 		</script>
 	</c:if>
 </body>

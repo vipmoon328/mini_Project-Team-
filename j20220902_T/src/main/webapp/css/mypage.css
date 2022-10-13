@@ -1,3 +1,6 @@
+	html, body {
+		height: 100%;
+	}
 	body {
 		margin: 0;
 		display: flex;
@@ -7,6 +10,9 @@
  	.flex-container {
             display: flex;  /* 컨테이너들 수직정렬 */
     }
+    main {
+		flex: 1;  /* main의 내용이 적어도 한페이지에 공백을 채워서 footer가 하단에 고정 */
+	} 
  	 .flex-container.flex-end {			/* user님 로그아웃 오른쪽 정렬 */
     		justify-content: flex-end;  /* 컨테이너의 아이템 오른쪽정렬 */
     }

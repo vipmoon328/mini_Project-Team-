@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>중앙 볼링장 마이페이지</title>
-<link href="<%=context %>/css/mgrUpdateForm.css" rel="stylesheet" type="text/css">
+<link href="<%=context %>/css/mgrUpdateForm.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet" type="text/css">
 <link href="<%=context%>/css/font.css" rel="stylesheet"> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -79,9 +79,7 @@
 	</script>
 </head>
 <body onload="init()" style="overflow-x: hidden">
-<div id="wrapper">
-	<form action="<%=context%>/mgrUpdatePro.do"  method="post">
-		<div class="flex-container flex-end">
+	<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
 					<li><strong>${name} 관리자님</strong></li> <!-- 22.10.05 링크 및 관리자 표시 수정 [김건희] -->
@@ -89,31 +87,34 @@
 				</ul>
 			</div> 
 		</div>
-	<hr color="#D5D5D5" width="100%" size="1">
+		<hr color="#D5D5D5" width="100%" size="1">
 		<div class="flex-container">
 			<div class="item_second">
 				<ul>
 					<li>중앙볼링장</li>
-					<li><a href="<%=context%>/mgrList.do" >회원관리</a></li>
+					<li><a href="<%=context%>/mgrList.do" style="color:#5A8DF3; " >회원관리</a></li>
 					<li><a href="">매장관리</a></li>
 					<li><a href="">게시판관리</a></li>
 				</ul>
 			</div>
 		</div>
 	<hr color="#D5D5D5" width="100%" size="1">
+<main>	
 		<div class="flex-container">
 			<div class="item_third">회원정보 수정</div>
 		</div>
-	<hr color="#90C3FF" width="70%" size="1">
+		<hr color="#90C3FF" width="70%" size="1">
 		<div class="flex-container center">
 			<div class="item_fourth">
-				
+				<ul>
+					<li><a href="<%=context%>/mypage.do"></a></li>
+					<li><a href="<%=context%>/myRes.do"></a></li>		
+				</ul>
 			</div>
 		</div>
 		<div class="flex-container center">
 			<div class="item_fifth">
-				
-					
+				<form action="<%=context%>/mgrUpdatePro.do"  method="post">
 					<input type="hidden" name="pageNum" value="${pageNum }">
 					<table width="700px">
 					<tr> 
@@ -194,7 +195,7 @@
 						<div id="emailError" class="error"></div>
 					</tr>
 				</table>
-				</div> 
+			</div> 
 		</div>
 		<!-- 22.10.05 체크 함수 관련 수정 -->
 		<div class="flex-container center">
@@ -203,12 +204,7 @@
 			</div>
 		</div>
 	    </form>
-		
-		
-		<div class="flex-container center">
-				<div class="item_sixth">
-				</div>
-		</div>
+		</main>
 		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 		<div class="flex-container center">
 			<div class="item_end">
@@ -216,7 +212,7 @@
 				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 			</div>
 		</div>
-</div>
+
 </body>
 </html>
 				

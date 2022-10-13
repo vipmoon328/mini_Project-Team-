@@ -73,9 +73,9 @@
 </script>
 </head>
 <body onload="init()" style="overflow-x: hidden">
-<div id="wrapper">
+
 	<!-- 22.10.04 로그인 창 이름 수정 [김건희] -->
-	<form action="mypagePro.do" method="post" onsubmit="return updateCheck()" >
+	
 		<div class="flex-container flex-end">
 			<div class="item_first">
 				<ul>
@@ -86,6 +86,7 @@
 		</div>
 	<!-- 22.10.04 링크 연결 및 수정 [김건희] -->
 	<hr color="#D5D5D5" width="100%" size="1">
+<main>	
 		<div class="flex-container">
 			<div class="item_second">
 				<ul>
@@ -113,7 +114,8 @@
 			</div>
 		</div>
 		<div class="flex-container center">
-			<div class="item_fifth"> 
+			<div class="item_fifth">
+				<form action="mypagePro.do" method="post" onsubmit="return updateCheck()" > 
 				<table width="700px">
 					<tr> 
 						<td><figure style="margin: 0;">아이디<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
@@ -203,6 +205,8 @@
 					<button type="submit" onclick="location.href='myDeleteForm.do?user_id=${users.id}'">탈퇴하기</button>
 				</div>
 		</div>
+	
+</main>
 	<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
 	<div class="flex-container center">
 		<div class="item_end">
