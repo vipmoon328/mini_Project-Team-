@@ -35,38 +35,29 @@
 		var check = true;
 		
 		$('#passError').text('');
-		$('#passLengthError').text('');
+		$('#passLengthError').text('');    
 		$('#emailError').text('');
 		
-		if($("user_password").val="")
-		{
-			$('#passLengthError').text('비밀번호를 입력해주세요.');
-			$("user_password").focus();
-			check = false;
-		}
-		if($("user_password_chk").val="")
-		{
-			$('#passLengthError').text('비밀번호확인을 입력해주세요.');
-			$("user_password_chk").focus();
-			check = false;
-		}
 		if($('#user_password').val().length < 8)
 		{
 			$('#passLengthError').text('비밀번호는 8글자 이상 입력해주세요.');
 			$("user_password").focus();
 			check = false;
+			return check;
 		}
 		if($('#user_password_chk').val().length < 8)
 		{
 			$('#passLengthError').text('비밀번호확인은 8글자 이상 입력해주세요.');
 			$("user_password_chk").focus();
 			check = false;
+			return check;
 		}
 		if($('#user_password').val() != $('#user_password_chk').val())
 		{
 			$('#passError').text('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
 			$("user_password_chk").focus();
 			check = false;
+			return check;
 		}
 		
 		if($('#user_email2').val().indexOf('.') == -1)
@@ -131,6 +122,8 @@
 					<tr>
 						<td><figure style="margin: 0;">비밀번호<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
 						<td><input type="password" size="30px" name="user_password" id="user_password" required="required" value="${users.pw}"></td> 
+						<div id="passError" class="error"></div>
+						<div id="passLengthError" class="error"></div>
 					</tr>
 					<tr>
 						<td><figure style="margin: 0;">비밀번호확인<figcaption style="font-size: 10px; color: gray;">* 필수항목</figcaption></figure></td>
@@ -210,13 +203,13 @@
 					<button type="submit" onclick="location.href='myDeleteForm.do?user_id=${users.id}'">탈퇴하기</button>
 				</div>
 		</div>
-		<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
-		<div class="flex-container center">
-			<div class="item_end">
-				<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
-				<div><pre class="footer">이메일  choongang@naver.com</pre></div>
-			</div>
+	<a href="#" title="" class="button_top" style="display:scroll;position:fixed;bottom:20px;right:10px;">TOP</a>
+	<div class="flex-container center">
+		<div class="item_end">
+			<div><pre class="footer">쓰리원이조  |  중앙볼링장  |  서울시 마포구 신촌로 176  |  전화번호  02-313-1711</pre></div>
+			<div><pre class="footer">이메일  choongang@naver.com</pre></div>
 		</div>
+	</div>
 </div>
 </body>
 </html>
