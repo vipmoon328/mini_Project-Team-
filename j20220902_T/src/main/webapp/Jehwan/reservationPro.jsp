@@ -227,6 +227,8 @@
 				text += "<input type='hidden' name='cost' value='" + cost +"'>";
 				cost = 0;
 			}
+		}else{
+			text += "<input type='hidden' name='cost' value='" + cost +"'>";
 		}
 		text += "금액 : "+ cost.toLocaleString('en-US') + "원<p>";
 		text += "<input type='button' id='insert' value='결제'>";
